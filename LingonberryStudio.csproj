@@ -8,10 +8,8 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Contact\" />
-    <Folder Include="Controllers\Adverts\" />
     <Folder Include="Controllers\Form\" />
     <Folder Include="Views\Contact\" />
-    <Folder Include="Views\Adverts\" />
     <Folder Include="Views\Form\" />
   </ItemGroup>
 
