@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace LingonberryStudio.Controllers
+namespace LingonberryStudio.Controllers.Home
 {
     public class HomeController : Controller
     {
