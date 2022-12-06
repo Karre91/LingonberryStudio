@@ -2,9 +2,9 @@
 
 namespace LingonberryStudio.Controllers.Adverts
 {
-    public class Adverts : Controller
+    public class AdvertsController : Controller
     {
-        public IActionResult Advert()
+        public IActionResult Adverts()
         {
             return View();
         }
