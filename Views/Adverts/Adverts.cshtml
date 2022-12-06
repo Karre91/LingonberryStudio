@@ -1,6 +1,18 @@
-﻿@*
-   
-*@
+﻿@using LingonberryStudio.Data.Entities
+@using LingonberryStudio.Models
 @{
 }
+
+@model IEnumerable<Ad>
 <h1>FIND YOUR SPACE</h1>
+
+
+@foreach (var p in Model)
+{
+
+
+
+    <h5>Id: @p.Id,   Postcode: @p.Area,   Price: @p.Price</h5>
+          
+
+}
