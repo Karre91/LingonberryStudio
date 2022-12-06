@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\LingonberryStudio.csproj": {}
+    "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\Lingonberry\\LingonberryStudio.csproj": {}
   },
   "projects": {
-    "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\LingonberryStudio.csproj": {
+    "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\Lingonberry\\LingonberryStudio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\LingonberryStudio.csproj",
+        "projectUniqueName": "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\Lingonberry\\LingonberryStudio.csproj",
         "projectName": "LingonberryStudio",
-        "projectPath": "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\LingonberryStudio.csproj",
+        "projectPath": "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\Lingonberry\\LingonberryStudio.csproj",
         "packagesPath": "C:\\Users\\josef\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\obj\\",
+        "outputPath": "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\Lingonberry\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
