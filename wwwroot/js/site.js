@@ -3,17 +3,20 @@
 
 // Write your JavaScript code.
 
-const slideshowImages = document.querySelectorAll(".intro .slideshow-img");
 
-const nextImageDelay = 3000;
+
+const slideshowImages = document.querySelectorAll(".slideshow-img");
+
+const nextImageDelay = 1000;
 let currentImageCounter = 0;
 
-slideshowImages[currentImageCounter].site.display = "block";
+slideshowImages[currentImageCounter].style.display = "block";
 
 setInterval(nextImage, nextImageDelay);
 
 function nextImage() {
-    slideshowImages[currentImageCounter].site.display = "none";
+    
+    slideshowImages[currentImageCounter].style.display = "block";
     currentImageCounter = (currentImageCounter + 1) % slideshowImages.length;
 
 }
