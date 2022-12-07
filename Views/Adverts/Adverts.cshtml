@@ -1,6 +1,14 @@
-﻿@*
-   
-*@
-@{
+﻿@model IEnumerable<FormModel>
+
+<div id="partialZone">
+
+
+</div>
+@section scripts{
+	<script>
+		$('#partialZone').load("/Adverts/FormPartial")
+	</script>
 }
-<h1>FIND YOUR SPACE</h1>
+
+
+	
