@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "p7R/Q/gjyFEkroGITJ0sCyR9Yyk1xdrhKqGdxJ0JpHU=",
+  "Hash": "6Vab9rLaX/dFS46Ag3W6h6zQuCHT7rge5qd/fuNwlFE=",
   "Source": "LingonberryStudio",
   "BasePath": "_content/LingonberryStudio",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\3.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\kleur\\OneDrive\\Desktop\\TUC\\År 2\\Examensarbete\\Lingonberry\\LingonberryStudio\\wwwroot\\img\\4.jpg",
+      "SourceId": "LingonberryStudio",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\kleur\\OneDrive\\Desktop\\TUC\\År 2\\Examensarbete\\Lingonberry\\LingonberryStudio\\wwwroot\\",
+      "BasePath": "_content/LingonberryStudio",
+      "RelativePath": "img/4.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\4.jpg"
     },
     {
       "Identity": "C:\\Users\\kleur\\OneDrive\\Desktop\\TUC\\År 2\\Examensarbete\\Lingonberry\\LingonberryStudio\\wwwroot\\js\\site.js",

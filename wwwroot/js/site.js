@@ -1,6 +1,7 @@
 ﻿
 const slideshowImages = document.querySelectorAll(".intro .slideshow-img");
 
+if (slideshowImages.length != 0) {
     const nextImageDelay = 1000;
     let currentImageCounter = 0;
 
@@ -14,8 +15,5 @@ const slideshowImages = document.querySelectorAll(".intro .slideshow-img");
         currentImageCounter = (currentImageCounter + 1) % slideshowImages.length;
         slideshowImages[currentImageCounter].style.display = "block";  //HELP
     }
-
-
-
-
+}
 
