@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LingonberryStudio.Migrations
 {
     [DbContext(typeof(LingonberryDbContext))]
-    [Migration("20221207084005_inital")]
-    partial class inital
+    [Migration("20221208083227_1")]
+    partial class _1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace LingonberryStudio.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("LingonberryStudio.Models.FormModel", b =>
+            modelBuilder.Entity("LingonberryStudio.Models.Advert", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace LingonberryStudio.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdvertsDb");
+                    b.ToTable("Adverts");
                 });
 #pragma warning restore 612, 618
         }

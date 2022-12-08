@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LingonberryStudio.Models
+namespace LingonberryStudio.Data.Entities
 {
-    public class FormModel
+    public class Advert
     {
         [Key]
         public int Id { get; set; }
@@ -14,8 +14,8 @@ namespace LingonberryStudio.Models
         [MaxLength(200, ErrorMessage = "Please try again with a shorter description!")]
         public string Description { get; set; }
 
-        public DateTime TimeCreated { get; set; } = DateTime.Now;
+        //public DateTime TimeCreated { get; set; } = DateTime.Now;
 
-        public Uri Uri { get; set; }
+        //public Uri Uri { get; set; }
     }
 }
