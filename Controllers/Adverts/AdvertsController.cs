@@ -1,6 +1,5 @@
 ﻿using LingonberryStudio.Data;
-using LingonberryStudio.Models;
-using Microsoft.AspNetCore.Authorization;
+using LingonberryStudio.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -8,13 +7,14 @@ namespace LingonberryStudio.Controllers.Adverts
 {
     public class AdvertsController : Controller
     {
+        private readonly LingonberryDbContext _db;
 
-        private readonly ApplicationDbContext _db;
 
-        public AdvertsController(ApplicationDbContext db)
+        public AdvertsController(LingonberryDbContext? db)
         {
             _db = db;
         }
+
         public IActionResult Adverts()
         {
 

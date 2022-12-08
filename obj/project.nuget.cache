@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3Z2Bg3UMTo588N4mmBu814bhVCN1K0jG+l5htlZhrJ7hWlsY9QctMsu2cTvbuP8qrtgbcoyIfZBT9A7DaSL9gg==",
+  "dgSpecHash": "UgBc1ZBpzKlHkPXsbajHB6MnxkAdxAtEmWRMnJvoD0L8bRQhlN2rCaLrIAg+yM6hHNbd9To+qEVKAa5253D0Rw==",
   "success": true,
   "projectFilePath": "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\Lingonberry\\LingonberryStudio.csproj",
   "expectedPackageFiles": [
@@ -72,5 +72,12 @@
     "C:\\Users\\josef\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\josef\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\Lingonberry\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
