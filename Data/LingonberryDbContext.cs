@@ -9,6 +9,7 @@ namespace LingonberryStudio.Data
         {
 
         }
+
         public DbSet<Advert> Adverts { get; set; }
 
     }

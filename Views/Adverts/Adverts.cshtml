@@ -1,6 +1,6 @@
 ﻿@using LingonberryStudio.Data.Entities
 
-@*@model IEnumerable<Advert>*@
+
 
 <div id="partialZone">
 
@@ -13,8 +13,4 @@
 }
 
 <h1>FIND YOUR SPACE</h1>
-@*@foreach (var p in Model)
-{
-	<h5>Name: @p.Name,   Description: @p.Description  </h5>
-}*@
-
+@model IEnumerable<Advert>

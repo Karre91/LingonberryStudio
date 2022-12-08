@@ -2,6 +2,7 @@
 using LingonberryStudio.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace LingonberryStudio.Controllers.Adverts
@@ -19,8 +20,8 @@ namespace LingonberryStudio.Controllers.Adverts
 		[HttpGet("Adverts")]
 		public IActionResult Adverts()
         {
-			//IEnumerable<Advert> ads = _db.Adverts;
-			return View(/*ads*/);
+			IEnumerable<Advert> ads = _db.Adverts/*.AsNoTracking().ToList()*/;
+			return View(ads);
 
 			//IEnumerable<OrderItem> order = _db.OrderItems;
 			//List<Tuple<Advert, Product>> adsAndModal = new List<Tuple<OrderItem, Product>>();
@@ -32,9 +33,10 @@ namespace LingonberryStudio.Controllers.Adverts
 
 			//	orderAndProduct.Add(My_Tuple);
 			//}
-			//return View(orderAndProduct);
+			//return View(orderAndProduct);'
 		}
 
+		
         public IActionResult FormPartial(Advert ad)
         {
             return PartialView("_Formpartialview", ad);
