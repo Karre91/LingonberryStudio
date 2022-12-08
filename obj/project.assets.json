@@ -3461,23 +3461,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\josef\\.nuget\\packages\\": {},
+    "C:\\Users\\kleur\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\Lingonberry\\LingonberryStudio.csproj",
+      "projectUniqueName": "C:\\Users\\kleur\\OneDrive\\Desktop\\TUC\\År 2\\Examensarbete\\Lingonberry\\LingonberryStudio\\LingonberryStudio.csproj",
       "projectName": "LingonberryStudio",
-      "projectPath": "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\Lingonberry\\LingonberryStudio.csproj",
-      "packagesPath": "C:\\Users\\josef\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\josef\\Desktop\\TUC\\Examensarbete\\Lingonberry\\obj\\",
+      "projectPath": "C:\\Users\\kleur\\OneDrive\\Desktop\\TUC\\År 2\\Examensarbete\\Lingonberry\\LingonberryStudio\\LingonberryStudio.csproj",
+      "packagesPath": "C:\\Users\\kleur\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kleur\\OneDrive\\Desktop\\TUC\\År 2\\Examensarbete\\Lingonberry\\LingonberryStudio\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\josef\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kleur\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
