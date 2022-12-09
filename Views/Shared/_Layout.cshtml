@@ -31,7 +31,6 @@
                         <li class="nav-item">
                             @*<partial name="_Form" />*@
                             <a asp-area="" class="nav-link text-dark" asp-action="Form" data-toggle="modal" data-target="#exampleModal">Post your ad</a>
-                            <div id="partialZone">TEST</div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Adverts" asp-action="Adverts">See all ads</a>
@@ -59,13 +58,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: true)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
-
-@section Scripts{
-    <script>
-        $('#partialZone').load("/Adverts/FormPartial")
-    </script>
-}
