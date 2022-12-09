@@ -1,5 +1,5 @@
 ﻿@model FormModel
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 	Post your ad
 </button>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -25,4 +25,20 @@
 
 		</div>
 	</div>
+</div>
+*@
+<button class="open-button" onclick="openForm()">Open Form</button>
+<div class="form-popup" id="myForm">
+	<form action="/action_page.php" class="form-container" method="post">
+		
+		<input asp-for="Name" class="form-control" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+
+		
+			<label class="form-label">Describe shortly with 20 words!</label>
+			<textarea asp-for="Description" type="text" class="form-control row-cols-6 "></textarea>
+			<span asp-validation-for="Description" class="text-danger"></span>
+		<input type="submit" value="Submit">
+		<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+	</form>
 </div>

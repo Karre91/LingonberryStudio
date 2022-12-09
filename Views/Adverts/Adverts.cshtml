@@ -1,14 +1,17 @@
-﻿@model IEnumerable<FormModel>
+﻿@*@model IEnumerable<FormModel>*@
 
-<div id="partialZone">
-
-
-</div>
-@section scripts{
+@*
+<li class="nav-item">*@
+<partial name="_FormPartialview" class="nav-l" />
+@*</li>*@
+@*<div id="partialZone">
+	
+</div>*@
+@*@section scripts{
 	<script>
 		$('#partialZone').load("/Adverts/FormPartial")
 	</script>
-}
+}*@
 
 
 	
