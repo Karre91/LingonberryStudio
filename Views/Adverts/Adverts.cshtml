@@ -1,6 +1,14 @@
-﻿@*
-   
-*@
-@{
+﻿@using LingonberryStudio.Data.Entities
+
+<div id="popupForm"></div>
+
+<h1>ADS</h1>
+@model List<Advert>
+@foreach (var p in Model)
+{
+    <p>Id: @p.Id Name: @p.Name <br> Description: @p.Description </p>
 }
-<h1>FIND YOUR SPACE</h1>
+
+@section scripts{
+    <script>$('#popupForm').load("/Adverts/Form")</script>
+}
