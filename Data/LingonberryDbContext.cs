@@ -7,7 +7,6 @@ namespace LingonberryStudio.Data
     {
         public LingonberryDbContext(DbContextOptions<LingonberryDbContext> options) : base(options)
         {
-
         }
 
         public DbSet<Advert> Adverts { get; set; }

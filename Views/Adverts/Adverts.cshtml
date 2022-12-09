@@ -1,10 +1,7 @@
 ﻿@using LingonberryStudio.Data.Entities
 
 
-
 <div id="partialZone">
-
-
 </div>
 @section scripts{
 	<script>
@@ -12,5 +9,12 @@
 	</script>
 }
 
+@*<partial name="_Form" />*@
+
+
 <h1>FIND YOUR SPACE</h1>
-@model IEnumerable<Advert>
+
+@model List<Advert>
+@foreach (var p in Model){
+	<p>Quantity: @p.Name <br> Item: @p.Description </p>
+}

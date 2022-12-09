@@ -24,8 +24,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2ZXJ0c1xBZHZlcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kleur/OneDrive/Desktop/TUC/År 2/Examensarbete/Lingonberry/LingonberryStudio/Views/Adverts/_Formpartialview.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2ZXJ0c1xfRm9ybXBhcnRpYWx2aWV3LmNzaHRtbA==
+[C:/Users/kleur/OneDrive/Desktop/TUC/År 2/Examensarbete/Lingonberry/LingonberryStudio/Views/Adverts/_Form.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2ZXJ0c1xfRm9ybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/kleur/OneDrive/Desktop/TUC/År 2/Examensarbete/Lingonberry/LingonberryStudio/Views/Contact/Contact.cshtml]
@@ -42,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/kleur/OneDrive/Desktop/TUC/År 2/Examensarbete/Lingonberry/LingonberryStudio/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kleur/OneDrive/Desktop/TUC/År 2/Examensarbete/Lingonberry/LingonberryStudio/Views/Shared/_Form.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/kleur/OneDrive/Desktop/TUC/År 2/Examensarbete/Lingonberry/LingonberryStudio/Views/Shared/_ValidationScriptsPartial.cshtml]

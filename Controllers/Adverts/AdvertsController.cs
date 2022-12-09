@@ -20,27 +20,15 @@ namespace LingonberryStudio.Controllers.Adverts
 		[HttpGet("Adverts")]
 		public IActionResult Adverts()
         {
-			IEnumerable<Advert> ads = _db.Adverts/*.AsNoTracking().ToList()*/;
-			return View(ads);
-
-			//IEnumerable<OrderItem> order = _db.OrderItems;
-			//List<Tuple<Advert, Product>> adsAndModal = new List<Tuple<OrderItem, Product>>();
-
-			//foreach (OrderItem item in order)
-			//{
-			//	Product product = _db.Products.Find(item.ProductId);
-			//	Tuple<OrderItem, Product> My_Tuple = new Tuple<OrderItem, Product>(item, product);
-
-			//	orderAndProduct.Add(My_Tuple);
-			//}
-			//return View(orderAndProduct);'
+            List<Advert> ads = _db.Adverts.ToList();
+            return View(ads);
 		}
 
-		
-        public IActionResult FormPartial(Advert ad)
+		//[HttpGet("Form")]
+		public IActionResult FormPartial(Advert ad)
         {
-            return PartialView("_Formpartialview", ad);
+            return PartialView("_Form", ad);
         }
 
-	}
+    }
 }
