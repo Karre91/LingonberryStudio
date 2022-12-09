@@ -1,0 +1,38 @@
+﻿@model LingonberryStudio.Data.Entities.Advert
+
+
+<input type="button" name="name" value="Open Modal" class="btn btn-primary" data-target="#mdl-add" data-toggle="modal" />
+
+@using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post))
+{
+    <!-- Add Modal -->
+    <div class="modal fade" id="mdl-add" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="mdl-add-lbl">Create Ad</h5>
+                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name-input">Name</label>
+                        <input type="text" asp-for="Name" />
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name-input">Description</label>
+                        <input type="text" class="form-control" asp-for="Description" />
+                    </div>
+                </div>
+                <div class="modal-footer bg-dark">
+                    <button type="submit" id="btnSubmit" class="btn btn-success">Submit</button>
+                    <button type="button" id="btnDismiss" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

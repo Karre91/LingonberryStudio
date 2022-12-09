@@ -1,20 +1,20 @@
 ﻿@using LingonberryStudio.Data.Entities
 
 
-<div id="partialZone">
+<div id="popupForm">
 </div>
 @section scripts{
 	<script>
-		$('#partialZone').load("/Adverts/FormPartial")
+        $('#popupForm').load("/Adverts/Form")
 	</script>
 }
 
 @*<partial name="_Form" />*@
 
 
-<h1>FIND YOUR SPACE</h1>
+<h1>ADS</h1>
 
 @model List<Advert>
 @foreach (var p in Model){
-	<p>Quantity: @p.Name <br> Item: @p.Description </p>
+	<p>Id: @p.Id Name: @p.Name <br> Description: @p.Description </p>
 }

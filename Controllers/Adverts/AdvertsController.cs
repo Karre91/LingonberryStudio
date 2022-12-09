@@ -17,18 +17,31 @@ namespace LingonberryStudio.Controllers.Adverts
             _db = db;
         }
 
-		[HttpGet("Adverts")]
-		public IActionResult Adverts()
+        [HttpGet("Adverts")]
+        public IActionResult Adverts()
         {
             List<Advert> ads = _db.Adverts.ToList();
             return View(ads);
-		}
-
-		//[HttpGet("Form")]
-		public IActionResult FormPartial(Advert ad)
-        {
-            return PartialView("_Form", ad);
         }
 
+
+        public IActionResult Form(Advert ad)
+        {
+            return PartialView("_TestForm", ad);
+        }
+
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken] // Attribute to help defend cross-site request forgery attacks.
+        public IActionResult CreateAd(Advert ad) 
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Adverts.Add(ad);
+                _db.SaveChanges();                 
+            }
+            return RedirectToAction("Adverts");
+
+        }
     }
 }
