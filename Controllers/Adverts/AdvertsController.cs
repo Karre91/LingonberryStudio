@@ -9,7 +9,6 @@ namespace LingonberryStudio.Controllers.Adverts
 {
     public class AdvertsController : Controller
     {
-
         private readonly LingonberryDbContext _db;
 
         public AdvertsController(LingonberryDbContext db)
@@ -24,15 +23,13 @@ namespace LingonberryStudio.Controllers.Adverts
             return View(ads);
         }
 
-
         public IActionResult Form(Advert ad)
         {
-            return PartialView("_TestForm", ad);
+            return PartialView("_Form", ad);
         }
 
-
         [HttpPost]
-        //[ValidateAntiForgeryToken] // Attribute to help defend cross-site request forgery attacks.
+        //[ValidateAntiForgeryToken]
         public IActionResult CreateAd(Advert ad) 
         {
             if (ModelState.IsValid)
@@ -41,7 +38,6 @@ namespace LingonberryStudio.Controllers.Adverts
                 _db.SaveChanges();                 
             }
             return RedirectToAction("Adverts");
-
         }
     }
 }

@@ -1,11 +1,9 @@
 ﻿@model LingonberryStudio.Data.Entities.Advert
 
-
-<input type="button" name="name" value="Open Modal" class="btn btn-primary" data-target="#mdl-add" data-toggle="modal" />
+<input type="button" name="name" value="Create ad" class="btn btn-primary" data-target="#mdl-add" data-toggle="modal" />
 
 @using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post))
 {
-    <!-- Add Modal -->
     <div class="modal fade" id="mdl-add" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

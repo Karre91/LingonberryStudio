@@ -1,38 +1,36 @@
-﻿@using LingonberryStudio.Data.Entities
+﻿@model LingonberryStudio.Data.Entities.Advert
 
-@model Advert
+<input type="button" name="name" value="Create ad" class="btn btn-primary" data-target="#mdl-add" data-toggle="modal" />
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-	Post your ad
-</button>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Create your ad</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-		</div>
-	</div>
-	<div class="modal-body">
-		<form id="myform" method="post">
-			@Html.TextBoxFor(m => m.Name,new { /*@class="form-control",*/ @placeholder="Name"})
-			@Html.TextAreaFor(m => m.Description,new { @class="form-control", @placeholder="Description"})
-		@*	<input asp-for="Name"/>
-			<span asp-validation-for="Name"></span>
-			<input asp-for="Description" />
-			<span asp-validation-for="Description"></span>*@
-		</form>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			@*<button type="button" class="btn btn-primary"><a asp-controller="home" asp-action="index">LALALLA</a></button>*@
-			<button type="submit" class="btn btn-primary"><a asp-controller="Adverts" asp-action="Create">Butt</a></button>
-			<button type="button" class="btn btn-primary"> <a asp-controller="Adverts" asp-action="Create" asp-route-id="@Model.Name">BUTT</a></button>
-	
-		</div>
-	</div>
-</div>
-
+@using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post))
+{
+    <div class="modal fade" id="mdl-add" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="mdl-add-lbl">Create Ad</h5>
+                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name-input">Name</label>
+                        <input type="text" asp-for="Name" />
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name-input">Description</label>
+                        <input type="text" class="form-control" asp-for="Description" />
+                    </div>
+                </div>
+                <div class="modal-footer bg-dark">
+                    <button type="submit" id="btnSubmit" class="btn btn-success">Submit</button>
+                    <button type="button" id="btnDismiss" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
