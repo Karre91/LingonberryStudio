@@ -1,11 +1,11 @@
 ﻿@model LingonberryStudio.Data.Entities.Advert
 
-<input type="button" name="name" value="Create ad" class="btn btn-primary" data-target="#mdl-add" data-toggle="modal" />
-
 @using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post))
 {
-    <div class="modal fade" id="mdl-add" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
+    <!-- Modal -->
+  <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
         <div class="modal-dialog" role="document">
+            <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">
                     <h5 class="modal-title" id="mdl-add-lbl">Create Ad</h5>
@@ -29,7 +29,7 @@
                     <button type="submit" id="btnSubmit" class="btn btn-success">Submit</button>
                     <button type="button" id="btnDismiss" class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
-            </div>
+           </div>
         </div>
     </div>
 }
