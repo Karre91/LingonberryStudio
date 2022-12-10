@@ -23,9 +23,9 @@ namespace LingonberryStudio.Controllers.Adverts
             return View(ads);
         }
 
-        public IActionResult Form(Advert ad)
+        public IActionResult Form()
         {
-            return PartialView("_Form", ad);
+            return PartialView("_Form");
         }
 
         [HttpPost]

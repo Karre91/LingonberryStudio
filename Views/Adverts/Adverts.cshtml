@@ -1,14 +1,12 @@
 ﻿@using LingonberryStudio.Data.Entities
 
 <div id="popupForm"></div>
+<a asp-controller="Adverts" asp-action="Form" class="btn btn-primary" data-target="#formModal" data-toggle="modal">Create ad</a>
 
 <h1>ADS</h1>
 @model List<Advert>
 @foreach (var p in Model)
 {
-    <p>Id: @p.Id Name: @p.Name <br> Description: @p.Description </p>
+    <p>Id: @p.Id Name: @p.Name Description: @p.Description </p>
 }
 
-@section scripts{
-    <script>$('#popupForm').load("/Adverts/Form")</script>
-}
