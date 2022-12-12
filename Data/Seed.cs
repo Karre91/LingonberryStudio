@@ -13,32 +13,34 @@ namespace LingonberryStudio.Data
                     DbContextOptions<LingonberryDbContext>>()))
             {
 
-                if (context.Adverts.Any())
-                {
-                    return;   // DB has been seeded
-                }
+                //    if (context.Adverts.Any())
+                //    {
+                //        return;   // DB has been seeded
+                //    }
 
-                context.Adverts.AddRange(
-                    new Advert()
-                    {
-                        Name = "Havve,",
-                        Description = "fin"
-                    },
-                    new Advert()
-                    {
-                        Name = "Havve,",
-                        Description = "ful"
-                    }
-                    );
+                //    context.Adverts.AddRange(
+                //        new Advert()
+                //        {
+                //            Name = "Havve,",
+                //            Description = "fin"
+                //        },
+                //        new Advert()
+                //        {
+                //            Name = "Havve,",
+                //            Description = "ful"
+                //        }
+                //        );
 
-                if (context.Adverts.Any())
-                {
-                    return;   // DB has been seeded
-                }
+                //    if (context.Adverts.Any())
+                //    {
+                //        return;   // DB has been seeded
+                //    }
 
 
-                context.SaveChanges();
+                //    context.SaveChanges();
+                //}
             }
         }
     }
 }
+

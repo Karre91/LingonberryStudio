@@ -2,35 +2,118 @@
 
 @using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post))
 {
-    <!-- Modal -->
-  <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="mdl-add-lbl">Create Ad</h5>
-                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="name-input">Name</label>
-                        <input type="text" asp-for="Name" />
+		<!-- Modal -->
+	  <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header bg-dark text-white">
+						<h5 class="modal-title" id="mdl-add-lbl">Create Ad</h5>
+						<button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+							<div class="modal-body">
+											<div class="form-group">
+
+
+
+			   <input type="checkbox" id="offering" asp-for="OfferingLooking" value="offering">
+				   <label for="offering"> I am offering a studio</label><br>
+					   <input type="checkbox" id="looking" asp-for="OfferingLooking" value="looking">
+							 <label for="looking"> I am looking for a studio</label><br>
+
+	</div>
+	</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="name-input">Name</label>
+								<input type="text" asp-for="Name" class="form-control" />
+						</div>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="Description">Description</label>
+							<input type="text" class="form-control" asp-for="Description" />
+						</div>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+								<label for="Workspace">Workspace</label>
+								<br> 
+								
+									<select asp-for="WorkspaceDescription">@* name="studioOptions" onchange="if($(this).val()=='customOption')showCustomInput('studioOptions')">*@
+										<option>Options</option>
+										<option value="customOption">[Type your own]</option>
+										<option>Music Studio</option>
+										<option >Art Studio</option>
+										<option>Photo Studio</option>
+										<option>Work Shop</option>
+								@*<input name="studioOptions" asp-for="WorkspaceDescription" style="display:none;" disabled="disabled" onblur="if($(this).val()=='')showOptions('studioOptions')">*@
+							</select>
+						</div>
+					</div>
+						<div class="modal-body">
+							<div class="form-group">
+										<label>Email</label>
+									<input type="text" class="form-control" asp-for="Email" />
+										</div>
+						</div>
+							<div class="modal-body">
+								<div class="form-group">
+											<label>Budget</label>
+										<input type="text" class="form-control" asp-for="Budget" />
+											</div>
+							</div>
+								<div class="modal-body">
+								<div class="form-group">
+											<label>Postcode</label>
+											<input type="text" class="form-control" asp-for="PostCode" />
+											</div>
+							</div>
+									<div class="modal-body">
+									<div class="form-group">
+												<label>Social media</label>
+											<input type="text" class="form-control" asp-for="SocialMedia" />
+												</div>
+								</div>
+								
+				       @*    <table id="myTable" style="border: 1px solid black">
+                    <thead>
+                    <td>
+                        Start Time
+                    </td>
+                    <td>
+                        End Time
+                    </td>
+
+                    </thead>
+                    <tr class="t-row">
+                        <td>
+                            <input type="time" onfocus="clearError(this)" class="vTimeStart" />
+                        </td>
+                        <td>
+                            <input type="time" onfocus="clearError(this)" class="vTimeEnd" />
+                        </td>
+
+                    </tr>
+                </table>
+                <div class="row d-flex justify-content-center mt-100">
+                    <div class="col-md-6">
+                        <select asp-for="Days" id="choices-multiple-remove-button" placeholder="Select upto 5 tags" multiple>
+                            <option value="Monday">Monday</option>
+                            <option value="Jquery">Jquery</option>
+
+                        </select>
                     </div>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="name-input">Description</label>
-                        <input type="text" class="form-control" asp-for="Description" />
-                    </div>
-                </div>
-                <div class="modal-footer bg-dark">
-                    <button type="submit" id="btnSubmit" class="btn btn-success">Submit</button>
-                    <button type="button" id="btnDismiss" class="btn btn-primary" data-dismiss="modal">Close</button>
-                </div>
-           </div>
-        </div>
-    </div>
+                </div>*@
+
+					<div class="modal-footer bg-dark">
+						<button type="submit" id="btnSubmit" class="btn btn-success">Submit</button>
+						<button type="button" id="btnDismiss" class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+			   </div>
+			</div>
+		</div>
 }
 

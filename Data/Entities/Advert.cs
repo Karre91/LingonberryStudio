@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Numerics;
 
 namespace LingonberryStudio.Data.Entities
 {
@@ -14,8 +15,46 @@ namespace LingonberryStudio.Data.Entities
         [MaxLength(200, ErrorMessage = "Please try again with a shorter description!")]
         public string Description { get; set; }
 
-        //public DateTime TimeCreated { get; set; } = DateTime.Now;
+        [Required]
+        public string OfferingLooking { get; set; }
 
-        //public Uri Uri { get; set; }
+
+        [Required]
+        public string WorkspaceDescription { get; set; }
+
+        [Required]
+        public string Email { get; set; }
+
+        //public int PhoneNumber { get; set; }
+
+        //public string ArtistName { get; set; }
+
+        //public string Date { get; set; }
+
+        //public string StartTime { get; set; }
+
+        //public string EndTime { get; set; }
+
+        //public string Days { get; set; }
+
+        public int Budget { get; set; }
+
+        public string PostCode { get; set; }
+
+        //public string Area { get; set; }    
+
+        public Uri SocialMedia { get; set; }
+
+        //public string Facilities { get; set; }
+
+
+
+
     }
 }
+
+ 
+
+
+
+ 
