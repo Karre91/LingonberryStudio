@@ -19,5 +19,3 @@
 }
 
 $('#popupForm').load("/Adverts/Form")
-
-TJOHO
