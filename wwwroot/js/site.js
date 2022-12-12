@@ -3,7 +3,7 @@
     const slideshowImages = document.querySelectorAll(".intro .slideshow-img");
 
     if (slideshowImages.length != 0) {
-        const nextImageDelay = 1000;
+        const nextImageDelay = 3000;
         let currentImageCounter = 0;
 
         slideshowImages[currentImageCounter].style.display = "block";
