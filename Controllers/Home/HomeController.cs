@@ -18,6 +18,12 @@ namespace LingonberryStudio.Controllers.Home
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Index(string searchArea)
+        {
+            return RedirectToAction("Adverts");
+        }
+
         public IActionResult Privacy()
         {
             return View();
