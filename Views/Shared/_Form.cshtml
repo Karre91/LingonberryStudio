@@ -25,6 +25,54 @@
                         <input type="text" class="form-control" asp-for="Description" />
                     </div>
                 </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                 
+                        <select asp-for="WorkSpaceDescription" name="studioOptions" onchange="if($(this).val()=='customOption')showCustomInput('studioOptions')">
+                            <option>Options</option>
+                            <option value="customOption">[Type your own]</option>
+                            <option >Music Studio</option>
+                            <option>Art Studio</option>
+                            <option>Photo Studio</option>
+                            <option>Work Shop</option>
+              
+
+                        </select><input asp-for="WorkSpaceDescription" name="studioOptions" style="display:none;" disabled="disabled" onblur="if($(this).val()=='')showOptions('studioOptions')">
+                      
+                    </div>
+                </div>
+            
+       @*         <table id="myTable" style="border: 1px solid black">
+                    <thead>
+                    <td>
+                        Start Time
+                    </td>
+                    <td>
+                        End Time
+                    </td>
+                    <td>
+                    </td>
+                    </thead>
+                    <tr class="t-row">
+                        <td>
+                            <input asp-for="StartTime" type="time" onfocus="clearError(this)" class="vTimeStart" />
+                        </td>
+                        <td>
+                            <input asp-for="EndTime" type="time" onfocus="clearError(this)" class="vTimeEnd" />
+                        </td>
+              
+                    </tr>
+                </table>
+            
+                <div class="row d-flex justify-content-center mt-100">
+                    <div class="col-md-6">
+                        <select asp-for="Days" id="choices-multiple-remove-button" placeholder="Select upto 5 tags" multiple>
+                            <option value="Monday">Monday</option>
+                            <option value="Jquery">Jquery</option>
+                        
+                        </select>
+                    </div>
+                </div>*@
                 <div class="modal-footer bg-dark">
                     <button type="submit" id="btnSubmit" class="btn btn-success">Submit</button>
                     <button type="button" id="btnDismiss" class="btn btn-primary" data-dismiss="modal">Close</button>
