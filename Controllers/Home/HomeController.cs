@@ -21,7 +21,9 @@ namespace LingonberryStudio.Controllers.Home
         [HttpPost]
         public IActionResult Index(string searchArea)
         {
-            return RedirectToAction("Adverts");
+            //REGEX tjofräs?
+
+            return RedirectToAction("AdvertSearch", "Adverts", new { id = searchArea });
         }
 
         public IActionResult Privacy()

@@ -18,22 +18,11 @@ html {
 }
 
 body {
-    margin-top: 58px;
     margin-bottom: 60px;
-}
-
-.full-width {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
 }
 
 .intro {
     height: 50vh;
-    width: 100%;
     position: relative;
 }
 
@@ -46,20 +35,27 @@ body {
     object-fit: cover;
     display: none;
 }
-/*
-    .slideshow-img:first-child {
+
+/*    .slideshow-img:first-child {
         display: block;
     }*/
-
-.searchBox{
+.searchBox {
     position: relative;
     margin: auto;
     top: 90%;
     background-color: #c7342a;
     border-block-color: black;
-    border: 3px dotted;
+    border: 3px solid;
     padding: 1%;
-    width: 60%;
+    width: 50%;
     height: auto;
-    text-align:center;
+    text-align: center;
+}
+.full-width {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
