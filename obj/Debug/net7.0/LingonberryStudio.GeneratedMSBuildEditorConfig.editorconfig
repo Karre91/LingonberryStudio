@@ -24,8 +24,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2ZXJ0c1xBZHZlcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/josef/Desktop/TUC/Examensarbete/Lingonberry/Views/Adverts/_Form.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2ZXJ0c1xfRm9ybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/josef/Desktop/TUC/Examensarbete/Lingonberry/Views/Contact/Contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxDb250YWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josef/Desktop/TUC/Examensarbete/Lingonberry/Views/Form/Form.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybVxGb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/josef/Desktop/TUC/Examensarbete/Lingonberry/Views/Home/Index.cshtml]
@@ -34,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/josef/Desktop/TUC/Examensarbete/Lingonberry/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josef/Desktop/TUC/Examensarbete/Lingonberry/Views/Shared/_Form.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/josef/Desktop/TUC/Examensarbete/Lingonberry/Views/Shared/_ValidationScriptsPartial.cshtml]
