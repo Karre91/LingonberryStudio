@@ -10,12 +10,12 @@ builder.Services.AddDbContext<LingonberryDbContext>(options =>
    
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-	var services = scope.ServiceProvider;
+//using (var scope = app.Services.CreateScope())
+//{
+//	var services = scope.ServiceProvider;
 
-	Seed.Initialize(services);
-}
+//	Seed.Initialize(services);
+//}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

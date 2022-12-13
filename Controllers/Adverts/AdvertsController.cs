@@ -31,10 +31,10 @@ namespace LingonberryStudio.Controllers.Adverts
             foreach (var ad in ads){
                 if (id == ad.Name)
                 {
-                    Debug.WriteLine("YES");
+                    return RedirectToAction("Adverts");
                 }
             }
-            return RedirectToAction("Adverts");
+            return RedirectToAction("Error", "Home");
         }
 
         public IActionResult Form()
