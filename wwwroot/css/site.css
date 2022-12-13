@@ -22,7 +22,7 @@ body {
 }
 
 .intro {
-    height: 100vh;
+    height: 50vh;
     position: relative;
 }
 
@@ -39,3 +39,23 @@ body {
 /*    .slideshow-img:first-child {
         display: block;
     }*/
+.searchBox {
+    position: relative;
+    margin: auto;
+    top: 50%;
+    background-color: #c7342a;
+    border-block-color: black;
+    border: 3px solid;
+    padding: 1%;
+    width: 50%;
+    height: auto;
+    text-align: center;
+}
+.full-width {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}

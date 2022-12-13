@@ -18,6 +18,14 @@ namespace LingonberryStudio.Controllers.Home
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Index(string searchArea)
+        {
+            //REGEX tjofräs?
+
+            return RedirectToAction("AdvertSearch", "Adverts", new { id = searchArea });
+        }
+
         public IActionResult Privacy()
         {
             return View();

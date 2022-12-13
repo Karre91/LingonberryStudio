@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace LingonberryStudio.Controllers.Adverts
 {
@@ -21,6 +23,18 @@ namespace LingonberryStudio.Controllers.Adverts
         {
             List<Advert> ads = _db.Adverts.ToList();
             return View(ads);
+        }
+
+        public IActionResult AdvertSearch(string id)
+        {
+            List<Advert> ads = _db.Adverts.ToList();
+            foreach (var ad in ads){
+                if (id == ad.Name)
+                {
+                    return RedirectToAction("Adverts");
+                }
+            }
+            return RedirectToAction("Error", "Home");
         }
 
         public IActionResult Form()
