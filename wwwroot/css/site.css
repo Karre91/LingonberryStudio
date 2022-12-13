@@ -22,7 +22,7 @@ body {
 }
 
 .intro {
-    height: 50vh;
+    height: 400px;
     position: relative;
 }
 
@@ -31,7 +31,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 75%;
     object-fit: cover;
     display: none;
 }
@@ -40,22 +40,74 @@ body {
         display: block;
     }*/
 .searchBox {
-    position: relative;
+    position: absolute;
     margin: auto;
-    top: 50%;
     background-color: #c7342a;
-    border-block-color: black;
-    border: 3px solid;
-    padding: 1%;
+    border-block-color:#c7342a;
+    border: 1px;
     width: 50%;
-    height: auto;
     text-align: center;
+    border-radius: 30px;
+    bottom: 75px;
+    left: 25%;
+    box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.35);
 }
 .full-width {
+    /* width: 100vw;
+    position: relative;
+    height:440px;
+    max-width:1200px;*/
+
     width: 100vw;
     position: relative;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
-    margin-right: -50vw;
+    height:440px;
+
 }
+#findTheirs {
+    background: #333e04;
+    border: none;
+    border-radius: 40px;
+    border-radius: 40px;
+    color: white;
+    padding: 10px;
+}
+
+#shareMine {
+    background: #333e04;
+    border: none;
+    border-radius: 40px;
+    border-radius: 40px;
+    color: white;
+    padding: 10px;
+    margin-right:5px;
+}
+#searchArea {
+    position: relative;
+    left: 0;
+    border-radius: 40px;
+    width: 55%;
+    float: left;
+    margin-left: 20px;
+    padding: 2px;
+   margin-bottom:20px;
+   padding-left:20px;
+}
+#studioTitle{
+    color:white;
+    padding:10px;
+}
+
+#finalText {
+    margin-top:40px;
+    text-align: center;
+    padding-bottom: 30px;
+}  
+
+   
+
+
+
+
