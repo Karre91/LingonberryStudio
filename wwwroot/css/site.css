@@ -42,7 +42,7 @@ body {
 .searchBox {
     position: relative;
     margin: auto;
-    top: 90%;
+    top: 50%;
     background-color: #c7342a;
     border-block-color: black;
     border: 3px solid;
