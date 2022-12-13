@@ -1,148 +1,186 @@
 ﻿@model LingonberryStudio.Data.Entities.Advert
 
-@using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post))
-{
-						<!-- Modal -->
-					  <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
-							<div class="modal-dialog" role="document">
-								<!-- Modal content-->
-								<div class="modal-content">
-									<div class="modal-header bg-dark text-white">
-										<h5 class="modal-title" id="mdl-add-lbl">Create Ad</h5>
-										<button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-								<div class="modal-body">
-								<div class="form-group">
-							   <input type="checkbox" id="offering" asp-for="OfferingLooking" value="offering">
-								   <label for="offering"> I am offering a studio</label><br>
-									<input type="checkbox" id="looking" asp-for="OfferingLooking" value="looking">
-									<label for="looking"> I am looking for a studio</label><br>
-								</div>
-								</div>
-									<div class="modal-body">
-										<div class="form-group">
-											<label for="name-input">Name</label>
-											<input type="text" asp-for="Name" class="form-control" />
-										</div>
-									</div>
-									<div class="modal-body">
-										<div class="form-group">
-											<label for="Description">Description</label>
-											<input type="text" class="form-control" asp-for="Description" />
-										</div>
-									</div>
-									<div class="modal-body">
-										<div class="form-group">
-										<label for="Workspace">Workspace</label>
-										<br>
-										<select asp-for="WorkspaceDescription">@* name="studioOptions" onchange="if($(this).val()=='customOption')showCustomInput('studioOptions')">*@
-										<option>Options</option>
-										<option value="customOption">[Type your own]</option>
-										<option>Music Studio</option>
-										<option >Art Studio</option>
-										<option>Photo Studio</option>
-										<option>Work Shop</option>
-							@*<input name="studioOptions" asp-for="WorkspaceDescription" style="display:none;" disabled="disabled" onblur="if($(this).val()=='')showOptions('studioOptions')">*@
-											</select>
-										</div>
-									</div>
-										<div class="modal-body">
-											<div class="form-group">
-											<label>Email</label>
-											<input type="text" class="form-control" asp-for="Email" />
-										</div>
-										</div>
-											<div class="modal-body">
-												<div class="form-group">
-												<label>Budget</label>
-												<input type="text" class="form-control" asp-for="Budget" />
-											</div>
-											</div>
-												<div class="modal-body">
-												<div class="form-group">
-												<label>Postcode</label>
-												<input type="text" class="form-control" asp-for="PostCode" />
-											</div>
-											</div>
-											<div class="modal-body">
-											<div class="form-group">
-											<label>Social media</label>
-											<input type="text" class="form-control" asp-for="SocialMedia" />
-											</div>
-											</div>
-										<div class="modal-body">
-										<div class="form-group">
-										<label>Phone number</label>
-										<input type="text" asp-for="PhoneNumber" class="form-control"/>
-										</div>
-										</div>
-										<div class="modal-body">
-										<div class="form-group">
-									<label>Artist name</label>
-								<input type="text" asp-for="ArtistName" class="form-control" />
-							</div>
-							</div>
-							<div class="modal-body">
-						<div class="form-group">
-						<label>Select time</label>
-						<input type="time" asp-for="StartTime" ><br /><br />
-						<input type="time" asp-for="EndTime" ><br /><br />
-					</div>
-				</div>
-					<div class="modal-body">
-					<div class="form-group">
-					 <label for="cars">Choose days</label>
-					<select name="Days" multiple asp-for="Days">
-					<option value="Monday">Monday</option>
-					<option value="Tuesday">Tuesday</option>
-					<option value="Wednesday">Wednesday</option>
-					<option value="Thursday">Thursday</option>
-					<option value="Friday">Friday</option>
-					<option value="Satursday">Saturday</option>
-					<option value="Sunday">Sunday</option>
-				  </select>
-					  </div>
-				</div>
+<script>$(function () {
+    Array.prototype.filter.call($('.frmValidation'), function (form) {
+        form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+});</script>
 
-					<div class="modal-body">
-									<div class="form-group">
-										   <input type="checkbox" id="facilities" asp-for="Facilities" value="Parking space">
-									   <label for="offering"> Parking space</label><br>
-											<input type="checkbox" id="facilities" asp-for="Facilities" value="Air conditioning ">
-											<label for="looking">Air conditioning </label><br>
-											 <input type="checkbox" id="facilities" asp-for="Facilities" value="Kitchen ">
-											 <label for="offering"> Kitchen </label><br>
-											<input type="checkbox" id="facilities" asp-for="Facilities" value="Natural light  ">
-											<label for="facilities">Natural light </label><br>
-											<input type="checkbox" id="facilities" asp-for="Facilities" value=" Acoustic treatment">
-											<label for="facilities">Acoustic treatment </label><br>
-												<input type="checkbox" id="facilities" asp-for="Facilities" value="Running water">
-												<label for="facilities">Running water</label><br>
-														<input type="checkbox" id="facilities" asp-for="Facilities" value="	Storage">
-														<label for="facilities">Storage </label><br>
-															<label for="facilities">Type your own</label><br>
-															<input type="text" aspasp-for="Facilities" />
-									</div>
-									</div>
-										<div class="modal-body">
-									<div class="form-group">
-									   <input type="checkbox" id="area" asp-for="Area" value="Sqft">
-									   <label for="area">Area square foot</label><br>
-										<input type="checkbox" id="are" asp-for="Area" value="Sqm">
-										<label for="looking">Area in square metres</label><br>
-										<input type="text" aspasp-for="Area"/>
-											
-									</div>
-									</div>
-								
-									<div class="modal-footer bg-dark">
-										<button type="submit" id="btnSubmit" class="btn btn-success">Submit</button>
-										<button type="button" id="btnDismiss" class="btn btn-primary" data-dismiss="modal">Close</button>
-									</div>
-							   </div>
-							</div>
-						</div>
+@using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post, new { @class = "frmValidation", @novalidate = "" }))
+{
+    <!-- Modal -->
+    <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="mdl-add-lbl">Create Ad</h5>
+                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body ">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="FirstName">FirstName</label>
+                                <input type="text" asp-for="FirstName" class="form-control " required />
+                                <span class="invalid-feedback">Please enter FirstName</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="LastName">LastName</label>
+                                <input type="text" asp-for="LastName" class="form-control " required />
+                                <span class="invalid-feedback">Please enter LastName</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Email">Email</label>
+                                <input type="email" asp-for="Email" class="form-control" required />
+                                <span class="invalid-feedback">Please enter Email</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="PhoneNumber">Phone number</label>
+                                <input type="tel" asp-for="PhoneNumber" class="form-control" />
+                                <span class="invalid-feedback">Please enter only numbers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" asp-for="OfferingLooking" value="offering" required>
+                                <label asp-for="OfferingLooking"> I am offering a studio</label><br>
+                                <input class="form-check-input" type="radio" id="OfferingLooking" asp-for="OfferingLooking" value="looking" required>
+                                <label for="OfferingLooking"> I am looking for a studio</label><br>
+                                <span class="invalid-feedback">Please tick a box</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="Workspace">Workspace</label>
+                                <br>
+                                <select class="form-select mb-3" asp-for="WorkspaceDescription" required>
+                                    <option value="" selected disabled>Options</option>
+                                    <option value="Music">Music Studio</option>
+                                    <option value="Art">Art Studio</option>
+                                    <option value="Photo">Photo Studio</option>
+                                    <option value="customOption">[Type your own]</option> @*FIX*@
+                                </select>
+                                <span class="invalid-feedback">Please choose one</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description">Description</label>
+                        <input type="text" asp-for="Description" class="form-control" required />
+                        <span class="invalid-feedback">Please enter Description</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="PostCode">Postcode</label>
+                        <input type="text" class="form-control" asp-for="PostCode" required />
+                        <span class="invalid-feedback">Please enter postcode</span>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.Parking" value="true">
+                        <label for="Facilities"> Parking space</label><br>
+
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.AirCon" value="true">
+                        <label for="Facilities">Air conditioning</label><br>
+
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.Kitchen" value="true">
+                        <label for="Facilities"> Kitchen</label><br>
+
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.NaturalLight" value="true">
+                        <label for="Facilities">Natural light</label><br>
+
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.AcousticTreatment" value="true">
+                        <label for="Facilities">Acoustic treatment</label><br>
+
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.RunningWater" value="true">
+                        <label for="Facilities">Running water</label><br>
+
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.Storage" value="true">
+                        <label for="Facilities">Storage</label><br>
+
+                        <label for="Facilities">Type your own</label><br>
+                        <input type="text" asp-for="@Model.Facilities.Other" />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Budget">Budget</label>
+                        <input type="text" class="form-control" asp-for="Budget" required />
+                        <span class="invalid-feedback">Please enter your budget</span>
+                    </div>
+
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="@Model.Measurements.Feet" value="true" required>
+                        <label asp-for="Measurements">Area square foot</label><br>
+                        <input class="form-check-input" type="radio" asp-for="@Model.Measurements.Meters" value="true" required>
+                        <label asp-for="Measurements">Area in square metres</label><br>
+                        <input type="number" asp-for="@Model.Measurements.Number" required />
+                        <span class="invalid-feedback">Please tick a box</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select dates</label>
+                        <input type="time" asp-for="@Model.Avaliability.StartDate"><br /><br />
+                        <input type="time" asp-for="@Model.Avaliability.EndDate"><br /><br />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select time</label>
+                        <input type="time" asp-for="@Model.Avaliability.OpeningTime"><br /><br />
+                        <input type="time" asp-for="@Model.Avaliability.ClosingTime"><br /><br />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Avaliability">Choose days</label>
+                        <select name="Avaliability"   multiple>
+                            <option asp-for="@Model.Avaliability.WeekDays.Monday" value="true">Monday</option>
+                            <option asp-for="@Model.Avaliability.WeekDays.Tuesday" value="true">Tuesday</option>
+                            <option asp-for="@Model.Avaliability.WeekDays.Wednesday" value="true">Wednesday</option>
+                            <option asp-for="@Model.Avaliability.WeekDays.Thursday" value="true">Thursday</option>
+                            <option asp-for="@Model.Avaliability.WeekDays.Friday" value="true">Friday</option>
+                            <option asp-for="@Model.Avaliability.WeekDays.Saturday" value="true">Saturday</option>
+                            <option asp-for="@Model.Avaliability.WeekDays.Sunday" value="true">Sunday</option>
+                        </select>
+                    </div>
+
+                    @*asp-for="Avaliability"*@
+
+                    <div class="form-group">
+                        <label asp-for="Artist">Artist name</label>
+                        <input type="text" asp-for="Artist" class="form-control" />
+                    </div>
+
+                    @*<div class="form-group">
+                <label asp-for="SocialMedia">Social media</label>
+                <input type="url" class="form-control" asp-for="SocialMedia" />
+                </div>*@
+                </div>
+                <div class="modal-footer bg-dark">
+                    <button type="submit" id="btnSubmit" class="btn btn-success">Submit</button>
+                    <button type="button" id="btnDismiss" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
