@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
 namespace LingonberryStudio.Data.Entities
@@ -25,27 +26,27 @@ namespace LingonberryStudio.Data.Entities
         [Required]
         public string Email { get; set; }
 
-        //public int PhoneNumber { get; set; }
+        public int PhoneNumber { get; set; }
 
-        //public string ArtistName { get; set; }
+        public string ArtistName { get; set; }
 
-        //public string Date { get; set; }
+        public string Date { get; set; }
 
-        //public string StartTime { get; set; }
+        public string StartTime { get; set; }
 
-        //public string EndTime { get; set; }
+        public string EndTime { get; set; }
 
-        //public string Days { get; set; }
+        public string Days { get; set; }
 
         public int Budget { get; set; }
 
         public string PostCode { get; set; }
 
-        //public string Area { get; set; }    
+        public string Area { get; set; }
 
         public Uri SocialMedia { get; set; }
 
-        //public string Facilities { get; set; }
+        public string Facilities { get; set; }
 
 
 

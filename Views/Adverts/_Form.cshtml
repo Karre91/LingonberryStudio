@@ -2,118 +2,147 @@
 
 @using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post))
 {
-		<!-- Modal -->
-	  <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header bg-dark text-white">
-						<h5 class="modal-title" id="mdl-add-lbl">Create Ad</h5>
-						<button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-							<div class="modal-body">
-											<div class="form-group">
-
-
-
-			   <input type="checkbox" id="offering" asp-for="OfferingLooking" value="offering">
-				   <label for="offering"> I am offering a studio</label><br>
-					   <input type="checkbox" id="looking" asp-for="OfferingLooking" value="looking">
-							 <label for="looking"> I am looking for a studio</label><br>
-
-	</div>
-	</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<label for="name-input">Name</label>
-								<input type="text" asp-for="Name" class="form-control" />
-						</div>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<label for="Description">Description</label>
-							<input type="text" class="form-control" asp-for="Description" />
-						</div>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-								<label for="Workspace">Workspace</label>
-								<br> 
-								
-									<select asp-for="WorkspaceDescription">@* name="studioOptions" onchange="if($(this).val()=='customOption')showCustomInput('studioOptions')">*@
+						<!-- Modal -->
+					  <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header bg-dark text-white">
+										<h5 class="modal-title" id="mdl-add-lbl">Create Ad</h5>
+										<button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+								<div class="modal-body">
+								<div class="form-group">
+							   <input type="checkbox" id="offering" asp-for="OfferingLooking" value="offering">
+								   <label for="offering"> I am offering a studio</label><br>
+									<input type="checkbox" id="looking" asp-for="OfferingLooking" value="looking">
+									<label for="looking"> I am looking for a studio</label><br>
+								</div>
+								</div>
+									<div class="modal-body">
+										<div class="form-group">
+											<label for="name-input">Name</label>
+											<input type="text" asp-for="Name" class="form-control" />
+										</div>
+									</div>
+									<div class="modal-body">
+										<div class="form-group">
+											<label for="Description">Description</label>
+											<input type="text" class="form-control" asp-for="Description" />
+										</div>
+									</div>
+									<div class="modal-body">
+										<div class="form-group">
+										<label for="Workspace">Workspace</label>
+										<br>
+										<select asp-for="WorkspaceDescription">@* name="studioOptions" onchange="if($(this).val()=='customOption')showCustomInput('studioOptions')">*@
 										<option>Options</option>
 										<option value="customOption">[Type your own]</option>
 										<option>Music Studio</option>
 										<option >Art Studio</option>
 										<option>Photo Studio</option>
 										<option>Work Shop</option>
-								@*<input name="studioOptions" asp-for="WorkspaceDescription" style="display:none;" disabled="disabled" onblur="if($(this).val()=='')showOptions('studioOptions')">*@
-							</select>
-						</div>
-					</div>
-						<div class="modal-body">
-							<div class="form-group">
-										<label>Email</label>
-									<input type="text" class="form-control" asp-for="Email" />
+							@*<input name="studioOptions" asp-for="WorkspaceDescription" style="display:none;" disabled="disabled" onblur="if($(this).val()=='')showOptions('studioOptions')">*@
+											</select>
 										</div>
-						</div>
-							<div class="modal-body">
-								<div class="form-group">
-											<label>Budget</label>
-										<input type="text" class="form-control" asp-for="Budget" />
+									</div>
+										<div class="modal-body">
+											<div class="form-group">
+											<label>Email</label>
+											<input type="text" class="form-control" asp-for="Email" />
+										</div>
+										</div>
+											<div class="modal-body">
+												<div class="form-group">
+												<label>Budget</label>
+												<input type="text" class="form-control" asp-for="Budget" />
 											</div>
-							</div>
-								<div class="modal-body">
-								<div class="form-group">
-											<label>Postcode</label>
-											<input type="text" class="form-control" asp-for="PostCode" />
 											</div>
-							</div>
-									<div class="modal-body">
-									<div class="form-group">
-												<label>Social media</label>
+												<div class="modal-body">
+												<div class="form-group">
+												<label>Postcode</label>
+												<input type="text" class="form-control" asp-for="PostCode" />
+											</div>
+											</div>
+											<div class="modal-body">
+											<div class="form-group">
+											<label>Social media</label>
 											<input type="text" class="form-control" asp-for="SocialMedia" />
-												</div>
-								</div>
-								
-				       @*    <table id="myTable" style="border: 1px solid black">
-                    <thead>
-                    <td>
-                        Start Time
-                    </td>
-                    <td>
-                        End Time
-                    </td>
-
-                    </thead>
-                    <tr class="t-row">
-                        <td>
-                            <input type="time" onfocus="clearError(this)" class="vTimeStart" />
-                        </td>
-                        <td>
-                            <input type="time" onfocus="clearError(this)" class="vTimeEnd" />
-                        </td>
-
-                    </tr>
-                </table>
-                <div class="row d-flex justify-content-center mt-100">
-                    <div class="col-md-6">
-                        <select asp-for="Days" id="choices-multiple-remove-button" placeholder="Select upto 5 tags" multiple>
-                            <option value="Monday">Monday</option>
-                            <option value="Jquery">Jquery</option>
-
-                        </select>
-                    </div>
-                </div>*@
-
-					<div class="modal-footer bg-dark">
-						<button type="submit" id="btnSubmit" class="btn btn-success">Submit</button>
-						<button type="button" id="btnDismiss" class="btn btn-primary" data-dismiss="modal">Close</button>
+											</div>
+											</div>
+										<div class="modal-body">
+										<div class="form-group">
+										<label>Phone number</label>
+										<input type="text" asp-for="PhoneNumber" class="form-control"/>
+										</div>
+										</div>
+										<div class="modal-body">
+										<div class="form-group">
+									<label>Artist name</label>
+								<input type="text" asp-for="ArtistName" class="form-control" />
+							</div>
+							</div>
+							<div class="modal-body">
+						<div class="form-group">
+						<label>Select time</label>
+						<input type="time" asp-for="StartTime" ><br /><br />
+						<input type="time" asp-for="EndTime" ><br /><br />
 					</div>
-			   </div>
-			</div>
-		</div>
+				</div>
+					<div class="modal-body">
+					<div class="form-group">
+					 <label for="cars">Choose days</label>
+					<select name="Days" multiple asp-for="Days">
+					<option value="Monday">Monday</option>
+					<option value="Tuesday">Tuesday</option>
+					<option value="Wednesday">Wednesday</option>
+					<option value="Thursday">Thursday</option>
+					<option value="Friday">Friday</option>
+					<option value="Satursday">Saturday</option>
+					<option value="Sunday">Sunday</option>
+				  </select>
+					  </div>
+				</div>
+
+					<div class="modal-body">
+									<div class="form-group">
+										   <input type="checkbox" id="facilities" asp-for="Facilities" value="Parking space">
+									   <label for="offering"> Parking space</label><br>
+											<input type="checkbox" id="facilities" asp-for="Facilities" value="Air conditioning ">
+											<label for="looking">Air conditioning </label><br>
+											 <input type="checkbox" id="facilities" asp-for="Facilities" value="Kitchen ">
+											 <label for="offering"> Kitchen </label><br>
+											<input type="checkbox" id="facilities" asp-for="Facilities" value="Natural light  ">
+											<label for="facilities">Natural light </label><br>
+											<input type="checkbox" id="facilities" asp-for="Facilities" value=" Acoustic treatment">
+											<label for="facilities">Acoustic treatment </label><br>
+												<input type="checkbox" id="facilities" asp-for="Facilities" value="Running water">
+												<label for="facilities">Running water</label><br>
+														<input type="checkbox" id="facilities" asp-for="Facilities" value="	Storage">
+														<label for="facilities">Storage </label><br>
+															<label for="facilities">Type your own</label><br>
+															<input type="text" aspasp-for="Facilities" />
+									</div>
+									</div>
+										<div class="modal-body">
+									<div class="form-group">
+									   <input type="checkbox" id="area" asp-for="Area" value="Sqft">
+									   <label for="area">Area square foot</label><br>
+										<input type="checkbox" id="are" asp-for="Area" value="Sqm">
+										<label for="looking">Area in square metres</label><br>
+										<input type="text" aspasp-for="Area"/>
+											
+									</div>
+									</div>
+								
+									<div class="modal-footer bg-dark">
+										<button type="submit" id="btnSubmit" class="btn btn-success">Submit</button>
+										<button type="button" id="btnDismiss" class="btn btn-primary" data-dismiss="modal">Close</button>
+									</div>
+							   </div>
+							</div>
+						</div>
 }
 
