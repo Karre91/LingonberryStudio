@@ -91,7 +91,6 @@ body {
     width: 55%;
     float: left;
     margin-left: 20px;
-    padding: 2px;
    margin-bottom:20px;
    padding-left:20px;
 }
@@ -104,10 +103,136 @@ body {
     margin-top:40px;
     text-align: center;
     padding-bottom: 30px;
-}  
-
-   
+}
 
 
+.invalid input:required:invalid {
+    background: #BE4C54;
+}
 
+.invalid input:required:valid {
+    background: #17D654;
+}
+
+h2{
+    font-family:sans-serif;
+    font-weight:bold;
+}
+p {
+    font-family:Roboto;
+}
+a {
+    font-family: sans-serif;
+}
+.verticalLine {
+    border-left: 1px solid black;
+    height: 35px;
+    align-items: center;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+@media (max-width: 767px) {
+    .verticalLine {
+        display: none;
+    }
+
+    .intro {
+        display: none;
+    }
+
+    .searchBox {
+        position: unset;
+        left: unset;
+        float: unset;
+        justify-items: center;
+        width: 100%;
+        margin: unset;
+        margin-right: 10px;
+        margin-top: 10%;
+        margin-bottom:0;
+    }
+
+    #searchArea {
+        float: unset;
+        align-content: center;
+        margin: unset;
+        width: 75%;
+        margin-bottom: 4px;
+    }
+
+    #shareMine {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    .full-width{
+        height:unset;
+    }   
+}
+.contact-form {
+    background: #fff;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    width: 70%;
+}
+
+    .contact-form .form-control {
+        border-radius: 1rem;
+        border-block-color: #838f1e;
+        border:solid 1px;
+    }
+
+.contact-image {
+    text-align: center;
+   color:#c7342a;
+}
+
+    .contact-image img {
+        border-radius: 6rem;
+        width: 11%;
+        margin-top: -3%;
+        transform: rotate(29deg);
+        color:#c7342a;
+        
+       
+    }
+
+.contact-form form {
+    padding: 14%;
+}
+
+    .contact-form form .row {
+        margin-bottom: -7%;
+    }
+
+.contact-form h3 {
+    margin-bottom: 8%;
+    margin-top: -10%;
+    text-align: center;
+    color: #333e04;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.contact-form .btnContact {
+    background-color:#c7342a;
+    border: none;
+    border-radius: 40px;
+    border-radius: 40px;
+    color: white;
+    padding-right:25px;
+    padding-left:25px;
+    margin-right: 5px;
+    padding-bottom:5px;
+    padding-top:5px;
+}
+
+.btnContactSubmit {
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    color: #fff;
+    background-color: #0062cc;
+    border: none;
+    cursor: pointer;
+}
 
