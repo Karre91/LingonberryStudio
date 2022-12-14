@@ -9,13 +9,13 @@ namespace LingonberryStudio.Data.Entities
         [Key]
         public int DatesAndTimeId { get; set; }
         [AllowNull]
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
         [AllowNull]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         [AllowNull]
-        public DateTime OpeningTime { get; set; }
+        public DateTime? OpeningTime { get; set; }
         [AllowNull]
-        public DateTime ClosingTime { get; set; }
+        public DateTime? ClosingTime { get; set; }
 
         [Display(Name = "Day")]
         public virtual int DayID { get; set; }

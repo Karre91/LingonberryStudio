@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LingonberryStudio.Migrations
 {
     [DbContext(typeof(LingonberryDbContext))]
-    [Migration("20221214160953_1")]
-    partial class _1
+    [Migration("20221214165245_2")]
+    partial class _2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,6 @@ namespace LingonberryStudio.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Artist")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Budget")
@@ -69,7 +68,7 @@ namespace LingonberryStudio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PhoneNumber")
+                    b.Property<int?>("PhoneNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("PostCode")
@@ -136,19 +135,19 @@ namespace LingonberryStudio.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DatesAndTimeId"));
 
-                    b.Property<DateTime>("ClosingTime")
+                    b.Property<DateTime?>("ClosingTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DayID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("OpeningTime")
+                    b.Property<DateTime?>("OpeningTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("DatesAndTimeId");

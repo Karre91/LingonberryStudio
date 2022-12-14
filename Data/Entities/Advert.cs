@@ -22,7 +22,7 @@ namespace LingonberryStudio.Data.Entities
         [EmailAddress]
         public string Email { get; set; }
         [AllowNull]
-        public int PhoneNumber { get; set; }
+        public int? PhoneNumber { get; set; }
 
         [Required]
         public string OfferingLooking { get; set; }
@@ -58,7 +58,7 @@ namespace LingonberryStudio.Data.Entities
         [ForeignKey("DatesAndTimeID")]
         public virtual DatesAndTime DatesAndTimes { get; set; }
         [AllowNull]
-        public string Artist { get; set; }
+        public string? Artist { get; set; }
 
         
     }
