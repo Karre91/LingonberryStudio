@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LingonberryStudio.Migrations
 {
     [DbContext(typeof(LingonberryDbContext))]
-    [Migration("20221213200707_2")]
-    partial class _2
+    [Migration("20221214160953_1")]
+    partial class _1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,20 +27,23 @@ namespace LingonberryStudio.Migrations
 
             modelBuilder.Entity("LingonberryStudio.Data.Entities.Advert", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AdvertId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdvertId"));
+
+                    b.Property<int>("AmenityID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Artist")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AvaliabilityId")
+                    b.Property<int>("Budget")
                         .HasColumnType("int");
 
-                    b.Property<int>("Budget")
+                    b.Property<int>("DatesAndTimeID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -51,9 +54,6 @@ namespace LingonberryStudio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FacilitiesId")
-                        .HasColumnType("int");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -62,7 +62,7 @@ namespace LingonberryStudio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MeasurementsId")
+                    b.Property<int>("MeasurementID")
                         .HasColumnType("int");
 
                     b.Property<string>("OfferingLooking")
@@ -80,27 +80,67 @@ namespace LingonberryStudio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("AdvertId");
 
-                    b.HasIndex("AvaliabilityId");
+                    b.HasIndex("AmenityID");
 
-                    b.HasIndex("FacilitiesId");
+                    b.HasIndex("DatesAndTimeID");
 
-                    b.HasIndex("MeasurementsId");
+                    b.HasIndex("MeasurementID");
 
                     b.ToTable("Adverts");
                 });
 
-            modelBuilder.Entity("LingonberryStudio.Data.Entities.DatesAndTime", b =>
+            modelBuilder.Entity("LingonberryStudio.Data.Entities.Amenity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AmenityID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AmenityID"));
+
+                    b.Property<bool>("AcousticTreatment")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AirCon")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Kitchen")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("NaturalLight")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Other")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Parking")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("RunningWater")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Storage")
+                        .HasColumnType("bit");
+
+                    b.HasKey("AmenityID");
+
+                    b.ToTable("Amenities");
+                });
+
+            modelBuilder.Entity("LingonberryStudio.Data.Entities.DatesAndTime", b =>
+                {
+                    b.Property<int>("DatesAndTimeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DatesAndTimeId"));
 
                     b.Property<DateTime>("ClosingTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("DayID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -111,23 +151,20 @@ namespace LingonberryStudio.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("WeekDaysId")
-                        .HasColumnType("int");
+                    b.HasKey("DatesAndTimeId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("WeekDaysId");
+                    b.HasIndex("DayID");
 
                     b.ToTable("DatesAndTimes");
                 });
 
             modelBuilder.Entity("LingonberryStudio.Data.Entities.Day", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("DayId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DayId"));
 
                     b.Property<bool>("Friday")
                         .HasColumnType("bit");
@@ -150,105 +187,67 @@ namespace LingonberryStudio.Migrations
                     b.Property<bool>("Wednesday")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("DayId");
 
                     b.ToTable("Days");
                 });
 
-            modelBuilder.Entity("LingonberryStudio.Data.Entities.Facilitie", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("AcousticTreatment")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AirCon")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Kitchen")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("NaturalLight")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Other")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Parking")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("RunningWater")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Storage")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Facilities");
-                });
-
             modelBuilder.Entity("LingonberryStudio.Data.Entities.Measurement", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MeasurementId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MeasurementId"));
 
-                    b.Property<bool>("Feet")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Meters")
-                        .HasColumnType("bit");
+                    b.Property<string>("FeetOrMeters")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("MeasurementId");
 
                     b.ToTable("Measurements");
                 });
 
             modelBuilder.Entity("LingonberryStudio.Data.Entities.Advert", b =>
                 {
-                    b.HasOne("LingonberryStudio.Data.Entities.DatesAndTime", "Avaliability")
+                    b.HasOne("LingonberryStudio.Data.Entities.Amenity", "Amenities")
                         .WithMany()
-                        .HasForeignKey("AvaliabilityId")
+                        .HasForeignKey("AmenityID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LingonberryStudio.Data.Entities.Facilitie", "Facilities")
+                    b.HasOne("LingonberryStudio.Data.Entities.DatesAndTime", "DatesAndTimes")
                         .WithMany()
-                        .HasForeignKey("FacilitiesId")
+                        .HasForeignKey("DatesAndTimeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LingonberryStudio.Data.Entities.Measurement", "Measurements")
                         .WithMany()
-                        .HasForeignKey("MeasurementsId")
+                        .HasForeignKey("MeasurementID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Avaliability");
+                    b.Navigation("Amenities");
 
-                    b.Navigation("Facilities");
+                    b.Navigation("DatesAndTimes");
 
                     b.Navigation("Measurements");
                 });
 
             modelBuilder.Entity("LingonberryStudio.Data.Entities.DatesAndTime", b =>
                 {
-                    b.HasOne("LingonberryStudio.Data.Entities.Day", "WeekDays")
+                    b.HasOne("LingonberryStudio.Data.Entities.Day", "Days")
                         .WithMany()
-                        .HasForeignKey("WeekDaysId");
+                        .HasForeignKey("DayID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("WeekDays");
+                    b.Navigation("Days");
                 });
 #pragma warning restore 612, 618
         }

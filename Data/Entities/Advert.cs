@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
@@ -7,14 +9,8 @@ namespace LingonberryStudio.Data.Entities
 {
     public class Advert
     {
-        public Advert()
-        {
-            Facilitie myFac = new();
-        }
-        
-
         [Key]
-        public int Id { get; set; }
+        public int AdvertId { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -25,7 +21,7 @@ namespace LingonberryStudio.Data.Entities
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-
+        [AllowNull]
         public int PhoneNumber { get; set; }
 
         [Required]
@@ -40,23 +36,35 @@ namespace LingonberryStudio.Data.Entities
         [Required]
         public string PostCode { get; set; }
 
-        public Facilitie Facilities { get; set; }
+        [Display(Name = "Amenity")]
+        public virtual int AmenityID { get; set; }
+
+        [ForeignKey("AmenityID")]
+        public virtual Amenity Amenities { get; set; }
 
         [Required]
         public int Budget { get; set; }
 
-        [Required]
-        public Measurement Measurements { get; set; }
+        //[Required]
+        [Display(Name = "Measurement")]
+        public virtual int MeasurementID { get; set; }
 
-        public DatesAndTime Avaliability { get; set; }
+        [ForeignKey("MeasurementID")]
+        public virtual Measurement Measurements { get; set; }
 
+        [Display(Name = "DatesAndTime")]
+        public virtual int DatesAndTimeID { get; set; }
+
+        [ForeignKey("DatesAndTimeID")]
+        public virtual DatesAndTime DatesAndTimes { get; set; }
+        [AllowNull]
         public string Artist { get; set; }
 
-        //public Uri SocialMedia { get; set; }
+        
     }
 }
 
-
+//public Uri SocialMedia { get; set; }
 
 
 

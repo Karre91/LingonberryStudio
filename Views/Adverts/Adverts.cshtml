@@ -3,22 +3,31 @@
 <div id="popupForm"></div>
 <a asp-controller="Adverts" asp-action="Form" class="btn btn-primary" data-target="#formModal" data-toggle="modal">Create ad</a>
 
+
 <h1>ADS</h1>
 @model List<Advert>
 @foreach (var p in Model)
 {
-    <p>Id: @p.Id 
+        <p>
+        Id: @p.AdvertId
         Name: @p.FirstName
         email: @p.Email
-        @*Description: @p.Description
+        Description: @p.Description
         offering/Looking: @p.OfferingLooking
-        workspace: @p.WorkspaceDescription  *@
-       @* Budget: @p.Budget 
-        Postcode: @p.PostCode 
-        social media: @p.SocialMedia   
-        phone number: @p.PhoneNumber 
-        Artist name: @p.ArtistName 
-        work hours: @p.StartTime 
-        until @p.EndTime*@  </p>
+        workspace: @p.WorkspaceDescription
+        Budget: @p.Budget
+        Postcode: @p.PostCode
+        phone number: @p.PhoneNumber
+        Artist name: @p.Artist
+        AmenityID: @p.AmenityID
+        Aminities AcousticTreatment: @p.Amenities.AcousticTreatment
+        Mesurements foot: @p.Measurements.FeetOrMeters
+        DatesAndTimes: @p.DatesAndTimes.StartDate + @p.DatesAndTimes.EndDate + @p.DatesAndTimes.OpeningTime
+        Day: @p.DatesAndTimes.Days.Monday
+    </p>
+
+    @*social media: @p.SocialMedia
+        work hours: @p.StartTime
+        until @p.EndTime*@
 }
 

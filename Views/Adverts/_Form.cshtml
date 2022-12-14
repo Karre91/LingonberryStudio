@@ -1,16 +1,17 @@
 ﻿@model LingonberryStudio.Data.Entities.Advert
 
-<script>$(function () {
-    Array.prototype.filter.call($('.frmValidation'), function (form) {
-        form.addEventListener('submit', function (event) {
-            if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-        }, false);
-    });
-});</script>
+<script>
+    $(function () {
+        Array.prototype.filter.call($('.frmValidation'), function (form) {
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    });</script>
 
 @using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post, new { @class = "frmValidation", @novalidate = "" }))
 {
@@ -54,10 +55,10 @@
                             <div class="form-group">
                                 <label asp-for="PhoneNumber">Phone number</label>
                                 <input type="tel" asp-for="PhoneNumber" class="form-control" />
-                                <span class="invalid-feedback">Please enter only numbers</span>
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
@@ -70,7 +71,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="Workspace">Workspace</label>
+                                <label asp-for="WorkspaceDescription">Workspace</label>
                                 <br>
                                 <select class="form-select mb-3" asp-for="WorkspaceDescription" required>
                                     <option value="" selected disabled>Options</option>
@@ -97,29 +98,29 @@
                     </div>
 
                     <div class="form-group">
-                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.Parking" value="true">
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.Parking" value="true">
                         <label for="Facilities"> Parking space</label><br>
 
-                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.AirCon" value="true">
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.AirCon" value="true">
                         <label for="Facilities">Air conditioning</label><br>
 
-                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.Kitchen" value="true">
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.Kitchen" value="true">
                         <label for="Facilities"> Kitchen</label><br>
 
-                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.NaturalLight" value="true">
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.NaturalLight" value="true">
                         <label for="Facilities">Natural light</label><br>
 
-                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.AcousticTreatment" value="true">
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.AcousticTreatment" value="true">
                         <label for="Facilities">Acoustic treatment</label><br>
 
-                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.RunningWater" value="true">
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.RunningWater" value="true">
                         <label for="Facilities">Running water</label><br>
 
-                        <input class="form-check-input" type="checkbox" asp-for="@Model.Facilities.Storage" value="true">
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.Storage" value="true">
                         <label for="Facilities">Storage</label><br>
 
                         <label for="Facilities">Type your own</label><br>
-                        <input type="text" asp-for="@Model.Facilities.Other" />
+                        <input type="text" asp-for="@Model.Amenities.Other" />
                     </div>
 
                     <div class="form-group">
@@ -130,51 +131,60 @@
 
 
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" asp-for="@Model.Measurements.Feet" value="true" required>
+                        <input class="form-check-input" type="radio" asp-for="Measurements.FeetOrMeters" value="Feet" required>
                         <label asp-for="Measurements">Area square foot</label><br>
-                        <input class="form-check-input" type="radio" asp-for="@Model.Measurements.Meters" value="true" required>
+                        <input class="form-check-input" type="radio" asp-for="Measurements.FeetOrMeters" value="Meters" required>
                         <label asp-for="Measurements">Area in square metres</label><br>
                         <input type="number" asp-for="@Model.Measurements.Number" required />
                         <span class="invalid-feedback">Please tick a box</span>
                     </div>
 
-                    <div class="form-group">
-                        <label>Select dates</label>
-                        <input type="time" asp-for="@Model.Avaliability.StartDate"><br /><br />
-                        <input type="time" asp-for="@Model.Avaliability.EndDate"><br /><br />
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="DatesAndTimes">Select dates</label>
+                                <input type="date" asp-for="DatesAndTimes.StartDate"><br /><br />
+                                <input type="date" asp-for="DatesAndTimes.EndDate"><br /><br />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="DatesAndTimes">Select time</label>
+                                <input type="time" asp-for="DatesAndTimes.OpeningTime"><br /><br />
+                                <input type="time" asp-for="DatesAndTimes.ClosingTime"><br /><br />
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Select time</label>
-                        <input type="time" asp-for="@Model.Avaliability.OpeningTime"><br /><br />
-                        <input type="time" asp-for="@Model.Avaliability.ClosingTime"><br /><br />
-                    </div>
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Monday" value="true">
+                        <label asp-for="DatesAndTimes.Days">Monday</label><br>
 
-                    <div class="form-group">
-                        <label asp-for="Avaliability">Choose days</label>
-                        <select name="Avaliability"   multiple>
-                            <option asp-for="@Model.Avaliability.WeekDays.Monday" value="true">Monday</option>
-                            <option asp-for="@Model.Avaliability.WeekDays.Tuesday" value="true">Tuesday</option>
-                            <option asp-for="@Model.Avaliability.WeekDays.Wednesday" value="true">Wednesday</option>
-                            <option asp-for="@Model.Avaliability.WeekDays.Thursday" value="true">Thursday</option>
-                            <option asp-for="@Model.Avaliability.WeekDays.Friday" value="true">Friday</option>
-                            <option asp-for="@Model.Avaliability.WeekDays.Saturday" value="true">Saturday</option>
-                            <option asp-for="@Model.Avaliability.WeekDays.Sunday" value="true">Sunday</option>
-                        </select>
-                    </div>
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Tuesday" value="true">
+                        <label asp-for="DatesAndTimes.Days">Tuesday</label><br>
 
-                    @*asp-for="Avaliability"*@
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Wednesday" value="true">
+                        <label asp-for="DatesAndTimes.Days">Wednesday</label><br>
+
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Thursday" value="true">
+                        <label asp-for="DatesAndTimes.Days">Thursday</label><br>
+
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Friday" value="true">
+                        <label asp-for="DatesAndTimes.Days">Friday</label><br>
+
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Saturday" value="true">
+                        <label asp-for="DatesAndTimes.Days">Saturday</label><br>
+
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Sunday" value="true">
+                        <label asp-for="DatesAndTimes.Days">Sunday</label><br>
+                    </div>
 
                     <div class="form-group">
                         <label asp-for="Artist">Artist name</label>
                         <input type="text" asp-for="Artist" class="form-control" />
                     </div>
-
-                    @*<div class="form-group">
-                <label asp-for="SocialMedia">Social media</label>
-                <input type="url" class="form-control" asp-for="SocialMedia" />
-                </div>*@
                 </div>
+
                 <div class="modal-footer bg-dark">
                     <button type="submit" id="btnSubmit" class="btn btn-success">Submit</button>
                     <button type="button" id="btnDismiss" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -184,3 +194,7 @@
     </div>
 }
 
+@* <div class="form-group">
+                        <label asp-for="SocialMedia">Social media</label>
+                        <input type="url" class="form-control" asp-for="SocialMedia" />
+                    </div>*@

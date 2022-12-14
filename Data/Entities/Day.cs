@@ -5,7 +5,7 @@ namespace LingonberryStudio.Data.Entities
     public class Day
     {
         [Key]
-        public int Id { get; set; }
+        public int DayId { get; set; }
 
         public bool Monday { get; set; }
         public bool Tuesday { get; set; }

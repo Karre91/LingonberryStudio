@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace LingonberryStudio.Data.Entities
 {
-    public class Facilitie
+    public class Amenity
     {
         [Key]
-        public int Id { get; set; }
+        public int AmenityID { get; set; }
 
         public bool Parking { get; set; }
         public bool AirCon { get; set; }
@@ -14,6 +16,10 @@ namespace LingonberryStudio.Data.Entities
         public bool AcousticTreatment { get; set; }
         public bool RunningWater { get; set; }
         public bool Storage { get; set; }
-        public string Other { get; set; }
+        [AllowNull]
+        public string? Other { get; set; }
+
+
+        
     }
 }
