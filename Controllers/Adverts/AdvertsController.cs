@@ -34,7 +34,7 @@ namespace LingonberryStudio.Controllers.Adverts
         {
             List<Advert> ads = _db.Adverts.ToList();
             foreach (var ad in ads){
-                if (id == ad.FirstName)
+                if (id == ad.PostCode)
                 {
                     return RedirectToAction("Adverts");
                 }
