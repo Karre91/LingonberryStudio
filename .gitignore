@@ -213,3 +213,5 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+Migrations/20221213091117_1.Designer.cs
+Migrations/20221213091117_1.cs
