@@ -195,7 +195,12 @@ a {
     }
     .full-width{
         height:unset;
-    }   
+    }
+    
+    .borderBox{
+        margin-bottom:20px;
+        padding-bottom:2px;
+    }
 }
 .contact-form {
     background: #fff;
@@ -255,15 +260,6 @@ a {
     padding-top:5px;
 }
 
-.btnContactSubmit {
-    width: 50%;
-    border-radius: 1rem;
-    padding: 1.5%;
-    color: #fff;
-    background-color: #0062cc;
-    border: none;
-    cursor: pointer;
-}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -274,3 +270,39 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+.adBtn {
+    position: absolute;
+    margin-top: 50px;
+    background-color: #c7342a;
+    border: none;
+    border-radius: 40px;
+    border-radius: 40px;
+    color: white;
+    padding: 10px;
+    position: relative;
+    float: right;
+    right: 0;
+}
+.formBackgroundColor{
+    background-color:#d8c7b3;
+    color:black;
+}
+.footerColor{
+    color:black;
+}
+#btnSubmit {
+    border: none;
+    border-radius: 40px;
+    border-radius: 40px;
+    color: white;
+    background-color: #333e04;
+    width: 7rem;
+}
+#btnDismiss {
+    border: none;
+    border-radius: 40px;
+    border-radius: 40px;
+    color: white;
+    background-color: #c7342a;
+    width:7rem;
+}
