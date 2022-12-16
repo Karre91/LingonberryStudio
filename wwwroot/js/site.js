@@ -17,3 +17,4 @@
         }
     }
 }
+$('#popupForm').load("/Adverts/Form");
