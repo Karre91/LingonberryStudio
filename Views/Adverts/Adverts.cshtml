@@ -1,9 +1,9 @@
 ﻿@using LingonberryStudio.Data.Entities
 
 <div id="popupForm"></div>
-<a asp-controller="Adverts" asp-action="Form" class="btn btn-primary" data-target="#formModal" data-toggle="modal">Create ad</a>
+<a asp-controller="Adverts" asp-action="Form" class="btn adBtn" data-target="#formModal" data-toggle="modal">POST YOUR AD</a>
 
-<h1>ADS</h1>
+
 @model List<Advert>
 @foreach (var ad in Model)
 {
@@ -16,13 +16,10 @@
                 I am : @ad.OfferingLooking for a studio.
                 workspace: @ad.WorkspaceDescription.
                 Postcode: @ad.PostCode
-                Budget: @ad.Budget
+                Budget: @ad.Budgets.MonthOrWeek
                 Mesurements foot: @ad.Measurements.FeetOrMeters
             </div>
         </div>
     </a>
-    @await Html.PartialAsync("_ChosenAd", ad)
+    @await Html.PartialAsync("_ChosenAdPartial", ad)
 }
-
-<script>$('#popupForm').load("/Adverts/Form");</script>
-

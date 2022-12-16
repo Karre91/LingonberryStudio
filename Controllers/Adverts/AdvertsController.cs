@@ -27,9 +27,10 @@ namespace LingonberryStudio.Controllers.Adverts
             List<Measurement> measuremen = _db.Measurements.ToList();
             List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.ToList();
             List<Day> days = _db.Days.ToList();
-
-            return View(ads);
+			List<Budget> budget = _db.Budget.ToList();
+			return View(ads);
         }
+
         //[HttpGet]
         public IActionResult AdvertSearch(string id)
         {
@@ -46,14 +47,14 @@ namespace LingonberryStudio.Controllers.Adverts
 
         public IActionResult Form()
         {
-            return PartialView("_Form");
+            return PartialView("_FormPartial");
         }
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public IActionResult CreateAd(Advert ad)
         {
-            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
 
             if (ModelState.IsValid)
             {
@@ -62,8 +63,8 @@ namespace LingonberryStudio.Controllers.Adverts
                 _db.Measurements.Add(ad.Measurements);
                 _db.DatesAndTimes.Add(ad.DatesAndTimes);
                 _db.Days.Add(ad.DatesAndTimes.Days);
-                _db.SaveChanges();
-
+                _db.Budget.Add(ad.Budgets);
+                _db.SaveChanges();                 
             }
             return RedirectToAction("Adverts");
         }
