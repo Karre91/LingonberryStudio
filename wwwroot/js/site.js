@@ -22,6 +22,15 @@ $('#popupForm').load("/Adverts/Form")
 
 $('#popupAd').load("/Adverts/ChosenAd")
 
+//element.addEventListener("click", function () { myFunction(p1, p2); });
+
+
+document.getElementById("myBtn").addEventListener("click", function () { alert("Hello World!"); });
+
+
+
+
+
 
 
 //function toggle($toBeHidden, $toBeShown) {

@@ -68,10 +68,10 @@ namespace LingonberryStudio.Controllers.Adverts
             return RedirectToAction("Adverts");
         }
 
-        [HttpGet]
+        //[HttpPost]
         public IActionResult ChosenAd(int id)
         {
-            if(id == 0)
+            if (id == 0)
             {
                 return View();
             }

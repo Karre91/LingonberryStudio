@@ -6,25 +6,56 @@
 
 <h1>ADS</h1>
 @model List<Advert>
+<div id="popupAd"></div>
 
 @foreach (var ad in Model)
 {
-    <a asp-controller="Adverts" asp-action="ChosenAd" data-target="#adModal" asp-route-id="@ad.AdvertId" data-toggle=" modal">
-      
-        <div class="container row p-3">
-            <div class="container col" style="border:solid;">
-                PICTURE
-            </div>
-            <div class="container col" style="border:solid;">
-                I am : @ad.OfferingLooking for a studio.
-                workspace: @ad.WorkspaceDescription.
-                Postcode: @ad.PostCode
-                Budget: @ad.Budget
-                Mesurements foot: @ad.Measurements.FeetOrMeters
-            </div>
+    @*<a id="myBtn" asp-controller="Adverts" asp-action="ChosenAd" asp-route-id="@ad.AdvertId" data-target="#adModal2" data-toggle="modal">View w modal</a>*@
+    <a id="myBtn" asp-controller="Adverts" asp-action="ChosenAd" asp-route-id="@ad.AdvertId">Titta utan modal</a>
+    <div class="container row p-3">
+        <div class="container col" style="border:solid;">
+            PICTURE
         </div>
-    </a>
-
+        <div class="container col" style="border:solid;">
+            I am : @ad.OfferingLooking for a studio.
+            workspace: @ad.WorkspaceDescription.
+            Postcode: @ad.PostCode
+            Budget: @ad.Budget
+            Mesurements foot: @ad.Measurements.FeetOrMeters
+        </div>
+    </div>
 }
 
-<div id="popupAd"></div>
+<div id="adModal2" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Customer Details Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                test
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<script type="text/javascript">
+    var clickId;
+    $("#myModal").on('show.bs.modal', function (event) {
+        $(event.currentTarget).find('asp-route-id').val(getId);
+        var btn = $(this).find('#modalDeleteButton');
+        console.log(clickId)
+        btn.attr('formaction', '/administrator/DeleteCategory/' + clickId);
+    });
+
+    function getId(clicked_id) {
+        this.clickId = clicked_id;
+    }
+</script>*@
