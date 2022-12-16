@@ -28,10 +28,9 @@ namespace LingonberryStudio.Controllers.Adverts
             List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.ToList();
             List<Day> days = _db.Days.ToList();
 			List<Budget> budget = _db.Budget.ToList();
-
-
 			return View(ads);
         }
+
         //[HttpGet]
         public IActionResult AdvertSearch(string id)
         {
@@ -65,8 +64,7 @@ namespace LingonberryStudio.Controllers.Adverts
                 _db.DatesAndTimes.Add(ad.DatesAndTimes);
                 _db.Days.Add(ad.DatesAndTimes.Days);
                 _db.Budget.Add(ad.Budgets);
-                _db.SaveChanges();       
-                
+                _db.SaveChanges();                 
             }
             return RedirectToAction("Adverts");
         }
