@@ -6,28 +6,25 @@
 
 <h1>ADS</h1>
 @model List<Advert>
-@foreach (var p in Model)
-{
-        <p>
-        Id: @p.AdvertId
-        Name: @p.FirstName
-        email: @p.Email
-        Description: @p.Description
-        offering/Looking: @p.OfferingLooking
-        workspace: @p.WorkspaceDescription
-        Budget: @p.Budget
-        Postcode: @p.PostCode
-        phone number: @p.PhoneNumber
-        Artist name: @p.Artist
-        AmenityID: @p.AmenityID
-        Aminities AcousticTreatment: @p.Amenities.AcousticTreatment
-        Mesurements foot: @p.Measurements.FeetOrMeters
-        DatesAndTimes: @p.DatesAndTimes.StartDate + @p.DatesAndTimes.EndDate + @p.DatesAndTimes.OpeningTime
-        Day: @p.DatesAndTimes.Days.Monday
-    </p>
 
-    @*social media: @p.SocialMedia
-        work hours: @p.StartTime
-        until @p.EndTime*@
+@foreach (var ad in Model)
+{
+    <a asp-controller="Adverts" asp-action="ChosenAd" data-target="#adModal" asp-route-id="@ad.AdvertId" data-toggle=" modal">
+      
+        <div class="container row p-3">
+            <div class="container col" style="border:solid;">
+                PICTURE
+            </div>
+            <div class="container col" style="border:solid;">
+                I am : @ad.OfferingLooking for a studio.
+                workspace: @ad.WorkspaceDescription.
+                Postcode: @ad.PostCode
+                Budget: @ad.Budget
+                Mesurements foot: @ad.Measurements.FeetOrMeters
+            </div>
+        </div>
+    </a>
+
 }
 
+<div id="popupAd"></div>

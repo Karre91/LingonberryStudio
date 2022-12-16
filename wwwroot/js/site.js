@@ -20,7 +20,7 @@
 
 $('#popupForm').load("/Adverts/Form")
 
-
+$('#popupAd').load("/Adverts/ChosenAd")
 
 
 
