@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LingonberryStudio.Controllers.Adverts
 {
@@ -31,11 +32,12 @@ namespace LingonberryStudio.Controllers.Adverts
 
 			return View(ads);
         }
-
+        //[HttpGet]
         public IActionResult AdvertSearch(string id)
         {
             List<Advert> ads = _db.Adverts.ToList();
-            foreach (var ad in ads){
+            foreach (var ad in ads)
+            {
                 if (id == ad.PostCode)
                 {
                     return RedirectToAction("Adverts");
@@ -51,9 +53,9 @@ namespace LingonberryStudio.Controllers.Adverts
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult CreateAd(Advert ad) 
+        public IActionResult CreateAd(Advert ad)
         {
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);
 
             if (ModelState.IsValid)
             {
@@ -68,5 +70,17 @@ namespace LingonberryStudio.Controllers.Adverts
             }
             return RedirectToAction("Adverts");
         }
+
+        //[HttpGet("Chosen")]
+        //public IActionResult ChosenAd(int id)
+        //{
+        //    if (id == 0)
+        //    {
+        //        return View();
+        //    }
+        //    //var venue = _db.Adverts.FirstOrDefault(x => x.AdvertId == id);
+        //    var data = _db.Adverts.Where(m => m.AdvertId == id).Select(p => p).ToList();
+        //    return PartialView("_ChosenAd", data);
+        //}
     }
 }
