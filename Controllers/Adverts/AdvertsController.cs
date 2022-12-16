@@ -68,17 +68,16 @@ namespace LingonberryStudio.Controllers.Adverts
             return RedirectToAction("Adverts");
         }
 
-        //[HttpPost]
-        public IActionResult ChosenAd(int id)
-        {
-            if (id == 0)
-            {
-                return View();
-            }
-            //var venue = _db.Adverts.FirstOrDefault(x => x.AdvertId == id);
-            var data = _db.Adverts.Where(m => m.AdvertId == id).Select(p => p).ToList();
-            return PartialView("_ChosenAd", data);
-
-        }
+        //[HttpGet("Chosen")]
+        //public IActionResult ChosenAd(int id)
+        //{
+        //    if (id == 0)
+        //    {
+        //        return View();
+        //    }
+        //    //var venue = _db.Adverts.FirstOrDefault(x => x.AdvertId == id);
+        //    var data = _db.Adverts.Where(m => m.AdvertId == id).Select(p => p).ToList();
+        //    return PartialView("_ChosenAd", data);
+        //}
     }
 }

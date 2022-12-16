@@ -17,34 +17,3 @@
         }
     }
 }
-
-$('#popupForm').load("/Adverts/Form")
-
-$('#popupAd').load("/Adverts/ChosenAd")
-
-//element.addEventListener("click", function () { myFunction(p1, p2); });
-
-
-document.getElementById("myBtn").addEventListener("click", function () { alert("Hello World!"); });
-
-
-
-
-
-
-
-//function toggle($toBeHidden, $toBeShown) {
-//    $toBeHidden.hide().prop('disabled', true);
-//    $toBeShown.show().prop('disabled', false).focus();
-//}
-
-//function showOptions(inputName) {
-//    var $select = $(`select[name=${inputName}]`);
-//    toggle($(`input[name=${inputName}]`), $select);
-//    $select.val(null);
-//}
-
-
-//function showCustomInput(inputName) {
-//    toggle($(`select[name=${inputName}]`), $(`input[name=${inputName}]`));
-//}

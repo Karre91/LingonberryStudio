@@ -1,8 +1,6 @@
 ﻿@using LingonberryStudio.Data.Entities
-@model List<Advert>
-
-
-<div class="modal fade" id="adModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+@model Advert
+<div class="modal fade" id="adModal-@Model.AdvertId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,11 +10,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                @foreach (var a in Model)
-                {
-                    @a.FirstName <br />
-                    @a.LastName
-                }
+                @Model.FirstName
+                @Model.PostCode
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -24,18 +19,3 @@
         </div>
     </div>
 </div>
-
-
-
-@*<script>
-    $(function () {
-        Array.prototype.filter.call($('.frmValidation'), function (form) {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    });</script>*@

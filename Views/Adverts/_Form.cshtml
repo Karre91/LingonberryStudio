@@ -1,6 +1,6 @@
 ﻿@model LingonberryStudio.Data.Entities.Advert
 
-<script>
+@*<script>
     $(function () {
         Array.prototype.filter.call($('.frmValidation'), function (form) {
             form.addEventListener('submit', function (event) {
@@ -11,7 +11,7 @@
                 form.classList.add('was-validated');
             }, false);
         });
-    });</script>
+    });</script>*@
 
 @using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post, new { @class = "frmValidation", @novalidate = "" }))
 {
@@ -198,3 +198,6 @@
                         <label asp-for="SocialMedia">Social media</label>
                         <input type="url" class="form-control" asp-for="SocialMedia" />
                     </div>*@
+
+
+@*, new { @class = "frmValidation", @novalidate = "" }*@
