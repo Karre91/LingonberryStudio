@@ -14,6 +14,7 @@ namespace LingonberryStudio.Data
         public DbSet<Measurement> Measurements { get; set; }
         public DbSet<DatesAndTime> DatesAndTimes { get; set; }
         public DbSet<Day> Days { get; set; }
-    }
+		public DbSet<Budget> Budget { get; set; }
+	}
 }
 

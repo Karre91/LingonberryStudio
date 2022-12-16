@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LingonberryStudio.Controllers.Adverts
 {
@@ -26,14 +27,16 @@ namespace LingonberryStudio.Controllers.Adverts
             List<Measurement> measuremen = _db.Measurements.ToList();
             List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.ToList();
             List<Day> days = _db.Days.ToList();
-
-            return View(ads);
+			List<Budget> budget = _db.Budget.ToList();
+			return View(ads);
         }
 
+        //[HttpGet]
         public IActionResult AdvertSearch(string id)
         {
             List<Advert> ads = _db.Adverts.ToList();
-            foreach (var ad in ads){
+            foreach (var ad in ads)
+            {
                 if (id == ad.PostCode)
                 {
                     return RedirectToAction("Adverts");
@@ -44,12 +47,12 @@ namespace LingonberryStudio.Controllers.Adverts
 
         public IActionResult Form()
         {
-            return PartialView("_Form");
+            return PartialView("_FormPartial");
         }
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult CreateAd(Advert ad) 
+        public IActionResult CreateAd(Advert ad)
         {
             var errors = ModelState.Values.SelectMany(v => v.Errors);
 
@@ -60,10 +63,22 @@ namespace LingonberryStudio.Controllers.Adverts
                 _db.Measurements.Add(ad.Measurements);
                 _db.DatesAndTimes.Add(ad.DatesAndTimes);
                 _db.Days.Add(ad.DatesAndTimes.Days);
-                _db.SaveChanges();       
-                
+                _db.Budget.Add(ad.Budgets);
+                _db.SaveChanges();                 
             }
             return RedirectToAction("Adverts");
         }
+
+        //[HttpGet("Chosen")]
+        //public IActionResult ChosenAd(int id)
+        //{
+        //    if (id == 0)
+        //    {
+        //        return View();
+        //    }
+        //    //var venue = _db.Adverts.FirstOrDefault(x => x.AdvertId == id);
+        //    var data = _db.Adverts.Where(m => m.AdvertId == id).Select(p => p).ToList();
+        //    return PartialView("_ChosenAd", data);
+        //}
     }
 }
