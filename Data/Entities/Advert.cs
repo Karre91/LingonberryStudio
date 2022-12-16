@@ -66,7 +66,11 @@ namespace LingonberryStudio.Data.Entities
         [AllowNull]
         public string? SocialMedia { get; set; }
 
-        
+        [Display(Name = "Image")]
+        public virtual int ImageID { get; set; }
+
+        [ForeignKey("ImageID")]
+        public virtual Image Images { get; set; }
     }
 }
 

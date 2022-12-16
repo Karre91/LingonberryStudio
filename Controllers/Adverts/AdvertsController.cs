@@ -13,10 +13,12 @@ namespace LingonberryStudio.Controllers.Adverts
     public class AdvertsController : Controller
     {
         private readonly LingonberryDbContext _db;
+        public readonly IWebHostEnvironment _Web;
 
-        public AdvertsController(LingonberryDbContext db)
+        public AdvertsController(LingonberryDbContext db, IWebHostEnvironment web)
         {
             _db = db;
+            _Web = web;
         }
 
         [HttpGet("Adverts")]
@@ -27,7 +29,7 @@ namespace LingonberryStudio.Controllers.Adverts
             List<Measurement> measuremen = _db.Measurements.ToList();
             List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.ToList();
             List<Day> days = _db.Days.ToList();
-			List<Budget> budget = _db.Budget.ToList();
+			List<Budget> budget = _db.Budgets.ToList();
 			return View(ads);
         }
 
@@ -63,9 +65,20 @@ namespace LingonberryStudio.Controllers.Adverts
                 _db.Measurements.Add(ad.Measurements);
                 _db.DatesAndTimes.Add(ad.DatesAndTimes);
                 _db.Days.Add(ad.DatesAndTimes.Days);
-                _db.Budget.Add(ad.Budgets);
-                _db.SaveChanges();                 
+                _db.Budgets.Add(ad.Budgets);
+                _db.SaveChanges();                         
             }
+            if (ModelState.IsValid)
+            {
+                ad.Images.ImgUrl = "Images/" + Guid.NewGuid().ToString() + "_" + ad.Images.formFile.FileName;
+                var path = Path.Combine(_Web.WebRootPath, ad.Images.ImgUrl);
+                ad.Images.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
+
+            }
+            _db.Profile.AddAsync(new Profile
+            {
+                ImgUrl = ad.Images.ImgUrl
+            });
             return RedirectToAction("Adverts");
         }
 
