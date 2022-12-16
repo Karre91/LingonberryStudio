@@ -47,14 +47,14 @@ namespace LingonberryStudio.Controllers.Adverts
 
         public IActionResult Form()
         {
-            return PartialView("_Form");
+            return PartialView("_FormPartial");
         }
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public IActionResult CreateAd(Advert ad)
         {
-            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
 
             if (ModelState.IsValid)
             {

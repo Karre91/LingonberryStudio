@@ -63,8 +63,8 @@ namespace LingonberryStudio.Data.Entities
         
         [AllowNull]
         public string? Artist { get; set; }
-
-        public string SocialMedia { get; set; }
+        [AllowNull]
+        public string? SocialMedia { get; set; }
 
         
     }
