@@ -61,16 +61,26 @@ namespace LingonberryStudio.Data.Entities
         [ForeignKey("DatesAndTimeID")]
         public virtual DatesAndTime DatesAndTimes { get; set; }
         
-        [AllowNull]
+        
         public string? Artist { get; set; }
         [AllowNull]
         public string? SocialMedia { get; set; }
 
-        [Display(Name = "Image")]
-        public virtual int ImageID { get; set; }
+        [AllowNull]
+        [Display(Name = "Profile")]
+        public virtual int ProfileID { get; set; }
 
-        [ForeignKey("ImageID")]
-        public virtual Image Images { get; set; }
+
+        [AllowNull]
+        [ForeignKey("ProfileID")]
+        public virtual Profile Profiles { get; set; }
+
+        [Display(Name = "Pwm")]
+        public virtual int PwmID { get; set; }
+
+
+        [ForeignKey("PwmID")]
+        public virtual ProfileViewModel Pwms { get; set; }
     }
 }
 

@@ -1,9 +1,18 @@
-﻿namespace LingonberryStudio.Data.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+
+namespace LingonberryStudio.Data.Entities
 {
     public class Profile
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string ImgUrl { get; set; }
+        [Key]
+        public int ProfileID { get; set; }
+
+        [AllowNull]
+        public string? Name { get; set; }
+
+        [AllowNull]
+        public string? ImgUrl { get; set; }
+
     }
 }

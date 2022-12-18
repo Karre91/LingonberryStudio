@@ -12,7 +12,6 @@ namespace LingonberryStudio.Data.Entities
         public string? ImgUrl { get; set; }
 
         [AllowNull]
-        [NotMapped]
         public IFormFile? formFile { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Formats.Tar;
 using System.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -29,8 +30,9 @@ namespace LingonberryStudio.Controllers.Adverts
             List<Measurement> measuremen = _db.Measurements.ToList();
             List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.ToList();
             List<Day> days = _db.Days.ToList();
-			List<Budget> budget = _db.Budgets.ToList();
-			return View(ads);
+            List<Budget> budget = _db.Budgets.ToList();
+            List<Profile> profiles = _db.Profiles.ToList();
+            return View(ads);
         }
 
         //[HttpGet]
@@ -49,6 +51,8 @@ namespace LingonberryStudio.Controllers.Adverts
 
         public IActionResult Form()
         {
+
+
             return PartialView("_FormPartial");
         }
 
@@ -60,25 +64,28 @@ namespace LingonberryStudio.Controllers.Adverts
 
             if (ModelState.IsValid)
             {
+                ad.Pwms.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Pwms.formFile.FileName;
+                var path = Path.Combine(_Web.WebRootPath, ad.Pwms.ImgUrl);
+                ad.Pwms.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
+                ad.Profiles.ImgUrl = ad.Pwms.ImgUrl;
+
+            };
+            
+          
+
+            if (ModelState.IsValid)
+            {
                 _db.Adverts.Add(ad);
                 _db.Amenities.Add(ad.Amenities);
                 _db.Measurements.Add(ad.Measurements);
                 _db.DatesAndTimes.Add(ad.DatesAndTimes);
                 _db.Days.Add(ad.DatesAndTimes.Days);
                 _db.Budgets.Add(ad.Budgets);
-                _db.SaveChanges();                         
+                _db.Profiles.Add(ad.Profiles);
+                _db.SaveChanges();
             }
-            if (ModelState.IsValid)
-            {
-                ad.Images.ImgUrl = "Images/" + Guid.NewGuid().ToString() + "_" + ad.Images.formFile.FileName;
-                var path = Path.Combine(_Web.WebRootPath, ad.Images.ImgUrl);
-                ad.Images.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
 
-            }
-            _db.Profile.AddAsync(new Profile
-            {
-                ImgUrl = ad.Images.ImgUrl
-            });
+
             return RedirectToAction("Adverts");
         }
 
