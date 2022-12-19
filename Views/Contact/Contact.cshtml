@@ -1,8 +1,8 @@
-﻿
+﻿@model LingonberryStudio.Models.gmail
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<div class="container contact-form">
+@*<div class="container contact-form">
          
             <form method="post">
                 <h3>DROP US A MESSAGE</h3>
@@ -28,4 +28,37 @@
                     </div>
                 </div>
             </form>
-</div>
+</div>*@
+
+                    
+
+    @using (Html.BeginForm("Contact", "Contact", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <table>
+            <tr>
+                <td>
+                    To
+                </td>
+                <td>@Html.TextBoxFor(gmail=> gmail.To)</td>
+            </tr>
+            <tr>
+                <td>
+                    Subject
+                </td>
+                <td>@Html.TextBoxFor(gmail=> gmail.Subject)</td>
+            </tr>
+              <tr>
+                <td valign="top">
+                    Body
+                </td>
+                <td>@Html.TextAreaFor(gmail=> gmail.Body, new {rows ="15",cols="25"})</td>
+            </tr>
+        </table>
+        <br />
+        <span style="color:green">@ViewBag.Message</span>
+        <tr>
+            <td>
+                <input type="submit" value="send" />
+            </td>
+        </tr>
+    }
