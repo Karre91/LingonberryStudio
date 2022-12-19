@@ -18,5 +18,5 @@
     }
 }
 $('#popupForm').load("/Adverts/Form");
-document.getElementById("myDate").min = new Date().getFullYear() + "-" + parseInt(new Date().getMonth() + 1) + "-" + new Date().getDate()
+
 
