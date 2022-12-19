@@ -30,9 +30,7 @@ $(function () {
 $(document).on("change", "#from", function () {
     debugger
     var date = $(this).val();
-
     $('#to').attr('min', date);
-
 });
 
 
