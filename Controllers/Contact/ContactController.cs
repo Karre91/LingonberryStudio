@@ -40,7 +40,8 @@ namespace LingonberryStudio.Controllers.Contact
 			}
 			else
             {
-                return View();
+				ViewBag.Message = "Oops something went wrong, please try again!";
+				return View();
             }
 
         }
