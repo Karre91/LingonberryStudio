@@ -33,10 +33,9 @@ namespace LingonberryStudio.Controllers.Contact
                 smtp.Credentials = new System.Net.NetworkCredential("lingonberrystudio@gmail.com", "mzukfalqsmhgodpm");
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
+				ViewBag.Message = "Thank You for your message";
 
-				ViewBag.Message = "Thank you for your message!";
-
-				return View();
+			    return View();
 
 			}
 			else

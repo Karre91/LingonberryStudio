@@ -307,6 +307,6 @@ input[type=number] {
     background-color: #c7342a;
     width:7rem;
 }
-.inputField{
-    color:red;
+input:focus::placeholder {
+    color: transparent;
 }
