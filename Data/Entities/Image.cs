@@ -8,10 +8,12 @@ namespace LingonberryStudio.Data.Entities
     {
         [Key]
         public int ImageID { get; set; }
+
         [AllowNull]
         public string? ImgUrl { get; set; }
 
         [AllowNull]
+        [NotMapped]
         public IFormFile? formFile { get; set; }
     }
 }

@@ -20,25 +20,5 @@ namespace LingonberryStudio.Controllers.About
         {
             return View();
         }
-
-        [HttpPost]
-        [Route("AddPerson")]
-        public async Task<IActionResult> AddPerson(ProfileViewModel profileViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                profileViewModel.ImgUrl = "Images/" + Guid.NewGuid().ToString() + "_" + profileViewModel.formFile.FileName;
-                var path = System.IO.Path.Combine(_Web.WebRootPath, profileViewModel.ImgUrl);
-                await profileViewModel.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
-
-            }
-            //await _db.Profiles.AddAsync(new Profile
-            //{
-            //    Name = profileViewModel.Name,
-            //    ImgUrl = profileViewModel.ImgUrl
-            //});
-            var res = await _db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
     }
 }

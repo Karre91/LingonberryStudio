@@ -28,37 +28,15 @@
                 </div>
 
                 <div class="modal-body ">
-                    1
-                    @*<input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" />*@
-                    <label asp-for="Pwms.formFile" class="control-label"></label>
-                    <input asp-for="Pwms.formFile" class="form-control" />
-                    @*<input type="submit" value="Create" class="btn btn-primary" />*@
-
-                    <label asp-for="Profiles" class="control-label"></label>
-                    <input type="text" asp-for="Profiles.Name" class="form-control" />
-                    @* 2
-                @Html.TextBoxFor(m => m.Images, new { type = "file"})
-                <br />
-                @Html.ValidationMessageFor(m => m.Images, "", new { @class = "error" })
-
-                <hr /><hr />
-
-
-
-                3
-                <input type='file' name='file' id='file' class='form-control'><br>*@
-
-                    <!-- Preview-->
-                    <div id='preview'></div>
-
-
-                    @*</div>*@
-
+                    <div class="form-group">
+                        <label asp-for="Image.formFile" class="control-label"></label>
+                        <input asp-for="Image.formFile" class="form-control" />
+                    </div>
                     <div class="form-check mt-2 mx-3">
-                        <input class="form-check-input" type="radio" asp-for="OfferingLooking" value="offering" required>
+                        <input class="form-check-input" type="radio" asp-for="OfferingLooking" value="Offering" required>
                         <label asp-for="OfferingLooking"> I am offering a studio</label><br>
-                        <input class="form-check-input" type="radio" id="OfferingLooking" asp-for="OfferingLooking" value="looking" required>
-                        <label for="OfferingLooking"> I am looking for a studio</label><br>
+                        <input class="form-check-input" type="radio" id="OfferingLooking" asp-for="OfferingLooking" value="Looking" required>
+                        <label asp-for="OfferingLooking"> I am looking for a studio</label><br>
                         <span class="invalid-feedback">Please tick a box</span>
                     </div>
                     <div class="row">
@@ -108,7 +86,7 @@
                                     <option value="Music">Music Studio</option>
                                     <option value="Art">Art Studio</option>
                                     <option value="Photo">Photo Studio</option>
-                                    <option value="customOption">[Type your own]</option> 
+                                    <option value="customOption">[Type your own]</option>
                                 </select>
                                 <span class="invalid-feedback">Please choose one</span>
                             </div>
@@ -162,27 +140,27 @@
                                 <div class="form-group checkbox">
                                     <p>Amenities</p>
                                     <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.Parking" value="true">
-                                    <label for="Facilities"> Parking space</label><br>
+                                    <label asp-for="Amenities"> Parking space</label><br>
 
                                     <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.AirCon" value="true">
-                                    <label for="Facilities">Air conditioning</label><br>
+                                    <label foasp-forr="Facilities">Air conditioning</label><br>
 
                                     <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.Kitchen" value="true">
-                                    <label for="Facilities"> Kitchen</label><br>
+                                    <label asp-for="Amenities"> Kitchen</label><br>
 
                                     <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.NaturalLight" value="true">
-                                    <label for="Facilities">Natural light</label><br>
+                                    <label asp-for="Amenities">Natural light</label><br>
 
                                     <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.AcousticTreatment" value="true">
-                                    <label for="Facilities">Acoustic treatment</label><br>
+                                    <label asp-for="Amenities">Acoustic treatment</label><br>
 
                                     <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.RunningWater" value="true">
-                                    <label for="Facilities">Running water</label><br>
+                                    <label asp-for="Amenities">Running water</label><br>
 
                                     <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.Storage" value="true">
-                                    <label for="Facilities">Storage</label><br>
+                                    <label asp-for="Amenities">Storage</label><br>
 
-                                    <label for="Facilities">Type your own</label><br>
+                                    <label asp-for="Amenities">Type your own</label><br>
                                     <input type="text" asp-for="@Model.Amenities.Other" />
                                 </div>
                             </div>
