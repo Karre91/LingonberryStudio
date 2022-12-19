@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mail;
 using System.Net;
+using LingonberryStudio.Models;
 
 namespace LingonberryStudio.Controllers.Contact
 {
@@ -13,23 +14,35 @@ namespace LingonberryStudio.Controllers.Contact
 
 
         [HttpPost]
-        public IActionResult Contact(LingonberryStudio.Models.gmail model)
-        {
-            MailMessage mailMessage = new MailMessage("lingonberrystudio@gmail.com", model.To);
-            mailMessage.Subject = model.Subject;
-            mailMessage.Body = model.Body;
+        public IActionResult Contact(LingonberryStudio.Models.gmail _objModelMail)
+		{
+          
 
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
-            smtp.EnableSsl = true;
+            if (ModelState.IsValid)
+				{
 
-            NetworkCredential nc = new NetworkCredential("lingonberrystudio@gmail.com", "lösen");
-            smtp.UseDefaultCredentials = true;
-            smtp.Credentials = nc;
-            smtp.Send(mailMessage);
-            ViewBag.Message = "Mail has been sent successfully";
-            return View();
-        }
+                MailMessage mail = new MailMessage();
+                mail.To.Add(_objModelMail.To);
+                mail.From = new MailAddress(_objModelMail.From);
+					mail.Subject = _objModelMail.Subject;
+					string Body = $"{_objModelMail.Body} sender {_objModelMail.From}";
+					mail.Body = Body;
+					mail.IsBodyHtml = true;
+					SmtpClient smtp = new SmtpClient();
+					smtp.Host = "smtp.gmail.com";
+					smtp.Port = 587;
+					smtp.UseDefaultCredentials = false;
+					smtp.Credentials = new System.Net.NetworkCredential("lingonberrystudio@gmail.com", "mzukfalqsmhgodpm"); // Enter seders User name and password  
+					smtp.EnableSsl = true;
+					smtp.Send(mail);
+
+				return View("Index", _objModelMail);
+				}
+				else
+				{
+					return View();
+				}
+		
+		}
     }
 }
