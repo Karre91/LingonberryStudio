@@ -58,7 +58,7 @@ namespace LingonberryStudio.Controllers.Adverts
         //[ValidateAntiForgeryToken]
         public IActionResult CreateAd(Advert ad)
         {
-            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
 
             if (ModelState.IsValid)
             {

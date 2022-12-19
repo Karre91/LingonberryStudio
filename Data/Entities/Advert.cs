@@ -70,7 +70,7 @@ namespace LingonberryStudio.Data.Entities
 
         [AllowNull]
         [ForeignKey("ImageID")]
-        public virtual Image Image { get; set; }
+        public virtual Image? Image { get; set; }
     }
 }
 
