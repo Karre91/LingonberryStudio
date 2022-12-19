@@ -10,6 +10,7 @@
     <Folder Include="Controllers\Contact\" />
     <Folder Include="Migrations\" />
     <Folder Include="Views\Contact\" />
+    <Folder Include="wwwroot\StudioImages\" />
   </ItemGroup>
 
   <ItemGroup>
