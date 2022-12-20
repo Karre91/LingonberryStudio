@@ -30,8 +30,7 @@ namespace LingonberryStudio.Data.Entities
         [Required]
         public string WorkspaceDescription { get; set; }
 
-        [Required]
-        public string Description { get; set; }
+      
 
         [Required]
         public string PostCode { get; set; }
@@ -60,7 +59,7 @@ namespace LingonberryStudio.Data.Entities
 
         [ForeignKey("DatesAndTimeID")]
         public virtual DatesAndTime DatesAndTimes { get; set; }
-        
+        [AllowNull]
         public string? Artist { get; set; }
         [AllowNull]
         public string? SocialMedia { get; set; }
@@ -70,7 +69,7 @@ namespace LingonberryStudio.Data.Entities
 
         [AllowNull]
         [ForeignKey("ImageID")]
-        public virtual Image? Image { get; set; }
+        public virtual Image Image { get; set; }
     }
 }
 

@@ -15,5 +15,8 @@ namespace LingonberryStudio.Data.Entities
         [AllowNull]
         [NotMapped]
         public IFormFile? formFile { get; set; }
+
+        [Required]
+        public string Description { get; set; }
     }
 }
