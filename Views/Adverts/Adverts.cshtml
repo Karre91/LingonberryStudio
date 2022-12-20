@@ -1,33 +1,26 @@
 ﻿@using LingonberryStudio.Data.Entities
 
-
 <div id="popupForm"></div>
 <a asp-controller="Adverts" asp-action="Form" class="btn adBtn" data-target="#formModal" data-toggle="modal">POST YOUR AD</a>
 
 
 @model List<Advert>
-@foreach (var p in Model)
+@foreach (var ad in Model)
 {
-        <p>
-        Id: @p.AdvertId
-        Name: @p.FirstName
-        email: @p.Email
-        Description: @p.Description
-        offering/Looking: @p.OfferingLooking
-        workspace: @p.WorkspaceDescription
-        Budget: @p.Budgets.MonthOrWeek @p.Budgets.Price
-        Postcode: @p.PostCode
-        phone number: @p.PhoneNumber
-        Artist name: @p.Artist
-        AmenityID: @p.AmenityID
-        Aminities AcousticTreatment: @p.Amenities.AcousticTreatment
-        Mesurements foot: @p.Measurements.FeetOrMeters
-        DatesAndTimes: @p.DatesAndTimes.StartDate + @p.DatesAndTimes.EndDate + @p.DatesAndTimes.OpeningTime
-        Day: @p.DatesAndTimes.Days.Monday
-    </p>
-
-    @*social media: @p.SocialMedia
-        work hours: @p.StartTime
-        until @p.EndTime*@
+    <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)" >
+        <div class="container row p-3">
+            <div class="container col" style="border:solid;">
+                    <img src="@ad.Image.ImgUrl" width="100%" />
+            </div>
+            <div class="container col" style="border:solid;">
+                <h4>@ad.OfferingLooking</h4>
+                I am : @ad.FirstName <br>
+                workspace: @ad.WorkspaceDescription-studio<br>
+                Postcode: @ad.PostCode<br>
+                Budget: @ad.Budgets.Price £/ @ad.Budgets.MonthOrWeek<br>
+              Mesurements foot: @ad.Measurements.Number square @ad.Measurements.FeetOrMeters<br>
+            </div>
+        </div>
+    </a>
+    @await Html.PartialAsync("_ChosenAdPartial", ad)
 }
-

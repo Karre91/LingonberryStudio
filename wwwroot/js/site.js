@@ -18,24 +18,19 @@
     }
 }
 
-$('#popupForm').load("/Adverts/Form")
+$(document).on("change", "#from", function () {
+    debugger
+    var date = $(this).val();
+    $('#to').attr('min', date);
+});
+
+$(document).on("change", "#to", function () {
+    debugger
+    var date = $(this).val();
+    $('#from').attr('min', date);
+});
 
 
+$('#popupForm').load("/Adverts/Form");
 
 
-
-//function toggle($toBeHidden, $toBeShown) {
-//    $toBeHidden.hide().prop('disabled', true);
-//    $toBeShown.show().prop('disabled', false).focus();
-//}
-
-//function showOptions(inputName) {
-//    var $select = $(`select[name=${inputName}]`);
-//    toggle($(`input[name=${inputName}]`), $select);
-//    $select.val(null);
-//}
-
-
-//function showCustomInput(inputName) {
-//    toggle($(`select[name=${inputName}]`), $(`input[name=${inputName}]`));
-//}
