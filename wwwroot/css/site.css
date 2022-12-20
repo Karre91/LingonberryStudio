@@ -334,3 +334,10 @@ input[type=number] {
 input:focus::placeholder {
     color: transparent;
 }
+
+.footerColor{
+    background-color:#d8c7b3;
+    color:black;
+    text-align:center;
+    text-decoration:none;
+}
