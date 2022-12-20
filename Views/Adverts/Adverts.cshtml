@@ -5,6 +5,8 @@
 
 
 @model List<Advert>
+
+<label>Total ads:</label>  @ViewBag.Total
 @foreach (var ad in Model)
 {
     <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)" >
@@ -18,7 +20,8 @@
                 workspace: @ad.WorkspaceDescription-studio<br>
                 Postcode: @ad.PostCode<br>
                 Budget: @ad.Budgets.Price £/ @ad.Budgets.MonthOrWeek<br>
-              Mesurements foot: @ad.Measurements.Number square @ad.Measurements.FeetOrMeters<br>
+              Mesurements foot: @ad.Measurements.Number square @ad.Measurements.FeetOrMeters @ad.TimeCreated<br>
+
             </div>
         </div>
     </a>

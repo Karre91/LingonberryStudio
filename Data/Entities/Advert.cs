@@ -70,6 +70,8 @@ namespace LingonberryStudio.Data.Entities
         [AllowNull]
         [ForeignKey("ImageID")]
         public virtual Image Image { get; set; }
-    }
+
+		public DateTime TimeCreated { get; set; } = DateTime.Now;
+	}
 }
 

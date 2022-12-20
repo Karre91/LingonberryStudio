@@ -25,14 +25,16 @@ namespace LingonberryStudio.Controllers.Adverts
         [HttpGet("Adverts")]
         public IActionResult Adverts()
         {
-            List<Advert> ads = _db.Adverts.ToList();
+			
+			List<Advert> ads = _db.Adverts.ToList();
             List<Amenity> amenities = _db.Amenities.ToList();
             List<Measurement> measuremen = _db.Measurements.ToList();
             List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.ToList();
             List<Day> days = _db.Days.ToList();
             List<Budget> budgets = _db.Budgets.ToList();
             List<Image> images = _db.Images.ToList();
-            return View(ads);
+			ViewBag.Total = ads.Count();
+			return View(ads);
         }
 
         //[HttpGet]
@@ -59,11 +61,12 @@ namespace LingonberryStudio.Controllers.Adverts
         public IActionResult CreateAd(Advert ad)
         {
             var errors = ModelState.Values.SelectMany(v => v.Errors);
-
+       
             if (ModelState.IsValid)
             {
                 if(ad.Image.formFile != null)
                 {
+                  
                     ad.Image.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Image.formFile.FileName;
                     var path = Path.Combine(_Web.WebRootPath, ad.Image.ImgUrl);
                     ad.Image.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
