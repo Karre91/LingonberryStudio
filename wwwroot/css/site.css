@@ -1,5 +1,5 @@
 html {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 @media (min-width: 768px) {
@@ -25,6 +25,11 @@ body {
 .intro {
     height: 400px;
     position: relative;
+}
+
+.btn {
+    font-family: 'Jost', sans-serif;
+    font-weight: bolder 500;
 }
 
 .slideshow-img {
@@ -74,6 +79,8 @@ body {
     border-radius: 40px;
     color: white;
     padding: 10px;
+    font-family: 'Jost', sans-serif;
+    font-weight: bolder 500;
 }
 
 #shareMine {
@@ -83,7 +90,9 @@ body {
     border-radius: 40px;
     color: white;
     padding: 10px;
-    margin-right:5px;
+    margin-right: 5px;
+    font-family: 'Jost', sans-serif;
+    font-weight: bolder 500;
 }
 #searchArea {
     position: relative;
@@ -115,15 +124,20 @@ body {
     background: #17D654;
 }
 
-h2{
-    font-family:sans-serif;
-    font-weight:bold;
+h2 {
+    font-synthesis: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: bolder 500;
 }
 p {
-    font-family:Roboto;
+    font-synthesis: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: normal 400;
 }
 a {
-    font-family: sans-serif;
+    font-synthesis: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: lighter 300;
 }
 .verticalLine {
     border-left: 1px solid black;
@@ -244,21 +258,25 @@ a {
     margin-top: -10%;
     text-align: center;
     color: #333e04;
-    font-family: sans-serif;
-    font-weight: bold;
+    font-family: 'Jost', sans-serif;
+    font-weight: bolder 500;
+    font-synthesis: none;
 }
 
 .contact-form .btnContact {
-    background-color:#c7342a;
+    background-color: #c7342a;
     border: none;
     border-radius: 40px;
     border-radius: 40px;
     color: white;
-    padding-right:25px;
-    padding-left:25px;
+    padding-right: 25px;
+    padding-left: 25px;
     margin-right: 5px;
-    padding-bottom:5px;
-    padding-top:5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-family: 'Jost', sans-serif;
+    font-weight: bolder 500;
+    font-synthesis: none;
 }
 
 input::-webkit-outer-spin-button,
@@ -283,6 +301,9 @@ input[type=number] {
     position: relative;
     float: right;
     right: 0;
+    font-family: 'Jost', sans-serif;
+    font-weight: bolder 500;
+    font-synthesis: none;
 }
 .formBackgroundColor{
     background-color:#d8c7b3;
@@ -305,8 +326,18 @@ input[type=number] {
     border-radius: 40px;
     color: white;
     background-color: #c7342a;
-    width:7rem;
+    width: 7rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: bolder 500;
+    font-synthesis: none;
 }
 input:focus::placeholder {
     color: transparent;
+}
+
+.footerColor{
+    background-color:#d8c7b3;
+    color:black;
+    text-align:center;
+    text-decoration:none;
 }
