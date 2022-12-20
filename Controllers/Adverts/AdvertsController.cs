@@ -62,9 +62,13 @@ namespace LingonberryStudio.Controllers.Adverts
 
             if (ModelState.IsValid)
             {
-                ad.Image.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Image.formFile.FileName;
-                var path = Path.Combine(_Web.WebRootPath, ad.Image.ImgUrl);
-                ad.Image.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
+                if(ad.Image.formFile != null)
+                {
+                    ad.Image.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Image.formFile.FileName;
+                    var path = Path.Combine(_Web.WebRootPath, ad.Image.ImgUrl);
+                    ad.Image.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
+                }
+                
                 _db.Adverts.Add(ad);
                 //_db.Amenities.Add(ad.Amenities);
                 //_db.Measurements.Add(ad.Measurements);

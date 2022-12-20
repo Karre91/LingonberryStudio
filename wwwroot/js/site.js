@@ -19,13 +19,13 @@
 }
 
 $(document).on("change", "#from", function () {
-    debugger
+    /*debugger*/
     var date = $(this).val();
     $('#to').attr('min', date);
 });
 
 $(document).on("change", "#to", function () {
-    debugger
+    /*debugger*/
     var date = $(this).val();
     $('#from').attr('min', date);
 });
