@@ -16,9 +16,9 @@
 
                 <div class="modal-body ">
                     <div class="form-check mt-2 mx-3">
-                        <input class="form-check-input" type="radio" asp-for="OfferingLooking" value="Offering" required>
+                        <input class="form-check-input" type="radio" asp-for="OfferingLooking" value="Offering"> @*required*@
                         <label asp-for="OfferingLooking"> I am offering a studio</label><br>
-                        <input class="form-check-input" type="radio" id="OfferingLooking" asp-for="OfferingLooking" value="Looking" required>
+                        <input class="form-check-input" type="radio" id="OfferingLooking" asp-for="OfferingLooking" value="Looking"> @*required*@
                         <label asp-for="OfferingLooking"> I am looking for a studio</label><br>
                         <span class="invalid-feedback">Please tick a box</span>
                     </div>
@@ -26,14 +26,14 @@
                         <div class="col">
                             <div class="form-group">
                                 <label asp-for="FirstName">First name</label>
-                                <input type="text" asp-for="FirstName" class="form-control " required />
+                                <input type="text" asp-for="FirstName" class="form-control "> @*required*@
                                 <span class="invalid-feedback">Please enter FirstName</span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label asp-for="LastName">Last name</label>
-                                <input type="text" asp-for="LastName" class="form-control " required />
+                                <input type="text" asp-for="LastName" class="form-control "> @*required*@
                                 <span class="invalid-feedback">Please enter LastName</span>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label asp-for="Email">Email</label>
-                                <input type="email" asp-for="Email" class="form-control" required />
+                                <input type="email" asp-for="Email" class="form-control"> @*required*@
                                 <span class="invalid-feedback">Please enter Email</span>
                             </div>
                         </div>
@@ -64,7 +64,8 @@
                             <div class="form-group">
                                 <label asp-for="WorkspaceDescription">Workspace</label>
                                 <br>
-                                <select class="form-select mb-3" asp-for="WorkspaceDescription" required>
+                                <select class="form-select mb-3" asp-for="WorkspaceDescription">
+                                    @*required*@
                                     <option value="" selected disabled>Options</option>
                                     <option value="Music">Music Studio</option>
                                     <option value="Art">Art Studio</option>
@@ -76,21 +77,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Image.Description">Description</label>
-                        <textarea type="text" asp-for="Image.Description" class="form-control" required></textarea>
+                        <label asp-for="Description.Desc">Description</label>
+                        <textarea type="text" asp-for="Description.Desc" class="form-control"></textarea> @*required*@
                         <span class="invalid-feedback">Please enter Description</span>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label asp-for="PostCode">Postcode</label>
-                                <input type="text" class="form-control" asp-for="PostCode" required />
+                                <input type="text" class="form-control" asp-for="PostCode"> @*required*@
                                 <span class="invalid-feedback">Please enter postcode</span>
                             </div>
                         </div><div class="col">
                             <div class="form-group">
                                 <label asp-for="SocialMedia">Studio image</label>
-                                <input asp-for="Image.formFile" class="form-control" />
+                                <input asp-for="Description.formFile" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -158,11 +159,11 @@
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" asp-for="Measurements.FeetOrMeters" value="Feet" required>
+                                <input class="form-check-input" type="radio" asp-for="Measurements.FeetOrMeters" value="Feet">
                                 <label asp-for="Measurements">Area square foot</label><br>
-                                <input class="form-check-input" type="radio" asp-for="Measurements.FeetOrMeters" value="Meters" required>
+                                <input class="form-check-input" type="radio" asp-for="Measurements.FeetOrMeters" value="Meters">
                                 <label asp-for="Measurements">Area in square metres</label><br>
-                                <input type="number" asp-for="@Model.Measurements.Number" required />
+                                <input type="number" asp-for="@Model.Measurements.Number"/>
                                 <span class="invalid-feedback">Please tick a box</span>
                             </div>
                             <div class="form-group mx-4">
@@ -173,11 +174,11 @@
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" asp-for="Budgets.MonthOrWeek" value="Month" required>
+                                <input class="form-check-input" type="radio" asp-for="Budgets.MonthOrWeek" value="Month"> @*required*@
                                 <label asp-for="Budgets">Price per month</label><br>
-                                <input class="form-check-input" type="radio" asp-for="Budgets.MonthOrWeek" value="Week" required>
+                                <input class="form-check-input" type="radio" asp-for="Budgets.MonthOrWeek" value="Week"> @*required*@
                                 <label asp-for="Budgets">Price per week</label><br>
-                                <input type="number" asp-for="@Model.Budgets.Price" required />
+                                <input type="number" asp-for="@Model.Budgets.Price" /> @*required*@
                                 <span class="invalid-feedback">Please tick a box</span>
                             </div>
                             <div class="form-group mx-4">

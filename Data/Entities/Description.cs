@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace LingonberryStudio.Data.Entities
 {
-    public class Image
+    public class Description
     {
         [Key]
         public int ImageID { get; set; }
@@ -16,7 +16,7 @@ namespace LingonberryStudio.Data.Entities
         [NotMapped]
         public IFormFile? formFile { get; set; }
 
-        [Required]
-        public string Description { get; set; }
+        //[Required]
+        public string? Desc { get; set; }
     }
 }

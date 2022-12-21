@@ -16,6 +16,7 @@ namespace LingonberryStudio.Data.Entities
         public bool AcousticTreatment { get; set; }
         public bool RunningWater { get; set; }
         public bool Storage { get; set; }
+
         [AllowNull]
         public string? Other { get; set; }
 

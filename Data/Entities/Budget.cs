@@ -7,9 +7,10 @@ namespace LingonberryStudio.Data.Entities
 		[Key]
 		public int BudgetId { get; set; }
 
-		[Required]
-		public string MonthOrWeek { get; set; }
-		[Required]
-		public int Price { get; set; }
+		//[Required]
+		public string? MonthOrWeek { get; set; }
+
+		//[Required]
+		public int? Price { get; set; }
 	}
 }
