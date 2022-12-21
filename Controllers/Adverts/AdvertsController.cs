@@ -25,12 +25,15 @@ namespace LingonberryStudio.Controllers.Adverts
         [HttpGet("Adverts")]
         public IActionResult Adverts()
         {
-            List<Advert> ads = _db.Adverts.ToList();
+			
+			List<Advert> ads = _db.Adverts.ToList();
             List<Amenity> amenities = _db.Amenities.ToList();
             List<Measurement> measuremen = _db.Measurements.ToList();
             List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.ToList();
             List<Day> days = _db.Days.ToList();
             List<Budget> budgets = _db.Budgets.ToList();
+			ViewBag.Total = ads.Count();
+			
             List<Description> description = _db.Descriptions.ToList();
             return View(ads);
         }
@@ -59,7 +62,7 @@ namespace LingonberryStudio.Controllers.Adverts
         public IActionResult CreateAd(Advert ad)
         {
             var errors = ModelState.Values.SelectMany(v => v.Errors);
-
+       
             if (ModelState.IsValid)
             {
                 if(ad.Description.formFile != null)
