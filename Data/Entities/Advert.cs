@@ -12,28 +12,27 @@ namespace LingonberryStudio.Data.Entities
         [Key]
         public int AdvertId { get; set; }
 
-        [Required]
-        public string FirstName { get; set; }
+        //[Required]
+        public string? FirstName { get; set; }
 
-        [Required]
-        public string LastName { get; set; }
+        //[Required]
+        public string? LastName { get; set; }
 
-        [Required]
+        //[Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string? Email { get; set; }
+
         [AllowNull]
         public int? PhoneNumber { get; set; }
 
         [Required]
         public string OfferingLooking { get; set; }
 
-        [Required]
-        public string WorkspaceDescription { get; set; }
+        //[Required]
+        public string? WorkspaceDescription { get; set; }
 
-      
-
-        [Required]
-        public string PostCode { get; set; }
+        //[Required]
+        public string? PostCode { get; set; }
 
         [Display(Name = "Amenity")]
         public virtual int AmenityID { get; set; }
@@ -47,7 +46,6 @@ namespace LingonberryStudio.Data.Entities
 		[ForeignKey("BudgetId")]
 		public virtual Budget Budgets { get; set; }
 
-        //[Required]
         [Display(Name = "Measurement")]
         public virtual int MeasurementID { get; set; }
 
@@ -59,19 +57,18 @@ namespace LingonberryStudio.Data.Entities
 
         [ForeignKey("DatesAndTimeID")]
         public virtual DatesAndTime DatesAndTimes { get; set; }
+
         [AllowNull]
         public string? Artist { get; set; }
+
         [AllowNull]
         public string? SocialMedia { get; set; }
 
-        [Display(Name = "Image")]
-        public virtual int ImageID { get; set; }
+        [Display(Name = "Description")]
+        public virtual int DescriptionID { get; set; }
 
-        [AllowNull]
-        [ForeignKey("ImageID")]
-        public virtual Image Image { get; set; }
-
-		public DateTime TimeCreated { get; set; } = DateTime.Now;
-	}
+        [ForeignKey("DescriptionID")]
+        public virtual Description Description { get; set; }
+    }
 }
 

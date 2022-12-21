@@ -8,12 +8,16 @@ namespace LingonberryStudio.Data.Entities
     {
         [Key]
         public int DatesAndTimeId { get; set; }
+
         [AllowNull]
         public DateTime? StartDate { get; set; }
+
         [AllowNull]
         public DateTime? EndDate { get; set; }
+
         [AllowNull]
         public DateTime? OpeningTime { get; set; }
+
         [AllowNull]
         public DateTime? ClosingTime { get; set; }
 

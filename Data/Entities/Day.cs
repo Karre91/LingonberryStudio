@@ -6,7 +6,6 @@ namespace LingonberryStudio.Data.Entities
     {
         [Key]
         public int DayId { get; set; }
-
         public bool Monday { get; set; }
         public bool Tuesday { get; set; }
         public bool Wednesday { get; set; }

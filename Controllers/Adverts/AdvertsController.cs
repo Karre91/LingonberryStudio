@@ -32,9 +32,10 @@ namespace LingonberryStudio.Controllers.Adverts
             List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.ToList();
             List<Day> days = _db.Days.ToList();
             List<Budget> budgets = _db.Budgets.ToList();
-            List<Image> images = _db.Images.ToList();
 			ViewBag.Total = ads.Count();
-			return View(ads);
+			
+            List<Description> description = _db.Descriptions.ToList();
+            return View(ads);
         }
 
         //[HttpGet]
@@ -64,12 +65,16 @@ namespace LingonberryStudio.Controllers.Adverts
        
             if (ModelState.IsValid)
             {
-                if(ad.Image.formFile != null)
+                if(ad.Description.formFile != null)
                 {
-                  
-                    ad.Image.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Image.formFile.FileName;
-                    var path = Path.Combine(_Web.WebRootPath, ad.Image.ImgUrl);
-                    ad.Image.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
+                    ad.Description.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Description.formFile.FileName;
+                    var path = Path.Combine(_Web.WebRootPath, ad.Description.ImgUrl);
+                    ad.Description.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
+                }
+                else
+                {
+                    ad.Description.ImgUrl = "StudioImages/Test.jpg";
+                    var path = Path.Combine(_Web.WebRootPath, ad.Description.ImgUrl);
                 }
                 
                 _db.Adverts.Add(ad);

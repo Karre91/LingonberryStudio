@@ -5,25 +5,32 @@
 
 
 @model List<Advert>
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var ad in Model)
+        {
+            <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)">
+                <div class="col w-25" style="border:solid">
+                    <div class="">
+                        <img src="@ad.Description.ImgUrl" class="img-thumbnail img-fluid mx-auto" width="90%">
+                    </div>
+                    <div>
+                        <p>@ad.WorkspaceDescription-Studio</p>
+                        <p>@ad.PostCode</p>
+                        <p>£@ad.Budgets.Price/@ad.Budgets.MonthOrWeek</p>
+                    </div>
+                </div>
+            </a>
+            @await Html.PartialAsync("_ChosenAdPartial", ad)
+        }
+    </div>
+</div>
 
-<label>Total ads:</label>  @ViewBag.Total
-@foreach (var ad in Model)
-{
-    <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)" >
-        <div class="container row p-3">
-            <div class="container col" style="border:solid;">
-                    <img src="@ad.Image.ImgUrl" width="100%" />
-            </div>
-            <div class="container col" style="border:solid;">
-                <h4>@ad.OfferingLooking</h4>
+
+
+@*<h4>@ad.OfferingLooking</h4>
                 I am : @ad.FirstName <br>
                 workspace: @ad.WorkspaceDescription-studio<br>
                 Postcode: @ad.PostCode<br>
                 Budget: @ad.Budgets.Price £/ @ad.Budgets.MonthOrWeek<br>
-              Mesurements foot: @ad.Measurements.Number square @ad.Measurements.FeetOrMeters @ad.TimeCreated<br>
-
-            </div>
-        </div>
-    </a>
-    @await Html.PartialAsync("_ChosenAdPartial", ad)
-}
+              Mesurements foot: @ad.Measurements.Number square @ad.Measurements.FeetOrMeters<br>*@
