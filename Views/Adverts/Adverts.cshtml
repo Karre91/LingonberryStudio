@@ -5,22 +5,26 @@
 
 
 @model List<Advert>
-
-<div class="container row p-3">
-    @foreach (var ad in Model)
-    {
-        <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)">
-            <div class="container col-sm col-lg col.md" style="border:solid" >
-                <img src="@ad.Description.ImgUrl" class="rounded-3" width="40%">
-                <p>@ad.WorkspaceDescription-Studio</p>
-                <p>@ad.PostCode</p>
-                <p>£@ad.Budgets.Price/@ad.Budgets.MonthOrWeek</p>
-            </div>
-        </a>
-        @await Html.PartialAsync("_ChosenAdPartial", ad)
-    }
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var ad in Model)
+        {
+            <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)">
+                <div class="col w-25" style="border:solid">
+                    <div class="">
+                        <img src="@ad.Description.ImgUrl" class="img-thumbnail img-fluid mx-auto" width="90%">
+                    </div>
+                    <div>
+                        <p>@ad.WorkspaceDescription-Studio</p>
+                        <p>@ad.PostCode</p>
+                        <p>£@ad.Budgets.Price/@ad.Budgets.MonthOrWeek</p>
+                    </div>
+                </div>
+            </a>
+            @await Html.PartialAsync("_ChosenAdPartial", ad)
+        }
+    </div>
 </div>
-
 
 
 
