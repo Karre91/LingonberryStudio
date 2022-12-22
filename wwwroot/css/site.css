@@ -173,7 +173,15 @@ a {
     .verticalLine {
         display: none;
     }
+    .flex-grid-container{
 
+        max-width:75%;
+    }
+    .adBtn{
+        max-width:50%;
+   float:unset;
+   float:none;
+    }
     .intro {
         display: none;
     }
@@ -290,7 +298,7 @@ input[type=number] {
 }
 
 .adBtn {
-    position: absolute;
+  
     margin-top: 50px;
     background-color: #c7342a;
     border: none;
@@ -298,7 +306,6 @@ input[type=number] {
     border-radius: 40px;
     color: white;
     padding: 10px;
-    position: relative;
     float: right;
     right: 0;
     font-family: 'Jost', sans-serif;
@@ -340,4 +347,22 @@ input:focus::placeholder {
     color:black;
     text-align:center;
     text-decoration:none;
+}
+.flex-grid-container{
+    display:flex;
+    padding-top:3rem;
+    flex-wrap:wrap;
+    gap:3rem;
+
+}
+.ad-card{
+    max-width:350px; 
+}
+
+.ad-image {
+    border-radius: 7%;
+    object-fit: cover;
+    width: 230px;
+    height: 230px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
 }

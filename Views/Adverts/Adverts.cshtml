@@ -3,34 +3,22 @@
 <div id="popupForm"></div>
 <a asp-controller="Adverts" asp-action="Form" class="btn adBtn" data-target="#formModal" data-toggle="modal">POST YOUR AD</a>
 
-
 @model List<Advert>
-<div class="container-fluid">
-    <div class="row">
-        @foreach (var ad in Model)
-        {
-            <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)">
-                <div class="col w-25" style="border:solid">
-                    <div class="">
-                        <img src="@ad.Description.ImgUrl" class="img-thumbnail img-fluid mx-auto" width="90%">
-                    </div>
-                    <div>
-                        <p>@ad.WorkspaceDescription-Studio</p>
-                        <p>@ad.PostCode</p>
-                        <p>£@ad.Budgets.Price/@ad.Budgets.MonthOrWeek</p>
-                    </div>
-                </div>
-            </a>
-            @await Html.PartialAsync("_ChosenAdPartial", ad)
-        }
-    </div>
+<div class="container-fluid flex-grid-container border-0">
+	@foreach (var ad in Model)
+	{
+		<div class="ad-card">
+			<a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)">
+				<div>
+					<img src="@ad.Description.ImgUrl" class="img-fluid mx-auto ad-image">
+				</div>
+				<div>
+					<p class="fw-bold mb-0 mt-3">@ad.WorkspaceDescription</p>
+					<p class="mb-0">@ad.PostCode</p>
+					<p>£@ad.Budgets.Price/@ad.Budgets.MonthOrWeek</p>
+				</div>
+			</a>
+			@await Html.PartialAsync("_ChosenAdPartial", ad)
+		</div>
+	}
 </div>
-
-
-
-@*<h4>@ad.OfferingLooking</h4>
-                I am : @ad.FirstName <br>
-                workspace: @ad.WorkspaceDescription-studio<br>
-                Postcode: @ad.PostCode<br>
-                Budget: @ad.Budgets.Price £/ @ad.Budgets.MonthOrWeek<br>
-              Mesurements foot: @ad.Measurements.Number square @ad.Measurements.FeetOrMeters<br>*@
