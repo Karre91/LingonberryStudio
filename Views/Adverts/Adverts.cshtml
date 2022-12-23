@@ -20,8 +20,9 @@
 				</div>
 				<div>
 					<p class="fw-bold mb-0 mt-3">@ad.WorkspaceDescription</p>
-					<p class="mb-0">@ad.PostCode</p>
+						<p class="mb-0">@ad.City</p>
 					<p>£@ad.Budgets.Price/@ad.Budgets.MonthOrWeek</p>
+					
 				</div>
 			</a>
 			@await Html.PartialAsync("_ChosenAdPartial", ad)

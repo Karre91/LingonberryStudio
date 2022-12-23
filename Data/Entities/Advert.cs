@@ -12,8 +12,10 @@ namespace LingonberryStudio.Data.Entities
         [Key]
         public int AdvertId { get; set; }
 
-        //[Required]
-        public string? FirstName { get; set; }
+		public DateTime TimeCreated { get; set; } = DateTime.Now;
+
+		//[Required]
+		public string? FirstName { get; set; }
 
         //[Required]
         public string? LastName { get; set; }
@@ -32,9 +34,11 @@ namespace LingonberryStudio.Data.Entities
         public string? WorkspaceDescription { get; set; }
 
         //[Required]
-        public string? PostCode { get; set; }
+        public string? City { get; set; }
 
-        [Display(Name = "Amenity")]
+		public string? Area { get; set; }
+
+		[Display(Name = "Amenity")]
         public virtual int AmenityID { get; set; }
 
         [ForeignKey("AmenityID")]
