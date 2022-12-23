@@ -17,7 +17,6 @@ var app = builder.Build();
 //using (var scope = app.Services.CreateScope())
 //{
 //	var services = scope.ServiceProvider;
-
 //	Seed.Initialize(services);
 //}
 
