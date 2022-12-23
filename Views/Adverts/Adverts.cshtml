@@ -1,8 +1,12 @@
 ﻿@using LingonberryStudio.Data.Entities
 
+
 <div id="popupForm"></div>
 <a asp-controller="Adverts" asp-action="Form" class="btn adBtn" data-target="#formModal" data-toggle="modal">POST YOUR AD</a>
 
+<div id="areaAndResults" class="">
+	<p id="result">@ViewBag.Total results</p>
+</div>
 @model List<Advert>
 <div class="container-fluid flex-grid-container border-0">
 	@foreach (var ad in Model)

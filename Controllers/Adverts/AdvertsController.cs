@@ -16,7 +16,7 @@ namespace LingonberryStudio.Controllers.Adverts
         private readonly LingonberryDbContext _db;
         public readonly IWebHostEnvironment _Web;
 
-        public AdvertsController(LingonberryDbContext db, IWebHostEnvironment web)
+		public AdvertsController(LingonberryDbContext db, IWebHostEnvironment web)
         {
             _db = db;
             _Web = web;
@@ -25,24 +25,25 @@ namespace LingonberryStudio.Controllers.Adverts
         [HttpGet("Adverts")]
         public IActionResult Adverts()
         {
-			
 			List<Advert> ads = _db.Adverts.ToList();
-            List<Amenity> amenities = _db.Amenities.ToList();
+			
+			List<Amenity> amenities = _db.Amenities.ToList();
             List<Measurement> measuremen = _db.Measurements.ToList();
             List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.ToList();
             List<Day> days = _db.Days.ToList();
             List<Budget> budgets = _db.Budgets.ToList();
-			ViewBag.Total = ads.Count();
-			
             List<Description> description = _db.Descriptions.ToList();
-            return View(ads);
+
+            ViewBag.Total = ads.Count();
+			return View(ads);
         }
 
         //[HttpGet]
         public IActionResult AdvertSearch(string id)
         {
-            List<Advert> ads = _db.Adverts.ToList();
-            foreach (var ad in ads)
+			List<Advert> ads = _db.Adverts.ToList();
+
+			foreach (var ad in ads)
             {
                 if (id == ad.PostCode)
                 {
@@ -74,7 +75,6 @@ namespace LingonberryStudio.Controllers.Adverts
                 else
                 {
                     ad.Description.ImgUrl = "StudioImages/Test.jpg";
-                    var path = Path.Combine(_Web.WebRootPath, ad.Description.ImgUrl);
                 }
                 
                 _db.Adverts.Add(ad);

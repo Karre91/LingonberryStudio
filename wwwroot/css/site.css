@@ -366,3 +366,17 @@ input:focus::placeholder {
     height: 230px;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
 }
+
+#areaAndResults {
+    position: relative;
+    width: 100%;
+    object-fit: cover;
+    height: 100px;
+    border: 3px solid #73AD21;
+}
+#result {
+    position: absolute;
+    left: 20%;
+    top: 50px;
+    border: 3px solid #73AD21;
+}
