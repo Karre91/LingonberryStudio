@@ -45,7 +45,7 @@ namespace LingonberryStudio.Controllers.Adverts
 
 			foreach (var ad in ads)
             {
-                if (id == ad.PostCode)
+                if (id == ad.City)
                 {
                     return RedirectToAction("Adverts");
                 }

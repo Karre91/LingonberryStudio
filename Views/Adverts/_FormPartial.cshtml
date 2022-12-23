@@ -66,7 +66,7 @@
                                 <br>
                                 <select class="form-select mb-3" asp-for="WorkspaceDescription">
                                     @*required*@
-                                    <option value=""selected disabled>Options</option>
+                                    <option value="" selected disabled>Options</option>
                                     <option value="Music Studio">Music Studio</option>
                                     <option value="Art Studio">Art Studio</option>
                                     <option value="Photo Studio">Photo Studio</option>
@@ -87,11 +87,18 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label asp-for="PostCode">Postcode</label>
-                                <input type="text" class="form-control" asp-for="PostCode"> @*required*@
-                                <span class="invalid-feedback">Please enter postcode</span>
+                                <label asp-for="City">City</label>
+                                <input type="text" class="form-control" asp-for="City"> @*required*@
+                                <span class="invalid-feedback">Please enter city</span>
                             </div>
-                        </div><div class="col">
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Area">Area</label>
+                                <input type="text" class="form-control" asp-for="Area">
+                            </div>
+                        </div>
+                        <div class="col">
                             <div class="form-group">
                                 <label asp-for="SocialMedia">Studio image</label>
                                 <input asp-for="Description.formFile" class="form-control" />
@@ -166,7 +173,7 @@
                                 <label asp-for="Measurements">Area square foot</label><br>
                                 <input class="form-check-input" type="radio" asp-for="Measurements.FeetOrMeters" value="Meters">
                                 <label asp-for="Measurements">Area in square metres</label><br>
-                                <input type="number" asp-for="@Model.Measurements.Number"/>
+                                <input type="number" asp-for="@Model.Measurements.Number" />
                                 <span class="invalid-feedback">Please tick a box</span>
                             </div>
                             <div class="form-group mx-4">
