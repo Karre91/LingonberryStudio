@@ -1,5 +1,6 @@
 ﻿using LingonberryStudio.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using System.Diagnostics;
 
 namespace LingonberryStudio.Controllers.Home
@@ -19,14 +20,22 @@ namespace LingonberryStudio.Controllers.Home
         }
 
         [HttpPost]
-        public IActionResult Index(string searchArea)
+        public IActionResult OfferingSearch(string searchArea)
         {
             //REGEX tjofräs?
 
-            return RedirectToAction("AdvertSearch", "Adverts", new { id = searchArea });
+            return RedirectToAction("Search", "Adverts", new { id = searchArea, search = "Offering" } );
         }
 
-        public IActionResult Privacy()
+		[HttpPost]
+		public IActionResult LookingSearch(string searchArea)
+		{
+			//REGEX tjofräs?
+
+			return RedirectToAction("Search", "Adverts", new { id = searchArea, search = "Looking" });
+		}
+
+		public IActionResult Privacy()
         {
             return View();
         }
