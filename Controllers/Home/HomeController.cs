@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace LingonberryStudio.Controllers
+namespace LingonberryStudio.Controllers.Home
 {
     public class HomeController : Controller
     {
@@ -16,6 +16,14 @@ namespace LingonberryStudio.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(string searchArea)
+        {
+            //REGEX tjofräs?
+
+            return RedirectToAction("AdvertSearch", "Adverts", new { id = searchArea });
         }
 
         public IActionResult Privacy()

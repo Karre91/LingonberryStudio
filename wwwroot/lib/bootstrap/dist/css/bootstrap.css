@@ -70,6 +70,8 @@
   }
 }
 
+
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -2182,7 +2184,7 @@ progress {
   color: #212529;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: 1px solid #838f1e;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
