@@ -356,7 +356,7 @@ input:focus::placeholder {
 
 }
 .ad-card{
-    max-width:350px; 
+    max-width:350px;
 }
 
 .ad-image {
@@ -373,10 +373,11 @@ input:focus::placeholder {
     object-fit: cover;
     height: 100px;
     border: 3px solid #73AD21;
+    background-color: black;
 }
 #result {
     position: absolute;
-    left: 20%;
-    top: 50px;
+    float: right;
+    top: 5px;
     border: 3px solid #73AD21;
 }
