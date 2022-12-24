@@ -35,6 +35,7 @@ namespace LingonberryStudio.Controllers.Adverts
 				.ToList();
 
 			ViewBag.Total = ads.Count();
+			
 			return View(ads);
 		}
 
