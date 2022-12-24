@@ -25,52 +25,86 @@ namespace LingonberryStudio.Controllers.Adverts
 		[HttpGet("Adverts")]
 		public IActionResult Adverts()
 		{
-			List<Advert> ads = _db.Adverts.ToList();
-
-			List<Amenity> amenities = _db.Amenities.ToList();
-			List<Measurement> measuremen = _db.Measurements.ToList();
-			List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.ToList();
-			List<Day> days = _db.Days.ToList();
-			List<Budget> budgets = _db.Budgets.ToList();
-			List<Description> description = _db.Descriptions.ToList();
+			var ads = _db.Adverts
+				.Include(ads => ads.Measurements)
+				.Include(ads => ads.Amenities)
+				.Include(ads => ads.Budgets)
+				.Include(ads => ads.DatesAndTimes)
+				.Include(ads => ads.DatesAndTimes.Days)
+				.Include(ads => ads.Description)
+				.ToList();
 
 			ViewBag.Total = ads.Count();
 			return View(ads);
 		}
 
-
 		//[HttpGet]
-		public IActionResult Search(string id, string search)
+		public IActionResult Search(string city, string search)
 		{
-			if (search == "Offering")
+			if (city == null)
 			{
-				List<Advert> offeringAds = _db.Adverts.Where(ad => ad.OfferingLooking == "Offering" && ad.City == id).ToList();
-				foreach (var ad in offeringAds)
+				if (search == "Offering")
 				{
-					List<Amenity> amenities = _db.Amenities.Where(a => a.AmenityID == ad.AdvertId).ToList();
-					List<Measurement> measuremen = _db.Measurements.Where(a => a.MeasurementID == ad.AdvertId).ToList();
-					List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.Where(a => a.DatesAndTimeId == ad.AdvertId).ToList();
-					List<Day> days = _db.Days.Where(a => a.DayId == ad.AdvertId).ToList();
-					List<Budget> budgets = _db.Budgets.Where(a => a.BudgetId == ad.AdvertId).ToList();
-					List<Description> description = _db.Descriptions.Where(a => a.ImageID == ad.AdvertId).ToList();
+					var lookingAds = _db.Adverts
+						.Where(ad => ad.OfferingLooking == "Looking")
+						.Include(ads => ads.Measurements)
+						.Include(ads => ads.Amenities)
+						.Include(ads => ads.Budgets)
+						.Include(ads => ads.DatesAndTimes)
+						.Include(ads => ads.DatesAndTimes.Days)
+						.Include(ads => ads.Description)
+						.ToList(); ;
+
+					return View(lookingAds);
 				}
-				return View(offeringAds);
+				if (search == "Looking")
+				{
+					var offeringAds = _db.Adverts
+						.Where(ad => ad.OfferingLooking == "Offering")
+						.Include(ads => ads.Measurements)
+						.Include(ads => ads.Amenities)
+						.Include(ads => ads.Budgets)
+						.Include(ads => ads.DatesAndTimes)
+						.Include(ads => ads.DatesAndTimes.Days)
+						.Include(ads => ads.Description)
+						.ToList(); ;
+
+					return View(offeringAds);
+				}
 			}
-			if (search == "Looking")
+			else
 			{
-				List<Advert> lookingAds = _db.Adverts.Where(ad => ad.OfferingLooking == "Looking" && ad.City == id).ToList();
-				foreach (var ad in lookingAds)
+				if (search == "Offering")
 				{
-					List<Amenity> amenities = _db.Amenities.Where(a => a.AmenityID == ad.AdvertId).ToList();
-					List<Measurement> measuremen = _db.Measurements.Where(a => a.MeasurementID == ad.AdvertId).ToList();
-					List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.Where(a => a.DatesAndTimeId == ad.AdvertId).ToList();
-					List<Day> days = _db.Days.Where(a => a.DayId == ad.AdvertId).ToList();
-					List<Budget> budgets = _db.Budgets.Where(a => a.BudgetId == ad.AdvertId).ToList();
-					List<Description> description = _db.Descriptions.Where(a => a.ImageID == ad.AdvertId).ToList();
+					var lookingAds = _db.Adverts
+						.Where(ad => ad.OfferingLooking == "Looking" && ad.City == city)
+						.Include(ads => ads.Measurements)
+						.Include(ads => ads.Amenities)
+						.Include(ads => ads.Budgets)
+						.Include(ads => ads.DatesAndTimes)
+						.Include(ads => ads.DatesAndTimes.Days)
+						.Include(ads => ads.Description)
+						.ToList(); ;
+
+					return View(lookingAds);
 				}
-				return View(lookingAds);
-			}
-			return RedirectToAction("Adverts");
+				if (search == "Looking")
+				{
+					var offeringAds = _db.Adverts
+						.Where(ad => ad.OfferingLooking == "Offering" && ad.City == city)
+						.Include(ads => ads.Measurements)
+						.Include(ads => ads.Amenities)
+						.Include(ads => ads.Budgets)
+						.Include(ads => ads.DatesAndTimes)
+						.Include(ads => ads.DatesAndTimes.Days)
+						.Include(ads => ads.Description)
+						.ToList(); ;
+
+					return View(offeringAds);
+				}
+			}		
+			
+			return RedirectToAction("Home", "Error");
 		}
 
 
