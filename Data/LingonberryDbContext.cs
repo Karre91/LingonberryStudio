@@ -5,7 +5,8 @@ namespace LingonberryStudio.Data
 {
     public class LingonberryDbContext : DbContext
     {
-        public LingonberryDbContext(DbContextOptions<LingonberryDbContext> options) : base(options)
+		
+		public LingonberryDbContext(DbContextOptions<LingonberryDbContext> options) : base(options)
         {
         }
 
