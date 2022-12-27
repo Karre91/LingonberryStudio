@@ -24,7 +24,7 @@ namespace LingonberryStudio.Controllers.Home
         {
             //REGEX tjofräs?
 
-            return RedirectToAction("Search", "Adverts", new { area = searchArea, search = "Offering" } );
+            return RedirectToAction("Search", "Adverts", new { city = searchArea, search = "Offering" } );
         }
 
 		[HttpPost]
@@ -32,7 +32,7 @@ namespace LingonberryStudio.Controllers.Home
 		{
 			//REGEX tjofräs?
 
-			return RedirectToAction("Search", "Adverts", new { area = searchArea, search = "Looking" });
+			return RedirectToAction("Search", "Adverts", new { city = searchArea, search = "Looking" });
 		}
 
 		public IActionResult Privacy()
