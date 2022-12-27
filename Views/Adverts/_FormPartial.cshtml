@@ -82,9 +82,9 @@
                             <div class="form-group">
                                 <label asp-for="WorkspaceDescription">Workspace</label>
                                 <br>
-                                <input list="1" name="WorkspaceDescription">
+                                <input list="WorkspaceDescription" name="WorkspaceDescription">
                                 @*required*@
-                                <datalist asp-for="WorkspaceDescription" id="1">
+                                <datalist asp-for="WorkspaceDescription" id="WorkspaceDescription">
                                     <option value="" selected disabled>Options</option>
                                     <option value="Music Studio">Music Studio</option>
                                     <option value="Art Studio">Art Studio</option>
@@ -105,7 +105,7 @@
 
                     <div class="col">
                         <div class="form-group">
-                            <label asp-for="SocialMedia">Studio image</label>
+                            <label asp-for="Description.formFile">Studio image</label>
                             <input asp-for="Description.formFile" class="form-control" />
                         </div>
                     </div>
