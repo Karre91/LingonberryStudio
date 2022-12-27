@@ -31,7 +31,7 @@ namespace LingonberryStudio.Controllers.Home
             if (ModelState.IsValid)
             {
                 string tmp = searchArea.Trim();
-                tmp = Regex.Replace(tmp, @"[\d-\D/g]", string.Empty); //tar bort siffror och tecken
+                tmp = Regex.Replace(tmp, @"[\d-]", string.Empty); //tar bort siffror och tecken
                 if (tmp == "")
                 {
 					TempData["searchError"] = "There is no city called \"" + searchArea + "\"";
@@ -56,7 +56,7 @@ namespace LingonberryStudio.Controllers.Home
 			if (ModelState.IsValid)
 			{
 				string tmp = searchArea.Trim();
-				tmp = Regex.Replace(tmp, @"[\d-\D/g]", string.Empty); //tar bort siffror
+				tmp = Regex.Replace(tmp, @"[\d-]", string.Empty); //tar bort siffror
                 if (tmp == "")
 				{
 					TempData["searchError"] = "There is no city called \"" + searchArea + "\"";
