@@ -82,8 +82,9 @@
                             <div class="form-group">
                                 <label asp-for="WorkspaceDescription">Workspace</label>
                                 <br>
-                                <select class="form-select mb-3" asp-for="WorkspaceDescription">
-                                    @*required*@
+                                <input list="1" name="WorkspaceDescription">
+                                @*required*@
+                                <datalist asp-for="WorkspaceDescription" id="1">
                                     <option value="" selected disabled>Options</option>
                                     <option value="Music Studio">Music Studio</option>
                                     <option value="Art Studio">Art Studio</option>
@@ -91,8 +92,7 @@
                                     <option value="Dance Rehersal Studio">Dance Rehersal Studio</option>
                                     <option value="Ceramics Studio">Ceramics Studio</option>
                                     <option value="Painting Workshop">Painting Workshop</option>
-                                    <option value="customOption">[Type your own]</option>
-                                </select>
+                                </datalist>
                                 <span class="invalid-feedback">Please choose one</span>
                             </div>
                         </div>
@@ -213,7 +213,15 @@
     </div>
 }
 
-<script>
+<script type="text/javascript">
+    function showfield(name) {
+        if (name == 'Other') document.getElementById('div1').innerHTML = 'Other: <input type="text" name="other" />';
+        else document.getElementById('div1').innerHTML = '';
+    }
+</script>
+
+
+@*<script>
     $(function () {
         Array.prototype.filter.call($('.frmValidation'), function (form) {
             form.addEventListener('submit', function (event) {
@@ -245,4 +253,4 @@
         var date = year + '-' + month + '-' + day;
         $('[id*=to]',).attr('min', date);
     });
-</script>
+</script>*@
