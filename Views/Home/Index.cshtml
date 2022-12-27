@@ -10,7 +10,6 @@
             <img src="~/img/3.jpg" class="img-fluid slideshow-img" />
         </div>
         <form method="post" class="searchBox table-responsive">
-
             <h2 id="studioTitle">FIND CREATIVE STUDIO</h2>
 			<input type="text" id="searchArea" name="searchArea" placeholder="City" class="pt-2 pb-2 " />
 			<div>
@@ -18,6 +17,8 @@
 				<button asp-controller="Home" asp-action="LookingSearch"  id="findTheirs" type="submit" title="I don't have a studio but would love to share one">FIND THEIRS</button>
 			</div> 
 		</form>
+		<div class="container align-content-center align-content-center"><span>@TempData["searchError"]</span></div>
+		
     </div>
 	<section class="section-bg mt-4 table-responsive">
 		<div class="container">
