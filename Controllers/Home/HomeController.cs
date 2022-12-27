@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace LingonberryStudio.Controllers.Home
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -22,9 +24,12 @@ namespace LingonberryStudio.Controllers.Home
         [HttpPost]
         public IActionResult OfferingSearch(string searchArea)
         {
-            //REGEX tjofräs?
+            string tmp = searchArea.Trim();
+            tmp = Regex.Replace(tmp, @"\s+", "-");
+            tmp = Regex.Replace(tmp, @"[\d-]", string.Empty);
+            tmp = tmp.ToUpper();      
 
-            return RedirectToAction("Search", "Adverts", new { city = searchArea, search = "Offering" } );
+            return RedirectToAction("Search", "Adverts", new { city = tmp, search = "Offering" } );
         }
 
 		[HttpPost]
