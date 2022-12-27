@@ -82,8 +82,9 @@
                             <div class="form-group">
                                 <label asp-for="WorkspaceDescription">Workspace</label>
                                 <br>
-                                <select class="form-select mb-3" asp-for="WorkspaceDescription" onchange="showField(this.">
-                                    @*required*@ @*onchange="showfield(this.options[this.selectedIndex].value)"*@
+                                <input list="1" name="WorkspaceDescription">
+                                @*required*@
+                                <datalist asp-for="WorkspaceDescription" id="1">
                                     <option value="" selected disabled>Options</option>
                                     <option value="Music Studio">Music Studio</option>
                                     <option value="Art Studio">Art Studio</option>
@@ -91,16 +92,7 @@
                                     <option value="Dance Rehersal Studio">Dance Rehersal Studio</option>
                                     <option value="Ceramics Studio">Ceramics Studio</option>
                                     <option value="Painting Workshop">Painting Workshop</option>
-
-                                    <option value="Other" id="myOwn">[Type your own]</option>
-                                    @*<div id="div1"></div>*@
-                                    
-                                </select>
-                                <script>
-                                    function myFunction() {
-                                        document.getElementById("myOwn").onkeypress.innerHTML = "Paragraph changed.";
-                                    }
-                                </script>
+                                </datalist>
                                 <span class="invalid-feedback">Please choose one</span>
                             </div>
                         </div>
