@@ -16,7 +16,7 @@ namespace LingonberryStudio.Controllers.Adverts
         private readonly LingonberryDbContext _db;
         public readonly IWebHostEnvironment _Web;
 
-		public AdvertsController(LingonberryDbContext db, IWebHostEnvironment web)
+        public AdvertsController(LingonberryDbContext db, IWebHostEnvironment web)
         {
             _db = db;
             _Web = web;
@@ -25,33 +25,52 @@ namespace LingonberryStudio.Controllers.Adverts
         [HttpGet("Adverts")]
         public IActionResult Adverts()
         {
-			List<Advert> ads = _db.Adverts.ToList();
-			
-			List<Amenity> amenities = _db.Amenities.ToList();
-            List<Measurement> measuremen = _db.Measurements.ToList();
-            List<DatesAndTime> datesAndTimes = _db.DatesAndTimes.ToList();
-            List<Day> days = _db.Days.ToList();
-            List<Budget> budgets = _db.Budgets.ToList();
-            List<Description> description = _db.Descriptions.ToList();
+            var ads = _db.Adverts
+                .Include(ads => ads.Measurements)
+                .Include(ads => ads.Amenities)
+                .Include(ads => ads.Budgets)
+                .Include(ads => ads.DatesAndTimes)
+                .Include(ads => ads.DatesAndTimes.Days)
+                .Include(ads => ads.Description)
+                .ToList();
 
             ViewBag.Total = ads.Count();
-			return View(ads);
+
+            return View(ads);
         }
 
-        //[HttpGet]
-        public IActionResult AdvertSearch(string id)
+        [HttpGet("AdvertSearch")]
+        public IActionResult Search(string city, string search)
         {
-			List<Advert> ads = _db.Adverts.ToList();
-
-			foreach (var ad in ads)
+            var adverts = new List<Advert>();
+            if (city == null)
             {
-                if (id == ad.City)
-                {
-                    return RedirectToAction("Adverts");
-                }
+
+                adverts = _db.Adverts
+                    .Where(ad => ad.OfferingLooking == search)
+                    .Include(ads => ads.Measurements)
+                    .Include(ads => ads.Amenities)
+                    .Include(ads => ads.Budgets)
+                    .Include(ads => ads.DatesAndTimes)
+                    .Include(ads => ads.DatesAndTimes.Days)
+                    .Include(ads => ads.Description)
+                    .ToList();
             }
-            return RedirectToAction("Error", "Home");
+            else
+            {
+                adverts = _db.Adverts
+                    .Where(ad => ad.OfferingLooking == search && ad.City == city)
+                    .Include(ads => ads.Measurements)
+                    .Include(ads => ads.Amenities)
+                    .Include(ads => ads.Budgets)
+                    .Include(ads => ads.DatesAndTimes)
+                    .Include(ads => ads.DatesAndTimes.Days)
+                    .Include(ads => ads.Description)
+                    .ToList();
+            }
+            return View(adverts);
         }
+
 
         public IActionResult Form()
         {
@@ -62,11 +81,15 @@ namespace LingonberryStudio.Controllers.Adverts
         //[ValidateAntiForgeryToken]
         public IActionResult CreateAd(Advert ad)
         {
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
-       
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+
             if (ModelState.IsValid)
             {
-                if(ad.Description.formFile != null)
+
+                //REGEX HERE
+
+
+                if (ad.Description.formFile != null)
                 {
                     ad.Description.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Description.formFile.FileName;
                     var path = Path.Combine(_Web.WebRootPath, ad.Description.ImgUrl);
@@ -76,29 +99,11 @@ namespace LingonberryStudio.Controllers.Adverts
                 {
                     ad.Description.ImgUrl = "StudioImages/Test.jpg";
                 }
-                
+
                 _db.Adverts.Add(ad);
-                //_db.Amenities.Add(ad.Amenities);
-                //_db.Measurements.Add(ad.Measurements);
-                //_db.DatesAndTimes.Add(ad.DatesAndTimes);
-                //_db.Days.Add(ad.DatesAndTimes.Days);
-                //_db.Budgets.Add(ad.Budgets);
-                //_db.Profiles.Add(ad.Profiles);
                 _db.SaveChanges();
             }
             return RedirectToAction("Adverts");
         }
-
-        //[HttpGet("Chosen")]
-        //public IActionResult ChosenAd(int id)
-        //{
-        //    if (id == 0)
-        //    {
-        //        return View();
-        //    }
-        //    //var venue = _db.Adverts.FirstOrDefault(x => x.AdvertId == id);
-        //    var data = _db.Adverts.Where(m => m.AdvertId == id).Select(p => p).ToList();
-        //    return PartialView("_ChosenAd", data);
-        //}
     }
 }

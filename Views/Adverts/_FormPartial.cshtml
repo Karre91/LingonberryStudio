@@ -15,13 +15,31 @@
                 </div>
 
                 <div class="modal-body ">
-                    <div class="form-check mt-2 mx-3">
-                        <input class="form-check-input" type="radio" asp-for="OfferingLooking" value="Offering"> @*required*@
-                        <label asp-for="OfferingLooking"> I am offering a studio</label><br>
-                        <input class="form-check-input" type="radio" id="OfferingLooking" asp-for="OfferingLooking" value="Looking"> @*required*@
-                        <label asp-for="OfferingLooking"> I am looking for a studio</label><br>
-                        <span class="invalid-feedback">Please tick a box</span>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-check mt-2 mx-3">
+                                <input class="form-check-input" type="radio" asp-for="OfferingLooking" value="Offering"> @*required*@
+                                <label asp-for="OfferingLooking"> I am offering a studio</label><br>
+                                <input class="form-check-input" type="radio" id="OfferingLooking" asp-for="OfferingLooking" value="Looking"> @*required*@
+                                <label asp-for="OfferingLooking"> I am looking for a studio</label><br>
+                                <span class="invalid-feedback">Please tick a box</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="City">City</label>
+                                <input type="text" class="form-control" asp-for="City"> @*required*@
+                                <span class="invalid-feedback">Please enter city</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Area">Area</label>
+                                <input type="text" class="form-control" asp-for="Area">
+                            </div>
+                        </div>
                     </div>
+
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -64,8 +82,9 @@
                             <div class="form-group">
                                 <label asp-for="WorkspaceDescription">Workspace</label>
                                 <br>
-                                <select class="form-select mb-3" asp-for="WorkspaceDescription">
-                                    @*required*@
+                                <input list="WorkspaceDescription" name="WorkspaceDescription">
+                                @*required*@
+                                <datalist asp-for="WorkspaceDescription" id="WorkspaceDescription">
                                     <option value="" selected disabled>Options</option>
                                     <option value="Music Studio">Music Studio</option>
                                     <option value="Art Studio">Art Studio</option>
@@ -73,8 +92,7 @@
                                     <option value="Dance Rehersal Studio">Dance Rehersal Studio</option>
                                     <option value="Ceramics Studio">Ceramics Studio</option>
                                     <option value="Painting Workshop">Painting Workshop</option>
-                                    <option value="customOption">[Type your own]</option>
-                                </select>
+                                </datalist>
                                 <span class="invalid-feedback">Please choose one</span>
                             </div>
                         </div>
@@ -84,27 +102,14 @@
                         <textarea type="text" asp-for="Description.Desc" class="form-control"></textarea> @*required*@
                         <span class="invalid-feedback">Please enter Description</span>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label asp-for="City">City</label>
-                                <input type="text" class="form-control" asp-for="City"> @*required*@
-                                <span class="invalid-feedback">Please enter city</span>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label asp-for="Area">Area</label>
-                                <input type="text" class="form-control" asp-for="Area">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label asp-for="SocialMedia">Studio image</label>
-                                <input asp-for="Description.formFile" class="form-control" />
-                            </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Description.formFile">Studio image</label>
+                            <input asp-for="Description.formFile" class="form-control" />
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label asp-for="SocialMedia">Social media</label>
                         <input type="text" class="form-control" asp-for="SocialMedia" />
@@ -208,7 +213,15 @@
     </div>
 }
 
-<script>
+<script type="text/javascript">
+    function showfield(name) {
+        if (name == 'Other') document.getElementById('div1').innerHTML = 'Other: <input type="text" name="other" />';
+        else document.getElementById('div1').innerHTML = '';
+    }
+</script>
+
+
+@*<script>
     $(function () {
         Array.prototype.filter.call($('.frmValidation'), function (form) {
             form.addEventListener('submit', function (event) {
@@ -240,4 +253,4 @@
         var date = year + '-' + month + '-' + day;
         $('[id*=to]',).attr('min', date);
     });
-</script>
+</script>*@
