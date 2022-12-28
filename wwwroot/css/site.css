@@ -168,6 +168,11 @@ a {
    
     padding:10px;
 }
+.form-text-style {
+    margin: 0;
+    display: inline;
+    float: left;
+}
 
 @media (max-width: 767px) {
     .verticalLine {
