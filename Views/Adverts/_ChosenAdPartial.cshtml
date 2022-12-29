@@ -12,15 +12,15 @@
 			</div>
 			<div class="modal-body">
 				<div>
-					<img src="@Model.Description.ImgUrl" class="img-fluid mx-auto ad-image">
+					<img src="@Model.Description.ImgUrl" class="img-fluid mx-auto ad-image center">
 				</div>
-				@if (@Model.OfferingLooking == "Offering")
+				@if (Model.OfferingLooking == "offering")
 				{
-					<label>I am @Model.OfferingLooking a studio</label>
+					<label class="fw-bold px-1 mb-2 mt-2">I am @Model.OfferingLooking a @Model.WorkspaceDescription</label>
 				}
-				else
+				@if(Model.OfferingLooking=="looking")
 				{
-					<label>I am @Model.OfferingLooking for a studio</label>
+					<label class="fw-bold px-1 mb-2 mt-2">I am @Model.OfferingLooking for a @Model.WorkspaceDescription</label>
 				}
 				<br />
 				<p class="fw-bold form-text-style">City: </p>
@@ -47,15 +47,70 @@
 					<p class="fw-bold form-text-style">Artist/Project Name: </p>
 					<p class="form-text-style">@Model.Artist</p> <br />
 				}
-				@if (Model.DatesAndTimes.Days != null && Model.OfferingLooking == "Offering")
+				@if (Model.DatesAndTimes.Days != null && Model.OfferingLooking == "offering")
 				{
-					<p class="fw-bold form-text-style">The studio is avalible following days: </p>
-					<p class="form-text-style">@Model.Artist</p> <br />
+					<p class="fw-bold form-text-style">Avaliability: </p> <br />
+					@if (Model.DatesAndTimes.Days.Monday == true)
+					{
+						<p class="form-text-style">Monday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Tuesday == true)
+					{
+						<p class="form-text-style">Tuesday</p><br />
+					}
+					@if (Model.DatesAndTimes.Days.Wednesday == true)
+					{
+						<p class="form-text-style">Wednesday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Thursday == true)
+					{
+						<p class="form-text-style">Thursday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Friday == true)
+					{
+						<p class="form-text-style">Friday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Saturday == true)
+					{
+						<p class="form-text-style">Saturday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Sunday == true)
+					{
+						<p class="form-text-style">Sunday</p> <br />
+					}
+					
 				}
-				@if (Model.DatesAndTimes.Days != null && Model.OfferingLooking == "Looking")
+				@if (Model.DatesAndTimes.Days != null && Model.OfferingLooking == "looking")
 				{
-					<p class="fw-bold form-text-style">I am looking for a studio following days: </p>
-					<p class="form-text-style">@Model.Artist</p> <br />
+					<p class="fw-bold form-text-style">I am interested in following days: </p> <br />
+					@if (Model.DatesAndTimes.Days.Monday == true)
+					{
+						<p class="form-text-style">Monday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Tuesday == true)
+					{
+						<p class="form-text-style">Tuesday</p><br />
+					}
+					@if (Model.DatesAndTimes.Days.Wednesday == true)
+					{
+						<p class="form-text-style">Wednesday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Thursday == true)
+					{
+						<p class="form-text-style">Thursday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Friday == true)
+					{
+						<p class="form-text-style">Friday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Saturday == true)
+					{
+						<p class="form-text-style">Saturday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Sunday == true)
+					{
+						<p class="form-text-style">Sunday</p> <br />
+					}
 				}
 
 				@if (Model.Amenities != null)
@@ -97,7 +152,7 @@
 				}
 				@if (Model.Measurements.FeetOrMeters != null)
 				{
-					<p class="fw-bold form-text-style">Size of the studio: </p>
+					<p class="fw-bold form-text-style">Size: </p>
 					<p class="form-text-style"> @Model.Measurements.Number @Model.Measurements.FeetOrMeters</p> <br />
 				}
 				@if (Model.DatesAndTimes.StartDate != null)
@@ -131,7 +186,6 @@
 					<p class="fw-bold form-text-style">Closing time: </p>
 					<p class="form-text-style">@Model.DatesAndTimes.ClosingTime</p> <br />
 				}
-
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
