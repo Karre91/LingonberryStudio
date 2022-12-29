@@ -2,24 +2,194 @@
 @model Advert
 
 <div class="modal fade" id="adModal-@Model.AdvertId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle"> @Model.WorkspaceDescription </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                @Model.OfferingLooking
-                @Model.City
-               <br />
-                Description:<br />
-                @Model.Description.Desc
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle"> @Model.WorkspaceDescription </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div>
+					<img src="@Model.Description.ImgUrl" class="img-fluid mx-auto ad-image center">
+				</div>
+				@if (Model.OfferingLooking == "offering")
+				{
+					<label class="fw-bold px-1 mb-2 mt-2">I am @Model.OfferingLooking a @Model.WorkspaceDescription</label>
+				}
+				@if(Model.OfferingLooking=="looking")
+				{
+					<label class="fw-bold px-1 mb-2 mt-2">I am @Model.OfferingLooking for a @Model.WorkspaceDescription</label>
+				}
+				<br />
+				<p class="fw-bold form-text-style">City: </p>
+				<p class="form-text-style">@Model.City</p> <br />
+				@if (Model.Area != null)
+				{
+					<p class="fw-bold form-text-style">Area: </p>
+					<p class="form-text-style">@Model.Area</p>
+					<br />
+				}
+				<p class="fw-bold form-text-style">Name: </p>
+				<p class="form-text-style">@Model.FirstName</p> <br />
+				<p class="fw-bold form-text-style">Last Name: </p>
+				<p class="form-text-style">@Model.LastName</p> <br />
+				<p class="fw-bold form-text-style">Email: </p>
+				<p class="form-text-style">@Model.Email</p> <br />
+				@if (Model.PhoneNumber != null)
+				{
+					<p class="fw-bold form-text-style">Phone Number: </p>
+					<p class="form-text-style">@Model.PhoneNumber</p> <br />
+				}
+				@if (Model.Artist != null)
+				{
+					<p class="fw-bold form-text-style">Artist/Project Name: </p>
+					<p class="form-text-style">@Model.Artist</p> <br />
+				}
+				@if (Model.DatesAndTimes.Days != null && Model.OfferingLooking == "offering")
+				{
+					<p class="fw-bold form-text-style">Avaliability: </p> <br />
+					@if (Model.DatesAndTimes.Days.Monday == true)
+					{
+						<p class="form-text-style">Monday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Tuesday == true)
+					{
+						<p class="form-text-style">Tuesday</p><br />
+					}
+					@if (Model.DatesAndTimes.Days.Wednesday == true)
+					{
+						<p class="form-text-style">Wednesday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Thursday == true)
+					{
+						<p class="form-text-style">Thursday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Friday == true)
+					{
+						<p class="form-text-style">Friday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Saturday == true)
+					{
+						<p class="form-text-style">Saturday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Sunday == true)
+					{
+						<p class="form-text-style">Sunday</p> <br />
+					}
+					
+				}
+				@if (Model.DatesAndTimes.Days != null && Model.OfferingLooking == "looking")
+				{
+					<p class="fw-bold form-text-style">I am interested in following days: </p> <br />
+					@if (Model.DatesAndTimes.Days.Monday == true)
+					{
+						<p class="form-text-style">Monday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Tuesday == true)
+					{
+						<p class="form-text-style">Tuesday</p><br />
+					}
+					@if (Model.DatesAndTimes.Days.Wednesday == true)
+					{
+						<p class="form-text-style">Wednesday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Thursday == true)
+					{
+						<p class="form-text-style">Thursday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Friday == true)
+					{
+						<p class="form-text-style">Friday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Saturday == true)
+					{
+						<p class="form-text-style">Saturday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Sunday == true)
+					{
+						<p class="form-text-style">Sunday</p> <br />
+					}
+				}
+
+				@if (Model.Amenities != null)
+				{
+					<p class="fw-bold form-text-style">Ametities: </p> <br />
+					@if (Model.Amenities.AcousticTreatment == true)
+					{
+						<p class="form-text-style">Acoustic Treatment</p> <br />
+					}
+					@if (Model.Amenities.NaturalLight == true)
+					{
+						<p class="form-text-style">Natural Light</p> <br />
+					}
+					@if (Model.Amenities.Kitchen == true)
+					{
+						<p class="form-text-style">Kitchen</p> <br />
+					}
+					@if (Model.Amenities.RunningWater == true)
+					{
+						<p class="form-text-style">Running Water</p> <br />
+					}
+					@if (Model.Amenities.AirCon == true)
+					{
+						<p class="form-text-style">Aircon</p> <br />
+					}
+					@if (Model.Amenities.Parking == true)
+					{
+						<p class="form-text-style">Parking</p> <br />
+					}
+					@if (Model.Amenities.Storage == true)
+					{
+						<p class="form-text-style">Storage</p> <br />
+					}
+					@if (Model.Amenities.Other != null)
+					{
+						<p class="form-text-style">@Model.Amenities.Other</p> <br />
+					}
+
+				}
+				@if (Model.Measurements.FeetOrMeters != null)
+				{
+					<p class="fw-bold form-text-style">Size: </p>
+					<p class="form-text-style"> @Model.Measurements.Number @Model.Measurements.FeetOrMeters</p> <br />
+				}
+				@if (Model.DatesAndTimes.StartDate != null)
+				{
+					<p class="fw-bold form-text-style"> Start date: </p>
+					<p class="form-text-style">@Model.DatesAndTimes.StartDate</p>
+				}
+				@if (Model.DatesAndTimes.EndDate != null)
+				{
+					<p class="fw-bold form-text-style">End date: </p>
+					<p class="form-text-style">@Model.DatesAndTimes.EndDate</p> <br />
+				}
+
+				@if (Model.Budgets != null && Model.OfferingLooking == "Offering")
+				{
+					<p class="fw-bold form-text-style">Rent for the studio is: </p>
+					<p class="form-text-style">@Model.Budgets.Price/@Model.Budgets.MonthOrWeek</p> <br />
+				}
+				@if (Model.Budgets != null && Model.OfferingLooking == "Looking")
+				{
+					<p class="fw-bold form-text-style">My budget is: </p>
+					<p class="form-text-style">@Model.Budgets.Price/@Model.Budgets.MonthOrWeek</p> <br />
+				}
+				@if (Model.DatesAndTimes.OpeningTime != null)
+				{
+					<p class="fw-bold form-text-style"> Start time: </p>
+					<p class="form-text-style">@Model.DatesAndTimes.OpeningTime</p>
+				}
+				@if (Model.DatesAndTimes.ClosingTime != null)
+				{
+					<p class="fw-bold form-text-style">Closing time: </p>
+					<p class="form-text-style">@Model.DatesAndTimes.ClosingTime</p> <br />
+				}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
 </div>
