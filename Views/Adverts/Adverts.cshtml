@@ -1,35 +1,48 @@
 ﻿@using LingonberryStudio.Data.Entities
+@model List<Advert>
+
 
 <div id="areaAndResults" class="">
     <p id="result">@ViewBag.Total results</p>
+
     <div>
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Filter
             </button>
             <div class="dropdown-menu">
-                <form class="px-4 py-3">
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
+                <form class="px-4 py-3" method="post">
 
-                        <label for="customRange3" class="form-label">Example range</label>
-                        <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+                    <div class="form-outline mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" id="budgetMonth" name="budgetMonth" type="radio" value="true">
+                            <label class="form-check-label" for="budgetMonth">
+                                Price per month
+                            </label>
+                        </div>
+                       <div class="form-check">
+                            <input class="form-check-input" id="budgetWeek" name="budgetWeek" type="radio" value="true">
+                            <label class="form-check-label" for="budgetWeek">
+                                Price per week
+                            </label>
+                        </div>
+                        <label for="budgetRange" class="form-label">Max budget</label>
+                        <input type="range" class="multi-range form-range" id="budget" name="budget" min="0" max="500" step="1" onchange="myFunction()">
+                        £ <span id="displayBudget">250</span>
+
+
                     </div>
 
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                        <input type="password" id="form1Example2" class="form-control" />
-                        <label class="form-label" for="form1Example2">Password</label>
-                    </div>
+                  
 
                     <!-- 2 column grid layout for inline styling -->
                     <div class="row mb-4">
                         <div class="col d-flex justify-content-center">
                             <!-- Checkbox -->
-                            <div class="form-check">
+                           @* <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
                                 <label class="form-check-label" for="form1Example3"> Monday </label>
-                            </div>
+                            </div>*@
                         </div>
 
                         <div class="col">
@@ -39,10 +52,10 @@
                     </div>
 
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block">Apply filters</button>
+                    <button type="submit" asp-controller="Adverts" asp-action="Filter" class="btn btn-primary btn-block">Apply filters</button>
                 </form>
                 <div class="dropdown-divider"></div>
-                <p>Testtexs</p>
+                <p>Testtext</p>
             </div>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <input type="checkbox" value="true"> <label></label>
@@ -50,12 +63,11 @@
         </div>
     </div>
 
+
+
+
     <div id="popupForm"></div>
     <a class="btn adBtn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">POST YOUR AD</a>
-
-
-
-
 
 </div>
 
@@ -67,7 +79,7 @@
 
 
 
-@model List<Advert>
+
 <div class="container-fluid flex-grid-container border-0">
     <div class="flex-grid-container justify-content-center">
         @foreach (var ad in Model)
@@ -91,3 +103,10 @@
 </div>
 
 
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("budget").value;
+        document.getElementById("displayBudget").innerHTML = x;
+    }
+</script>

@@ -15,6 +15,7 @@ namespace LingonberryStudio.Controllers.Adverts
     {
         private readonly LingonberryDbContext _db;
         public readonly IWebHostEnvironment _Web;
+        List<Advert> testList= new List<Advert>();
 
         public AdvertsController(LingonberryDbContext db, IWebHostEnvironment web)
         {
@@ -25,7 +26,21 @@ namespace LingonberryStudio.Controllers.Adverts
         [HttpGet("Adverts")]
         public IActionResult Adverts()
         {
-            var ads = _db.Adverts
+            //var ads = _db.Adverts
+            //    .Include(ads => ads.Measurements)
+            //    .Include(ads => ads.Amenities)
+            //    .Include(ads => ads.Budgets)
+            //    .Include(ads => ads.DatesAndTimes)
+            //    .Include(ads => ads.DatesAndTimes.Days)
+            //    .Include(ads => ads.Description)
+            //    .ToList();
+
+            //ViewBag.Total = ads.Count();
+
+            //return View(ads);
+
+
+            testList = _db.Adverts
                 .Include(ads => ads.Measurements)
                 .Include(ads => ads.Amenities)
                 .Include(ads => ads.Budgets)
@@ -34,9 +49,9 @@ namespace LingonberryStudio.Controllers.Adverts
                 .Include(ads => ads.Description)
                 .ToList();
 
-            ViewBag.Total = ads.Count();
+            ViewBag.Total = testList.Count();
 
-            return View(ads);
+            return View(testList);
         }
 
         [HttpGet("AdvertSearch")]
@@ -104,6 +119,39 @@ namespace LingonberryStudio.Controllers.Adverts
                 _db.SaveChanges();
             }
             return RedirectToAction("Adverts");
+        }
+
+        [HttpPost]
+        public IActionResult Filter(bool budgetMonth, bool budgetWeek, int budget)
+        {
+            var filteredBudget = budget;
+            int perMonth;
+            int perWeek;
+            string mOw;
+            if(budgetMonth)
+            {
+                perWeek = budget / 4;
+                mOw = "Month";
+            }
+            if (budgetWeek)
+            {
+                perMonth = budget * 4;
+                mOw = "Week";
+            }
+
+
+            testList = _db.Adverts
+                .Include(ads => ads.Measurements)
+                .Include(ads => ads.Amenities)
+                .Include(ads => ads.Budgets)
+                .Include(ads => ads.DatesAndTimes)
+                .Include(ads => ads.DatesAndTimes.Days)
+                .Include(ads => ads.Description)
+                .ToList();
+
+            var testFilterd = testList.Where(ad => ad.Budgets.Price < budget);
+
+            return View();
         }
     }
 }
