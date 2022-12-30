@@ -182,9 +182,8 @@
                                 <span class="invalid-feedback">Please tick a box</span>
                             </div>
                             <div class="form-group mx-4">
-                                <label asp-for="DatesAndTimes">Select dates</label> <br>
-                                <input type="date" id="from" asp-for="DatesAndTimes.StartDate"> <br> <br>
-                                <input type="date" id="to" asp-for="DatesAndTimes.EndDate">
+                                <input id="Start_date_picker" type="date" asp-for="@Model.DatesAndTimes.StartDate">
+                                <input id="End_date_picker" type="date" asp-for="@Model.DatesAndTimes.EndDate">
                             </div>
                         </div>
                         <div class="col">
@@ -219,8 +218,30 @@
         else document.getElementById('div1').innerHTML = '';
     }
 </script>
+<script language="javascript">
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
 
+    today = yyyy + '-' + mm + '-' + dd;
+    $('#Start_date_picker').attr('min', today);
+</script>
+<script language="javascript">
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
 
+    today = yyyy + '-' + mm + '-' + dd;
+    $('#End_date_picker').attr('min', today);
+</script>
+<script language="javascript">
+$("#Start_date_picker").change(function () {
+    $("#End_date_picker").prop("min", $(this).val());
+    $("#End_date_picker").val(""); //clear end date input when start date changes
+});
+</script>
 @*<script>
     $(function () {
         Array.prototype.filter.call($('.frmValidation'), function (form) {
@@ -233,24 +254,4 @@
             }, false);
         });
     });</script>
-
-<script type="text/javascript">
-    $(function () {
-        var today = new Date();
-        var month = ('0' + (today.getMonth() + 1)).slice(-2);
-        var day = ('0' + today.getDate()).slice(-2);
-        var year = today.getFullYear();
-        var date = year + '-' + month + '-' + day;
-        $('[id*=from]',).attr('min', date);
-    });
-</script>
-<script type="text/javascript">
-    $(function () {
-        var today = new Date();
-        var month = ('0' + (today.getMonth() + 1)).slice(-2);
-        var day = ('0' + today.getDate()).slice(-2);
-        var year = today.getFullYear();
-        var date = year + '-' + month + '-' + day;
-        $('[id*=to]',).attr('min', date);
-    });
-</script>*@
+*@
