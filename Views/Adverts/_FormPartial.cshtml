@@ -7,7 +7,7 @@
         <div class="modal-dialog modal-xl table-responsive" role="document">
             <!-- Modal content-->
             <div class="modal-content tabler">
-                <div class="modal-header formBackgroundColor">
+                <div class="modal-header form-background-color">
                     <h5 class="modal-title" id="mdl-add-lbl">CREATE AD</h5>
                     <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="align-content-center borderBox">
+                            <div class="align-content-center border-box">
                                 <div class="form-group checkbox">
                                     <p>Studio is avalible following days:</p>
                                     <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Monday" value="true">
@@ -182,9 +182,8 @@
                                 <span class="invalid-feedback">Please tick a box</span>
                             </div>
                             <div class="form-group mx-4">
-                                <label asp-for="DatesAndTimes">Select dates</label> <br>
-                                <input type="date" id="from" asp-for="DatesAndTimes.StartDate"> <br> <br>
-                                <input type="date" id="to" asp-for="DatesAndTimes.EndDate">
+                                <input id="Start_date_picker" type="date" asp-for="@Model.DatesAndTimes.StartDate">
+                                <input id="End_date_picker" type="date" asp-for="@Model.DatesAndTimes.EndDate">
                             </div>
                         </div>
                         <div class="col">
@@ -204,9 +203,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer formBackgroundColor">
-                    <button type="submit" id="btnSubmit" class="btn">SUBMIT</button>
-                    <button type="button" id="btnDismiss" class="btn" data-dismiss="modal">CLOSE</button>
+                <div class="modal-footer form-background-color">
+                    <button type="submit" id="btn-submit" class="btn">SUBMIT</button>
+                    <button type="button" id="btn-dismiss" class="btn" data-dismiss="modal">CLOSE</button>
                 </div>
             </div>
         </div>
@@ -219,8 +218,30 @@
         else document.getElementById('div1').innerHTML = '';
     }
 </script>
+<script language="javascript">
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
 
+    today = yyyy + '-' + mm + '-' + dd;
+    $('#Start_date_picker').attr('min', today);
+</script>
+<script language="javascript">
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
 
+    today = yyyy + '-' + mm + '-' + dd;
+    $('#End_date_picker').attr('min', today);
+</script>
+<script language="javascript">
+$("#Start_date_picker").change(function () {
+    $("#End_date_picker").prop("min", $(this).val());
+    $("#End_date_picker").val(""); //clear end date input when start date changes
+});
+</script>
 @*<script>
     $(function () {
         Array.prototype.filter.call($('.frmValidation'), function (form) {
@@ -233,24 +254,4 @@
             }, false);
         });
     });</script>
-
-<script type="text/javascript">
-    $(function () {
-        var today = new Date();
-        var month = ('0' + (today.getMonth() + 1)).slice(-2);
-        var day = ('0' + today.getDate()).slice(-2);
-        var year = today.getFullYear();
-        var date = year + '-' + month + '-' + day;
-        $('[id*=from]',).attr('min', date);
-    });
-</script>
-<script type="text/javascript">
-    $(function () {
-        var today = new Date();
-        var month = ('0' + (today.getMonth() + 1)).slice(-2);
-        var day = ('0' + today.getDate()).slice(-2);
-        var year = today.getFullYear();
-        var date = year + '-' + month + '-' + day;
-        $('[id*=to]',).attr('min', date);
-    });
-</script>*@
+*@
