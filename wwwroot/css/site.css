@@ -32,7 +32,7 @@ body {
     display: none;
 }
 
-.search-box {
+.searchBox {
     position: absolute;
     margin: auto;
     background-color: #c7342a;
@@ -81,7 +81,7 @@ body {
     font-family: 'Jost', sans-serif;
     font-weight: bolder 500;
 }
-#search-area {
+#searchArea {
     position: relative;
     left: 0;
     border-radius: 40px;
@@ -186,7 +186,7 @@ a {
         height:100%;
     }
 
-    .search-box {
+    .searchBox {
         position: unset;
         left: unset;
         float: unset;
@@ -198,7 +198,7 @@ a {
         margin-bottom: 0;
     }
 
-    #search-area {
+    #searchArea {
         float: unset;
         align-content: center;
         margin: unset;
