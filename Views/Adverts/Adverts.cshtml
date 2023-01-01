@@ -29,26 +29,38 @@
                         <label for="budgetRange" class="form-label">Max budget</label>
                         <input type="range" class="multi-range form-range" id="budget" name="budget" min="0" max="500" step="1" onchange="myFunction()">
                         £ <span id="displayBudget">250</span>
-
-
                     </div>
 
-                  
+                    @{
+                        List<string> studioList = new List<string>();
+
+                    }
 
                     <!-- 2 column grid layout for inline styling -->
                     <div class="row mb-4">
                         <div class="col d-flex justify-content-center">
                             <!-- Checkbox -->
-                           @* <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-                                <label class="form-check-label" for="form1Example3"> Monday </label>
-                            </div>*@
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Music Studio" id="studioList" />
+                                <label class="form-check-label" for="studioList"> Music Studio </label><br />@{
+                                    studioList.Add()
+                                }
+                                <input class="form-check-input" type="checkbox" value="Art Studio" id="studioList" />
+                                <label class="form-check-label" for="studioList"> Art Studio</label><br />
+                                <input class="form-check-input" type="checkbox" value="Photo Studio" id="studioList"  />
+                                <label class="form-check-label" for="studioList"> Photo Studio </label><br />
+                                <input class="form-check-input" type="checkbox" value="Dance Rehersal Studio" id="studioList"  />
+                                <label class="form-check-label" for="studioList"> Dance Rehersal Studio</label><br />
+                                <input class="form-check-input" type="checkbox" value="Ceramics Studio" id="studioList" />
+                                <label class="form-check-label" for="studioList"> Ceramics Studio</label><br />
+                                <input class="form-check-input" type="checkbox" value="Painting Workshop" id="studioList" />
+                                <label class="form-check-label" for="studioList"> Painting Workshop</label><br />
+                                <input class="form-check-input" type="checkbox" value="Other" id="studioList" />
+                                <label class="form-check-label" for="studioList"> Other</label>
+                            </div>
                         </div>
 
-                        <div class="col">
-                            <!-- Simple link -->
-                            <p>TEST</p>
-                        </div>
+                       
                     </div>
 
                     <!-- Submit button -->

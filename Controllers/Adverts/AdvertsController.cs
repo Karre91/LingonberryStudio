@@ -122,8 +122,17 @@ namespace LingonberryStudio.Controllers.Adverts
         }
 
         [HttpPost]
-        public IActionResult Filter(bool budgetMonth, bool budgetWeek, int budget)
+        public IActionResult Filter(bool budgetMonth, bool budgetWeek, int budget, List<string> studioList)
         {
+            testList = _db.Adverts
+                .Include(ads => ads.Measurements)
+                .Include(ads => ads.Amenities)
+                .Include(ads => ads.Budgets)
+                .Include(ads => ads.DatesAndTimes)
+                .Include(ads => ads.DatesAndTimes.Days)
+                .Include(ads => ads.Description)
+                .ToList();
+
             var filteredBudget = budget;
             int perMonth;
             int perWeek;
@@ -140,14 +149,7 @@ namespace LingonberryStudio.Controllers.Adverts
             }
 
 
-            testList = _db.Adverts
-                .Include(ads => ads.Measurements)
-                .Include(ads => ads.Amenities)
-                .Include(ads => ads.Budgets)
-                .Include(ads => ads.DatesAndTimes)
-                .Include(ads => ads.DatesAndTimes.Days)
-                .Include(ads => ads.Description)
-                .ToList();
+            
 
             var testFilterd = testList.Where(ad => ad.Budgets.Price < budget);
 
