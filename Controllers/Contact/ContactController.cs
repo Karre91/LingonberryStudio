@@ -9,8 +9,8 @@ namespace LingonberryStudio.Controllers.Contact
     {
         public IActionResult Contact()
         {
-            return View();
-        }
+			return View();
+		}
 
 
         [HttpPost]
@@ -32,15 +32,16 @@ namespace LingonberryStudio.Controllers.Contact
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = new System.Net.NetworkCredential("lingonberrystudio@gmail.com", "mzukfalqsmhgodpm");
                 smtp.EnableSsl = true;
-                smtp.Send(mail);
-				ViewBag.Message = "Thank You for your message";
-
-			    return View();
+                smtp.Send(mail);	
+                ViewBag.Message = "Thank you for your message!";
+				ModelState.Clear();
+				return View();
 
 			}
 			else
-            {
+            {			
 				ViewBag.Message = "Oops something went wrong, please try again!";
+				ModelState.Clear();
 				return View();
             }
 
