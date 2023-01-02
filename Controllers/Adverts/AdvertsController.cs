@@ -3,6 +3,7 @@ using LingonberryStudio.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Formats.Tar;
@@ -15,31 +16,51 @@ namespace LingonberryStudio.Controllers.Adverts
     {
         private readonly LingonberryDbContext _db;
         public readonly IWebHostEnvironment _Web;
-        List<Advert> testList= new List<Advert>();
-
+        List<Advert> testList = new List<Advert>();
+        List<Advert> SomeList = new List<Advert>();
         public AdvertsController(LingonberryDbContext db, IWebHostEnvironment web)
         {
             _db = db;
             _Web = web;
         }
 
-        [HttpGet("Adverts")]
+        //[HttpGet("Adverts")]
+        //[ActionName("Adverts")]
+        //public IActionResult Adverts()
+        //{
+        //    //var ads = _db.Adverts
+        //    //    .Include(ads => ads.Measurements)
+        //    //    .Include(ads => ads.Amenities)
+        //    //    .Include(ads => ads.Budgets)
+        //    //    .Include(ads => ads.DatesAndTimes)
+        //    //    .Include(ads => ads.DatesAndTimes.Days)
+        //    //    .Include(ads => ads.Description)
+        //    //    .ToList();
+        //    //ViewBag.Total = ads.Count();
+        //    //return View(ads);
+
+        //    testList = _db.Adverts
+        //        .Include(ads => ads.Measurements)
+        //        .Include(ads => ads.Amenities)
+        //        .Include(ads => ads.Budgets)
+        //        .Include(ads => ads.DatesAndTimes)
+        //        .Include(ads => ads.DatesAndTimes.Days)
+        //        .Include(ads => ads.Description)
+        //        .ToList();
+
+        //    ViewBag.Total = testList.Count();
+        //    return View(testList);
+        //}
+
+        //[ActionName("FilteredAdverts")]
         public IActionResult Adverts()
         {
-            //var ads = _db.Adverts
-            //    .Include(ads => ads.Measurements)
-            //    .Include(ads => ads.Amenities)
-            //    .Include(ads => ads.Budgets)
-            //    .Include(ads => ads.DatesAndTimes)
-            //    .Include(ads => ads.DatesAndTimes.Days)
-            //    .Include(ads => ads.Description)
-            //    .ToList();
-
-            //ViewBag.Total = ads.Count();
-
-            //return View(ads);
-
-
+            if (TempData["list"] != null)
+            {
+                var filteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["list"].ToString());
+                ViewBag.Total = filteredAds.Count();
+                return View(filteredAds);
+            }
             testList = _db.Adverts
                 .Include(ads => ads.Measurements)
                 .Include(ads => ads.Amenities)
@@ -50,7 +71,6 @@ namespace LingonberryStudio.Controllers.Adverts
                 .ToList();
 
             ViewBag.Total = testList.Count();
-
             return View(testList);
         }
 
@@ -60,7 +80,6 @@ namespace LingonberryStudio.Controllers.Adverts
             var adverts = new List<Advert>();
             if (city == null)
             {
-
                 adverts = _db.Adverts
                     .Where(ad => ad.OfferingLooking == search)
                     .Include(ads => ads.Measurements)
@@ -86,7 +105,6 @@ namespace LingonberryStudio.Controllers.Adverts
             return View(adverts);
         }
 
-
         public IActionResult Form()
         {
             return PartialView("_FormPartial");
@@ -100,10 +118,7 @@ namespace LingonberryStudio.Controllers.Adverts
 
             if (ModelState.IsValid)
             {
-
                 //REGEX HERE
-
-
                 if (ad.Description.formFile != null)
                 {
                     ad.Description.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Description.formFile.FileName;
@@ -114,7 +129,6 @@ namespace LingonberryStudio.Controllers.Adverts
                 {
                     ad.Description.ImgUrl = "StudioImages/Test.jpg";
                 }
-
                 _db.Adverts.Add(ad);
                 _db.SaveChanges();
             }
@@ -122,38 +136,61 @@ namespace LingonberryStudio.Controllers.Adverts
         }
 
         [HttpPost]
-        public IActionResult Filter(bool budgetMonth, bool budgetWeek, int budget, List<string> studioList)
+        public IActionResult Filter(string budgetMonth, string budgetWeek, int budget, ICollection<string> studioList)
         {
-            testList = _db.Adverts
-                .Include(ads => ads.Measurements)
-                .Include(ads => ads.Amenities)
-                .Include(ads => ads.Budgets)
-                .Include(ads => ads.DatesAndTimes)
-                .Include(ads => ads.DatesAndTimes.Days)
-                .Include(ads => ads.Description)
-                .ToList();
+            var adverts = _db.Adverts
+                    .Include(ads => ads.Measurements)
+                    .Include(ads => ads.Amenities)
+                    .Include(ads => ads.Budgets)
+                    .Include(ads => ads.DatesAndTimes)
+                    .Include(ads => ads.DatesAndTimes.Days)
+                    .Include(ads => ads.Description)
+                    .ToList();
 
-            var filteredBudget = budget;
-            int perMonth;
-            int perWeek;
-            string mOw;
-            if(budgetMonth)
+            List<Advert> ad2 = new();
+            if (budgetMonth != null || budgetWeek != null)
             {
-                perWeek = budget / 4;
-                mOw = "Month";
+                int totBudget = 0;
+                if (budgetMonth != null)
+                {
+                    totBudget = budget / 4;
+                    ad2 = adverts.Where(ad => ad.Budgets.MonthOrWeek? = "Month");
+                }
+                if (budgetWeek != null)
+                {
+                    totBudget = budget * 4;
+                }
+
+
+                
             }
-            if (budgetWeek)
-            {
-                perMonth = budget * 4;
-                mOw = "Week";
-            }
 
 
-            
+            TempData["list"] = JsonConvert.SerializeObject(adverts);
 
-            var testFilterd = testList.Where(ad => ad.Budgets.Price < budget);
+            //    IEnumerable<Advert> testFiltered;
+            //foreach (var studio in studioList)
+            //{
+            //    testFiltered = testList.Where(workplace => workplace.WorkspaceDescription == studio);
+            //}
 
-            return View();
+
+
+
+
+            //var testFilterd = testList.Where(ad => ad.Budgets.Price < budget);
+
+
+
+
+
+
+
+
+
+            return RedirectToAction("Adverts", "Adverts");
         }
     }
 }
+
+
