@@ -155,15 +155,15 @@
 					<p class="fw-bold form-text-style">Size: </p>
 					<p class="form-text-style"> @Model.Measurements.Number @Model.Measurements.FeetOrMeters</p> <br />
 				}
-				@if (Model.DatesAndTimes.StartDate != null)
+				@if (Model.DatesAndTimes.StartDate.HasValue)
 				{
 					<p class="fw-bold form-text-style"> Start date: </p>
-					<p class="form-text-style">@Model.DatesAndTimes.StartDate</p>
+					<p class="form-text-style">@Model.DatesAndTimes.StartDate.Value.ToShortDateString()</p> <br />
 				}
-				@if (Model.DatesAndTimes.EndDate != null)
-				{
+				@if (Model.DatesAndTimes.EndDate != null )
+					{
 					<p class="fw-bold form-text-style">End date: </p>
-					<p class="form-text-style">@Model.DatesAndTimes.EndDate</p> <br />
+					<p class="form-text-style">@Model.DatesAndTimes.EndDate.Value.ToShortDateString()</p> <br />
 				}
 
 				@if (Model.Budgets != null && Model.OfferingLooking == "Offering")
@@ -179,12 +179,12 @@
 				@if (Model.DatesAndTimes.OpeningTime != null)
 				{
 					<p class="fw-bold form-text-style"> Start time: </p>
-					<p class="form-text-style">@Model.DatesAndTimes.OpeningTime</p>
+					<p class="form-text-style">@Model.DatesAndTimes.OpeningTime.Value.ToString("hh:mm tt") </p>
 				}
 				@if (Model.DatesAndTimes.ClosingTime != null)
 				{
 					<p class="fw-bold form-text-style">Closing time: </p>
-					<p class="form-text-style">@Model.DatesAndTimes.ClosingTime</p> <br />
+					<p class="form-text-style">@Model.DatesAndTimes.ClosingTime.Value.ToString("hh:mm tt") </p> <br />
 				}
 			</div>
 			<div class="modal-footer">
