@@ -19,7 +19,7 @@ namespace LingonberryStudio.Controllers.Adverts
     {
         private readonly LingonberryDbContext _db;
         public readonly IWebHostEnvironment _Web;
-        List<Advert> testList = new List<Advert>();
+        List<Advert> allAdsInDB = new List<Advert>();
         public AdvertsController(LingonberryDbContext db, IWebHostEnvironment web)
         {
             _db = db;
@@ -57,15 +57,9 @@ namespace LingonberryStudio.Controllers.Adverts
         //[ActionName("FilteredAdverts")]
         public IActionResult Adverts()
         {
-
-            if (TempData["list"] != null)
+            if (TempData["allAdsInDB"] == null)
             {
-                var filteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["list"].ToString());
-                ViewBag.Total = filteredAds.Count();
-                TempData["list"] = JsonConvert.SerializeObject(filteredAds);
-                return View(filteredAds);
-            }
-            testList = _db.Adverts
+                allAdsInDB = _db.Adverts
                 .Include(ads => ads.Measurements)
                 .Include(ads => ads.Amenities)
                 .Include(ads => ads.Budgets)
@@ -73,9 +67,29 @@ namespace LingonberryStudio.Controllers.Adverts
                 .Include(ads => ads.DatesAndTimes.Days)
                 .Include(ads => ads.Description)
                 .ToList();
+                TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
+                TempData.Keep("allAdsInDB");
+            }
+            else
+            {
+                if (TempData["filteredList"] != null)
+                {
+                    var filteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
+                    ViewBag.Total = filteredAds.Count();
+                    TempData["filteredList"] = JsonConvert.SerializeObject(filteredAds);
 
-            ViewBag.Total = testList.Count();
-            return View(testList);
+                    TempData.Keep("allAdsInDB");
+
+                    return View(filteredAds);        
+                }
+
+                allAdsInDB = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
+                TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
+                TempData.Keep("allAdsInDB");
+            }
+            
+            ViewBag.Total = allAdsInDB.Count();
+            return View(allAdsInDB);
         }
 
         [HttpGet("AdvertSearch")]
@@ -194,29 +208,28 @@ namespace LingonberryStudio.Controllers.Adverts
         {
             List<Advert> goalList = new();
 
-            if (TempData["list"] != null)
+            if (TempData["filteredList"] == null)
             {
-                var alreadyFilteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["list"].ToString());
-
-                goalList = filterByBudget(budgetMonth, budgetWeek, budget, alreadyFilteredAds, goalList);
-                goalList = filterByWorkplace(studioList, alreadyFilteredAds, goalList);
-            }
-            else
-            {
-                var allAdverts = _db.Adverts
-                    .Include(ads => ads.Measurements)
-                    .Include(ads => ads.Amenities)
-                    .Include(ads => ads.Budgets)
-                    .Include(ads => ads.DatesAndTimes)
-                    .Include(ads => ads.DatesAndTimes.Days)
-                    .Include(ads => ads.Description)
-                    .ToList();
+                var allAdverts = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
 
                 goalList = filterByBudget(budgetMonth, budgetWeek, budget, allAdverts, goalList);
                 goalList = filterByWorkplace(studioList, allAdverts, goalList);
             }
+            else
+            {
+                var alreadyFilteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
 
-            TempData["list"] = JsonConvert.SerializeObject(goalList);
+                goalList = filterByBudget(budgetMonth, budgetWeek, budget, alreadyFilteredAds, goalList);
+                goalList = filterByWorkplace(studioList, alreadyFilteredAds, goalList);
+            }
+
+            TempData["filteredList"] = JsonConvert.SerializeObject(goalList);
+            return RedirectToAction("Adverts", "Adverts");
+        }
+
+        public IActionResult Empty()
+        {
+            TempData.Remove("filteredList");
             return RedirectToAction("Adverts", "Adverts");
         }
     }
