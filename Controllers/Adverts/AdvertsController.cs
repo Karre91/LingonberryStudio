@@ -4,10 +4,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Formats.Tar;
 using System.Linq;
+using System.Numerics;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LingonberryStudio.Controllers.Adverts
@@ -17,7 +20,6 @@ namespace LingonberryStudio.Controllers.Adverts
         private readonly LingonberryDbContext _db;
         public readonly IWebHostEnvironment _Web;
         List<Advert> testList = new List<Advert>();
-        List<Advert> SomeList = new List<Advert>();
         public AdvertsController(LingonberryDbContext db, IWebHostEnvironment web)
         {
             _db = db;
@@ -55,10 +57,12 @@ namespace LingonberryStudio.Controllers.Adverts
         //[ActionName("FilteredAdverts")]
         public IActionResult Adverts()
         {
+
             if (TempData["list"] != null)
             {
                 var filteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["list"].ToString());
                 ViewBag.Total = filteredAds.Count();
+                TempData["list"] = JsonConvert.SerializeObject(filteredAds);
                 return View(filteredAds);
             }
             testList = _db.Adverts
@@ -135,10 +139,71 @@ namespace LingonberryStudio.Controllers.Adverts
             return RedirectToAction("Adverts");
         }
 
+        private List<Advert> filterByBudget(string budgetMonth, string budgetWeek, int budget, List<Advert> originalList, List<Advert> goalList)
+        {            
+            if (budgetMonth != null || budgetWeek != null)
+            {
+                int weekBud = 0;
+                int monthBud = 0;
+                if (budgetMonth != null)
+                {
+                    weekBud = budget / 4;
+                    goalList.AddRange(originalList.Where(a => a.Budgets.MonthOrWeek == ("Month")
+                        && budget >= a.Budgets.Price
+                        || a.Budgets.MonthOrWeek == ("Week")
+                        && weekBud >= a.Budgets.Price).ToList());
+                }
+                if (budgetWeek != null)
+                {
+                    monthBud = budget * 4;
+                    goalList.AddRange(originalList.Where(a => a.Budgets.MonthOrWeek == ("Month")
+                    && monthBud >= a.Budgets.Price
+                    || a.Budgets.MonthOrWeek == ("Week")
+                    && budget >= a.Budgets.Price).ToList());
+                }
+            }
+            return goalList;
+        }
+
+        private List<Advert> filterByWorkplace(ICollection<string> workplaceList, List<Advert> originalList, List<Advert> goalList)
+        {
+            if (workplaceList.Count > 0)
+            {
+                List<string> notOther = new List<string>()
+                {
+                "Music Studio", "Art Studio", "Photo Studio", "Dance Rehersal Studio",
+                "Ceramics Studio", "Painting Workshop"
+                };
+                foreach (var studio in workplaceList)
+                {
+                    if (studio != "Other")
+                    {
+                        goalList.AddRange(originalList.Where(w => w.WorkspaceDescription == studio).ToList());
+                    }
+                    else
+                    {
+                        goalList.AddRange(originalList.Where(f1 => notOther.All(f2 => f2 != f1.WorkspaceDescription)).ToList());
+                    }
+                }
+            }
+            return goalList;
+        }
+
         [HttpPost]
         public IActionResult Filter(string budgetMonth, string budgetWeek, int budget, ICollection<string> studioList)
         {
-            var adverts = _db.Adverts
+            List<Advert> goalList = new();
+
+            if (TempData["list"] != null)
+            {
+                var alreadyFilteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["list"].ToString());
+
+                goalList = filterByBudget(budgetMonth, budgetWeek, budget, alreadyFilteredAds, goalList);
+                goalList = filterByWorkplace(studioList, alreadyFilteredAds, goalList);
+            }
+            else
+            {
+                var allAdverts = _db.Adverts
                     .Include(ads => ads.Measurements)
                     .Include(ads => ads.Amenities)
                     .Include(ads => ads.Budgets)
@@ -147,47 +212,11 @@ namespace LingonberryStudio.Controllers.Adverts
                     .Include(ads => ads.Description)
                     .ToList();
 
-            List<Advert> ad2 = new();
-            if (budgetMonth != null || budgetWeek != null)
-            {
-                int totBudget = 0;
-                if (budgetMonth != null)
-                {
-                    totBudget = budget / 4;
-                    ad2 = adverts.Where(ad => ad.Budgets.MonthOrWeek? = "Month");
-                }
-                if (budgetWeek != null)
-                {
-                    totBudget = budget * 4;
-                }
-
-
-                
+                goalList = filterByBudget(budgetMonth, budgetWeek, budget, allAdverts, goalList);
+                goalList = filterByWorkplace(studioList, allAdverts, goalList);
             }
 
-
-            TempData["list"] = JsonConvert.SerializeObject(adverts);
-
-            //    IEnumerable<Advert> testFiltered;
-            //foreach (var studio in studioList)
-            //{
-            //    testFiltered = testList.Where(workplace => workplace.WorkspaceDescription == studio);
-            //}
-
-
-
-
-
-            //var testFilterd = testList.Where(ad => ad.Budgets.Price < budget);
-
-
-
-
-
-
-
-
-
+            TempData["list"] = JsonConvert.SerializeObject(goalList);
             return RedirectToAction("Adverts", "Adverts");
         }
     }
