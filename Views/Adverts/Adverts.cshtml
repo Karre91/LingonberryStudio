@@ -12,23 +12,30 @@
             </button>
             <div class="dropdown-menu">
                 <form class="px-4 py-3" method="post">
-
+                   
                     <div class="form-outline mb-4">
+                        <div>
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" name="city" id="city">
+                        </div>
+
+                        <label for="budgetRange" class="form-label">Max budget</label>  £ <span id="displayBudget">250</span>
+                        <input type="range" class="multi-range form-range" id="budget" name="budget" min="0" max="500" step="1" value="" onchange="myFunction()">
+                        
                         <div class="form-check">
                             <input class="form-check-input" id="budgetMonth" name="budgetMonth" type="radio" value="Month">
                             <label class="form-check-label" for="budgetMonth">
                                 Price per month
                             </label>
                         </div>
-                       <div class="form-check">
+                        <div class="form-check">
                             <input class="form-check-input" id="budgetWeek" name="budgetWeek" type="radio" value="Week">
                             <label class="form-check-label" for="budgetWeek">
                                 Price per week
                             </label>
                         </div>
-                        <label for="budgetRange" class="form-label">Max budget</label>
-                        <input type="range" class="multi-range form-range" id="budget" name="budget" min="0" max="500" step="1" value="" onchange="myFunction()">
-                        £ <span id="displayBudget">250</span>
+
+
                     </div>
 
                     <!-- 2 column grid layout for inline styling -->
@@ -52,8 +59,6 @@
                                 <label class="form-check-label" for="studioList"> Other</label>
                             </div>
                         </div>
-
-                       
                     </div>
 
                     <!-- Submit button -->
@@ -75,48 +80,48 @@
     <div id="popupForm"></div>
     <a class="btn adBtn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">POST YOUR AD</a>
 
-<div id="area-and-results" class="">
-	<p id="result">@ViewBag.Total results</p>
-	<div id="popupForm"></div>
-	<a class="btn ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">POST YOUR AD</a>
-</div>
-
-
-
-
-
-
-
-
-
-
-<div class="container-fluid flex-grid-container border-0">
-    <div class="flex-grid-container justify-content-center">
-        @foreach (var ad in Model)
-        {
-            <div class="ad-card">
-                <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)">
-                    <div>
-                            <img src="/@ad.Description.ImgUrl" class="img-fluid mx-auto ad-image">
-                    </div>
-                    <div>
-                        <p class="fw-bold mb-0 mt-3">@ad.WorkspaceDescription</p>
-                        <p class="mb-0">@ad.City</p>
-                        <p>£@ad.Budgets.Price/@ad.Budgets.MonthOrWeek</p>
-
-                    </div>
-                </a>
-                @await Html.PartialAsync("_ChosenAdPartial", ad)
-            </div>
-        }
+    <div id="area-and-results" class="">
+        <p id="result">@ViewBag.Total results</p>
+        <div id="popupForm"></div>
+        <a class="btn ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">POST YOUR AD</a>
     </div>
-</div>
 
 
 
-<script>
-    function myFunction() {
-        var x = document.getElementById("budget").value;
-        document.getElementById("displayBudget").innerHTML = x;
-    }
-</script>
+
+
+
+
+
+
+
+    <div class="container-fluid flex-grid-container border-0">
+        <div class="flex-grid-container justify-content-center">
+            @foreach (var ad in Model)
+            {
+                <div class="ad-card">
+                    <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)">
+                        <div>
+                            <img src="/@ad.Description.ImgUrl" class="img-fluid mx-auto ad-image">
+                        </div>
+                        <div>
+                            <p class="fw-bold mb-0 mt-3">@ad.WorkspaceDescription</p>
+                            <p class="mb-0">@ad.City</p>
+                            <p>£@ad.Budgets.Price/@ad.Budgets.MonthOrWeek</p>
+
+                        </div>
+                    </a>
+                    @await Html.PartialAsync("_ChosenAdPartial", ad)
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("budget").value;
+            document.getElementById("displayBudget").innerHTML = x;
+        }
+    </script>
