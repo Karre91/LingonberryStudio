@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Formats.Tar;
 using System.Linq;
 using System.Numerics;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -156,57 +157,73 @@ namespace LingonberryStudio.Controllers.Adverts
         }
 
         [HttpPost]
-        public IActionResult Filter(string budgetMonth, string budgetWeek, int budget, ICollection<string> studioList, string city, ICollection<string> amenitiesList)
+        public IActionResult Filter(string budgetMonth, string budgetWeek, int budget, ICollection<string> studioList, string city, ICollection<string> amenitiesList, ICollection<string> daysList)
         {
             List<Advert> goalList = new();
 
             if (TempData["filteredList"] == null)
             {
                 var allAdverts = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
-
-                goalList = filterByBudget(budgetMonth, budgetWeek, budget, allAdverts, goalList);
-                goalList = filterByWorkplace(studioList, allAdverts, goalList);                
                 goalList = filterByCity(city, allAdverts, goalList);
+                goalList = filterByBudget(budgetMonth, budgetWeek, budget, allAdverts, goalList);
+                goalList = filterByWorkplace(studioList, allAdverts, goalList);
                 goalList = filterByAmenities(amenitiesList, allAdverts, goalList);
+                goalList = filterByDays(daysList, allAdverts, goalList);
             }
-
             else
             {
                 var alreadyFilteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
-
+                goalList = filterByCity(city, alreadyFilteredAds, goalList);
                 goalList = filterByBudget(budgetMonth, budgetWeek, budget, alreadyFilteredAds, goalList);
                 goalList = filterByWorkplace(studioList, alreadyFilteredAds, goalList);
-                goalList = filterByCity(city, alreadyFilteredAds, goalList);
                 goalList = filterByAmenities(amenitiesList, alreadyFilteredAds, goalList);
+                goalList = filterByDays(daysList, alreadyFilteredAds, goalList);
             }
 
             TempData["filteredList"] = JsonConvert.SerializeObject(goalList);
             return RedirectToAction("Adverts", "Adverts");
         }
 
+        private List<Advert> filterByCity(string city, List<Advert> originalList, List<Advert> goalList)
+        {
+            if (city != null)
+            {
+                city = city.ToUpper();
+                goalList.AddRange(originalList.Where(ad => ad.City == city));
+            }
+
+            return goalList;
+        }
+
         private List<Advert> filterByBudget(string budgetMonth, string budgetWeek, int budget, List<Advert> originalList, List<Advert> goalList)
         {
             if (budgetMonth != null || budgetWeek != null)
             {
+                List<Advert> tempList = new();
+                if (goalList.Count > 0) { tempList = goalList; }
+                else { tempList = originalList; }
+
+                //FIX NEEDED
                 int weekBud = 0;
                 int monthBud = 0;
                 if (budgetMonth != null)
                 {
                     weekBud = budget / 4;
-                    goalList.AddRange(originalList.Where(a => a.Budgets.MonthOrWeek == ("Month")
-                        && budget <= a.Budgets.Price
+                    goalList = tempList.Where(a => a.Budgets.MonthOrWeek == ("Month")
+                        && budget >= a.Budgets.Price
                         || a.Budgets.MonthOrWeek == ("Week")
-                        && weekBud <= a.Budgets.Price).ToList());
+                        && weekBud >= a.Budgets.Price).ToList();
                 }
                 if (budgetWeek != null)
                 {
                     monthBud = budget * 4;
-                    goalList.AddRange(originalList.Where(a => a.Budgets.MonthOrWeek == ("Month")
-                    && monthBud <= a.Budgets.Price
+                    goalList = tempList.Where(a => a.Budgets.MonthOrWeek == ("Month")
+                    && monthBud >= a.Budgets.Price
                     || a.Budgets.MonthOrWeek == ("Week")
-                    && budget <= a.Budgets.Price).ToList());
+                    && budget >= a.Budgets.Price).ToList();
                 }
             }
+
             return goalList;
         }
 
@@ -219,44 +236,77 @@ namespace LingonberryStudio.Controllers.Adverts
                 "Music Studio", "Art Studio", "Photo Studio", "Dance Rehersal Studio",
                 "Ceramics Studio", "Painting Workshop"
                 };
+                List<Advert> tempList = new();
+                if (goalList.Count > 0) { tempList = goalList; }
+                else { tempList = originalList; }
+
                 foreach (var studio in workplaceList)
                 {
                     if (studio != "Other")
                     {
-                        goalList.AddRange(originalList.Where(w => w.WorkspaceDescription == studio).ToList());
+                        goalList = tempList.Where(w => w.WorkspaceDescription == studio).ToList();
                     }
                     else
                     {
-                        goalList.AddRange(originalList.Where(f1 => notOther.All(f2 => f2 != f1.WorkspaceDescription)).ToList());
+                        goalList = tempList.Where(f1 => notOther.All(f2 => f2 != f1.WorkspaceDescription)).ToList();
                     }
                 }
             }
             return goalList;
         }
 
-        private List<Advert> filterByCity(string city, List<Advert> originalList, List<Advert> goalList)
-        {
-            if (city != null)
-            {
-
-                city = city.ToUpper();
-                goalList.AddRange(originalList.Where(ad => ad.City == city));
-            }
-
-            return goalList;
-        }
-
         private List<Advert> filterByAmenities(ICollection<string> amenitiesList, List<Advert> originalList, List<Advert> goalList)
         {
-            foreach (var amenity in amenitiesList)
+            if (amenitiesList.Count > 0)
             {
-                
+                List<Advert> tempList = new();
+                if (goalList.Count > 0) { tempList = goalList; }
+                else { tempList = originalList; }
+
+                goalList = (List<Advert>)tempList.Where(a => a.Amenities.Kitchen == "Parking"
+                    && amenitiesList.Contains("Parking")
+                    || a.Amenities.AirCon == "AirCon"
+                    && amenitiesList.Contains("AirCon")
+                    || a.Amenities.Kitchen == "Kitchen"
+                    && amenitiesList.Contains("Kitchen")
+                    || a.Amenities.NaturalLight == "NaturalLight"
+                    && amenitiesList.Contains("NaturalLight")
+                    || a.Amenities.AcousticTreatment == "AcousticTreatment"
+                    && amenitiesList.Contains("AcousticTreatment")
+                    || a.Amenities.RunningWater == "RunningWater"
+                    && amenitiesList.Contains("RunningWater")
+                    || a.Amenities.Storage == "Storage"
+                    && amenitiesList.Contains("Storage"));
             }
-            //goalList.AddRange(
             return goalList;
         }
 
+        private List<Advert> filterByDays(ICollection<string> daysList, List<Advert> originalList, List<Advert> goalList)
+        {
+            if (daysList.Count > 0)
+            {
+                List<Advert> tempList = new();
+                if (goalList.Count > 0) { tempList = goalList; }
+                else { tempList = originalList; }
 
+                goalList = (List<Advert>)tempList.Where(a => a.DatesAndTimes.Days.Monday == true
+                   && daysList.Contains("Monday")
+                   || a.DatesAndTimes.Days.Tuesday == true
+                   && daysList.Contains("Tuesday")
+                   || a.DatesAndTimes.Days.Wednesday == true
+                   && daysList.Contains("Wednesday")
+                   || a.DatesAndTimes.Days.Thursday == true
+                   && daysList.Contains("Thursday")
+                   || a.DatesAndTimes.Days.Friday == true
+                   && daysList.Contains("Friday")
+                   || a.DatesAndTimes.Days.Saturday == true
+                   && daysList.Contains("Saturday")
+                   || a.DatesAndTimes.Days.Sunday == true
+                   && daysList.Contains("Sunday"));
+            }
+
+            return goalList;
+        }
         public IActionResult Empty()
         {
             TempData.Remove("filteredList");

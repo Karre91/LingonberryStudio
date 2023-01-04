@@ -75,20 +75,45 @@
                                 <input class="form-check-input" type="checkbox" name="amenitiesList" value="RunningWater">
                                 <label for="amenitiesList">Running water</label><br>
                                 <input class="form-check-input" type="checkbox" name="amenitiesList" value="Storage">
-                                <label for="amenitiesList">Storage</label><br>                                
+                                <label for="amenitiesList">Storage</label><br>
                                 <input class="form-check-input" type="checkbox" name="amenitiesList" value="Other">
                                 <label for="amenitiesList">Other</label><br>
-                                
-                                <label for="amenitiesList">Other</label>
-                                <input type="text" name="amenitiesList" />
+
+                                @*<label for="amenitiesList">Other</label>
+                                <input type="text" name="amenitiesList" />*@
+                            </div>
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            <div class="form-group checkbox">
+                                <p>Studio is avalible following days:</p>
+                                <input class="form-check-input" type="checkbox" name="daysList" value="Monday">
+                                <label for="daysList">Monday</label><br>
+
+                                <input class="form-check-input" type="checkbox" name="daysList" value="Tuesday">
+                                <label for="daysList">Tuesday</label><br>
+
+                                <input class="form-check-input" type="checkbox" name="daysList" value="Wednesday">
+                                <label for="daysList">Wednesday</label><br>
+
+                                <input class="form-check-input" type="checkbox" name="daysList" value="Thursday">
+                                <label for="daysList">Thursday</label><br>
+
+                                <input class="form-check-input" type="checkbox" name="daysList" value="Friday">
+                                <label for="daysList">Friday</label><br>
+
+                                <input class="form-check-input" type="checkbox" name="daysList" value="Saturday">
+                                <label for="daysList">Saturday</label><br>
+
+                                <input class="form-check-input" type="checkbox" name="daysList" value="Sunday">
+                                <label for="daysList">Sunday</label><br>
                             </div>
                         </div>
                     </div>
 
 
-                        <!-- Submit button -->
-                        <button type="submit" asp-controller="Adverts" asp-action="Filter" class="btn btn-primary btn-block">Apply filters</button>
-                        <button type="submit" asp-controller="Adverts" asp-action="Empty" class="btn btn-primary btn-block">Rensa filters</button>
+                    <!-- Submit button -->
+                    <button type="submit" asp-controller="Adverts" asp-action="Filter" class="btn btn-primary btn-block">Apply filters</button>
+                    <button type="submit" asp-controller="Adverts" asp-action="Empty" class="btn btn-primary btn-block">Rensa filters</button>
                 </form>
                 <div class="dropdown-divider"></div>
                 <p>Testtext</p>
