@@ -263,19 +263,19 @@ namespace LingonberryStudio.Controllers.Adverts
                 if (goalList.Count > 0) { tempList = goalList; }
                 else { tempList = originalList; }
 
-                goalList = tempList.Where(a => a.Amenities.Kitchen == "Parking"
+                goalList = tempList.Where(a => a.Amenities.Kitchen == true
                     && amenitiesList.Contains("Parking")
-                    || a.Amenities.AirCon == "AirCon"
+                    || a.Amenities.AirCon == true
                     && amenitiesList.Contains("AirCon")
-                    || a.Amenities.Kitchen == "Kitchen"
+                    || a.Amenities.Kitchen == true
                     && amenitiesList.Contains("Kitchen")
-                    || a.Amenities.NaturalLight == "NaturalLight"
+                    || a.Amenities.NaturalLight == true
                     && amenitiesList.Contains("NaturalLight")
-                    || a.Amenities.AcousticTreatment == "AcousticTreatment"
+                    || a.Amenities.AcousticTreatment == true
                     && amenitiesList.Contains("AcousticTreatment")
-                    || a.Amenities.RunningWater == "RunningWater"
+                    || a.Amenities.RunningWater == true
                     && amenitiesList.Contains("RunningWater")
-                    || a.Amenities.Storage == "Storage"
+                    || a.Amenities.Storage == true
                     && amenitiesList.Contains("Storage")).ToList();
             }
             return goalList;

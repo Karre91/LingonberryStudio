@@ -102,36 +102,29 @@ namespace LingonberryStudio.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AmenityID"));
 
-                    b.Property<string>("AcousticTreatment")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("AcousticTreatment")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("AirCon")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("AirCon")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Kitchen")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Kitchen")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("NaturalLight")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("NaturalLight")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Other")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Parking")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Parking")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("RunningWater")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("RunningWater")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Storage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Storage")
+                        .HasColumnType("bit");
 
                     b.HasKey("AmenityID");
 
