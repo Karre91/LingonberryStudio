@@ -12,7 +12,7 @@
             </button>
             <div class="dropdown-menu">
                 <form class="px-4 py-3" method="post">
-                   
+
                     <div class="form-outline mb-4">
                         <div>
                             <label for="city">City</label>
@@ -21,7 +21,7 @@
 
                         <label for="budgetRange" class="form-label">Max budget</label>  £ <span id="displayBudget">250</span>
                         <input type="range" class="multi-range form-range" id="budget" name="budget" min="0" max="500" step="1" value="" onchange="myFunction()">
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" id="budgetMonth" name="budgetMonth" type="radio" value="Month">
                             <label class="form-check-label" for="budgetMonth">
@@ -59,11 +59,36 @@
                                 <label class="form-check-label" for="studioList"> Other</label>
                             </div>
                         </div>
+                        <div class="col d-flex justify-content-center">
+                            <div class="form-group checkbox">
+                                <p>Amenities</p>
+                                <input class="form-check-input" type="checkbox" name="amenitiesList" value="Parking">
+                                <label for="amenitiesList"> Parking space</label><br>
+                                <input class="form-check-input" type="checkbox" name="amenitiesList" value="AirCon">
+                                <label for="amenitiesList">Air conditioning</label><br>
+                                <input class="form-check-input" type="checkbox" name="amenitiesList" value="Kitchen">
+                                <label for="amenitiesList"> Kitchen</label><br>
+                                <input class="form-check-input" type="checkbox" name="amenitiesList" value="NaturalLight">
+                                <label for="amenitiesList">Natural light</label><br>
+                                <input class="form-check-input" type="checkbox" name="amenitiesList" value="AcousticTreatment">
+                                <label for="amenitiesList">Acoustic treatment</label><br>
+                                <input class="form-check-input" type="checkbox" name="amenitiesList" value="RunningWater">
+                                <label for="amenitiesList">Running water</label><br>
+                                <input class="form-check-input" type="checkbox" name="amenitiesList" value="Storage">
+                                <label for="amenitiesList">Storage</label><br>                                
+                                <input class="form-check-input" type="checkbox" name="amenitiesList" value="Other">
+                                <label for="amenitiesList">Other</label><br>
+                                
+                                <label for="amenitiesList">Other</label>
+                                <input type="text" name="amenitiesList" />
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Submit button -->
-                    <button type="submit" asp-controller="Adverts" asp-action="Filter" class="btn btn-primary btn-block">Apply filters</button>
-                    <button type="submit" asp-controller="Adverts" asp-action="Empty" class="btn btn-primary btn-block">Rensa filters</button>
+
+                        <!-- Submit button -->
+                        <button type="submit" asp-controller="Adverts" asp-action="Filter" class="btn btn-primary btn-block">Apply filters</button>
+                        <button type="submit" asp-controller="Adverts" asp-action="Empty" class="btn btn-primary btn-block">Rensa filters</button>
                 </form>
                 <div class="dropdown-divider"></div>
                 <p>Testtext</p>

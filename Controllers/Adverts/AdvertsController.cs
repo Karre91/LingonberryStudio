@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Formats.Tar;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -79,14 +80,14 @@ namespace LingonberryStudio.Controllers.Adverts
                     TempData["filteredList"] = JsonConvert.SerializeObject(filteredAds);
                     TempData.Keep("allAdsInDB");
 
-                    return View(filteredAds);        
+                    return View(filteredAds);
                 }
 
                 allAdsInDB = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
                 TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
                 TempData.Keep("allAdsInDB");
             }
-            
+
             ViewBag.Total = allAdsInDB.Count();
             return View(allAdsInDB);
         }
@@ -135,9 +136,7 @@ namespace LingonberryStudio.Controllers.Adverts
 
             if (ModelState.IsValid)
             {
-
                 ad.City = ad.City.ToUpper();
-
 
                 if (ad.Description.formFile != null)
                 {
@@ -152,11 +151,12 @@ namespace LingonberryStudio.Controllers.Adverts
                 _db.Adverts.Add(ad);
                 _db.SaveChanges();
             }
+            TempData.Remove("allAdsInDB");
             return RedirectToAction("Adverts");
         }
 
         [HttpPost]
-        public IActionResult Filter(string budgetMonth, string budgetWeek, int budget, ICollection<string> studioList, string city)
+        public IActionResult Filter(string budgetMonth, string budgetWeek, int budget, ICollection<string> studioList, string city, ICollection<string> amenitiesList)
         {
             List<Advert> goalList = new();
 
@@ -165,22 +165,24 @@ namespace LingonberryStudio.Controllers.Adverts
                 var allAdverts = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
 
                 goalList = filterByBudget(budgetMonth, budgetWeek, budget, allAdverts, goalList);
-                goalList = filterByWorkplace(studioList, allAdverts, goalList);
+                goalList = filterByWorkplace(studioList, allAdverts, goalList);                
                 goalList = filterByCity(city, allAdverts, goalList);
+                goalList = filterByAmenities(amenitiesList, allAdverts, goalList);
             }
+
             else
             {
                 var alreadyFilteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
 
                 goalList = filterByBudget(budgetMonth, budgetWeek, budget, alreadyFilteredAds, goalList);
                 goalList = filterByWorkplace(studioList, alreadyFilteredAds, goalList);
-                goalList = filterByCity(city,alreadyFilteredAds, goalList);
+                goalList = filterByCity(city, alreadyFilteredAds, goalList);
+                goalList = filterByAmenities(amenitiesList, alreadyFilteredAds, goalList);
             }
 
             TempData["filteredList"] = JsonConvert.SerializeObject(goalList);
             return RedirectToAction("Adverts", "Adverts");
         }
-
 
         private List<Advert> filterByBudget(string budgetMonth, string budgetWeek, int budget, List<Advert> originalList, List<Advert> goalList)
         {
@@ -234,11 +236,27 @@ namespace LingonberryStudio.Controllers.Adverts
 
         private List<Advert> filterByCity(string city, List<Advert> originalList, List<Advert> goalList)
         {
-            city = city.ToUpper();
-            goalList.AddRange(originalList.Where(ad => ad.City == city));
+            if (city != null)
+            {
+
+                city = city.ToUpper();
+                goalList.AddRange(originalList.Where(ad => ad.City == city));
+            }
 
             return goalList;
         }
+
+        private List<Advert> filterByAmenities(ICollection<string> amenitiesList, List<Advert> originalList, List<Advert> goalList)
+        {
+            foreach (var amenity in amenitiesList)
+            {
+                
+            }
+            //goalList.AddRange(
+            return goalList;
+        }
+
+
         public IActionResult Empty()
         {
             TempData.Remove("filteredList");
