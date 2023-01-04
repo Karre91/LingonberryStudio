@@ -135,7 +135,10 @@ namespace LingonberryStudio.Controllers.Adverts
 
             if (ModelState.IsValid)
             {
-                //REGEX HERE
+
+                ad.City = ad.City.ToUpper();
+
+
                 if (ad.Description.formFile != null)
                 {
                     ad.Description.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Description.formFile.FileName;

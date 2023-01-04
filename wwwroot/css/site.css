@@ -379,3 +379,11 @@ input:focus::placeholder {
     margin-right: auto;
     width: 50%;
 }
+.error-message {
+    text-align: center;
+    color: #c7342a;
+    font-synthesis: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: bolder 500;
+    font-size:20px; 
+}
