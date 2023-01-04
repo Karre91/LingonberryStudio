@@ -263,7 +263,7 @@ namespace LingonberryStudio.Controllers.Adverts
                 if (goalList.Count > 0) { tempList = goalList; }
                 else { tempList = originalList; }
 
-                goalList = (List<Advert>)tempList.Where(a => a.Amenities.Kitchen == "Parking"
+                goalList = tempList.Where(a => a.Amenities.Kitchen == "Parking"
                     && amenitiesList.Contains("Parking")
                     || a.Amenities.AirCon == "AirCon"
                     && amenitiesList.Contains("AirCon")
@@ -276,7 +276,7 @@ namespace LingonberryStudio.Controllers.Adverts
                     || a.Amenities.RunningWater == "RunningWater"
                     && amenitiesList.Contains("RunningWater")
                     || a.Amenities.Storage == "Storage"
-                    && amenitiesList.Contains("Storage"));
+                    && amenitiesList.Contains("Storage")).ToList();
             }
             return goalList;
         }
@@ -289,7 +289,7 @@ namespace LingonberryStudio.Controllers.Adverts
                 if (goalList.Count > 0) { tempList = goalList; }
                 else { tempList = originalList; }
 
-                goalList = (List<Advert>)tempList.Where(a => a.DatesAndTimes.Days.Monday == true
+                goalList = tempList.Where(a => a.DatesAndTimes.Days.Monday == true
                    && daysList.Contains("Monday")
                    || a.DatesAndTimes.Days.Tuesday == true
                    && daysList.Contains("Tuesday")
@@ -302,7 +302,7 @@ namespace LingonberryStudio.Controllers.Adverts
                    || a.DatesAndTimes.Days.Saturday == true
                    && daysList.Contains("Saturday")
                    || a.DatesAndTimes.Days.Sunday == true
-                   && daysList.Contains("Sunday"));
+                   && daysList.Contains("Sunday")).ToList();
             }
 
             return goalList;
