@@ -74,7 +74,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = "@instagram KarinSjunger",
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/photoOffering.jpg",
+                            ImgUrl = "seedImg/photoOffering.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -131,7 +131,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/artOffering.jpg",
+                            ImgUrl = "seedImg/artOffering.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -188,7 +188,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/ceramicsOffering.jpg",
+                            ImgUrl = "seedImg/ceramicsOffering.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -245,7 +245,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/danceOffering.jpg",
+                            ImgUrl = "seedImg/danceOffering.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -304,7 +304,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/musicOffering.jpg",
+                            ImgUrl = "seedImg/musicOffering.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -361,7 +361,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/paintOffering.jpg",
+                            ImgUrl = "seedImg/paintOffering.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -419,7 +419,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = "@instagram KarinSjunger",
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/photoLooking.jpg",
+                            ImgUrl = "seedImg/photoLooking.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -476,7 +476,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/artLooking.jpg",
+                            ImgUrl = "seedImg/artLooking.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -533,7 +533,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/ceramicsLooking.jpg",
+                            ImgUrl = "seedImg/ceramicsLooking.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -590,7 +590,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/danceLooking.jpg",
+                            ImgUrl = "seedImg/danceLooking.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -649,7 +649,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/musicLooking.jpg",
+                            ImgUrl = "seedImg/musicLooking.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -706,7 +706,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/paintLooking.jpg",
+                            ImgUrl = "seedImg/paintLooking.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -766,7 +766,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/yogaOffering.jpg",
+                            ImgUrl = "seedImg/yogaOffering.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -825,7 +825,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/darkroom.jpg",
+                            ImgUrl = "seedImg/darkroom.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     },
@@ -884,7 +884,7 @@ namespace LingonberryStudio.Data
                         SocialMedia = null,
                         Description = new()
                         {
-                            ImgUrl = "SeedImages/film.jpg",
+                            ImgUrl = "seedImg/film.jpg",
                             Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
                         }
                     }
