@@ -6,6 +6,7 @@
     <p id="result">@ViewBag.Total results</p>
 
     <div>
+        <button type="submit" asp-controller="Adverts" asp-action="Empty" class="btn btn-primary">Rensa filters</button>
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Filter
@@ -113,7 +114,7 @@
 
                     <!-- Submit button -->
                     <button type="submit" asp-controller="Adverts" asp-action="Filter" class="btn btn-primary btn-block">Apply filters</button>
-                    <button type="submit" asp-controller="Adverts" asp-action="Empty" class="btn btn-primary btn-block">Rensa filters</button>
+                    
                 </form>
                 <div class="dropdown-divider"></div>
                 <p>Testtext</p>
@@ -127,7 +128,7 @@
 
 
 
-    <div id="popupForm"></div>
+@*    <div id="popupForm"></div>
     <a class="btn adBtn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">POST YOUR AD</a>
 
     <div id="area-and-results" class="">
@@ -135,7 +136,7 @@
         <div id="popupForm"></div>
         <a class="btn ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">POST YOUR AD</a>
     </div>
-
+*@
 
 
 
