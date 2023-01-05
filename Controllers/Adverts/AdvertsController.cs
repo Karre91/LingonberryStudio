@@ -26,7 +26,6 @@ namespace LingonberryStudio.Controllers.Adverts
 		[HttpGet("Adverts")]
 		public IActionResult Adverts()
 		{
-
 			var allAdverts = _db.Adverts
 
 					.Include(ads => ads.Measurements)
@@ -37,12 +36,10 @@ namespace LingonberryStudio.Controllers.Adverts
 					.Include(ads => ads.Description)
 					.ToList();
 
-			foreach (var maja in allAdverts)
+			foreach (var ad in allAdverts)
 			{
-
-				if ((maja.TimeCreated.Date - DateTime.Now).Days! <= -61)
+				if ((ad.TimeCreated.Date - DateTime.Now).Days! <= -60)
 				{
-
 					var validAdverts = _db.Adverts
 
 					.Include(maja => maja.Amenities)
@@ -53,7 +50,6 @@ namespace LingonberryStudio.Controllers.Adverts
 					.ToList();
 
 					return View(validAdverts);
-
 				}
 			}
 			allAdverts.Clear();
@@ -66,7 +62,6 @@ namespace LingonberryStudio.Controllers.Adverts
 			var adverts = new List<Advert>();
 			if (city == null)
 			{
-
 				adverts = _db.Adverts
 					.Where(ad => ad.OfferingLooking == search)
 					.Include(ads => ads.Measurements)
