@@ -137,7 +137,7 @@ namespace LingonberryStudio.Controllers.Adverts
 
             if (ModelState.IsValid)
             {
-                ad.City = ad.City.ToUpper();
+                ad.City = ad.City?.ToUpper();
 
                 if (ad.Description.formFile != null)
                 {
@@ -147,7 +147,7 @@ namespace LingonberryStudio.Controllers.Adverts
                 }
                 else
                 {
-                    ad.Description.ImgUrl = "StudioImages/Test.jpg";
+                    ad.Description.ImgUrl = "StudioImages/handshake.jpg";
                 }
                 _db.Adverts.Add(ad);
                 _db.SaveChanges();
