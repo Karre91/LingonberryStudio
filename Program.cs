@@ -18,11 +18,19 @@ using (var scope = app.Services.CreateScope())
 {
 	if (app.Environment.IsDevelopment())
 	{
-		var services = scope.ServiceProvider;
-		Seed.Initialize(services);
+		try
+		{
+			var services = scope.ServiceProvider;
+			Seed.Initialize(services);
+		}
+		catch (Exception ex)
+		{
+			//Log errors or do anything you think it's needed
+			throw;
+		}
 	}
 
-    using (var appContext = scope.ServiceProvider.GetRequiredService<LingonberryDbContext>())
+	using (var appContext = scope.ServiceProvider.GetRequiredService<LingonberryDbContext>())
 	{
 		try
 		{
