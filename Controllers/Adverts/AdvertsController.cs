@@ -307,6 +307,7 @@ namespace LingonberryStudio.Controllers.Adverts
 
             return goalList;
         }
+        
         public IActionResult Empty()
         {
             TempData.Remove("filteredList");
