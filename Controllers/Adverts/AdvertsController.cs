@@ -157,7 +157,7 @@ namespace LingonberryStudio.Controllers.Adverts
         }
 
         [HttpPost]
-        public IActionResult Filter(string budgetMonth, string budgetWeek, int budget, ICollection<string> studioList, string city, ICollection<string> amenitiesList, ICollection<string> daysList)
+        public IActionResult Filter(string MonthOrWeek, int budget, ICollection<string> studioList, string city, ICollection<string> amenitiesList, ICollection<string> daysList)
         {
             List<Advert> goalList = new();
 
@@ -165,7 +165,7 @@ namespace LingonberryStudio.Controllers.Adverts
             {
                 var allAdverts = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
                 goalList = filterByCity(city, allAdverts, goalList);
-                goalList = filterByBudget(budgetMonth, budgetWeek, budget, allAdverts, goalList);
+                goalList = filterByBudget(MonthOrWeek, budget, allAdverts, goalList);
                 goalList = filterByWorkplace(studioList, allAdverts, goalList);
                 goalList = filterByAmenities(amenitiesList, allAdverts, goalList);
                 goalList = filterByDays(daysList, allAdverts, goalList);
@@ -174,7 +174,7 @@ namespace LingonberryStudio.Controllers.Adverts
             {
                 var alreadyFilteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
                 goalList = filterByCity(city, alreadyFilteredAds, goalList);
-                goalList = filterByBudget(budgetMonth, budgetWeek, budget, alreadyFilteredAds, goalList);
+                goalList = filterByBudget(MonthOrWeek, budget, alreadyFilteredAds, goalList);
                 goalList = filterByWorkplace(studioList, alreadyFilteredAds, goalList);
                 goalList = filterByAmenities(amenitiesList, alreadyFilteredAds, goalList);
                 goalList = filterByDays(daysList, alreadyFilteredAds, goalList);
@@ -195,9 +195,9 @@ namespace LingonberryStudio.Controllers.Adverts
             return goalList;
         }
 
-        private List<Advert> filterByBudget(string budgetMonth, string budgetWeek, int budget, List<Advert> originalList, List<Advert> goalList)
+        private List<Advert> filterByBudget(string MonthOrWeek, int budget, List<Advert> originalList, List<Advert> goalList)
         {
-            if (budgetMonth != null || budgetWeek != null)
+            if (MonthOrWeek != null)
             {
                 List<Advert> tempList = new();
                 if (goalList.Count > 0) { tempList = goalList; }
@@ -206,7 +206,7 @@ namespace LingonberryStudio.Controllers.Adverts
                 //FIX NEEDED
                 int weekBud = 0;
                 int monthBud = 0;
-                if (budgetMonth != null)
+                if (MonthOrWeek == "Month")
                 {
                     weekBud = budget / 4;
                     goalList = tempList.Where(a => a.Budgets.MonthOrWeek == ("Month")
@@ -214,7 +214,7 @@ namespace LingonberryStudio.Controllers.Adverts
                         || a.Budgets.MonthOrWeek == ("Week")
                         && weekBud >= a.Budgets.Price).ToList();
                 }
-                if (budgetWeek != null)
+                if (MonthOrWeek == "Week")
                 {
                     monthBud = budget * 4;
                     goalList = tempList.Where(a => a.Budgets.MonthOrWeek == ("Month")
