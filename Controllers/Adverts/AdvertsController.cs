@@ -9,7 +9,7 @@ using System.Formats.Tar;
 using System.Linq;
 using System.Net.NetworkInformation;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using LingonberryStudio.Data.Entities;
+
 namespace LingonberryStudio.Controllers.Adverts
 {
 	public class AdvertsController : Controller
