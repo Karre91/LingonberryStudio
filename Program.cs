@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<LingonberryDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("LingonberryConnectionString")));
 
@@ -16,11 +17,12 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-	if (app.Environment.IsDevelopment())
+    var services = scope.ServiceProvider;
+
+    if (app.Environment.IsDevelopment())
 	{
 		try
 		{
-			var services = scope.ServiceProvider;
 			Seed.Initialize(services);
 		}
 		catch (Exception ex)
@@ -30,19 +32,19 @@ using (var scope = app.Services.CreateScope())
 		}
 	}
 
-	using (var appContext = scope.ServiceProvider.GetRequiredService<LingonberryDbContext>())
-	{
-		try
-		{
-			appContext.Database.Migrate();
-		}
+	//using (var appContext = scope.ServiceProvider.GetRequiredService<LingonberryDbContext>())
+	//{
+	//	try
+	//	{
+	//		appContext.Database.Migrate();
+	//	}
 
-		catch (Exception ex)
-		{
-			//Log errors or do anything you think it's needed
-			throw;
-		}
-	}
+	//	catch (Exception ex)
+	//	{
+	//		//Log errors or do anything you think it's needed
+	//		throw;
+	//	}
+	//}
 }
 
 app.UseDeveloperExceptionPage();
