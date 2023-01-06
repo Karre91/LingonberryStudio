@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Formats.Tar;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Numerics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -30,33 +31,6 @@ namespace LingonberryStudio.Controllers.Adverts
 
         //[HttpGet("Adverts")]
         //[ActionName("Adverts")]
-        //public IActionResult Adverts()
-        //{
-        //    //var ads = _db.Adverts
-        //    //    .Include(ads => ads.Measurements)
-        //    //    .Include(ads => ads.Amenities)
-        //    //    .Include(ads => ads.Budgets)
-        //    //    .Include(ads => ads.DatesAndTimes)
-        //    //    .Include(ads => ads.DatesAndTimes.Days)
-        //    //    .Include(ads => ads.Description)
-        //    //    .ToList();
-        //    //ViewBag.Total = ads.Count();
-        //    //return View(ads);
-
-        //    testList = _db.Adverts
-        //        .Include(ads => ads.Measurements)
-        //        .Include(ads => ads.Amenities)
-        //        .Include(ads => ads.Budgets)
-        //        .Include(ads => ads.DatesAndTimes)
-        //        .Include(ads => ads.DatesAndTimes.Days)
-        //        .Include(ads => ads.Description)
-        //        .ToList();
-
-        //    ViewBag.Total = testList.Count();
-        //    return View(testList);
-        //}
-
-        //[ActionName("FilteredAdverts")]
         public IActionResult Adverts()
         {
             if (TempData["allAdsInDB"] == null)
@@ -69,6 +43,8 @@ namespace LingonberryStudio.Controllers.Adverts
                 .Include(ads => ads.DatesAndTimes.Days)
                 .Include(ads => ads.Description)
                 .ToList();
+
+                excludeOldAds(allAdsInDB);
                 TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
                 TempData.Keep("allAdsInDB");
             }
@@ -91,6 +67,31 @@ namespace LingonberryStudio.Controllers.Adverts
 
             ViewBag.Total = allAdsInDB.Count();
             return View(allAdsInDB);
+        }
+
+        private void excludeOldAds(List<Advert> allAdsInDB)
+        {
+
+            var test = allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -60);
+
+            //foreach (var ad in allAdsInDB)
+            //{
+            //    if ((ad.TimeCreated.Date - DateTime.Now).Days! <= -60)
+            //    {
+            //        var validAdverts = _db.Adverts
+            //        .Include(maja => maja.Amenities)
+            //        .Include(maja => maja.Budgets)
+            //        .Include(maja => maja.DatesAndTimes)
+            //        .Include(maja => maja.DatesAndTimes.Days)
+            //        .Include(maja => maja.Description)
+            //        .ToList();
+            //        return View(validAdverts);
+            //    }
+
+            //    //allAdverts.Clear();
+            //    //return View(allAdverts);
+
+            //}
         }
 
         [HttpGet("AdvertSearch")]
@@ -307,7 +308,7 @@ namespace LingonberryStudio.Controllers.Adverts
 
             return goalList;
         }
-        
+
         public IActionResult Empty()
         {
             TempData.Remove("filteredList");
