@@ -16,15 +16,12 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-	//var services = scope.ServiceProvider;
-	//Seed.Initialize(services);
 	using (var appContext = scope.ServiceProvider.GetRequiredService<LingonberryDbContext>())
 	{
 		try
 		{
 			appContext.Database.Migrate();
 		}
-
 		catch (Exception ex)
 		{
 			//Log errors or do anything you think it's needed

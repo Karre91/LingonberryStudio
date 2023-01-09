@@ -164,7 +164,7 @@ namespace LingonberryStudio.Controllers.Adverts
             return RedirectToAction("Adverts");
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Filter(string MonthOrWeek, int budget, ICollection<string> studioList, string city, /*ICollection<string> amenitiesList*/
         bool parking, bool airCon, bool kitchen, bool naturalLight, bool aucusticTreatment, bool runningWater, bool storage, bool other,
         bool monday, bool tuesday, bool wednesday, bool thursday, bool friday, bool saturday, bool sunday, List<bool> test)
