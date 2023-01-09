@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<LingonberryDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("LingonberryConnectionString")));
 
@@ -28,6 +29,21 @@ using (var scope = app.Services.CreateScope())
 			throw;
 		}
 	}
+
+	var services = scope.ServiceProvider;
+
+    if (app.Environment.IsDevelopment())
+	{
+		try
+		{
+			Seed.Initialize(services);
+		}
+		catch (Exception ex)
+		{
+			//Log errors or do anything you think it's needed
+			throw;
+		}
+	}
 }
 
 app.UseDeveloperExceptionPage();
@@ -37,6 +53,8 @@ if (!app.Environment.IsDevelopment())
 {
 	//app.UseExceptionHandler("/Home/Error");
 	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+
+
 	app.UseHsts();
 }
 
