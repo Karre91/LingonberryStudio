@@ -1,5 +1,31 @@
 ﻿@using LingonberryStudio.Data.Entities
-@model List<Advert>
+@model List<Advert>;
+
+@{
+    //List<bool> dayList = new List<bool>();
+    bool monday = false, tuesday = false, wednesday = false, thursday = false, friday = false, saturday = false, sunday = false;
+    bool parking = false, airCon = false, kitchen = false, naturalLight = false, aucusticTreatment = false, runningWater = false, storage = false/*, other = false*/;
+
+    if (ViewBag.hasFiltered)
+    {
+        monday = ViewBag.monday;
+        tuesday = ViewBag.tuesday;
+        wednesday = ViewBag.wednesday;
+        thursday = ViewBag.thursday;
+        friday = ViewBag.friday;
+        saturday = ViewBag.saturday;
+        sunday = ViewBag.sunday;
+
+        parking = ViewBag.parking;
+        airCon = ViewBag.airCon;
+        kitchen = ViewBag.kitchen;
+        naturalLight = ViewBag.naturalLight;
+        aucusticTreatment = ViewBag.aucusticTreatment;
+        runningWater = ViewBag.runningWater;
+        storage = ViewBag.storage;
+        //other = ViewBag.other;
+    }
+}
 
 
 <div id="area-and-results" class="">
@@ -57,7 +83,20 @@
                                 <div class="col d-flex justify-content-center">
                                     <div class="form-group checkbox">
                                         <p>Amenities</p>
-                                        <input class="form-check-input" type="checkbox" name="amenitiesList" value="Parking">
+                                        @Html.CheckBox("parking", parking) Parking <br />
+                                        @Html.CheckBox("airCon", airCon) Air conditioning <br />
+                                        @Html.CheckBox("kitchen", kitchen) Kitchen <br />
+                                        @Html.CheckBox("naturalLight", naturalLight) Natural Light <br />
+                                        @Html.CheckBox("aucusticTreatment", aucusticTreatment) Acoustic Treatment <br />
+                                        @Html.CheckBox("runningWater", runningWater) Running Water <br />
+                                        @Html.CheckBox("storage", storage) Storage <br />
+                                        @*@Html.CheckBox("other", other) Other <br />*@
+
+
+                                        @*@Html.CheckBox("test", other) Other <br />
+                                        @Html.CheckBox("test", other) Other <br />
+                                        @Html.CheckBox("test", other) Other <br />*@
+                                        @*<input class="form-check-input" type="checkbox" name="amenitiesList" value="Parking">
                                         <label for="amenitiesList"> Parking space</label><br>
                                         <input class="form-check-input" type="checkbox" name="amenitiesList" value="AirCon">
                                         <label for="amenitiesList">Air conditioning</label><br>
@@ -72,7 +111,7 @@
                                         <input class="form-check-input" type="checkbox" name="amenitiesList" value="Storage">
                                         <label for="amenitiesList">Storage</label><br>
                                         <input class="form-check-input" type="checkbox" name="amenitiesList" value="Other">
-                                        <label for="amenitiesList">Other</label><br>
+                                        <label for="amenitiesList">Other</label><br>*@
 
                                         @*<label for="amenitiesList">Other</label>
                                         <input type="text" name="amenitiesList" />*@
@@ -82,20 +121,13 @@
                                 <div class="col d-flex justify-content-center">
                                     <div class="form-group checkbox">
                                         <p>Studio is avalible following days:</p>
-                                        <input class="form-check-input" type="checkbox" name="daysList" value="Monday">
-                                        <label for="daysList">Monday</label><br>
-                                        <input class="form-check-input" type="checkbox" name="daysList" value="Tuesday">
-                                        <label for="daysList">Tuesday</label><br>
-                                        <input class="form-check-input" type="checkbox" name="daysList" value="Wednesday">
-                                        <label for="daysList">Wednesday</label><br>
-                                        <input class="form-check-input" type="checkbox" name="daysList" value="Thursday">
-                                        <label for="daysList">Thursday</label><br>
-                                        <input class="form-check-input" type="checkbox" name="daysList" value="Friday">
-                                        <label for="daysList">Friday</label><br>
-                                        <input class="form-check-input" type="checkbox" name="daysList" value="Saturday">
-                                        <label for="daysList">Saturday</label><br>
-                                        <input class="form-check-input" type="checkbox" name="daysList" value="Sunday">
-                                        <label for="daysList">Sunday</label><br>
+                                        @Html.CheckBox("monday", monday) Monday <br />
+                                        @Html.CheckBox("tuesday", tuesday) Tuesday <br />
+                                        @Html.CheckBox("wednesday", wednesday) Wednesday <br />
+                                        @Html.CheckBox("thursday", thursday) Thursday <br />
+                                        @Html.CheckBox("friday", friday) Friday <br />
+                                        @Html.CheckBox("saturday", saturday) Saturday <br />
+                                        @Html.CheckBox("sunday", sunday) Sunday <br />
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +149,7 @@
                 <a class="btn ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">POST YOUR AD</a><br /><br />
                 <p id="result">@ViewBag.Total results</p>
                 <div id="popupForm"></div>
-            </div>            
+            </div>
         </div>
     </div>
 </div>
@@ -126,6 +158,10 @@
     <div class="flex-grid-container justify-content-center">
         @foreach (var ad in Model)
         {
+            if (ad.DatesAndTimes.Days.Monday)
+            {
+
+            }
             <div class="ad-card">
                 <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)">
                     <div>

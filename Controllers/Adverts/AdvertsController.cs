@@ -3,6 +3,7 @@ using LingonberryStudio.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client.Extensions.Msal;
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,97 +32,104 @@ namespace LingonberryStudio.Controllers.Adverts
 
         //[HttpGet("Adverts")]
         //[ActionName("Adverts")]
+        private List<Advert> GetAdsInDB()
+        {
+            allAdsInDB = _db.Adverts
+                    .Include(ads => ads.Measurements)
+                    .Include(ads => ads.Amenities)
+                    .Include(ads => ads.Budgets)
+                    .Include(ads => ads.DatesAndTimes)
+                    .Include(ads => ads.DatesAndTimes.Days)
+                    .Include(ads => ads.Description)
+                    .ToList();
+
+            allAdsInDB = excludeOldAds(allAdsInDB);
+            TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
+            TempData.Keep("allAdsInDB");
+
+            ViewBag.checkedMonday = false;
+            ViewBag.checkedTuesday = false;
+
+            return allAdsInDB;
+        }
         public IActionResult Adverts()
         {
             if (TempData["allAdsInDB"] == null)
             {
-                allAdsInDB = _db.Adverts
-                .Include(ads => ads.Measurements)
-                .Include(ads => ads.Amenities)
-                .Include(ads => ads.Budgets)
-                .Include(ads => ads.DatesAndTimes)
-                .Include(ads => ads.DatesAndTimes.Days)
-                .Include(ads => ads.Description)
-                .ToList();
-
-                excludeOldAds(allAdsInDB);
-                TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
-                TempData.Keep("allAdsInDB");
+                allAdsInDB = GetAdsInDB();
+                ViewBag.hasFiltered = false;
             }
             else
             {
                 if (TempData["filteredList"] != null)
                 {
                     var filteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
+
                     ViewBag.Total = filteredAds.Count();
+                    ViewBag.hasFiltered = true;
+
+                    ViewBag.monday = TempData["monday"];
+                    ViewBag.tuesday = TempData["tuesday"];
+                    ViewBag.wednesday = TempData["wednesday"];
+                    ViewBag.thursday = TempData["thursday"];
+                    ViewBag.friday = TempData["friday"];
+                    ViewBag.saturday = TempData["saturday"];
+                    ViewBag.sunday = TempData["sunday"];
+
+                    ViewBag.parking = TempData["parking"];
+                    ViewBag.airCon = TempData["airCon"];
+                    ViewBag.kitchen = TempData["kitchen"];
+                    ViewBag.naturalLight = TempData["naturalLight"];
+                    ViewBag.aucusticTreatment = TempData["aucusticTreatment"];
+                    ViewBag.runningWater = TempData["runningWater"];
+                    ViewBag.storage = TempData["storage"];
+                    //ViewBag.other = TempData["other"];
+
                     TempData["filteredList"] = JsonConvert.SerializeObject(filteredAds);
                     TempData.Keep("allAdsInDB");
-
                     return View(filteredAds);
                 }
 
                 allAdsInDB = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
                 TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
                 TempData.Keep("allAdsInDB");
+
+                ViewBag.hasFiltered = false;
             }
+
+
 
             ViewBag.Total = allAdsInDB.Count();
             return View(allAdsInDB);
         }
 
-        private void excludeOldAds(List<Advert> allAdsInDB)
+        private List<Advert> excludeOldAds(List<Advert> allAdsInDB)
         {
-
-            var test = allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -60);
-
-            //foreach (var ad in allAdsInDB)
-            //{
-            //    if ((ad.TimeCreated.Date - DateTime.Now).Days! <= -60)
-            //    {
-            //        var validAdverts = _db.Adverts
-            //        .Include(maja => maja.Amenities)
-            //        .Include(maja => maja.Budgets)
-            //        .Include(maja => maja.DatesAndTimes)
-            //        .Include(maja => maja.DatesAndTimes.Days)
-            //        .Include(maja => maja.Description)
-            //        .ToList();
-            //        return View(validAdverts);
-            //    }
-
-            //    //allAdverts.Clear();
-            //    //return View(allAdverts);
-
-            //}
+            var goalList = allAdsInDB.Except(allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -60)).ToList();
+            return goalList;
         }
 
         [HttpGet("AdvertSearch")]
         public IActionResult Search(string city, string search)
         {
             var adverts = new List<Advert>();
-            if (city == null)
+            if (TempData["allAdsInDB"] == null)
             {
-                adverts = _db.Adverts
-                    .Where(ad => ad.OfferingLooking == search)
-                    .Include(ads => ads.Measurements)
-                    .Include(ads => ads.Amenities)
-                    .Include(ads => ads.Budgets)
-                    .Include(ads => ads.DatesAndTimes)
-                    .Include(ads => ads.DatesAndTimes.Days)
-                    .Include(ads => ads.Description)
-                    .ToList();
+                var allAds = GetAdsInDB();
             }
             else
             {
-                adverts = _db.Adverts
-                    .Where(ad => ad.OfferingLooking == search && ad.City == city)
-                    .Include(ads => ads.Measurements)
-                    .Include(ads => ads.Amenities)
-                    .Include(ads => ads.Budgets)
-                    .Include(ads => ads.DatesAndTimes)
-                    .Include(ads => ads.DatesAndTimes.Days)
-                    .Include(ads => ads.Description)
-                    .ToList();
+                var allAdsInDB = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
+                if (city == null)
+                {
+                    adverts = allAdsInDB.Where(ad => ad.OfferingLooking == search).ToList();
+                }
+                else
+                {
+                    adverts = allAdsInDB.Where(ad => ad.OfferingLooking == search && ad.City == city).ToList();
+                }
             }
+
             return View(adverts);
         }
 
@@ -138,7 +146,7 @@ namespace LingonberryStudio.Controllers.Adverts
 
             if (ModelState.IsValid)
             {
-                ad.City = ad.City.ToUpper();
+                ad.City = ad.City?.ToUpper();
 
                 if (ad.Description.formFile != null)
                 {
@@ -148,7 +156,7 @@ namespace LingonberryStudio.Controllers.Adverts
                 }
                 else
                 {
-                    ad.Description.ImgUrl = "StudioImages/Test.jpg";
+                    ad.Description.ImgUrl = "StudioImages/handshake.jpg";
                 }
                 _db.Adverts.Add(ad);
                 _db.SaveChanges();
@@ -158,28 +166,31 @@ namespace LingonberryStudio.Controllers.Adverts
         }
 
         [HttpPost]
-        public IActionResult Filter(string MonthOrWeek, int budget, ICollection<string> studioList, string city, ICollection<string> amenitiesList, ICollection<string> daysList)
+        public IActionResult Filter(string MonthOrWeek, int budget, ICollection<string> studioList, string city, /*ICollection<string> amenitiesList*/
+        bool parking, bool airCon, bool kitchen, bool naturalLight, bool aucusticTreatment, bool runningWater, bool storage, bool other,
+        bool monday, bool tuesday, bool wednesday, bool thursday, bool friday, bool saturday, bool sunday, List<bool> test)
         {
-            List<Advert> goalList = new();
 
-            if (TempData["filteredList"] == null)
-            {
-                var allAdverts = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
-                goalList = filterByCity(city, allAdverts, goalList);
-                goalList = filterByBudget(MonthOrWeek, budget, allAdverts, goalList);
-                goalList = filterByWorkplace(studioList, allAdverts, goalList);
-                goalList = filterByAmenities(amenitiesList, allAdverts, goalList);
-                goalList = filterByDays(daysList, allAdverts, goalList);
-            }
-            else
-            {
-                var alreadyFilteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
-                goalList = filterByCity(city, alreadyFilteredAds, goalList);
-                goalList = filterByBudget(MonthOrWeek, budget, alreadyFilteredAds, goalList);
-                goalList = filterByWorkplace(studioList, alreadyFilteredAds, goalList);
-                goalList = filterByAmenities(amenitiesList, alreadyFilteredAds, goalList);
-                goalList = filterByDays(daysList, alreadyFilteredAds, goalList);
-            }
+            List<bool> checkedDays = new() { monday, tuesday, wednesday, thursday, friday, saturday, sunday };
+            List<bool> checkedAmenities = new() { parking, airCon, kitchen, naturalLight, aucusticTreatment, runningWater, storage/*, other*/ };
+            
+            List<Advert> goalList = new();
+			//List<Advert> advertList = new();
+
+			//if (TempData["filteredList"] == null)
+			//{
+			List<Advert> allAdsInDBList = JsonConvert.DeserializeObject<List<Advert>?>(TempData["allAdsInDB"].ToString());
+            //}
+            //else
+            //{
+            //    advertList = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
+            //}
+
+            //goalList = filterByCity(city, allAdsInDBList, goalList);
+            //goalList = filterByBudget(MonthOrWeek, budget, allAdsInDBList, goalList);
+            //goalList = filterByWorkplace(studioList, allAdsInDBList, goalList);
+            goalList = filterByAmenities(checkedAmenities, allAdsInDBList, goalList);
+            goalList = filterByDays(checkedDays, allAdsInDBList, goalList);
 
             TempData["filteredList"] = JsonConvert.SerializeObject(goalList);
             return RedirectToAction("Adverts", "Adverts");
@@ -191,6 +202,7 @@ namespace LingonberryStudio.Controllers.Adverts
             {
                 city = city.ToUpper();
                 goalList.AddRange(originalList.Where(ad => ad.City == city));
+
             }
 
             return goalList;
@@ -256,54 +268,79 @@ namespace LingonberryStudio.Controllers.Adverts
             return goalList;
         }
 
-        private List<Advert> filterByAmenities(ICollection<string> amenitiesList, List<Advert> originalList, List<Advert> goalList)
+        private List<Advert> filterByAmenities(List<bool> checkedAmenities, List<Advert> originalList, List<Advert> goalList)
         {
-            if (amenitiesList.Count > 0)
+			TempData["parking"] = checkedAmenities[0];
+			TempData["airCon"] = checkedAmenities[1];
+			TempData["kitchen"] = checkedAmenities[2];
+			TempData["naturalLight"] = checkedAmenities[3];
+			TempData["aucusticTreatment"] = checkedAmenities[4];
+			TempData["runningWater"] = checkedAmenities[5];
+			TempData["storage"] = checkedAmenities[6];
+			//TempData["other"] = checkedAmenities[6];
+
+			if (checkedAmenities.Contains(true))
             {
                 List<Advert> tempList = new();
-                if (goalList.Count > 0) { tempList = goalList; }
-                else { tempList = originalList; }
 
-                goalList = tempList.Where(a => a.Amenities.Kitchen == true
-                    && amenitiesList.Contains("Parking")
-                    || a.Amenities.AirCon == true
-                    && amenitiesList.Contains("AirCon")
-                    || a.Amenities.Kitchen == true
-                    && amenitiesList.Contains("Kitchen")
-                    || a.Amenities.NaturalLight == true
-                    && amenitiesList.Contains("NaturalLight")
-                    || a.Amenities.AcousticTreatment == true
-                    && amenitiesList.Contains("AcousticTreatment")
-                    || a.Amenities.RunningWater == true
-                    && amenitiesList.Contains("RunningWater")
-                    || a.Amenities.Storage == true
-                    && amenitiesList.Contains("Storage")).ToList();
-            }
+                foreach (var ad in originalList)
+                {
+                    var d = ad.Amenities;
+                    var thisAdsAmenitiesList = d.GetList();
+                    bool hasAtleastOne = false;
+                    for (int i = 0; i < thisAdsAmenitiesList.Count; i++)
+                    {
+                        if (checkedAmenities[i] == true && thisAdsAmenitiesList[i] == true )
+                        {
+                            hasAtleastOne = true;
+                        }
+                    }
+                    if (hasAtleastOne)
+                    {
+                        tempList.Add(ad);
+                    }
+                }
+
+				tempList = tempList.Except(goalList).ToList();
+				goalList.AddRange(tempList);
+			}
             return goalList;
         }
 
-        private List<Advert> filterByDays(ICollection<string> daysList, List<Advert> originalList, List<Advert> goalList)
+        private List<Advert> filterByDays(List<bool> checkedDays, List<Advert> originalList, List<Advert> goalList)
         {
-            if (daysList.Count > 0)
-            {
-                List<Advert> tempList = new();
-                if (goalList.Count > 0) { tempList = goalList; }
-                else { tempList = originalList; }
+			TempData["monday"] = checkedDays[0];
+			TempData["tuesday"] = checkedDays[1];
+			TempData["wednesday"] = checkedDays[2];
+			TempData["thursday"] = checkedDays[3];
+			TempData["friday"] = checkedDays[4];
+			TempData["saturday"] = checkedDays[5];
+			TempData["sunday"] = checkedDays[6];
 
-                goalList = tempList.Where(a => a.DatesAndTimes.Days.Monday == true
-                   && daysList.Contains("Monday")
-                   || a.DatesAndTimes.Days.Tuesday == true
-                   && daysList.Contains("Tuesday")
-                   || a.DatesAndTimes.Days.Wednesday == true
-                   && daysList.Contains("Wednesday")
-                   || a.DatesAndTimes.Days.Thursday == true
-                   && daysList.Contains("Thursday")
-                   || a.DatesAndTimes.Days.Friday == true
-                   && daysList.Contains("Friday")
-                   || a.DatesAndTimes.Days.Saturday == true
-                   && daysList.Contains("Saturday")
-                   || a.DatesAndTimes.Days.Sunday == true
-                   && daysList.Contains("Sunday")).ToList();
+			if (checkedDays.Contains(true))
+            {
+				List<Advert> tempList = new();
+
+				foreach (var ad in originalList)
+                {
+                    var d = ad.DatesAndTimes.Days;
+                    var thisAdsDaysList = d.GetList();
+                    bool hasAtleastOne = false;
+                    for (int i = 0; i < thisAdsDaysList.Count; i++)
+                    {
+                        if (thisAdsDaysList[i] == true && checkedDays[i] == true)
+                        {
+                            hasAtleastOne = true;
+                        }
+                    }
+                    if (hasAtleastOne)
+                    {
+                        tempList.Add(ad);
+                    }
+                }
+
+                tempList = tempList.Except(goalList).ToList();
+                goalList.AddRange(tempList);
             }
 
             return goalList;
@@ -312,6 +349,7 @@ namespace LingonberryStudio.Controllers.Adverts
         public IActionResult Empty()
         {
             TempData.Remove("filteredList");
+
             return RedirectToAction("Adverts", "Adverts");
         }
     }

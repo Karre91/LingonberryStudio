@@ -20,7 +20,11 @@ namespace LingonberryStudio.Data.Entities
         [AllowNull]
         public string? Other { get; set; }
 
+        public List<bool> GetList()
+        {
+            List<bool> list = new List<bool>() { Parking, AirCon, Kitchen, NaturalLight, AcousticTreatment, RunningWater, Storage };
+            return list;
+        }
 
-        
     }
 }
