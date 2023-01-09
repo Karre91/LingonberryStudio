@@ -17,7 +17,21 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
+	using (var appContext = scope.ServiceProvider.GetRequiredService<LingonberryDbContext>())
+	{
+		try
+		{
+			appContext.Database.Migrate();
+		}
+
+		catch (Exception ex)
+		{
+			//Log errors or do anything you think it's needed
+			throw;
+		}
+	}
+
+	var services = scope.ServiceProvider;
 
     if (app.Environment.IsDevelopment())
 	{
@@ -31,20 +45,6 @@ using (var scope = app.Services.CreateScope())
 			throw;
 		}
 	}
-
-	//using (var appContext = scope.ServiceProvider.GetRequiredService<LingonberryDbContext>())
-	//{
-	//	try
-	//	{
-	//		appContext.Database.Migrate();
-	//	}
-
-	//	catch (Exception ex)
-	//	{
-	//		//Log errors or do anything you think it's needed
-	//		throw;
-	//	}
-	//}
 }
 
 app.UseDeveloperExceptionPage();
