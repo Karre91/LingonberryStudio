@@ -65,7 +65,7 @@ namespace LingonberryStudio.Controllers.Adverts
                 {
                     var filteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
 
-                    ViewBag.Total = filteredAds.Count();
+                    ViewBag.Total = filteredAds?.Count();
                     ViewBag.hasFiltered = true;
 
                     ViewBag.monday = TempData["monday"];
@@ -83,7 +83,7 @@ namespace LingonberryStudio.Controllers.Adverts
                     ViewBag.aucusticTreatment = TempData["aucusticTreatment"];
                     ViewBag.runningWater = TempData["runningWater"];
                     ViewBag.storage = TempData["storage"];
-                    //ViewBag.other = TempData["other"];
+                    ViewBag.other = TempData["other"];
 
                     TempData["filteredList"] = JsonConvert.SerializeObject(filteredAds);
                     TempData.Keep("allAdsInDB");
@@ -102,7 +102,6 @@ namespace LingonberryStudio.Controllers.Adverts
             ViewBag.Total = allAdsInDB.Count();
             return View(allAdsInDB);
         }
-
         private List<Advert> excludeOldAds(List<Advert> allAdsInDB)
         {
             var goalList = allAdsInDB.Except(allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -60)).ToList();
@@ -172,14 +171,13 @@ namespace LingonberryStudio.Controllers.Adverts
         {
 
             List<bool> checkedDays = new() { monday, tuesday, wednesday, thursday, friday, saturday, sunday };
-            List<bool> checkedAmenities = new() { parking, airCon, kitchen, naturalLight, aucusticTreatment, runningWater, storage/*, other*/ };
+            List<bool> checkedAmenities = new() { parking, airCon, kitchen, naturalLight, aucusticTreatment, runningWater, storage, other };
             
             List<Advert> goalList = new();
-			//List<Advert> advertList = new();
 
 			//if (TempData["filteredList"] == null)
 			//{
-			List<Advert> allAdsInDBList = JsonConvert.DeserializeObject<List<Advert>?>(TempData["allAdsInDB"].ToString());
+			List<Advert>? allAdsInDBList = JsonConvert.DeserializeObject<List<Advert>?>(TempData["allAdsInDB"].ToString());
             //}
             //else
             //{
@@ -277,9 +275,9 @@ namespace LingonberryStudio.Controllers.Adverts
 			TempData["aucusticTreatment"] = checkedAmenities[4];
 			TempData["runningWater"] = checkedAmenities[5];
 			TempData["storage"] = checkedAmenities[6];
-			//TempData["other"] = checkedAmenities[6];
+            TempData["other"] = checkedAmenities[7];
 
-			if (checkedAmenities.Contains(true))
+            if (checkedAmenities.Contains(true))
             {
                 List<Advert> tempList = new();
 
@@ -299,6 +297,10 @@ namespace LingonberryStudio.Controllers.Adverts
                     {
                         tempList.Add(ad);
                     }
+                    if(checkedAmenities[7] == true && d.Other != null)
+                    {
+						tempList.Add(ad);
+					}
                 }
 
 				tempList = tempList.Except(goalList).ToList();

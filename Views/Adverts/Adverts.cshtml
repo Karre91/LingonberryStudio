@@ -2,9 +2,8 @@
 @model List<Advert>;
 
 @{
-    //List<bool> dayList = new List<bool>();
     bool monday = false, tuesday = false, wednesday = false, thursday = false, friday = false, saturday = false, sunday = false;
-    bool parking = false, airCon = false, kitchen = false, naturalLight = false, aucusticTreatment = false, runningWater = false, storage = false/*, other = false*/;
+    bool parking = false, airCon = false, kitchen = false, naturalLight = false, aucusticTreatment = false, runningWater = false, storage = false, other = false;
 
     if (ViewBag.hasFiltered)
     {
@@ -23,7 +22,7 @@
         aucusticTreatment = ViewBag.aucusticTreatment;
         runningWater = ViewBag.runningWater;
         storage = ViewBag.storage;
-        //other = ViewBag.other;
+        other = ViewBag.other;
     }
 }
 
@@ -90,7 +89,7 @@
                                         @Html.CheckBox("aucusticTreatment", aucusticTreatment) Acoustic Treatment <br />
                                         @Html.CheckBox("runningWater", runningWater) Running Water <br />
                                         @Html.CheckBox("storage", storage) Storage <br />
-                                        @*@Html.CheckBox("other", other) Other <br />*@
+                                        @Html.CheckBox("other", other) Other <br />
 
 
                                         @*@Html.CheckBox("test", other) Other <br />
