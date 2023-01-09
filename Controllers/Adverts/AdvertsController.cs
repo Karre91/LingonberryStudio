@@ -16,6 +16,8 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using LingonberryStudio.ViewModels;
+using Microsoft.IdentityModel.Tokens;
 
 namespace LingonberryStudio.Controllers.Adverts
 {
@@ -41,66 +43,68 @@ namespace LingonberryStudio.Controllers.Adverts
                     .Include(ads => ads.DatesAndTimes)
                     .Include(ads => ads.DatesAndTimes.Days)
                     .Include(ads => ads.Description)
+                    .AsNoTracking()
                     .ToList();
 
             allAdsInDB = excludeOldAds(allAdsInDB);
-            TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
-            TempData.Keep("allAdsInDB");
-
-            ViewBag.checkedMonday = false;
-            ViewBag.checkedTuesday = false;
+            //TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
+            //TempData.Keep("allAdsInDB");
 
             return allAdsInDB;
         }
         public IActionResult Adverts()
         {
-            if (TempData["allAdsInDB"] == null)
-            {
-                allAdsInDB = GetAdsInDB();
-                ViewBag.hasFiltered = false;
-            }
-            else
-            {
-                if (TempData["filteredList"] != null)
-                {
-                    var filteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
-
-                    ViewBag.Total = filteredAds?.Count();
-                    ViewBag.hasFiltered = true;
-
-                    ViewBag.monday = TempData["monday"];
-                    ViewBag.tuesday = TempData["tuesday"];
-                    ViewBag.wednesday = TempData["wednesday"];
-                    ViewBag.thursday = TempData["thursday"];
-                    ViewBag.friday = TempData["friday"];
-                    ViewBag.saturday = TempData["saturday"];
-                    ViewBag.sunday = TempData["sunday"];
-
-                    ViewBag.parking = TempData["parking"];
-                    ViewBag.airCon = TempData["airCon"];
-                    ViewBag.kitchen = TempData["kitchen"];
-                    ViewBag.naturalLight = TempData["naturalLight"];
-                    ViewBag.aucusticTreatment = TempData["aucusticTreatment"];
-                    ViewBag.runningWater = TempData["runningWater"];
-                    ViewBag.storage = TempData["storage"];
-                    ViewBag.other = TempData["other"];
-
-                    TempData["filteredList"] = JsonConvert.SerializeObject(filteredAds);
-                    TempData.Keep("allAdsInDB");
-                    return View(filteredAds);
-                }
-
-                allAdsInDB = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
-                TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
-                TempData.Keep("allAdsInDB");
-
-                ViewBag.hasFiltered = false;
-            }
+            AdvertViewMoldel advertViewModel = new();
+            advertViewModel.AdvertList = GetAdsInDB();
 
 
 
-            ViewBag.Total = allAdsInDB.Count();
-            return View(allAdsInDB);
+            //if (TempData["allAdsInDB"] == null)
+            //         {
+            //             allAdsInDB = GetAdsInDB();
+            //             ViewBag.hasFiltered = false;
+            //         }
+            //         else
+            //         {
+            //             if (TempData["filteredList"] != null)
+            //             {
+            //                 var filteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
+
+            //                 ViewBag.Total = filteredAds?.Count();
+            //                 ViewBag.hasFiltered = true;
+
+            //                 ViewBag.monday = TempData["monday"];
+            //                 ViewBag.tuesday = TempData["tuesday"];
+            //                 ViewBag.wednesday = TempData["wednesday"];
+            //                 ViewBag.thursday = TempData["thursday"];
+            //                 ViewBag.friday = TempData["friday"];
+            //                 ViewBag.saturday = TempData["saturday"];
+            //                 ViewBag.sunday = TempData["sunday"];
+
+            //                 ViewBag.parking = TempData["parking"];
+            //                 ViewBag.airCon = TempData["airCon"];
+            //                 ViewBag.kitchen = TempData["kitchen"];
+            //                 ViewBag.naturalLight = TempData["naturalLight"];
+            //                 ViewBag.aucusticTreatment = TempData["aucusticTreatment"];
+            //                 ViewBag.runningWater = TempData["runningWater"];
+            //                 ViewBag.storage = TempData["storage"];
+            //                 ViewBag.other = TempData["other"];
+
+            //                 TempData["filteredList"] = JsonConvert.SerializeObject(filteredAds);
+            //                 TempData.Keep("allAdsInDB");
+            //                 return View(filteredAds);
+            //             }
+
+            //             allAdsInDB = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
+            //             TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
+            //             TempData.Keep("allAdsInDB");
+
+            //             ViewBag.hasFiltered = false;
+            //         }
+
+
+            ViewBag.Total = advertViewModel.AdvertList.Count();
+            return View(advertViewModel);
         }
         private List<Advert> excludeOldAds(List<Advert> allAdsInDB)
         {
@@ -160,7 +164,7 @@ namespace LingonberryStudio.Controllers.Adverts
                 _db.Adverts.Add(ad);
                 _db.SaveChanges();
             }
-            TempData.Remove("allAdsInDB");
+            //TempData.Remove("allAdsInDB");
             return RedirectToAction("Adverts");
         }
 
@@ -169,41 +173,65 @@ namespace LingonberryStudio.Controllers.Adverts
         bool parking, bool airCon, bool kitchen, bool naturalLight, bool aucusticTreatment, bool runningWater, bool storage, bool other,
         bool monday, bool tuesday, bool wednesday, bool thursday, bool friday, bool saturday, bool sunday, List<bool> test)
         {
+            TempData["filtering"] = "filter";
 
             List<bool> checkedDays = new() { monday, tuesday, wednesday, thursday, friday, saturday, sunday };
             List<bool> checkedAmenities = new() { parking, airCon, kitchen, naturalLight, aucusticTreatment, runningWater, storage, other };
-            
-            List<Advert> goalList = new();
 
-			//if (TempData["filteredList"] == null)
-			//{
-			List<Advert>? allAdsInDBList = JsonConvert.DeserializeObject<List<Advert>?>(TempData["allAdsInDB"].ToString());
+
+
+
+
+
+            //if (TempData["filteredList"] == null)
+            //{
+            //List<Advert>? allAdsInDBList = JsonConvert.DeserializeObject<List<Advert>?>(TempData["allAdsInDB"].ToString());
             //}
             //else
             //{
             //    advertList = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
             //}
 
-            //goalList = filterByCity(city, allAdsInDBList, goalList);
+            var goalList = filterByCity(city);
             //goalList = filterByBudget(MonthOrWeek, budget, allAdsInDBList, goalList);
             //goalList = filterByWorkplace(studioList, allAdsInDBList, goalList);
-            goalList = filterByAmenities(checkedAmenities, allAdsInDBList, goalList);
-            goalList = filterByDays(checkedDays, allAdsInDBList, goalList);
+            //goalList = filterByAmenities(checkedAmenities, allAdsInDBList, goalList);
+            //goalList = filterByDays(checkedDays, allAdsInDBList, goalList);
 
-            TempData["filteredList"] = JsonConvert.SerializeObject(goalList);
+            //TempData["filteredList"] = JsonConvert.SerializeObject(goalList);
             return RedirectToAction("Adverts", "Adverts");
         }
 
-        private List<Advert> filterByCity(string city, List<Advert> originalList, List<Advert> goalList)
+        private List<Advert> filterByCity(string city/*, List<Advert> originalList, List<Advert> goalList*/)
         {
+            AdvertViewMoldel advertViewModel = new();
+
             if (city != null)
             {
                 city = city.ToUpper();
-                goalList.AddRange(originalList.Where(ad => ad.City == city));
-
             }
+            
 
-            return goalList;
+            var test2 = _db.Adverts.Where(ad => ad.City != null && ad.City == city || ad.City == null)
+                    .Include(ads => ads.Measurements)
+                    .Include(ads => ads.Amenities)
+                    .Include(ads => ads.Budgets)
+                    .Include(ads => ads.DatesAndTimes)
+                    .Include(ads => ads.DatesAndTimes.Days)
+                    .Include(ads => ads.Description)
+                    .AsNoTracking()
+                    .ToList();
+            //var test = _db.Adverts.Where(ad => ad.City == city)
+            //        .Include(ads => ads.Measurements)
+            //        .Include(ads => ads.Amenities)
+            //        .Include(ads => ads.Budgets)
+            //        .Include(ads => ads.DatesAndTimes)
+            //        .Include(ads => ads.DatesAndTimes.Days)
+            //        .Include(ads => ads.Description)
+            //        .AsNoTracking()
+            //        .ToList();
+
+            return test2;
         }
 
         private List<Advert> filterByBudget(string MonthOrWeek, int budget, List<Advert> originalList, List<Advert> goalList)
@@ -268,13 +296,13 @@ namespace LingonberryStudio.Controllers.Adverts
 
         private List<Advert> filterByAmenities(List<bool> checkedAmenities, List<Advert> originalList, List<Advert> goalList)
         {
-			TempData["parking"] = checkedAmenities[0];
-			TempData["airCon"] = checkedAmenities[1];
-			TempData["kitchen"] = checkedAmenities[2];
-			TempData["naturalLight"] = checkedAmenities[3];
-			TempData["aucusticTreatment"] = checkedAmenities[4];
-			TempData["runningWater"] = checkedAmenities[5];
-			TempData["storage"] = checkedAmenities[6];
+            TempData["parking"] = checkedAmenities[0];
+            TempData["airCon"] = checkedAmenities[1];
+            TempData["kitchen"] = checkedAmenities[2];
+            TempData["naturalLight"] = checkedAmenities[3];
+            TempData["aucusticTreatment"] = checkedAmenities[4];
+            TempData["runningWater"] = checkedAmenities[5];
+            TempData["storage"] = checkedAmenities[6];
             TempData["other"] = checkedAmenities[7];
 
             if (checkedAmenities.Contains(true))
@@ -288,7 +316,7 @@ namespace LingonberryStudio.Controllers.Adverts
                     bool hasAtleastOne = false;
                     for (int i = 0; i < thisAdsAmenitiesList.Count; i++)
                     {
-                        if (checkedAmenities[i] == true && thisAdsAmenitiesList[i] == true )
+                        if (checkedAmenities[i] == true && thisAdsAmenitiesList[i] == true)
                         {
                             hasAtleastOne = true;
                         }
@@ -297,33 +325,33 @@ namespace LingonberryStudio.Controllers.Adverts
                     {
                         tempList.Add(ad);
                     }
-                    if(checkedAmenities[7] == true && d.Other != null)
+                    if (checkedAmenities[7] == true && d.Other != null)
                     {
-						tempList.Add(ad);
-					}
+                        tempList.Add(ad);
+                    }
                 }
 
-				tempList = tempList.Except(goalList).ToList();
-				goalList.AddRange(tempList);
-			}
+                tempList = tempList.Except(goalList).ToList();
+                goalList.AddRange(tempList);
+            }
             return goalList;
         }
 
         private List<Advert> filterByDays(List<bool> checkedDays, List<Advert> originalList, List<Advert> goalList)
         {
-			TempData["monday"] = checkedDays[0];
-			TempData["tuesday"] = checkedDays[1];
-			TempData["wednesday"] = checkedDays[2];
-			TempData["thursday"] = checkedDays[3];
-			TempData["friday"] = checkedDays[4];
-			TempData["saturday"] = checkedDays[5];
-			TempData["sunday"] = checkedDays[6];
+            TempData["monday"] = checkedDays[0];
+            TempData["tuesday"] = checkedDays[1];
+            TempData["wednesday"] = checkedDays[2];
+            TempData["thursday"] = checkedDays[3];
+            TempData["friday"] = checkedDays[4];
+            TempData["saturday"] = checkedDays[5];
+            TempData["sunday"] = checkedDays[6];
 
-			if (checkedDays.Contains(true))
+            if (checkedDays.Contains(true))
             {
-				List<Advert> tempList = new();
+                List<Advert> tempList = new();
 
-				foreach (var ad in originalList)
+                foreach (var ad in originalList)
                 {
                     var d = ad.DatesAndTimes.Days;
                     var thisAdsDaysList = d.GetList();
@@ -350,7 +378,7 @@ namespace LingonberryStudio.Controllers.Adverts
 
         public IActionResult Empty()
         {
-            TempData.Remove("filteredList");
+            TempData["filtering"] = false;
 
             return RedirectToAction("Adverts", "Adverts");
         }

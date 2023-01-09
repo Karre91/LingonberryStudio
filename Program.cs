@@ -30,20 +30,20 @@ using (var scope = app.Services.CreateScope())
 		}
 	}
 
-	var services = scope.ServiceProvider;
+	//var services = scope.ServiceProvider;
 
-    if (app.Environment.IsDevelopment())
-	{
-		try
-		{
-			Seed.Initialize(services);
-		}
-		catch (Exception ex)
-		{
-			//Log errors or do anything you think it's needed
-			throw;
-		}
-	}
+ //   if (app.Environment.IsDevelopment())
+	//{
+	//	try
+	//	{
+	//		Seed.Initialize(services);
+	//	}
+	//	catch (Exception ex)
+	//	{
+	//		//Log errors or do anything you think it's needed
+	//		throw;
+	//	}
+	//}
 }
 
 app.UseDeveloperExceptionPage();

@@ -1,11 +1,14 @@
 ﻿@using LingonberryStudio.Data.Entities
-@model List<Advert>;
+@using LingonberryStudio.ViewModels
+@model AdvertViewMoldel
+
 
 @{
+    
     bool monday = false, tuesday = false, wednesday = false, thursday = false, friday = false, saturday = false, sunday = false;
     bool parking = false, airCon = false, kitchen = false, naturalLight = false, aucusticTreatment = false, runningWater = false, storage = false, other = false;
 
-    if (ViewBag.hasFiltered)
+   @* if (ViewBag.hasFiltered)
     {
         monday = ViewBag.monday;
         tuesday = ViewBag.tuesday;
@@ -23,7 +26,7 @@
         runningWater = ViewBag.runningWater;
         storage = ViewBag.storage;
         other = ViewBag.other;
-    }
+    }*@
 }
 
 <div id="area-and-results" class="">
@@ -91,9 +94,7 @@
                                         @Html.CheckBox("other", other) Other <br />
 
 
-                                        @*@Html.CheckBox("test", other) Other <br />
-                                        @Html.CheckBox("test", other) Other <br />
-                                        @Html.CheckBox("test", other) Other <br />*@
+                                       
                                         @*<input class="form-check-input" type="checkbox" name="amenitiesList" value="Parking">
                                         <label for="amenitiesList"> Parking space</label><br>
                                         <input class="form-check-input" type="checkbox" name="amenitiesList" value="AirCon">
@@ -109,14 +110,14 @@
                                         <input class="form-check-input" type="checkbox" name="amenitiesList" value="Storage">
                                         <label for="amenitiesList">Storage</label><br>
                                         <input class="form-check-input" type="checkbox" name="amenitiesList" value="Other">
-                                        <label for="amenitiesList">Other</label><br>*@
+                                        <label for="amenitiesList">Other</label><br>
 
-                                        @*<label for="amenitiesList">Other</label>
+                                        <label for="amenitiesList">Other</label>
                                         <input type="text" name="amenitiesList" />*@
 
                                     </div>
                                 </div>
-                                <div class="col d-flex justify-content-center">
+                                @*<div class="col d-flex justify-content-center">
                                     <div class="form-group checkbox">
                                         <p>Studio is avalible following days:</p>
                                         @Html.CheckBox("monday", monday) Monday <br />
@@ -127,7 +128,7 @@
                                         @Html.CheckBox("saturday", saturday) Saturday <br />
                                         @Html.CheckBox("sunday", sunday) Sunday <br />
                                     </div>
-                                </div>
+                                </div>*@
                             </div>
 
                             <!-- Submit button -->
@@ -154,7 +155,7 @@
 
 <div class="container-fluid flex-grid-container border-0">
     <div class="flex-grid-container justify-content-center">
-        @foreach (var ad in Model)
+        @foreach (var ad in Model.AdvertList)
         {
             if (ad.DatesAndTimes.Days.Monday)
             {
