@@ -166,12 +166,12 @@
 				@if (Model.DatesAndTimes.OpeningTime != null)
 				{
 					<p class="fw-bold form-text-style"> Start time: </p>
-					<p class="form-text-style">@Model.DatesAndTimes.OpeningTime.Value.ToString("hh:mm tt") </p>
+					<p class="form-text-style">@Model.DatesAndTimes.OpeningTime.Value.ToString("HH:mm"); </p>
 				}
 				@if (Model.DatesAndTimes.ClosingTime != null)
 				{
 					<p class="fw-bold form-text-style">Closing time: </p>
-					<p class="form-text-style">@Model.DatesAndTimes.ClosingTime.Value.ToString("hh:mm tt") </p> <br />
+					<p class="form-text-style">@Model.DatesAndTimes.ClosingTime.Value.ToString("HH:mm"); </p> <br />
 				}
 			</div>
 			<div class="modal-footer">
