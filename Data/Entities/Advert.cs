@@ -10,12 +10,12 @@ namespace LingonberryStudio.Data.Entities
     public class Advert
     {
         [Key]
-        public int AdvertId { get; set; }
+        public int AdvertId { get; set; } 
 
-		public DateTime TimeCreated { get; set; } = DateTime.Now;
+        public DateTime TimeCreated { get; set; } = DateTime.Now;
 
-		//[Required]
-		public string? FirstName { get; set; }
+        //[Required]
+        public string? FirstName { get; set; }
 
         //[Required]
         public string? LastName { get; set; }

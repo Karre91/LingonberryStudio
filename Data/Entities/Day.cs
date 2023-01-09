@@ -14,5 +14,11 @@ namespace LingonberryStudio.Data.Entities
         public bool Saturday { get; set; }
         public bool Sunday { get; set; }
 
+
+        public List<bool> GetList()
+        {
+            List<bool> list = new List<bool>() { Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday};
+            return list;
+        }
     }
 }

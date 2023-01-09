@@ -12,7 +12,7 @@
 			</div>
 			<div class="modal-body">
 				<div>
-					<img src="@Model.Description.ImgUrl" class="img-fluid mx-auto ad-image center">
+					<img src="/@Model.Description.ImgUrl" class="img-fluid mx-auto ad-image center">
 				</div>
 				@if (Model.OfferingLooking == "offering")
 				{
@@ -118,7 +118,15 @@
 					<p class="fw-bold form-text-style">Ametities: </p> <br />
 					@if (Model.Amenities.AcousticTreatment == true)
 					{
-						<p class="form-text-style">Acoustic Treatment</p> <br />
+						@if (ViewBag.aucusticTreatment != null)
+						{
+							<p class="form-text-style"><b><u>Acoustic Treatment</u></b></p> <br />
+						}
+						else
+						{
+							<p class="form-text-style">Acoustic Treatment</p> <br />
+						}
+						
 					}
 					@if (Model.Amenities.NaturalLight == true)
 					{
