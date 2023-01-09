@@ -33,7 +33,7 @@
 				}
 				<p class="fw-bold form-text-style">Name: </p>
 				<p class="form-text-style">@Model.FirstName</p> <br />
-				<p class="fw-bold form-text-style">Last Name: </p>
+				<p class="fw-bold form-text-style">Surname: </p>
 				<p class="form-text-style">@Model.LastName</p> <br />
 				<p class="fw-bold form-text-style">Email: </p>
 				<p class="form-text-style">@Model.Email</p> <br />
@@ -47,108 +47,83 @@
 					<p class="fw-bold form-text-style">Artist/Project Name: </p>
 					<p class="form-text-style">@Model.Artist</p> <br />
 				}
-				@if (Model.DatesAndTimes.Days != null && Model.OfferingLooking == "offering")
+				@if (Model.DatesAndTimes.Days.GetList().Contains(true) && Model.OfferingLooking == "offering")
 				{
 					<p class="fw-bold form-text-style">Avaliability: </p> <br />
-					@if (Model.DatesAndTimes.Days.Monday == true)
+				}
+				@if (Model.DatesAndTimes.Days.GetList().Contains(true) && Model.OfferingLooking == "looking")
+				{
+					<p class="fw-bold form-text-style">I am interested in following days: </p> <br />
+				}
+				@if (Model.DatesAndTimes.Days != null)
+				{				
+					@if (Model.DatesAndTimes.Days.Monday)
 					{
 						<p class="form-text-style">Monday</p> <br />
 					}
-					@if (Model.DatesAndTimes.Days.Tuesday == true)
+					@if (Model.DatesAndTimes.Days.Tuesday)
 					{
 						<p class="form-text-style">Tuesday</p><br />
 					}
-					@if (Model.DatesAndTimes.Days.Wednesday == true)
+					@if (Model.DatesAndTimes.Days.Wednesday)
 					{
 						<p class="form-text-style">Wednesday</p> <br />
 					}
-					@if (Model.DatesAndTimes.Days.Thursday == true)
+					@if (Model.DatesAndTimes.Days.Thursday)
 					{
 						<p class="form-text-style">Thursday</p> <br />
 					}
-					@if (Model.DatesAndTimes.Days.Friday == true)
+					@if (Model.DatesAndTimes.Days.Friday)
 					{
 						<p class="form-text-style">Friday</p> <br />
 					}
-					@if (Model.DatesAndTimes.Days.Saturday == true)
+					@if (Model.DatesAndTimes.Days.Saturday)
 					{
 						<p class="form-text-style">Saturday</p> <br />
 					}
-					@if (Model.DatesAndTimes.Days.Sunday == true)
+					@if (Model.DatesAndTimes.Days.Sunday)
 					{
 						<p class="form-text-style">Sunday</p> <br />
 					}
 					
 				}
-				@if (Model.DatesAndTimes.Days != null && Model.OfferingLooking == "looking")
-				{
-					<p class="fw-bold form-text-style">I am interested in following days: </p> <br />
-					@if (Model.DatesAndTimes.Days.Monday == true)
-					{
-						<p class="form-text-style">Monday</p> <br />
-					}
-					@if (Model.DatesAndTimes.Days.Tuesday == true)
-					{
-						<p class="form-text-style">Tuesday</p><br />
-					}
-					@if (Model.DatesAndTimes.Days.Wednesday == true)
-					{
-						<p class="form-text-style">Wednesday</p> <br />
-					}
-					@if (Model.DatesAndTimes.Days.Thursday == true)
-					{
-						<p class="form-text-style">Thursday</p> <br />
-					}
-					@if (Model.DatesAndTimes.Days.Friday == true)
-					{
-						<p class="form-text-style">Friday</p> <br />
-					}
-					@if (Model.DatesAndTimes.Days.Saturday == true)
-					{
-						<p class="form-text-style">Saturday</p> <br />
-					}
-					@if (Model.DatesAndTimes.Days.Sunday == true)
-					{
-						<p class="form-text-style">Sunday</p> <br />
-					}
-				}
-
-				@if (Model.Amenities != null)
+	
+				@if (Model.Amenities.GetList().Contains(true))
 				{
 					<p class="fw-bold form-text-style">Ametities: </p> <br />
-					@if (Model.Amenities.AcousticTreatment == true)
+					@if (Model.Amenities.AcousticTreatment)
 					{
-						@if (ViewBag.aucusticTreatment != null)
+						<p class="form-text-style">Acoustic Treatment</p> <br />
+						@*@if (ViewBag.aucusticTreatment != null)
 						{
 							<p class="form-text-style"><b><u>Acoustic Treatment</u></b></p> <br />
 						}
 						else
 						{
-							<p class="form-text-style">Acoustic Treatment</p> <br />
-						}
 						
+						}*@						
 					}
-					@if (Model.Amenities.NaturalLight == true)
+					@if (Model.Amenities.NaturalLight)
 					{
 						<p class="form-text-style">Natural Light</p> <br />
 					}
-					@if (Model.Amenities.Kitchen == true)
+					@if (Model.Amenities.Kitchen)
 					{
 						<p class="form-text-style">Kitchen</p> <br />
 					}
-					@if (Model.Amenities.RunningWater == true)
+					@if (Model.Amenities.RunningWater)
 					{
 						<p class="form-text-style">Running Water</p> <br />
 					}
-					@if (Model.Amenities.AirCon == true)
+					@if (Model.Amenities.AirCon)
 					{
 						<p class="form-text-style">Aircon</p> <br />
 					}
-					@if (Model.Amenities.Parking == true)
+					@if (Model.Amenities.Parking)
 					{
 						<p class="form-text-style">Parking</p> <br />
 					}
-					@if (Model.Amenities.Storage == true)
+					@if (Model.Amenities.Storage)
 					{
 						<p class="form-text-style">Storage</p> <br />
 					}
@@ -163,7 +138,7 @@
 					<p class="fw-bold form-text-style">Size: </p>
 					<p class="form-text-style"> @Model.Measurements.Number @Model.Measurements.FeetOrMeters</p> <br />
 				}
-				@if (Model.DatesAndTimes.StartDate.HasValue)
+				@if (Model.DatesAndTimes.StartDate !=null)
 				{
 					<p class="fw-bold form-text-style"> Start date: </p>
 					<p class="form-text-style">@Model.DatesAndTimes.StartDate.Value.ToShortDateString()</p> <br />
@@ -174,16 +149,20 @@
 					<p class="form-text-style">@Model.DatesAndTimes.EndDate.Value.ToShortDateString()</p> <br />
 				}
 
-				@if (Model.Budgets != null && Model.OfferingLooking == "Offering")
+				@if (Model.OfferingLooking == "offering")
 				{
 					<p class="fw-bold form-text-style">Rent for the studio is: </p>
-					<p class="form-text-style">@Model.Budgets.Price/@Model.Budgets.MonthOrWeek</p> <br />
 				}
-				@if (Model.Budgets != null && Model.OfferingLooking == "Looking")
+				@if (Model.OfferingLooking == "looking")
 				{
 					<p class="fw-bold form-text-style">My budget is: </p>
+				}
+
+				@if (Model.Budgets != null)
+				{					
 					<p class="form-text-style">@Model.Budgets.Price/@Model.Budgets.MonthOrWeek</p> <br />
 				}
+
 				@if (Model.DatesAndTimes.OpeningTime != null)
 				{
 					<p class="fw-bold form-text-style"> Start time: </p>
