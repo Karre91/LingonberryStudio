@@ -14,10 +14,10 @@ namespace LingonberryStudio.Data
                     DbContextOptions<LingonberryDbContext>>()))
             {
 
-                //if (context.Adverts.Any())
-                //{
-                //    return;   // DB has been seeded
-                //}
+                if (context.Adverts.Any())
+                {
+                    return;   // DB has been seeded
+                }
 
                 context.Adverts.AddRange(
                     // ALL OFFERING
@@ -274,8 +274,8 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
-                            Price = 200,
+                            MonthOrWeek = "Week",
+                            Price = 30,
                         },
                         Measurements = new()
                         {
@@ -622,8 +622,8 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
-                            Price = 200,
+                            MonthOrWeek = "Week",
+                            Price = 20,
                         },
                         Measurements = new()
                         {
@@ -887,9 +887,6 @@ namespace LingonberryStudio.Data
                         }
                     }
                     );
-
-
-
 
                 context.SaveChanges();
             }

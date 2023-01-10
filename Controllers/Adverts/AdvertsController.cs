@@ -18,6 +18,7 @@ using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using LingonberryStudio.ViewModels;
 using Microsoft.IdentityModel.Tokens;
+using System.Linq.Expressions;
 
 namespace LingonberryStudio.Controllers.Adverts
 {
@@ -169,20 +170,35 @@ namespace LingonberryStudio.Controllers.Adverts
         }
 
         [HttpGet]
-        public IActionResult Filter(string MonthOrWeek, int budget, ICollection<string> studioList, string city, /*ICollection<string> amenitiesList*/
-        bool parking, bool airCon, bool kitchen, bool naturalLight, bool aucusticTreatment, bool runningWater, bool storage, bool other,
-        bool monday, bool tuesday, bool wednesday, bool thursday, bool friday, bool saturday, bool sunday, List<bool> test)
+        public IActionResult Filter(string city, string monthOrWeek, int price, string offeringLooking)
         {
             TempData["filtering"] = "filter";
 
-            List<bool> checkedDays = new() { monday, tuesday, wednesday, thursday, friday, saturday, sunday };
-            List<bool> checkedAmenities = new() { parking, airCon, kitchen, naturalLight, aucusticTreatment, runningWater, storage, other };
+            //List<bool> checkedDays = new() { monday, tuesday, wednesday, thursday, friday, saturday, sunday };
+            //List<bool> checkedAmenities = new() { parking, airCon, kitchen, naturalLight, aucusticTreatment, runningWater, storage, other };
+            if (city != null) { city = city.ToUpper(); }
+            int weekBud = 0, monthBud = 0;
+            if (monthOrWeek == "Month") { weekBud = price / 4; monthBud = price; }
+            if (monthOrWeek == "Week") { monthBud = price * 4; weekBud = price; }
+
+            var cityFilter = _db.Adverts
+                .Where(ad => ad.OfferingLooking == offeringLooking || offeringLooking == null)
+                .Where(ad => ad.City != null && ad.City == city || city == null)
+                .Where(ad => ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Month" && ad.Budgets.Price <= monthBud
+                || ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Week" && ad.Budgets.Price <= weekBud
+                ||  monthOrWeek == null)
+
+                .Include(ads => ads.Measurements)
+                    .Include(ads => ads.Amenities)
+                    .Include(ads => ads.Budgets)
+                    .Include(ads => ads.DatesAndTimes)
+                    .Include(ads => ads.DatesAndTimes.Days)
+                    .Include(ads => ads.Description)
+                    .AsNoTracking()
+                    .ToList();
 
 
-
-
-
-
+            return RedirectToAction("Adverts", "Adverts");
             //if (TempData["filteredList"] == null)
             //{
             //List<Advert>? allAdsInDBList = JsonConvert.DeserializeObject<List<Advert>?>(TempData["allAdsInDB"].ToString());
@@ -192,27 +208,39 @@ namespace LingonberryStudio.Controllers.Adverts
             //    advertList = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
             //}
 
-            var goalList = filterByCity(city);
-            //goalList = filterByBudget(MonthOrWeek, budget, allAdsInDBList, goalList);
+            //var goalList = filterByCity(city);
+            //goalList = filterByBudget(MonthOrWeek, budget);
             //goalList = filterByWorkplace(studioList, allAdsInDBList, goalList);
             //goalList = filterByAmenities(checkedAmenities, allAdsInDBList, goalList);
             //goalList = filterByDays(checkedDays, allAdsInDBList, goalList);
 
             //TempData["filteredList"] = JsonConvert.SerializeObject(goalList);
-            return RedirectToAction("Adverts", "Adverts");
+
         }
 
         private List<Advert> filterByCity(string city/*, List<Advert> originalList, List<Advert> goalList*/)
         {
-            AdvertViewMoldel advertViewModel = new();
-
             if (city != null)
             {
                 city = city.ToUpper();
             }
-            
 
-            var test2 = _db.Adverts.Where(ad => ad.City != null && ad.City == city || ad.City == null)
+            //var cityFilter = _db.Adverts.Where(ad => ad.City != null && ad.City == city || ad.City == null)
+            //    .Select(ad => new
+            //    {
+            //        Measurement = ad.Measurements,
+            //        Amenities = ad.Amenities,
+            //        Budgets = ad.Budgets,
+            //        DatesAndTimes = ad.DatesAndTimes,
+            //        Days = ad.DatesAndTimes.Days,
+            //        Descriptions = ad.Description
+            //    })
+            //    .AsNoTracking()
+            //        .ToList();
+
+
+
+            var cityFilter = _db.Adverts.Where(ad => ad.City != null && ad.City == city || ad.City == null)
                     .Include(ads => ads.Measurements)
                     .Include(ads => ads.Amenities)
                     .Include(ads => ads.Budgets)
@@ -221,17 +249,8 @@ namespace LingonberryStudio.Controllers.Adverts
                     .Include(ads => ads.Description)
                     .AsNoTracking()
                     .ToList();
-            //var test = _db.Adverts.Where(ad => ad.City == city)
-            //        .Include(ads => ads.Measurements)
-            //        .Include(ads => ads.Amenities)
-            //        .Include(ads => ads.Budgets)
-            //        .Include(ads => ads.DatesAndTimes)
-            //        .Include(ads => ads.DatesAndTimes.Days)
-            //        .Include(ads => ads.Description)
-            //        .AsNoTracking()
-            //        .ToList();
 
-            return test2;
+            return cityFilter;
         }
 
         private List<Advert> filterByBudget(string MonthOrWeek, int budget, List<Advert> originalList, List<Advert> goalList)
