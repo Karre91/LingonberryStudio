@@ -186,7 +186,7 @@ namespace LingonberryStudio.Controllers.Adverts
                 .Where(ad => ad.City != null && ad.City == city || city == null)
                 .Where(ad => ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Month" && ad.Budgets.Price <= monthBud
                 || ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Week" && ad.Budgets.Price <= weekBud
-                ||  monthOrWeek == null)
+                || monthOrWeek == null)
 
                 .Include(ads => ads.Measurements)
                     .Include(ads => ads.Amenities)
