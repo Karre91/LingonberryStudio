@@ -15,28 +15,41 @@ namespace LingonberryStudio.Data.Entities
         public DateTime TimeCreated { get; set; } = DateTime.Now;
 
         //[Required]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
+        ErrorMessage = "Characters are not allowed.")]
         public string? FirstName { get; set; }
 
         //[Required]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
+       ErrorMessage = "Characters are not allowed.")]
         public string? LastName { get; set; }
 
         //[Required]
         [EmailAddress]
+        [DataType(DataType.EmailAddress)]
+        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Not a valid Email address")]
         public string? Email { get; set; }
 
         [AllowNull]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$", ErrorMessage = "Not a valid Phone number")]
         public int? PhoneNumber { get; set; }
 
         [Required]
         public string OfferingLooking { get; set; }
 
         //[Required]
+      
         public string? WorkspaceDescription { get; set; }
 
         //[Required]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,60}$", 
+         ErrorMessage = "Only letters allowed")]
         public string? City { get; set; }
 
-		public string? Area { get; set; }
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
+        ErrorMessage = "Only letters allowed")]
+        public string? Area { get; set; }
 
 		[Display(Name = "Amenity")]
         public virtual int AmenityID { get; set; }
@@ -44,8 +57,8 @@ namespace LingonberryStudio.Data.Entities
         [ForeignKey("AmenityID")]
         public virtual Amenity Amenities { get; set; }
 
-		[Display(Name = "Budget")]
-		public virtual int BudgetId { get; set; }
+        [Display(Name = "Budget")]
+        public virtual int BudgetId { get; set; }
 
 		[ForeignKey("BudgetId")]
 		public virtual Budget Budgets { get; set; }
@@ -63,9 +76,13 @@ namespace LingonberryStudio.Data.Entities
         public virtual DatesAndTime DatesAndTimes { get; set; }
 
         [AllowNull]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
+         ErrorMessage = "Only letters allowed")]
         public string? Artist { get; set; }
 
         [AllowNull]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
+         ErrorMessage = "Only letters allowed")]
         public string? SocialMedia { get; set; }
 
         [Display(Name = "Description")]

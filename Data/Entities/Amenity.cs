@@ -18,6 +18,8 @@ namespace LingonberryStudio.Data.Entities
         public bool Storage { get; set; }
 
         [AllowNull]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
+         ErrorMessage = "Characters are not allowed.")]
         public string? Other { get; set; }
 
         public List<bool> GetList()

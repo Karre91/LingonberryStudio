@@ -17,6 +17,8 @@ namespace LingonberryStudio.Data.Entities
         public IFormFile? formFile { get; set; }
 
         //[Required]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,300}$",
+       ErrorMessage = "Only letters allowed")]
         public string? Desc { get; set; }
     }
 }

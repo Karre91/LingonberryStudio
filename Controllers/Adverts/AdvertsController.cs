@@ -162,11 +162,13 @@ namespace LingonberryStudio.Controllers.Adverts
                 {
                     ad.Description.ImgUrl = "StudioImages/handshake.jpg";
                 }
+               
                 _db.Adverts.Add(ad);
                 _db.SaveChanges();
+                return RedirectToAction("Adverts");
             }
             //TempData.Remove("allAdsInDB");
-            return RedirectToAction("Adverts");
+            return PartialView("_FormPartial",ad);
         }
 
         [HttpGet]

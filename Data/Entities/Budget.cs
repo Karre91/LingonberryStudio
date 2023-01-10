@@ -10,7 +10,7 @@ namespace LingonberryStudio.Data.Entities
 		//[Required]
 		public string? MonthOrWeek { get; set; }
 
-		//[Required]
-		public int? Price { get; set; }
+        //[Required]
+        public int? Price { get; set; }
 	}
 }
