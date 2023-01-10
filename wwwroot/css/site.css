@@ -178,6 +178,13 @@ a {
     .flex-grid-container {
         max-width: 75%;
     }
+    .ad-image {
+        border-radius: 7%;
+        object-fit: cover;
+        max-width: 100px;
+        max-height: 100px;
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
+    }
 
     .ad-btn {
         max-width: 50%;
@@ -348,12 +355,17 @@ input[type=number] {
 input:focus::placeholder {
     color: transparent;
 }
+textarea:focus::placeholder {
+    color: transparent;
+}
+
 
 .footer-color {
     background-color: #d8c7b3;
     color: black;
     text-align: center;
     text-decoration: none;
+    width:100%;
 }
 
 .flex-grid-container {
