@@ -1,12 +1,14 @@
 ﻿@using LingonberryStudio.Data.Entities
-@model List<Advert>;
+@using LingonberryStudio.ViewModels
+@model AdvertViewMoldel
+
 
 @{
-    //List<bool> dayList = new List<bool>();
-    bool monday = false, tuesday = false, wednesday = false, thursday = false, friday = false, saturday = false, sunday = false;
-    bool parking = false, airCon = false, kitchen = false, naturalLight = false, aucusticTreatment = false, runningWater = false, storage = false/*, other = false*/;
 
-    if (ViewBag.hasFiltered)
+    bool monday = false, tuesday = false, wednesday = false, thursday = false, friday = false, saturday = false, sunday = false;
+    bool parking = false, airCon = false, kitchen = false, naturalLight = false, aucusticTreatment = false, runningWater = false, storage = false, other = false;
+
+    @* if (ViewBag.hasFiltered)
     {
         monday = ViewBag.monday;
         tuesday = ViewBag.tuesday;
@@ -23,10 +25,9 @@
         aucusticTreatment = ViewBag.aucusticTreatment;
         runningWater = ViewBag.runningWater;
         storage = ViewBag.storage;
-        //other = ViewBag.other;
-    }
+        other = ViewBag.other;
+    }*@
 }
-
 
 <div id="area-and-results" class="">
     <div class="row">
@@ -38,26 +39,44 @@
                         Filter
                     </button>
                     <div class="dropdown-menu">
-                        <form class="px-4 py-3" method="post">
+                        <form class="px-4 py-3" method="get">
+
                             <div class="form-outline mb-4">
                                 <div>
                                     <label for="city">City</label>
                                     <input type="text" class="form-control" name="city" id="city">
                                 </div>
                                 <label for="budgetRange" class="form-label">Max budget</label>  £ <span id="displayBudget">250</span>
-                                <input type="range" class="multi-range form-range" id="budget" name="budget" min="0" max="500" step="1" value="" onchange="myFunction()">
-
-                                <div class="form-check">
-                                    <input class="form-check-input" id="budgetMonth" name="MonthOrWeek" type="radio" value="Month">
-                                    <label class="form-check-label" for="budgetMonth">
-                                        Price per month
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="budgetWeek" name="MonthOrWeek" type="radio" value="Week">
-                                    <label class="form-check-label" for="budgetWeek">
-                                        Price per week
-                                    </label>
+                                <input type="range" class="multi-range form-range" id="price" name="price" min="0" max="500" step="1" value="" onchange="myFunction()">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="budgetMonth" name="monthOrWeek" type="radio" value="Month">
+                                            <label class="form-check-label" for="budgetMonth">
+                                                Price per month
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="budgetWeek" name="monthOrWeek" type="radio" value="Week">
+                                            <label class="form-check-label" for="budgetWeek">
+                                                Price per week
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="offeringLooking" name="offeringLooking" type="radio" value="Offering">
+                                            <label class="form-check-label" for="offeringLooking">
+                                                I want to rent
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="offeringLooking" name="offeringLooking" type="radio" value="Looking">
+                                            <label class="form-check-label" for="offeringLooking">
+                                                I want to offer
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-4">
@@ -90,12 +109,10 @@
                                         @Html.CheckBox("aucusticTreatment", aucusticTreatment) Acoustic Treatment <br />
                                         @Html.CheckBox("runningWater", runningWater) Running Water <br />
                                         @Html.CheckBox("storage", storage) Storage <br />
-                                        @*@Html.CheckBox("other", other) Other <br />*@
+                                        @Html.CheckBox("other", other) Other <br />
 
 
-                                        @*@Html.CheckBox("test", other) Other <br />
-                                        @Html.CheckBox("test", other) Other <br />
-                                        @Html.CheckBox("test", other) Other <br />*@
+
                                         @*<input class="form-check-input" type="checkbox" name="amenitiesList" value="Parking">
                                         <label for="amenitiesList"> Parking space</label><br>
                                         <input class="form-check-input" type="checkbox" name="amenitiesList" value="AirCon">
@@ -111,25 +128,25 @@
                                         <input class="form-check-input" type="checkbox" name="amenitiesList" value="Storage">
                                         <label for="amenitiesList">Storage</label><br>
                                         <input class="form-check-input" type="checkbox" name="amenitiesList" value="Other">
-                                        <label for="amenitiesList">Other</label><br>*@
+                                        <label for="amenitiesList">Other</label><br>
 
-                                        @*<label for="amenitiesList">Other</label>
+                                        <label for="amenitiesList">Other</label>
                                         <input type="text" name="amenitiesList" />*@
 
                                     </div>
                                 </div>
-                                <div class="col d-flex justify-content-center">
-                                    <div class="form-group checkbox">
-                                        <p>Studio is avalible following days:</p>
-                                        @Html.CheckBox("monday", monday) Monday <br />
-                                        @Html.CheckBox("tuesday", tuesday) Tuesday <br />
-                                        @Html.CheckBox("wednesday", wednesday) Wednesday <br />
-                                        @Html.CheckBox("thursday", thursday) Thursday <br />
-                                        @Html.CheckBox("friday", friday) Friday <br />
-                                        @Html.CheckBox("saturday", saturday) Saturday <br />
-                                        @Html.CheckBox("sunday", sunday) Sunday <br />
-                                    </div>
+                                @*<div class="col d-flex justify-content-center">
+                                <div class="form-group checkbox">
+                                <p>Studio is avalible following days:</p>
+                                @Html.CheckBox("monday", monday) Monday <br />
+                                @Html.CheckBox("tuesday", tuesday) Tuesday <br />
+                                @Html.CheckBox("wednesday", wednesday) Wednesday <br />
+                                @Html.CheckBox("thursday", thursday) Thursday <br />
+                                @Html.CheckBox("friday", friday) Friday <br />
+                                @Html.CheckBox("saturday", saturday) Saturday <br />
+                                @Html.CheckBox("sunday", sunday) Sunday <br />
                                 </div>
+                                </div>*@
                             </div>
 
                             <!-- Submit button -->
@@ -156,7 +173,7 @@
 
 <div class="container-fluid flex-grid-container border-0">
     <div class="flex-grid-container justify-content-center">
-        @foreach (var ad in Model)
+        @foreach (var ad in Model.AdvertList)
         {
             if (ad.DatesAndTimes.Days.Monday)
             {
@@ -165,7 +182,7 @@
             <div class="ad-card">
                 <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)">
                     <div>
-                        <img src="/@ad.Description.ImgUrl" class="img-fluid mx-auto ad-image">
+                        <img src="/@(ad.Description.ImgUrl)" class="img-fluid mx-auto ad-image">
                     </div>
                     <div>
                         <p class="fw-bold mb-0 mt-3">@ad.WorkspaceDescription</p>
@@ -182,7 +199,7 @@
 
 <script>
     function myFunction() {
-        var x = document.getElementById("budget").value;
+        var x = document.getElementById("price").value;
         document.getElementById("displayBudget").innerHTML = x;
     }
 </script>
