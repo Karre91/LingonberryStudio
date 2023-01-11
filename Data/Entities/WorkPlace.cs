@@ -22,7 +22,10 @@ namespace LingonberryStudio.Data.Entities
         [AllowNull]
         [NotMapped]
         public IFormFile? FormFile { get; set; }
+
         [Required]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,300}$",
+        ErrorMessage = "Only letters allowed")]
         public string Description { get; set; }
 
         public List<bool> GetList()

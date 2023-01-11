@@ -10,7 +10,12 @@ namespace LingonberryStudio.Data.Entities
         public bool Feet { get; set; }
         public bool Meters { get; set; }
 
-        [AllowNull]
+        //[Required]
+        public string? FeetOrMeters { get; set; }
+
+        //[Required]
+        [RegularExpression(@"^[0-9]{1,6}$",
+        ErrorMessage = "Maximum 6 digits")]
         public int? Number { get; set; }
     }
 }

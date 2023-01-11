@@ -1,4 +1,6 @@
 ﻿@model LingonberryStudio.Data.Entities.Advert
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
 @using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post, new { @class = "frmValidation", @novalidate = "", enctype = "multipart/form-data" }))
 {
@@ -30,12 +32,14 @@
                                 <label asp-for="City">City</label>
                                 <input type="text" class="form-control" asp-for="City"> @*required*@
                                 <span class="invalid-feedback">Please enter city</span>
+                                <span asp-validation-for="City" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label asp-for="Area">Area</label>
                                 <input type="text" class="form-control" asp-for="Area">
+                                <span asp-validation-for="Area" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -46,6 +50,7 @@
                                 <label asp-for="FirstName">First name</label>
                                 <input type="text" asp-for="FirstName" class="form-control "> @*required*@
                                 <span class="invalid-feedback">Please enter first name</span>
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
@@ -53,6 +58,7 @@
                                 <label asp-for="LastName">Last name</label>
                                 <input type="text" asp-for="LastName" class="form-control "> @*required*@
                                 <span class="invalid-feedback">Please enter surname</span>
+                                <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -62,12 +68,14 @@
                                 <label asp-for="Email">Email</label>
                                 <input type="email" asp-for="Email" class="form-control"> @*required*@
                                 <span class="invalid-feedback">Please enter Email</span>
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label asp-for="PhoneNumber">Phone number</label>
                                 <input type="tel" asp-for="PhoneNumber" class="form-control" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -76,6 +84,7 @@
                             <div class="form-group">
                                 <label asp-for="Artist">Artist/Project name</label>
                                 <input type="text" asp-for="Artist" class="form-control" />
+                                <span asp-validation-for="Artist" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
@@ -92,16 +101,19 @@
                                     <option value="Dance Rehersal Studio">Dance Rehersal Studio</option>
                                     <option value="Ceramics Studio">Ceramics Studio</option>
                                     <option value="Painting Studio">Painting Studio</option>
-                                    <option value="Workshop">Workshop</option>
+                                    <option value="Workshop">Workshop</option>                                
                                 </datalist>
-                                <span class="invalid-feedback">Please choose one</span>
+                                <span class="invalid-feedback">Please choose one</span>                   
                             </div>
                         </div>
+                        
                     </div>               
                         <div class="form-group">
                             <label asp-for="Description.WorkPlaceDescription">Description</label>
                             <textarea type="text" placeholder="Please type a short description(Workspace, genre, set-up, background etc)" asp-for="Description.Desc" class="form-control"></textarea> @*required*@
+                            
                             <span class="invalid-feedback">Please enter Description</span>
+                            <span asp-validation-for="Description.Desc" class="text-danger"></span>
                         </div>
                     <div class="col">
                         <div class="form-group">
@@ -113,6 +125,7 @@
                     <div class="form-group">
                         <label asp-for="SocialMedia">Social media</label>
                         <input type="text" class="form-control" asp-for="SocialMedia" />
+                        <span asp-validation-for="SocialMedia" class="text-danger"></span>
                     </div>
                     <div class="row">
                         <div class="col">
@@ -169,6 +182,7 @@
 
                                     <label asp-for="Amenities">Type your own</label><br>
                                     <input type="text" asp-for="@Model.Amenities.Other" />
+                                    <span asp-validation-for="Amenities.Other" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
@@ -180,6 +194,7 @@
                                 <label asp-for="Measurements">Area in square metres</label><br>
                                 <input type="number" asp-for="@Model.Measurements.Number" />
                                 <span class="invalid-feedback">Please tick a box</span>
+                                <span asp-validation-for="Measurements.Number" class="text-danger"></span>
                             </div>
                             <div class="form-group mx-4">
                                 <input id="Start_date_picker" type="date" asp-for="@Model.DatesAndTimes.StartDate">
@@ -242,6 +257,7 @@ $("#Start_date_picker").change(function () {
     $("#End_date_picker").val(""); //clear end date input when start date changes
 });
 </script>
+
 @*<script>
     $(function () {
         Array.prototype.filter.call($('.frmValidation'), function (form) {
@@ -253,5 +269,9 @@ $("#Start_date_picker").change(function () {
                 form.classList.add('was-validated');
             }, false);
         });
-    });</script>
-*@
+    });</script>*@
+<script type="text/javascript">
+    function OnComplete() {
+        $("#formModal").modal("hide");
+    }
+</script>
