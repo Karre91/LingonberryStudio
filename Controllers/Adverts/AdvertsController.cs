@@ -35,80 +35,29 @@ namespace LingonberryStudio.Controllers.Adverts
 
         //[HttpGet("Adverts")]
         //[ActionName("Adverts")]
-        //private List<Advert> GetAdsInDB()
-        //{
-        //    allAdsInDB = _db.Adverts
-        //            .Include(ads => ads.Measurements)
-        //            .Include(ads => ads.Amenities)
-        //            .Include(ads => ads.Budgets)
-        //            .Include(ads => ads.DatesAndTimes)
-        //            .Include(ads => ads.DatesAndTimes.Days)
-        //            .Include(ads => ads.Description)
-        //            .AsNoTracking()
-        //            .ToList();
+        private List<Advert> GetAdsInDB()
+        {
+            allAdsInDB = _db.Adverts
+                    .Include(ads => ads.Amenities)
+                    .Include(ads => ads.Budgets)
+                    .Include(ads => ads.DatesAndTimes)
+                    .Include(ads => ads.DatesAndTimes.Days)
+					.Include(ads => ads.Measurements)
+					.Include(ads => ads.WorkPlaces)
+                    .AsNoTracking()
+                    .ToList();
 
-        //    allAdsInDB = excludeOldAds(allAdsInDB);
+            allAdsInDB = excludeOldAds(allAdsInDB);
 
-        //    return allAdsInDB;
-        //}
-        //public IActionResult Adverts()
-        //{
-        //    AdvertViewMoldel advertViewModel = new();
-        //    advertViewModel.AdvertList = GetAdsInDB();
+            return allAdsInDB;
+        }
 
-        //    //if (TempData["allAdsInDB"] == null)
-        //    //         {
-        //    //             allAdsInDB = GetAdsInDB();
-        //    //             ViewBag.hasFiltered = false;
-        //    //         }
-        //    //         else
-        //    //         {
-        //    //             if (TempData["filteredList"] != null)
-        //    //             {
-        //    //                 var filteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
-
-        //    //                 ViewBag.Total = filteredAds?.Count();
-        //    //                 ViewBag.hasFiltered = true;
-
-        //    //                 ViewBag.monday = TempData["monday"];
-        //    //                 ViewBag.tuesday = TempData["tuesday"];
-        //    //                 ViewBag.wednesday = TempData["wednesday"];
-        //    //                 ViewBag.thursday = TempData["thursday"];
-        //    //                 ViewBag.friday = TempData["friday"];
-        //    //                 ViewBag.saturday = TempData["saturday"];
-        //    //                 ViewBag.sunday = TempData["sunday"];
-
-        //    //                 ViewBag.parking = TempData["parking"];
-        //    //                 ViewBag.airCon = TempData["airCon"];
-        //    //                 ViewBag.kitchen = TempData["kitchen"];
-        //    //                 ViewBag.naturalLight = TempData["naturalLight"];
-        //    //                 ViewBag.aucusticTreatment = TempData["aucusticTreatment"];
-        //    //                 ViewBag.runningWater = TempData["runningWater"];
-        //    //                 ViewBag.storage = TempData["storage"];
-        //    //                 ViewBag.other = TempData["other"];
-
-        //    //                 TempData["filteredList"] = JsonConvert.SerializeObject(filteredAds);
-        //    //                 TempData.Keep("allAdsInDB");
-        //    //                 return View(filteredAds);
-        //    //             }
-
-        //    //             allAdsInDB = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
-        //    //             TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
-        //    //             TempData.Keep("allAdsInDB");
-
-        //    //             ViewBag.hasFiltered = false;
-        //    //         }
-
-
-        //    ViewBag.Total = advertViewModel.AdvertList.Count();
-        //    return View(advertViewModel);
-        //}
 
         [HttpGet]
         public IActionResult Adverts(AdvertViewMoldel a)
         {
             AdvertViewMoldel advertViewModel = new();
-            //advertViewModel.AdvertList = GetAdsInDB();
+            advertViewModel.AdvertList = GetAdsInDB();
 
             //if (a.OfferingLooking != null)
             //{
@@ -116,7 +65,7 @@ namespace LingonberryStudio.Controllers.Adverts
             //    Filter(a);
             //}
 
-            //ViewBag.Total = advertViewModel.AdvertList.Count();
+            ViewBag.Total = advertViewModel.AdvertList.Count();
             return View(advertViewModel);
         }
 
@@ -126,7 +75,7 @@ namespace LingonberryStudio.Controllers.Adverts
             return goalList;
         }
 
-        [HttpGet("AdvertSearch")]
+        //[HttpGet("AdvertSearch")]
         //public IActionResult Search(string city, string search)
         //{
         //    var adverts = new List<Advert>();
@@ -156,33 +105,33 @@ namespace LingonberryStudio.Controllers.Adverts
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult CreateAd(Advert ad)
-        //{
-        //    //var errors = ModelState.Values.SelectMany(v => v.Errors);
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateAd(Advert ad)
+        {
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        ad.City = ad.City?.ToUpper();
+            if (ModelState.IsValid)
+            {
+                //ad.City = ad.City?.ToUpper();
 
-        //        if (ad.Description.formFile != null)
-        //        {
-        //            ad.Description.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Description.formFile.FileName;
-        //            var path = Path.Combine(_Web.WebRootPath, ad.Description.ImgUrl);
-        //            ad.Description.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
-        //        }
-        //        else
-        //        {
-        //            ad.Description.ImgUrl = "StudioImages/handshake.jpg";
-        //        }
-               
-        //        _db.Adverts.Add(ad);
-        //        _db.SaveChanges();
-        //        return RedirectToAction("Adverts");
-        //    }
-        //    //TempData.Remove("allAdsInDB");
-        //    return PartialView("_FormPartial",ad);
-        //}
+                //if (ad.Description.formFile != null)
+                //{
+                //    ad.Description.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Description.formFile.FileName;
+                //    var path = Path.Combine(_Web.WebRootPath, ad.Description.ImgUrl);
+                //    ad.Description.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
+                //}
+                //else
+                //{
+                //    ad.Description.ImgUrl = "StudioImages/handshake.jpg";
+                //}
+
+                _db.Adverts.Add(ad);
+                _db.SaveChanges();
+                return RedirectToAction("Adverts");
+            }
+            //TempData.Remove("allAdsInDB");
+            return PartialView("_FormPartial", ad);
+        }
 
         [HttpGet]
         public IActionResult Filter(AdvertViewMoldel a)

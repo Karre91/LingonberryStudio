@@ -180,10 +180,6 @@
     <div class="flex-grid-container justify-content-center">
         @foreach (var ad in Model.AdvertList)
         {
-            if (ad.DatesAndTimes.Days.Monday)
-            {
-
-            }
             <div class="ad-card">
                 <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertID)">
                     <div>
