@@ -15,13 +15,13 @@ namespace LingonberryStudio.Data.Entities
         public DateTime TimeCreated { get; set; } = DateTime.Now;
 
         //[Required]
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
-        ErrorMessage = "Characters are not allowed.")]
+        [RegularExpression(@"^[a-zA-Z''-'\s-]{1,40}$",
+        ErrorMessage = "Only letters allowed")]
         public string? FirstName { get; set; }
 
         //[Required]
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
-       ErrorMessage = "Characters are not allowed.")]
+        [RegularExpression(@"^[a-zA-Z''-'\s-]{1,40}$",
+       ErrorMessage = "Only letters allowed.")]
         public string? LastName { get; set; }
 
         //[Required]
@@ -43,7 +43,7 @@ namespace LingonberryStudio.Data.Entities
         public string? WorkspaceDescription { get; set; }
 
         //[Required]
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,60}$", 
+        [RegularExpression(@"^[a-zA-Z''-'\s-]{1,60}$", 
          ErrorMessage = "Only letters allowed")]
         public string? City { get; set; }
 
@@ -76,13 +76,11 @@ namespace LingonberryStudio.Data.Entities
         public virtual DatesAndTime DatesAndTimes { get; set; }
 
         [AllowNull]
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
-         ErrorMessage = "Only letters allowed")]
         public string? Artist { get; set; }
 
         [AllowNull]
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
-         ErrorMessage = "Only letters allowed")]
+        //[RegularExpression(@"^[A-Za-z0-9]{1,40}$",
+        // ErrorMessage = "Only letters and digits allowed")]
         public string? SocialMedia { get; set; }
 
         [Display(Name = "Description")]

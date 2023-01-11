@@ -19,9 +19,11 @@
 					<div class="form-group inputField">
 						<input type="text" asp-for="Name" class="form-control" placeholder="Name" required />
 						<span class="invalid-feedback">Please enter your name</span>
+						@Html.ValidationMessageFor(m=>m.Name)
 					</div>
 					<input type="email" asp-for="From" class="form-control" placeholder="Email" required />
 					<span class="invalid-feedback">Please enter your email</span>
+					@Html.ValidationMessageFor(m=>m.From)
 				</div>	
 				<div class="form-group">
 					<input type="text" asp-for="Subject" class="form-control" placeholder="Subject" required />
