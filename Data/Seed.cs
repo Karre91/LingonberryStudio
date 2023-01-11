@@ -34,8 +34,9 @@ namespace LingonberryStudio.Data
                         Area = "EAST",
                         WorkPlaces = new()
                         {
-                            MusicStudio = true,
+                            ArtStudio = true,
 							Description = "Description",
+							ImgUrl = "seedImg/artOffering.jpg"
 						},
                         Amenities = new()
                         {
@@ -92,6 +93,7 @@ namespace LingonberryStudio.Data
                         {
                             PhotoStudio = true,
 							Description = "Description",
+							ImgUrl = "seedImg/photoOffering.jpg"
 						},
                         Amenities = new()
                         {
@@ -148,6 +150,7 @@ namespace LingonberryStudio.Data
                         {
                             CeramicsStudio = true,
 							Description = "Description",
+							ImgUrl = "seedImg/ceramicsOffering.jpg"
 						},
                         Amenities = new()
                         {
@@ -204,6 +207,7 @@ namespace LingonberryStudio.Data
                         {
                             DanceRehersalStudio = true,
 							Description = "Description",
+							ImgUrl = "seedImg/danceOffering.jpg"
 						},
                         Amenities = new()
                         {
@@ -261,6 +265,7 @@ namespace LingonberryStudio.Data
                         {
                             MusicStudio = true,
 							Description = "Description",
+							ImgUrl = "seedImg/musicOffering.jpg"
 						},
                         Amenities = new()
                         {
@@ -317,6 +322,7 @@ namespace LingonberryStudio.Data
                         {
                             PaintingWorkshop = true,
 							Description = "Description",
+							ImgUrl = "seedImg/paintOffering.jpg"
 						},
                         Amenities = new()
                         {
@@ -375,6 +381,7 @@ namespace LingonberryStudio.Data
                         {
                             PhotoStudio = true,
 							Description = "Description",
+							ImgUrl = "seedImg/photoLooking.jpg"
 						},
                         Amenities = new()
                         {
@@ -432,6 +439,7 @@ namespace LingonberryStudio.Data
                         {
                             ArtStudio = true,
 							Description = "Description",
+							ImgUrl = "seedImg/artLooking.jpg"
 						},
                         Amenities = new()
                         {
@@ -489,6 +497,7 @@ namespace LingonberryStudio.Data
                         {
                             CeramicsStudio = true,
 							Description = "Description",
+							ImgUrl = "seedImg/ceramicsLooking.jpg"
 						},
                         Amenities = new()
                         {
@@ -546,6 +555,7 @@ namespace LingonberryStudio.Data
                         {
                             DanceRehersalStudio = true,
 							Description = "Description",
+							ImgUrl = "seedImg/danceLooking.jpg"
 						},
                         Amenities = new()
                         {
@@ -603,6 +613,7 @@ namespace LingonberryStudio.Data
                         {
                             MusicStudio = true,
 							Description = "Description",
+							ImgUrl = "seedImg/musicLooking.jpg"
 						},
                         Amenities = new()
                         {
@@ -660,6 +671,7 @@ namespace LingonberryStudio.Data
                         {
                             PaintingWorkshop = true,
 							Description = "Description",
+							ImgUrl = "seedImg/paintLooking.jpg"
 						},
                         Amenities = new()
                         {
@@ -718,6 +730,7 @@ namespace LingonberryStudio.Data
                         {
                             OtherStudio = "Yoga Studio",
 							Description = "Description",
+							ImgUrl = "seedImg/yogaOffering.jpg"
 						},
                         Amenities = new()
                         {
@@ -774,6 +787,7 @@ namespace LingonberryStudio.Data
                         {
                             OtherStudio = "Darkroom",
 							Description = "Description",
+							ImgUrl = "seedImg/darkroom.jpg"
 						},
                         Amenities = new()
                         {
@@ -830,6 +844,7 @@ namespace LingonberryStudio.Data
                         {
                             OtherStudio = "Film Studio",
                             Description = "Description",
+                            ImgUrl = "seedImg/film.jpg"
                         },
                         Amenities = new()
                         {
