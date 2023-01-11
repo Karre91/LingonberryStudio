@@ -4,12 +4,8 @@
 
 
 @{
-
     //bool monday = false, tuesday = false, wednesday = false, thursday = false, friday = false, saturday = false, sunday = false;
     //bool parking = false, airCon = false, kitchen = false, naturalLight = false, aucusticTreatment = false, runningWater = false, storage = false, other = false;
-
-
-
 
     @* if (ViewBag.hasFiltered)
     {
@@ -48,35 +44,35 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-check" style="float:right">
-                                            @Html.RadioButtonFor(m => m.OfferingLooking, "Offering") I want to rent
+                                            @Html.RadioButtonFor(m => m.Filter.Offering, true) I want to rent
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-check" style="float:left">
-                                            @Html.RadioButtonFor(m => m.OfferingLooking, "Looking") I want to offer
+                                            @Html.RadioButtonFor(m => m.Filter.Looking, true) I want to offer
                                         </div>
                                     </div>
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div>
-                                    @Html.TextBoxFor(m => m.City, "", new { @class = "form-control", placeholder = "City" })
+                                    @Html.TextBoxFor(m => m.Filter.City, "", new { @class = "form-control", placeholder = "City" })
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row">
                                     <div class="col" onclick="ableRange()">
                                         <div class="form-check">
-                                            @Html.RadioButtonFor(m => m.MonthOrWeek, "Month") Month
+                                            @Html.RadioButtonFor(m => m.Filter.Budgets.Month, true) Month
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-check">
-                                            @Html.RadioButtonFor(m => m.MonthOrWeek, "Week") Week
+                                            @Html.RadioButtonFor(m => m.Filter.Budgets.Week, true) Week
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label for="budgetRange" class="form-label">Max budget £ <span id="displayBudget"></span></label>
-                                    <input type="range" class="multi-range form-range" id="Budget" name="Budget" min="0" max="500" step="1" onchange="myFunction()" disabled>
+                                    @*<label for="budgetRange" class="form-label">Max budget £ <span id="displayBudget"></span></label>
+                                    <input type="range" class="multi-range form-range" id="Budget" name="Budget" min="0" max="500" step="1" onchange="myFunction()" disabled>*@
                                 </div>
                             </div>
                             <div class="row mb-4">
@@ -111,8 +107,8 @@
                                     <div class="col d-flex justify-content-center">
                                         <div class="form-group checkbox">
                                             <p>Amenities</p>
-                                            @Html.CheckBoxFor(m => m.Parking, true) Parking <br />
-                                            @Html.CheckBoxFor(m => m.AirCon, true) Air conditioning <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Amenities.Parking, true) Parking <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Amenities.AirCon, true) Air conditioning <br />
                                             @*//@Html.CheckBoxFor("kitchen", kitchen) Kitchen <br />
                                             //@Html.CheckBoxFor("naturalLight", naturalLight) Natural Light <br />
                                             //@Html.CheckBoxFor("aucusticTreatment", aucusticTreatment) Acoustic Treatment <br />
@@ -189,14 +185,14 @@
 
             }
             <div class="ad-card">
-                <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)">
+                <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertID)">
                     <div>
-                        <img src="/@(ad.Description.ImgUrl)" class="img-fluid mx-auto ad-image">
+                        <img src="/@(ad.WorkPlaces.ImgUrl)" class="img-fluid mx-auto ad-image">
                     </div>
                     <div>
-                        <p class="fw-bold mb-0 mt-3">@ad.WorkspaceDescription</p>
+                        <p class="fw-bold mb-0 mt-3">@ad.WorkPlaces.DanceRehersalStudio</p>
                         <p class="mb-0">@ad.City</p>
-                        <p>£@ad.Budgets.Price/@ad.Budgets.MonthOrWeek</p>
+                        <p>£@ad.Budgets.Price/</p> @*@ad.Budgets.MonthOrWeek*@
 
                     </div>
                 </a>

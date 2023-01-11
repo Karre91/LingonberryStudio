@@ -13,14 +13,14 @@
         @foreach (var ad in Model)
         {
             <div class="ad-card">
-                <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertId)">
+                <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertID)">
                     <div>
-                        <img src="/@ad.Description.ImgUrl" class="img-fluid mx-auto ad-image">
+                        <img src="/@ad.WorkPlaces.ImgUrl" class="img-fluid mx-auto ad-image">
                     </div>
                     <div>
-                        <p class="fw-bold mb-0 mt-3">@ad.WorkspaceDescription</p>
+                        <p class="fw-bold mb-0 mt-3">@ad.WorkPlaces.Description</p>
                         <p class="mb-0">@ad.City</p>
-                        <p>£@ad.Budgets.Price/@ad.Budgets.MonthOrWeek</p>
+                        <p>£@ad.Budgets.Price/</p>@*@ad.Budgets.MonthOrWeek*@
 
                     </div>
                 </a>

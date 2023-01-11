@@ -14,7 +14,7 @@ namespace LingonberryStudio.Controllers.Contact
 
 
         [HttpPost]
-        public IActionResult Contact(LingonberryStudio.Models.gmail _objModelMail)
+        public IActionResult Contact(LingonberryStudio.Models.Gmail _objModelMail)
         {
             _objModelMail.To = "lingonberrystudio@gmail.com";
             if (ModelState.IsValid)

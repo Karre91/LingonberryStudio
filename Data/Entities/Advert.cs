@@ -68,7 +68,7 @@ namespace LingonberryStudio.Data.Entities
         public virtual Amenity Amenities { get; set; }
 
         [Display(Name = "Budget")]
-        public virtual int BudgetId { get; set; }
+        public virtual int BudgetID { get; set; }
         [ForeignKey("BudgetID")]
         public virtual Budget Budgets { get; set; }
 
@@ -80,12 +80,6 @@ namespace LingonberryStudio.Data.Entities
         public virtual int DatesAndTimeID { get; set; }
         [ForeignKey("DatesAndTimeID")]
         public virtual DatesAndTime DatesAndTimes { get; set; }
-
-        [Display(Name = "Description")]
-        public virtual int DescriptionID { get; set; }
-
-        [ForeignKey("DescriptionID")]
-        public virtual Description Description { get; set; }
     }
 }
 

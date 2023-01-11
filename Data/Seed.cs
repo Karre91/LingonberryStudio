@@ -28,10 +28,15 @@ namespace LingonberryStudio.Data
                         LastName = "Eurenius",
                         Email = "kleurenius@gmail.com",
                         PhoneNumber = 0707310791,
-                        OfferingLooking = "Offering",
-                        WorkspaceDescription = "Photo Studio",
+                        Offering = true,
+                        Looking = false,
                         City = "LONDON",
                         Area = "EAST",
+                        WorkPlaces = new()
+                        {
+                            MusicStudio = true,
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = false,
@@ -45,12 +50,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 80,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square metres",
+                            Meters = true,
                             Number = 40,
                         },
                         DatesAndTimes = new()
@@ -71,12 +76,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = "KarinSjunger",
-                        SocialMedia = "@instagram KarinSjunger",
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/photoOffering.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = "@instagram KarinSjunger"
                     },
                     new Advert()
                     {
@@ -85,10 +85,14 @@ namespace LingonberryStudio.Data
                         LastName = "Banan",
                         Email = "allan4twin@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Offering",
-                        WorkspaceDescription = "Art Studio",
+                        Offering = true,
                         City = "STOCKHOLM",
                         Area = "SOLNA",
+                        WorkPlaces = new()
+                        {
+                            PhotoStudio = true,
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = false,
@@ -102,12 +106,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 100,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square feet",
+                            Feet = true,
                             Number = 90,
                         },
                         DatesAndTimes = new()
@@ -128,12 +132,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = null,
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/artOffering.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     },
                     new Advert()
                     {
@@ -142,10 +141,14 @@ namespace LingonberryStudio.Data
                         LastName = "Unefäldt",
                         Email = "jossebosse@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Offering",
-                        WorkspaceDescription = "Ceramics Studio",
+                        Offering = true,
                         City = "LONDON",
                         Area = "HACKNEY",
+                        WorkPlaces = new()
+                        {
+                            CeramicsStudio = true,
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = false,
@@ -159,12 +162,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 100,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square feet",
+                            Feet = true,
                             Number = 90,
                         },
                         DatesAndTimes = new()
@@ -185,12 +188,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = null,
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/ceramicsOffering.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     },
                     new Advert()
                     {
@@ -199,10 +197,14 @@ namespace LingonberryStudio.Data
                         LastName = "Josefsson",
                         Email = "test@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Offering",
-                        WorkspaceDescription = "Dance Rehersal Studio",
+                        Offering = true,
                         City = "GOTHENBURG",
                         Area = "MOLNDAL",
+                        WorkPlaces = new()
+                        {
+                            DanceRehersalStudio = true,
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = true,
@@ -216,12 +218,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 150,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square meters",
+                            Feet = true,
                             Number = 120,
                         },
                         DatesAndTimes = new()
@@ -242,12 +244,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = null,
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/danceOffering.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     }
                     ,
                     new Advert()
@@ -257,10 +254,14 @@ namespace LingonberryStudio.Data
                         LastName = "Andersson",
                         Email = "test@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Offering",
-                        WorkspaceDescription = "Music Studio",
+                        Offering = true,
                         City = "CARDIFF",
                         Area = "CENTER",
+                        WorkPlaces = new()
+                        {
+                            MusicStudio = true,
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = false,
@@ -274,12 +275,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Week",
+                            Week = true,
                             Price = 30,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square meters",
+                            Meters = true,
                             Number = 80,
                         },
                         DatesAndTimes = new()
@@ -300,12 +301,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = "Madonna",
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/musicOffering.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     },
                     new Advert()
                     {
@@ -314,10 +310,14 @@ namespace LingonberryStudio.Data
                         LastName = "Jansson",
                         Email = "test@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Offering",
-                        WorkspaceDescription = "Paint Studio",
+                        Offering = true,
                         City = "BRISTOL",
                         Area = "",
+                        WorkPlaces = new()
+                        {
+                            PaintingWorkshop = true,
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = true,
@@ -331,12 +331,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 50,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square feet",
+                            Feet = true,
                             Number = 30,
                         },
                         DatesAndTimes = new()
@@ -357,12 +357,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = null,
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/paintOffering.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     }
                     ,
                     // ALL LOOKING
@@ -373,10 +368,14 @@ namespace LingonberryStudio.Data
                         LastName = "Eurenius",
                         Email = "kleurenius@gmail.com",
                         PhoneNumber = 0707310791,
-                        OfferingLooking = "Looking",
-                        WorkspaceDescription = "Photo Studio",
+                        Looking = true,
                         City = "LONDON",
                         Area = "EAST",
+                        WorkPlaces = new()
+                        {
+                            PhotoStudio = true,
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = false,
@@ -390,12 +389,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 80,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square metres",
+                            Feet = true,
                             Number = 40,
                         },
                         DatesAndTimes = new()
@@ -416,12 +415,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = "KarinSjunger",
-                        SocialMedia = "@instagram KarinSjunger",
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/photoLooking.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = "@instagram KarinSjunger"
                     }
                     ,
                     new Advert()
@@ -431,10 +425,14 @@ namespace LingonberryStudio.Data
                         LastName = "Banan",
                         Email = "allan4twin@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Looking",
-                        WorkspaceDescription = "Art Studio",
+                        Looking = true,
                         City = "STOCKHOLM",
                         Area = "SOLNA",
+                        WorkPlaces = new()
+                        {
+                            ArtStudio = true,
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = false,
@@ -448,12 +446,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 100,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square feet",
+                            Feet = true,
                             Number = 90,
                         },
                         DatesAndTimes = new()
@@ -474,12 +472,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = null,
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/artLooking.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     }
                     ,
                     new Advert()
@@ -489,10 +482,14 @@ namespace LingonberryStudio.Data
                         LastName = "Unefäldt",
                         Email = "jossebosse@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Looking",
-                        WorkspaceDescription = "Ceramics Studio",
+                        Looking = true,
                         City = "LONDON",
                         Area = "HACKNEY",
+                        WorkPlaces = new()
+                        {
+                            CeramicsStudio = true,
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = false,
@@ -506,12 +503,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 100,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square feet",
+                            Feet = true,
                             Number = 90,
                         },
                         DatesAndTimes = new()
@@ -532,12 +529,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = null,
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/ceramicsLooking.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     }
                     ,
                     new Advert()
@@ -547,10 +539,14 @@ namespace LingonberryStudio.Data
                         LastName = "Josefsson",
                         Email = "test@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Looking",
-                        WorkspaceDescription = "Dance Rehersal Studio",
+                        Looking = true,
                         City = "GOTHENBURG",
                         Area = "MOLNDAL",
+                        WorkPlaces = new()
+                        {
+                            DanceRehersalStudio = true,
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = true,
@@ -564,12 +560,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 150,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square meters",
+                            Meters = true,
                             Number = 120,
                         },
                         DatesAndTimes = new()
@@ -590,12 +586,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = null,
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/danceLooking.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     }
                     ,
                     new Advert()
@@ -605,10 +596,14 @@ namespace LingonberryStudio.Data
                         LastName = "Andersson",
                         Email = "test@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Looking",
-                        WorkspaceDescription = "Music Studio",
+                        Looking = true,
                         City = "CARDIFF",
                         Area = "CENTER",
+                        WorkPlaces = new()
+                        {
+                            MusicStudio = true,
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = false,
@@ -622,12 +617,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Week",
+                            Week = true,
                             Price = 20,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square meters",
+                            Meters = true,
                             Number = 80,
                         },
                         DatesAndTimes = new()
@@ -648,12 +643,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = "Madonna",
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/musicLooking.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     }
                     ,
                     new Advert()
@@ -663,10 +653,14 @@ namespace LingonberryStudio.Data
                         LastName = "Jansson",
                         Email = "test@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Looking",
-                        WorkspaceDescription = "Paint Studio",
+                        Looking = true,
                         City = "BRISTOL",
                         Area = "",
+                        WorkPlaces = new()
+                        {
+                            PaintingWorkshop = true,
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = true,
@@ -680,12 +674,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 50,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square feet",
+                            Feet = true,
                             Number = 30,
                         },
                         DatesAndTimes = new()
@@ -706,12 +700,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = null,
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/paintLooking.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     }
                     ,
                     // ALL OTHERS
@@ -722,10 +711,14 @@ namespace LingonberryStudio.Data
                         LastName = "Andersson",
                         Email = "test@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Offering",
-                        WorkspaceDescription = "Yoga Studio",
+                        Offering = true,
                         City = "CARDIFF",
                         Area = "CENTER",
+                        WorkPlaces = new()
+                        {
+                            OtherStudio = "Yoga Studio",
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = false,
@@ -739,12 +732,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 200,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square meters",
+                            Meters = true,
                             Number = 80,
                         },
                         DatesAndTimes = new()
@@ -765,12 +758,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = null,
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/yogaOffering.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     },
                     new Advert()
                     {
@@ -779,10 +767,14 @@ namespace LingonberryStudio.Data
                         LastName = "Andersson",
                         Email = "test@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Offering",
-                        WorkspaceDescription = "Darkroom",
+                        Offering = true,
                         City = "LONDON",
                         Area = "CENTER",
+                        WorkPlaces = new()
+                        {
+                            OtherStudio = "Darkroom",
+							Description = "Description",
+						},
                         Amenities = new()
                         {
                             Parking = false,
@@ -796,12 +788,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 200,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square meters",
+                            Meters = true,
                             Number = 40,
                         },
                         DatesAndTimes = new()
@@ -822,12 +814,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = null,
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/darkroom.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     },
                     new Advert()
                     {
@@ -836,10 +823,14 @@ namespace LingonberryStudio.Data
                         LastName = "Andersson",
                         Email = "test@gmail.com",
                         PhoneNumber = 123456789,
-                        OfferingLooking = "Looking",
-                        WorkspaceDescription = "Film Studio",
+                        Looking = true,
                         City = "LONDON",
                         Area = "SOUTH",
+                        WorkPlaces = new()
+                        {
+                            OtherStudio = "Film Studio",
+                            Description = "Description",
+                        },
                         Amenities = new()
                         {
                             Parking = false,
@@ -853,12 +844,12 @@ namespace LingonberryStudio.Data
                         },
                         Budgets = new()
                         {
-                            MonthOrWeek = "Month",
+                            Month = true,
                             Price = 200,
                         },
                         Measurements = new()
                         {
-                            FeetOrMeters = "Square meters",
+                            Meters = true,
                             Number = 80,
                         },
                         DatesAndTimes = new()
@@ -879,12 +870,7 @@ namespace LingonberryStudio.Data
                             },
                         },
                         Artist = null,
-                        SocialMedia = null,
-                        Description = new()
-                        {
-                            ImgUrl = "seedImg/film.jpg",
-                            Desc = "Lorem ipsum dolor sit amet, volumus omittantur reformidans sit id, in homero ridens duo, verterem singulis pro no. Vim offendit tractatos eu. Ea magna audiam pro. Eu has alii adversarium. Ignota necessitatibus eu pri, vix id eius platonem.\r\n\r\nMea vidit epicuri intellegam an, elit molestie an pro. Vim aeterno indoctum ut, vel putent lucilius mandamus ei. Ex zril dolorum voluptatum eam. Lorem graece his te, ad diam congue eos. Primis vituperata necessitatibus vix an."
-                        }
+                        SocialMedia = null
                     }
                     );
 

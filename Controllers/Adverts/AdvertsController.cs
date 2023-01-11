@@ -35,24 +35,22 @@ namespace LingonberryStudio.Controllers.Adverts
 
         //[HttpGet("Adverts")]
         //[ActionName("Adverts")]
-        private List<Advert> GetAdsInDB()
-        {
-            allAdsInDB = _db.Adverts
-                    .Include(ads => ads.Measurements)
-                    .Include(ads => ads.Amenities)
-                    .Include(ads => ads.Budgets)
-                    .Include(ads => ads.DatesAndTimes)
-                    .Include(ads => ads.DatesAndTimes.Days)
-                    .Include(ads => ads.Description)
-                    .AsNoTracking()
-                    .ToList();
+        //private List<Advert> GetAdsInDB()
+        //{
+        //    allAdsInDB = _db.Adverts
+        //            .Include(ads => ads.Measurements)
+        //            .Include(ads => ads.Amenities)
+        //            .Include(ads => ads.Budgets)
+        //            .Include(ads => ads.DatesAndTimes)
+        //            .Include(ads => ads.DatesAndTimes.Days)
+        //            .Include(ads => ads.Description)
+        //            .AsNoTracking()
+        //            .ToList();
 
-            allAdsInDB = excludeOldAds(allAdsInDB);
-            //TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
-            //TempData.Keep("allAdsInDB");
+        //    allAdsInDB = excludeOldAds(allAdsInDB);
 
-            return allAdsInDB;
-        }
+        //    return allAdsInDB;
+        //}
         //public IActionResult Adverts()
         //{
         //    AdvertViewMoldel advertViewModel = new();
@@ -110,13 +108,13 @@ namespace LingonberryStudio.Controllers.Adverts
         public IActionResult Adverts(AdvertViewMoldel a)
         {
             AdvertViewMoldel advertViewModel = new();
-            advertViewModel.AdvertList = GetAdsInDB();
+            //advertViewModel.AdvertList = GetAdsInDB();
 
-            if (a.OfferingLooking != null)
-            {
-                advertViewModel.OfferingLooking = a.OfferingLooking;
-                Filter(a);
-            }
+            //if (a.OfferingLooking != null)
+            //{
+            //    advertViewModel.OfferingLooking = a.OfferingLooking;
+            //    Filter(a);
+            //}
 
             //ViewBag.Total = advertViewModel.AdvertList.Count();
             return View(advertViewModel);
@@ -129,28 +127,28 @@ namespace LingonberryStudio.Controllers.Adverts
         }
 
         [HttpGet("AdvertSearch")]
-        public IActionResult Search(string city, string search)
-        {
-            var adverts = new List<Advert>();
-            if (TempData["allAdsInDB"] == null)
-            {
-                var allAds = GetAdsInDB();
-            }
-            else
-            {
-                var allAdsInDB = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
-                if (city == null)
-                {
-                    adverts = allAdsInDB.Where(ad => ad.OfferingLooking == search).ToList();
-                }
-                else
-                {
-                    adverts = allAdsInDB.Where(ad => ad.OfferingLooking == search && ad.City == city).ToList();
-                }
-            }
+        //public IActionResult Search(string city, string search)
+        //{
+        //    var adverts = new List<Advert>();
+        //    if (TempData["allAdsInDB"] == null)
+        //    {
+        //        var allAds = GetAdsInDB();
+        //    }
+        //    else
+        //    {
+        //        var allAdsInDB = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
+        //        if (city == null)
+        //        {
+        //            adverts = allAdsInDB.Where(ad => ad.OfferingLooking == search).ToList();
+        //        }
+        //        else
+        //        {
+        //            adverts = allAdsInDB.Where(ad => ad.OfferingLooking == search && ad.City == city).ToList();
+        //        }
+        //    }
 
-            return View(adverts);
-        }
+        //    return View(adverts);
+        //}
 
         public IActionResult Form()
         {
@@ -159,32 +157,32 @@ namespace LingonberryStudio.Controllers.Adverts
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult CreateAd(Advert ad)
-        {
-            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+        //public IActionResult CreateAd(Advert ad)
+        //{
+        //    //var errors = ModelState.Values.SelectMany(v => v.Errors);
 
-            if (ModelState.IsValid)
-            {
-                ad.City = ad.City?.ToUpper();
+        //    if (ModelState.IsValid)
+        //    {
+        //        ad.City = ad.City?.ToUpper();
 
-                if (ad.Description.formFile != null)
-                {
-                    ad.Description.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Description.formFile.FileName;
-                    var path = Path.Combine(_Web.WebRootPath, ad.Description.ImgUrl);
-                    ad.Description.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
-                }
-                else
-                {
-                    ad.Description.ImgUrl = "StudioImages/handshake.jpg";
-                }
+        //        if (ad.Description.formFile != null)
+        //        {
+        //            ad.Description.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Description.formFile.FileName;
+        //            var path = Path.Combine(_Web.WebRootPath, ad.Description.ImgUrl);
+        //            ad.Description.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
+        //        }
+        //        else
+        //        {
+        //            ad.Description.ImgUrl = "StudioImages/handshake.jpg";
+        //        }
                
-                _db.Adverts.Add(ad);
-                _db.SaveChanges();
-                return RedirectToAction("Adverts");
-            }
-            //TempData.Remove("allAdsInDB");
-            return PartialView("_FormPartial",ad);
-        }
+        //        _db.Adverts.Add(ad);
+        //        _db.SaveChanges();
+        //        return RedirectToAction("Adverts");
+        //    }
+        //    //TempData.Remove("allAdsInDB");
+        //    return PartialView("_FormPartial",ad);
+        //}
 
         [HttpGet]
         public IActionResult Filter(AdvertViewMoldel a)
@@ -202,27 +200,27 @@ namespace LingonberryStudio.Controllers.Adverts
             //    }
             //}
 
-            if (a.City != null) { a.City = a.City.ToUpper(); }
-            int weekBud = 0, monthBud = 0;
-            if (a.MonthOrWeek == "Month") { weekBud = a.Budget / 4; monthBud = a.Budget; }
-            if (a.MonthOrWeek == "Week") { monthBud = a.Budget * 4; weekBud = a.Budget; }
+            //if (a.City != null) { a.City = a.City.ToUpper(); }
+            //int weekBud = 0, monthBud = 0;
+            //if (a.MonthOrWeek == "Month") { weekBud = a.Budget / 4; monthBud = a.Budget; }
+            //if (a.MonthOrWeek == "Week") { monthBud = a.Budget * 4; weekBud = a.Budget; }
 
-            var cityFilter = _db.Adverts    
-                .Where(ad => ad.Amenities.Parking == a.Parking)
-                .Where(ad => ad.OfferingLooking == a.OfferingLooking || a.OfferingLooking == null)
-                .Where(ad => ad.City != null && ad.City == a.City || a.City == null)
-                .Where(ad => ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Month" && ad.Budgets.Price <= monthBud
-                || ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Week" && ad.Budgets.Price <= weekBud
-                || a.MonthOrWeek == null)
+            //var cityFilter = _db.Adverts    
+            //    .Where(ad => ad.Amenities.Parking == a.Parking)
+            //    .Where(ad => ad.OfferingLooking == a.OfferingLooking || a.OfferingLooking == null)
+            //    .Where(ad => ad.City != null && ad.City == a.City || a.City == null)
+            //    .Where(ad => ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Month" && ad.Budgets.Price <= monthBud
+            //    || ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Week" && ad.Budgets.Price <= weekBud
+            //    || a.MonthOrWeek == null)
 
-                .Include(ads => ads.Measurements)
-                    .Include(ads => ads.Amenities)
-                    .Include(ads => ads.Budgets)
-                    .Include(ads => ads.DatesAndTimes)
-                    .Include(ads => ads.DatesAndTimes.Days)
-                    .Include(ads => ads.Description)
-                    .AsNoTracking()
-                    .ToList();
+            //    .Include(ads => ads.Measurements)
+            //        .Include(ads => ads.Amenities)
+            //        .Include(ads => ads.Budgets)
+            //        .Include(ads => ads.DatesAndTimes)
+            //        .Include(ads => ads.DatesAndTimes.Days)
+            //        .Include(ads => ads.Description)
+            //        .AsNoTracking()
+            //        .ToList();
 
 
             return RedirectToAction("Adverts", "Adverts");
@@ -245,98 +243,98 @@ namespace LingonberryStudio.Controllers.Adverts
 
         }
 
-        private List<Advert> filterByCity(string city/*, List<Advert> originalList, List<Advert> goalList*/)
-        {
-            if (city != null)
-            {
-                city = city.ToUpper();
-            }
+        //private List<Advert> filterByCity(string city/*, List<Advert> originalList, List<Advert> goalList*/)
+        //{
+        //    if (city != null)
+        //    {
+        //        city = city.ToUpper();
+        //    }
 
-            //var cityFilter = _db.Adverts.Where(ad => ad.City != null && ad.City == city || ad.City == null)
-            //    .Select(ad => new
-            //    {
-            //        Measurement = ad.Measurements,
-            //        Amenities = ad.Amenities,
-            //        Budgets = ad.Budgets,
-            //        DatesAndTimes = ad.DatesAndTimes,
-            //        Days = ad.DatesAndTimes.Days,
-            //        Descriptions = ad.Description
-            //    })
-            //    .AsNoTracking()
-            //        .ToList();
+        //    //var cityFilter = _db.Adverts.Where(ad => ad.City != null && ad.City == city || ad.City == null)
+        //    //    .Select(ad => new
+        //    //    {
+        //    //        Measurement = ad.Measurements,
+        //    //        Amenities = ad.Amenities,
+        //    //        Budgets = ad.Budgets,
+        //    //        DatesAndTimes = ad.DatesAndTimes,
+        //    //        Days = ad.DatesAndTimes.Days,
+        //    //        Descriptions = ad.Description
+        //    //    })
+        //    //    .AsNoTracking()
+        //    //        .ToList();
 
 
 
-            var cityFilter = _db.Adverts.Where(ad => ad.City != null && ad.City == city || ad.City == null)
-                    .Include(ads => ads.Measurements)
-                    .Include(ads => ads.Amenities)
-                    .Include(ads => ads.Budgets)
-                    .Include(ads => ads.DatesAndTimes)
-                    .Include(ads => ads.DatesAndTimes.Days)
-                    .Include(ads => ads.Description)
-                    .AsNoTracking()
-                    .ToList();
+        //    var cityFilter = _db.Adverts.Where(ad => ad.City != null && ad.City == city || ad.City == null)
+        //            .Include(ads => ads.Measurements)
+        //            .Include(ads => ads.Amenities)
+        //            .Include(ads => ads.Budgets)
+        //            .Include(ads => ads.DatesAndTimes)
+        //            .Include(ads => ads.DatesAndTimes.Days)
+        //            .Include(ads => ads.Description)
+        //            .AsNoTracking()
+        //            .ToList();
 
-            return cityFilter;
-        }
+        //    return cityFilter;
+        //}
 
         private List<Advert> filterByBudget(string MonthOrWeek, int budget, List<Advert> originalList, List<Advert> goalList)
         {
-            if (MonthOrWeek != null)
-            {
-                List<Advert> tempList = new();
-                if (goalList.Count > 0) { tempList = goalList; }
-                else { tempList = originalList; }
+            //if (MonthOrWeek != null)
+            //{
+            //    List<Advert> tempList = new();
+            //    if (goalList.Count > 0) { tempList = goalList; }
+            //    else { tempList = originalList; }
 
-                //FIX NEEDED
-                int weekBud = 0;
-                int monthBud = 0;
-                if (MonthOrWeek == "Month")
-                {
-                    weekBud = budget / 4;
-                    goalList = tempList.Where(a => a.Budgets.MonthOrWeek == ("Month")
-                        && budget >= a.Budgets.Price
-                        || a.Budgets.MonthOrWeek == ("Week")
-                        && weekBud >= a.Budgets.Price).ToList();
-                }
-                if (MonthOrWeek == "Week")
-                {
-                    monthBud = budget * 4;
-                    goalList = tempList.Where(a => a.Budgets.MonthOrWeek == ("Month")
-                    && monthBud >= a.Budgets.Price
-                    || a.Budgets.MonthOrWeek == ("Week")
-                    && budget >= a.Budgets.Price).ToList();
-                }
-            }
+            //    //FIX NEEDED
+            //    int weekBud = 0;
+            //    int monthBud = 0;
+            //    if (MonthOrWeek == "Month")
+            //    {
+            //        weekBud = budget / 4;
+            //        goalList = tempList.Where(a => a.Budgets.MonthOrWeek == ("Month")
+            //            && budget >= a.Budgets.Price
+            //            || a.Budgets.MonthOrWeek == ("Week")
+            //            && weekBud >= a.Budgets.Price).ToList();
+            //    }
+            //    if (MonthOrWeek == "Week")
+            //    {
+            //        monthBud = budget * 4;
+            //        goalList = tempList.Where(a => a.Budgets.MonthOrWeek == ("Month")
+            //        && monthBud >= a.Budgets.Price
+            //        || a.Budgets.MonthOrWeek == ("Week")
+            //        && budget >= a.Budgets.Price).ToList();
+            //    }
+            //}
 
             return goalList;
         }
 
         private List<Advert> filterByWorkplace(ICollection<string> workplaceList, List<Advert> originalList, List<Advert> goalList)
         {
-            if (workplaceList.Count > 0)
-            {
-                List<string> notOther = new List<string>()
-                {
-                "Music Studio", "Art Studio", "Photo Studio", "Dance Rehersal Studio",
-                "Ceramics Studio", "Painting Workshop"
-                };
-                List<Advert> tempList = new();
-                if (goalList.Count > 0) { tempList = goalList; }
-                else { tempList = originalList; }
+            //if (workplaceList.Count > 0)
+            //{
+            //    List<string> notOther = new List<string>()
+            //    {
+            //    "Music Studio", "Art Studio", "Photo Studio", "Dance Rehersal Studio",
+            //    "Ceramics Studio", "Painting Workshop"
+            //    };
+            //    List<Advert> tempList = new();
+            //    if (goalList.Count > 0) { tempList = goalList; }
+            //    else { tempList = originalList; }
 
-                foreach (var studio in workplaceList)
-                {
-                    if (studio != "Other")
-                    {
-                        goalList = tempList.Where(w => w.WorkspaceDescription == studio).ToList();
-                    }
-                    else
-                    {
-                        goalList = tempList.Where(f1 => notOther.All(f2 => f2 != f1.WorkspaceDescription)).ToList();
-                    }
-                }
-            }
+            //    foreach (var studio in workplaceList)
+            //    {
+            //        if (studio != "Other")
+            //        {
+            //            goalList = tempList.Where(w => w.WorkspaceDescription == studio).ToList();
+            //        }
+            //        else
+            //        {
+            //            goalList = tempList.Where(f1 => notOther.All(f2 => f2 != f1.WorkspaceDescription)).ToList();
+            //        }
+            //    }
+            //}
             return goalList;
         }
 

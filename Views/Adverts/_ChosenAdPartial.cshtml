@@ -1,18 +1,18 @@
 ﻿@using LingonberryStudio.Data.Entities
 @model Advert
 
-<div class="modal fade" id="adModal-@Model.AdvertId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+@*<div class="modal fade" id="adModal-@Model.AdvertID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle"> @Model.WorkspaceDescription </h5>
+				<h5 class="modal-title" id="exampleModalLongTitle"> @Model.WorkPlaces.Description </h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
 				<div>
-					<img src="/@Model.Description.ImgUrl" class="img-fluid mx-auto ad-image center">
+					<img src="/@Model.WorkPlaces.ImgUrl" class="img-fluid mx-auto ad-image center">
 				</div>
 				@if (Model.OfferingLooking == "offering")
 				{
@@ -94,14 +94,14 @@
 					@if (Model.Amenities.AcousticTreatment)
 					{
 						<p class="form-text-style">Acoustic Treatment</p> <br />
-						@*@if (ViewBag.aucusticTreatment != null)
+						@if (ViewBag.aucusticTreatment != null)
 						{
 							<p class="form-text-style"><b><u>Acoustic Treatment</u></b></p> <br />
 						}
 						else
 						{
 						
-						}*@						
+						}			
 					}
 					@if (Model.Amenities.NaturalLight)
 					{
@@ -179,4 +179,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>*@
