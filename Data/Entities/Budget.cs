@@ -5,12 +5,15 @@ namespace LingonberryStudio.Data.Entities
 	public class Budget
 	{
 		[Key]
-		public int BudgetId { get; set; }
+		public int BudgetID { get; set; }
 
-		//[Required]
-		public string? MonthOrWeek { get; set; }
+        [Required]
+        public bool Month { get; set; }
 
-		//[Required]
-		public int? Price { get; set; }
+        [Required]
+        public bool Week { get; set; }
+
+        [Required]
+		public int Price { get; set; }
 	}
 }

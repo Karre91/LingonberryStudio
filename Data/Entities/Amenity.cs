@@ -8,7 +8,6 @@ namespace LingonberryStudio.Data.Entities
     {
         [Key]
         public int AmenityID { get; set; }
-
         public bool Parking { get; set; }
         public bool AirCon { get; set; }
         public bool Kitchen { get; set; }
