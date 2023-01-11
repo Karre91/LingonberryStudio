@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace LingonberryStudio.Data.Entities
 {
@@ -6,6 +7,8 @@ namespace LingonberryStudio.Data.Entities
     {
         [Key]
         public int MeasurementID { get; set; }
+        public bool Feet { get; set; }
+        public bool Meters { get; set; }
 
         //[Required]
         public string? FeetOrMeters { get; set; }

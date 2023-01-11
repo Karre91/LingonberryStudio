@@ -53,60 +53,75 @@ namespace LingonberryStudio.Controllers.Adverts
 
             return allAdsInDB;
         }
-        public IActionResult Adverts()
+        //public IActionResult Adverts()
+        //{
+        //    AdvertViewMoldel advertViewModel = new();
+        //    advertViewModel.AdvertList = GetAdsInDB();
+
+        //    //if (TempData["allAdsInDB"] == null)
+        //    //         {
+        //    //             allAdsInDB = GetAdsInDB();
+        //    //             ViewBag.hasFiltered = false;
+        //    //         }
+        //    //         else
+        //    //         {
+        //    //             if (TempData["filteredList"] != null)
+        //    //             {
+        //    //                 var filteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
+
+        //    //                 ViewBag.Total = filteredAds?.Count();
+        //    //                 ViewBag.hasFiltered = true;
+
+        //    //                 ViewBag.monday = TempData["monday"];
+        //    //                 ViewBag.tuesday = TempData["tuesday"];
+        //    //                 ViewBag.wednesday = TempData["wednesday"];
+        //    //                 ViewBag.thursday = TempData["thursday"];
+        //    //                 ViewBag.friday = TempData["friday"];
+        //    //                 ViewBag.saturday = TempData["saturday"];
+        //    //                 ViewBag.sunday = TempData["sunday"];
+
+        //    //                 ViewBag.parking = TempData["parking"];
+        //    //                 ViewBag.airCon = TempData["airCon"];
+        //    //                 ViewBag.kitchen = TempData["kitchen"];
+        //    //                 ViewBag.naturalLight = TempData["naturalLight"];
+        //    //                 ViewBag.aucusticTreatment = TempData["aucusticTreatment"];
+        //    //                 ViewBag.runningWater = TempData["runningWater"];
+        //    //                 ViewBag.storage = TempData["storage"];
+        //    //                 ViewBag.other = TempData["other"];
+
+        //    //                 TempData["filteredList"] = JsonConvert.SerializeObject(filteredAds);
+        //    //                 TempData.Keep("allAdsInDB");
+        //    //                 return View(filteredAds);
+        //    //             }
+
+        //    //             allAdsInDB = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
+        //    //             TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
+        //    //             TempData.Keep("allAdsInDB");
+
+        //    //             ViewBag.hasFiltered = false;
+        //    //         }
+
+
+        //    ViewBag.Total = advertViewModel.AdvertList.Count();
+        //    return View(advertViewModel);
+        //}
+
+        [HttpGet]
+        public IActionResult Adverts(AdvertViewMoldel a)
         {
             AdvertViewMoldel advertViewModel = new();
             advertViewModel.AdvertList = GetAdsInDB();
 
+            if (a.OfferingLooking != null)
+            {
+                advertViewModel.OfferingLooking = a.OfferingLooking;
+                Filter(a);
+            }
 
-
-            //if (TempData["allAdsInDB"] == null)
-            //         {
-            //             allAdsInDB = GetAdsInDB();
-            //             ViewBag.hasFiltered = false;
-            //         }
-            //         else
-            //         {
-            //             if (TempData["filteredList"] != null)
-            //             {
-            //                 var filteredAds = JsonConvert.DeserializeObject<List<Advert>>(TempData["filteredList"].ToString());
-
-            //                 ViewBag.Total = filteredAds?.Count();
-            //                 ViewBag.hasFiltered = true;
-
-            //                 ViewBag.monday = TempData["monday"];
-            //                 ViewBag.tuesday = TempData["tuesday"];
-            //                 ViewBag.wednesday = TempData["wednesday"];
-            //                 ViewBag.thursday = TempData["thursday"];
-            //                 ViewBag.friday = TempData["friday"];
-            //                 ViewBag.saturday = TempData["saturday"];
-            //                 ViewBag.sunday = TempData["sunday"];
-
-            //                 ViewBag.parking = TempData["parking"];
-            //                 ViewBag.airCon = TempData["airCon"];
-            //                 ViewBag.kitchen = TempData["kitchen"];
-            //                 ViewBag.naturalLight = TempData["naturalLight"];
-            //                 ViewBag.aucusticTreatment = TempData["aucusticTreatment"];
-            //                 ViewBag.runningWater = TempData["runningWater"];
-            //                 ViewBag.storage = TempData["storage"];
-            //                 ViewBag.other = TempData["other"];
-
-            //                 TempData["filteredList"] = JsonConvert.SerializeObject(filteredAds);
-            //                 TempData.Keep("allAdsInDB");
-            //                 return View(filteredAds);
-            //             }
-
-            //             allAdsInDB = JsonConvert.DeserializeObject<List<Advert>>(TempData["allAdsInDB"].ToString());
-            //             TempData["allAdsInDB"] = JsonConvert.SerializeObject(allAdsInDB);
-            //             TempData.Keep("allAdsInDB");
-
-            //             ViewBag.hasFiltered = false;
-            //         }
-
-
-            ViewBag.Total = advertViewModel.AdvertList.Count();
+            //ViewBag.Total = advertViewModel.AdvertList.Count();
             return View(advertViewModel);
         }
+
         private List<Advert> excludeOldAds(List<Advert> allAdsInDB)
         {
             var goalList = allAdsInDB.Except(allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -60)).ToList();
@@ -172,23 +187,33 @@ namespace LingonberryStudio.Controllers.Adverts
         }
 
         [HttpGet]
-        public IActionResult Filter(string city, string monthOrWeek, int price, string offeringLooking)
+        public IActionResult Filter(AdvertViewMoldel a)
         {
-            TempData["filtering"] = "filter";
-
             //List<bool> checkedDays = new() { monday, tuesday, wednesday, thursday, friday, saturday, sunday };
             //List<bool> checkedAmenities = new() { parking, airCon, kitchen, naturalLight, aucusticTreatment, runningWater, storage, other };
-            if (city != null) { city = city.ToUpper(); }
-            int weekBud = 0, monthBud = 0;
-            if (monthOrWeek == "Month") { weekBud = price / 4; monthBud = price; }
-            if (monthOrWeek == "Week") { monthBud = price * 4; weekBud = price; }
+            //List<bool> checkedStudios = new() { a.MusikStudio, a.ArtStudio, a.PhotoStudio, a.DanceRehersalStudio, a.CeramicsStudio, a.PaintingWorkshop, a.OtherStudio };
+            //List<string> studioStrings = new List<string>() { "Music Studio", "Art Studio", "Photo Studio", "Dance Rehersal Studio", "Ceramics Studio", "Painting Workshop", "Other" };
+            //List<string> checkedStudioStrings = new List<string>();
+            //for (int i = 0; i < checkedStudios.Count; i++)
+            //{
+            //    if (checkedStudios[i])
+            //    {
+            //        checkedStudioStrings.Add(studioStrings[i]);
+            //    }
+            //}
 
-            var cityFilter = _db.Adverts
-                .Where(ad => ad.OfferingLooking == offeringLooking || offeringLooking == null)
-                .Where(ad => ad.City != null && ad.City == city || city == null)
+            if (a.City != null) { a.City = a.City.ToUpper(); }
+            int weekBud = 0, monthBud = 0;
+            if (a.MonthOrWeek == "Month") { weekBud = a.Budget / 4; monthBud = a.Budget; }
+            if (a.MonthOrWeek == "Week") { monthBud = a.Budget * 4; weekBud = a.Budget; }
+
+            var cityFilter = _db.Adverts    
+                .Where(ad => ad.Amenities.Parking == a.Parking)
+                .Where(ad => ad.OfferingLooking == a.OfferingLooking || a.OfferingLooking == null)
+                .Where(ad => ad.City != null && ad.City == a.City || a.City == null)
                 .Where(ad => ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Month" && ad.Budgets.Price <= monthBud
                 || ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Week" && ad.Budgets.Price <= weekBud
-                || monthOrWeek == null)
+                || a.MonthOrWeek == null)
 
                 .Include(ads => ads.Measurements)
                     .Include(ads => ads.Amenities)

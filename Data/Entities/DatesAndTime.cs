@@ -7,7 +7,7 @@ namespace LingonberryStudio.Data.Entities
     public class DatesAndTime
     {
         [Key]
-        public int DatesAndTimeId { get; set; }
+        public int DatesAndTimeID { get; set; }
 
         [AllowNull]
         public DateTime? StartDate { get; set; }

@@ -5,8 +5,11 @@
 
 @{
 
-    bool monday = false, tuesday = false, wednesday = false, thursday = false, friday = false, saturday = false, sunday = false;
-    bool parking = false, airCon = false, kitchen = false, naturalLight = false, aucusticTreatment = false, runningWater = false, storage = false, other = false;
+    //bool monday = false, tuesday = false, wednesday = false, thursday = false, friday = false, saturday = false, sunday = false;
+    //bool parking = false, airCon = false, kitchen = false, naturalLight = false, aucusticTreatment = false, runningWater = false, storage = false, other = false;
+
+
+
 
     @* if (ViewBag.hasFiltered)
     {
@@ -42,115 +45,121 @@
                         <form class="px-4 py-3" method="get">
 
                             <div class="form-outline mb-4">
-                                <div>
-                                    <label for="city">City</label>
-                                    <input type="text" class="form-control" name="city" id="city">
-                                </div>
-                                <label for="budgetRange" class="form-label">Max budget</label>  £ <span id="displayBudget">250</span>
-                                <input type="range" class="multi-range form-range" id="price" name="price" min="0" max="500" step="1" value="" onchange="myFunction()">
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" id="budgetMonth" name="monthOrWeek" type="radio" value="Month">
-                                            <label class="form-check-label" for="budgetMonth">
-                                                Price per month
-                                            </label>
+                                        <div class="form-check" style="float:right">
+                                            @Html.RadioButtonFor(m => m.OfferingLooking, "Offering") I want to rent
                                         </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check" style="float:left">
+                                            @Html.RadioButtonFor(m => m.OfferingLooking, "Looking") I want to offer
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <div>
+                                    @Html.TextBoxFor(m => m.City, "", new { @class = "form-control", placeholder = "City" })
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <div class="row">
+                                    <div class="col" onclick="ableRange()">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="budgetWeek" name="monthOrWeek" type="radio" value="Week">
-                                            <label class="form-check-label" for="budgetWeek">
-                                                Price per week
-                                            </label>
+                                            @Html.RadioButtonFor(m => m.MonthOrWeek, "Month") Month
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="offeringLooking" name="offeringLooking" type="radio" value="Offering">
-                                            <label class="form-check-label" for="offeringLooking">
-                                                I want to rent
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" id="offeringLooking" name="offeringLooking" type="radio" value="Looking">
-                                            <label class="form-check-label" for="offeringLooking">
-                                                I want to offer
-                                            </label>
+                                            @Html.RadioButtonFor(m => m.MonthOrWeek, "Week") Week
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <label for="budgetRange" class="form-label">Max budget £ <span id="displayBudget"></span></label>
+                                    <input type="range" class="multi-range form-range" id="Budget" name="Budget" min="0" max="500" step="1" onchange="myFunction()" disabled>
                                 </div>
                             </div>
                             <div class="row mb-4">
                                 <div class="col d-flex justify-content-center">
                                     <!-- Checkbox -->
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Music Studio" id="studioList" name="studioList" />
-                                        <label class="form-check-label" for="studioList"> Music Studio </label><br />
-                                        <input class="form-check-input" type="checkbox" value="Art Studio" id="studioList" name="studioList" />
-                                        <label class="form-check-label" for="studioList"> Art Studio</label><br />
-                                        <input class="form-check-input" type="checkbox" value="Photo Studio" id="studioList" name="studioList" />
-                                        <label class="form-check-label" for="studioList"> Photo Studio </label><br />
-                                        <input class="form-check-input" type="checkbox" value="Dance Rehersal Studio" id="studioList" name="studioList" />
-                                        <label class="form-check-label" for="studioList"> Dance Rehersal Studio</label><br />
-                                        <input class="form-check-input" type="checkbox" value="Ceramics Studio" id="studioList" name="studioList" />
-                                        <label class="form-check-label" for="studioList"> Ceramics Studio</label><br />
-                                        <input class="form-check-input" type="checkbox" value="Painting Workshop" id="studioList" name="studioList" />
-                                        <label class="form-check-label" for="studioList"> Painting Workshop</label><br />
-                                        <input class="form-check-input" type="checkbox" value="Other" id="studioList" name="studioList" />
-                                        <label class="form-check-label" for="studioList"> Other</label>
+                               @*         @Html.CheckBoxFor(m => m.MusikStudio, true) Music Studio<br />
+                                        @Html.CheckBoxFor(m => m.ArtStudio, true) Art Studio<br />
+                                        @Html.CheckBoxFor(m => m.PhotoStudio, true) Photo Studio<br />
+                                        @Html.CheckBoxFor(m => m.DanceRehersalStudio, true) Dance Rehersal Studio<br />
+                                        @Html.CheckBoxFor(m => m.CeramicsStudio, true) Ceramics Studio<br />
+                                        @Html.CheckBoxFor(m => m.PaintingWorkshop, true) Painting Workshop<br />
+                                        @Html.CheckBoxFor(m => m.OtherStudio, true) Other*@
+                                        @*@Html.CheckBoxFor(m => m.WorkPlace)*@
                                     </div>
-                                </div>
-                                <div class="col d-flex justify-content-center">
+                                    <br />
+                                    @*<input class="form-check-input" type="checkbox" value="Music Studio" id="studioList" name="studioList" />
+                                    <label class="form-check-label" for="studioList"> Music Studio </label><br />
+                                    <input class="form-check-input" type="checkbox" value="Art Studio" id="studioList" name="studioList" />
+                                    <label class="form-check-label" for="studioList"> Art Studio</label><br />
+                                    <input class="form-check-input" type="checkbox" value="Photo Studio" id="studioList" name="studioList" />
+                                    <label class="form-check-label" for="studioList"> Photo Studio </label><br />
+                                    <input class="form-check-input" type="checkbox" value="Dance Rehersal Studio" id="studioList" name="studioList" />
+                                    <label class="form-check-label" for="studioList"> Dance Rehersal Studio</label><br />
+                                    <input class="form-check-input" type="checkbox" value="Ceramics Studio" id="studioList" name="studioList" />
+                                    <label class="form-check-label" for="studioList"> Ceramics Studio</label><br />
+                                    <input class="form-check-input" type="checkbox" value="Painting Workshop" id="studioList" name="studioList" />
+                                    <label class="form-check-label" for="studioList"> Painting Workshop</label><br />
+                                    <input class="form-check-input" type="checkbox" value="Other" id="studioList" name="studioList" />
+                                    <label class="form-check-label" for="studioList"> Other</label>*@
+
+                                    <div class="col d-flex justify-content-center">
+                                        <div class="form-group checkbox">
+                                            <p>Amenities</p>
+                                            @Html.CheckBoxFor(m => m.Parking, true) Parking <br />
+                                            @Html.CheckBoxFor(m => m.AirCon, true) Air conditioning <br />
+                                            @*//@Html.CheckBoxFor("kitchen", kitchen) Kitchen <br />
+                                            //@Html.CheckBoxFor("naturalLight", naturalLight) Natural Light <br />
+                                            //@Html.CheckBoxFor("aucusticTreatment", aucusticTreatment) Acoustic Treatment <br />
+                                            //@Html.CheckBoxFor("runningWater", runningWater) Running Water <br />
+                                            //@Html.CheckBoxFor("storage", storage) Storage <br />
+                                            //@Html.CheckBoxFor("other", other) Other <br />*@
+
+
+
+                                            @*<input class="form-check-input" type="checkbox" name="amenitiesList" value="Parking">
+                                            <label for="amenitiesList"> Parking space</label><br>
+                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="AirCon">
+                                            <label for="amenitiesList">Air conditioning</label><br>
+                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="Kitchen">
+                                            <label for="amenitiesList"> Kitchen</label><br>
+                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="NaturalLight">
+                                            <label for="amenitiesList">Natural light</label><br>
+                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="AcousticTreatment">
+                                            <label for="amenitiesList">Acoustic treatment</label><br>
+                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="RunningWater">
+                                            <label for="amenitiesList">Running water</label><br>
+                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="Storage">
+                                            <label for="amenitiesList">Storage</label><br>
+                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="Other">
+                                            <label for="amenitiesList">Other</label><br>
+
+                                            <label for="amenitiesList">Other</label>
+                                            <input type="text" name="amenitiesList" />*@
+
+                                        </div>
+                                    </div>
+                                    @*<div class="col d-flex justify-content-center">
                                     <div class="form-group checkbox">
-                                        <p>Amenities</p>
-                                        @Html.CheckBox("parking", parking) Parking <br />
-                                        @Html.CheckBox("airCon", airCon) Air conditioning <br />
-                                        @Html.CheckBox("kitchen", kitchen) Kitchen <br />
-                                        @Html.CheckBox("naturalLight", naturalLight) Natural Light <br />
-                                        @Html.CheckBox("aucusticTreatment", aucusticTreatment) Acoustic Treatment <br />
-                                        @Html.CheckBox("runningWater", runningWater) Running Water <br />
-                                        @Html.CheckBox("storage", storage) Storage <br />
-                                        @Html.CheckBox("other", other) Other <br />
-
-
-
-                                        @*<input class="form-check-input" type="checkbox" name="amenitiesList" value="Parking">
-                                        <label for="amenitiesList"> Parking space</label><br>
-                                        <input class="form-check-input" type="checkbox" name="amenitiesList" value="AirCon">
-                                        <label for="amenitiesList">Air conditioning</label><br>
-                                        <input class="form-check-input" type="checkbox" name="amenitiesList" value="Kitchen">
-                                        <label for="amenitiesList"> Kitchen</label><br>
-                                        <input class="form-check-input" type="checkbox" name="amenitiesList" value="NaturalLight">
-                                        <label for="amenitiesList">Natural light</label><br>
-                                        <input class="form-check-input" type="checkbox" name="amenitiesList" value="AcousticTreatment">
-                                        <label for="amenitiesList">Acoustic treatment</label><br>
-                                        <input class="form-check-input" type="checkbox" name="amenitiesList" value="RunningWater">
-                                        <label for="amenitiesList">Running water</label><br>
-                                        <input class="form-check-input" type="checkbox" name="amenitiesList" value="Storage">
-                                        <label for="amenitiesList">Storage</label><br>
-                                        <input class="form-check-input" type="checkbox" name="amenitiesList" value="Other">
-                                        <label for="amenitiesList">Other</label><br>
-
-                                        <label for="amenitiesList">Other</label>
-                                        <input type="text" name="amenitiesList" />*@
-
+                                    <p>Studio is avalible following days:</p>
+                                    @Html.CheckBox("monday", monday) Monday <br />
+                                    @Html.CheckBox("tuesday", tuesday) Tuesday <br />
+                                    @Html.CheckBox("wednesday", wednesday) Wednesday <br />
+                                    @Html.CheckBox("thursday", thursday) Thursday <br />
+                                    @Html.CheckBox("friday", friday) Friday <br />
+                                    @Html.CheckBox("saturday", saturday) Saturday <br />
+                                    @Html.CheckBox("sunday", sunday) Sunday <br />
                                     </div>
+                                    </div>*@
                                 </div>
-                                @*<div class="col d-flex justify-content-center">
-                                <div class="form-group checkbox">
-                                <p>Studio is avalible following days:</p>
-                                @Html.CheckBox("monday", monday) Monday <br />
-                                @Html.CheckBox("tuesday", tuesday) Tuesday <br />
-                                @Html.CheckBox("wednesday", wednesday) Wednesday <br />
-                                @Html.CheckBox("thursday", thursday) Thursday <br />
-                                @Html.CheckBox("friday", friday) Friday <br />
-                                @Html.CheckBox("saturday", saturday) Saturday <br />
-                                @Html.CheckBox("sunday", sunday) Sunday <br />
-                                </div>
-                                </div>*@
-                            </div>
 
-                            <!-- Submit button -->
-                            <button type="submit" asp-controller="Adverts" asp-action="Filter" class="btn btn-primary btn-block">Apply filters</button>
+                                <!-- Submit button -->
+                                <button type="submit" asp-controller="Adverts" asp-action="Adverts" class="btn btn-primary btn-block">Apply filters</button>
                         </form>
                         <div class="dropdown-divider"></div>
                         <p>Testtext</p>
@@ -199,7 +208,13 @@
 
 <script>
     function myFunction() {
-        var x = document.getElementById("price").value;
+        var x = document.getElementById("Budget").value;
+        document.getElementById("displayBudget").innerHTML = x;
+    }
+
+    function ableRange() {
+        document.getElementById("Budget").disabled = false;
+        var x = document.getElementById("Budget").value;
         document.getElementById("displayBudget").innerHTML = x;
     }
 </script>
