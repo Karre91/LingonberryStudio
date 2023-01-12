@@ -3,31 +3,6 @@
 @model AdvertViewMoldel
 
 
-@{
-    //bool monday = false, tuesday = false, wednesday = false, thursday = false, friday = false, saturday = false, sunday = false;
-    //bool parking = false, airCon = false, kitchen = false, naturalLight = false, aucusticTreatment = false, runningWater = false, storage = false, other = false;
-
-    @* if (ViewBag.hasFiltered)
-    {
-        monday = ViewBag.monday;
-        tuesday = ViewBag.tuesday;
-        wednesday = ViewBag.wednesday;
-        thursday = ViewBag.thursday;
-        friday = ViewBag.friday;
-        saturday = ViewBag.saturday;
-        sunday = ViewBag.sunday;
-
-        parking = ViewBag.parking;
-        airCon = ViewBag.airCon;
-        kitchen = ViewBag.kitchen;
-        naturalLight = ViewBag.naturalLight;
-        aucusticTreatment = ViewBag.aucusticTreatment;
-        runningWater = ViewBag.runningWater;
-        storage = ViewBag.storage;
-        other = ViewBag.other;
-    }*@
-}
-
 <div id="area-and-results" class="">
     <div class="row">
         <div class="col">
@@ -38,18 +13,21 @@
                         Filter
                     </button>
                     <div class="dropdown-menu">
-                        <form class="px-4 py-3" method="get">
+                        <div class="form-outline mb-4">
+                            @using (Html.BeginForm("Adverts", "Adverts", FormMethod.Get, new { @class = "px-4 py-3" }))
+                            {
 
-                            <div class="form-outline mb-4">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-check" style="float:right">
-                                            @Html.RadioButtonFor(m => m.Filter.Offering, true) I want to rent
+                                            @*@Html.CheckBoxFor(m => m.Filter.Offering, true) I want to rent<br />*@
+                                            @Html.RadioButtonFor(m => m.Filter.OfferingLooking,  "Offering") I want to rent
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-check" style="float:left">
-                                            @Html.RadioButtonFor(m => m.Filter.Looking, true) I want to offer
+                                            @*@Html.CheckBoxFor(m => m.Filter.Looking, true) I want to offer<br />*@
+                                            @Html.RadioButtonFor(m => m.Filter.OfferingLooking, "Looking") I want to offer
                                         </div>
                                     </div>
                                 </div>
@@ -61,102 +39,65 @@
                                 <div class="row">
                                     <div class="col" onclick="ableRange()">
                                         <div class="form-check">
-                                            @Html.RadioButtonFor(m => m.Filter.Budgets.Month, true) Month
+                                            @Html.RadioButtonFor(m => m.Filter.MonthOrWeek, "Month") Month
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-check">
-                                            @Html.RadioButtonFor(m => m.Filter.Budgets.Week, true) Week
+                                            @Html.RadioButtonFor(m => m.Filter.MonthOrWeek, "Week") Week
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    @*<label for="budgetRange" class="form-label">Max budget £ <span id="displayBudget"></span></label>
-                                    <input type="range" class="multi-range form-range" id="Budget" name="Budget" min="0" max="500" step="1" onchange="myFunction()" disabled>*@
+                                    <label for="Budget" class="form-label">Max budget £<span id="displayBudget"></span></label>
+                                    <input type="range" class="multi-range form-range" asp-for="@Model.Filter.Budget" value="250" id="Budget" name="Budget" min="0" max="500" step="1" onchange="myFunction()" disabled>
                                 </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col d-flex justify-content-center">
-                                    <!-- Checkbox -->
-                                    <div class="form-check">
-                               @*         @Html.CheckBoxFor(m => m.MusikStudio, true) Music Studio<br />
-                                        @Html.CheckBoxFor(m => m.ArtStudio, true) Art Studio<br />
-                                        @Html.CheckBoxFor(m => m.PhotoStudio, true) Photo Studio<br />
-                                        @Html.CheckBoxFor(m => m.DanceRehersalStudio, true) Dance Rehersal Studio<br />
-                                        @Html.CheckBoxFor(m => m.CeramicsStudio, true) Ceramics Studio<br />
-                                        @Html.CheckBoxFor(m => m.PaintingWorkshop, true) Painting Workshop<br />
-                                        @Html.CheckBoxFor(m => m.OtherStudio, true) Other*@
-                                        @*@Html.CheckBoxFor(m => m.WorkPlace)*@
-                                    </div>
-                                    <br />
-                                    @*<input class="form-check-input" type="checkbox" value="Music Studio" id="studioList" name="studioList" />
-                                    <label class="form-check-label" for="studioList"> Music Studio </label><br />
-                                    <input class="form-check-input" type="checkbox" value="Art Studio" id="studioList" name="studioList" />
-                                    <label class="form-check-label" for="studioList"> Art Studio</label><br />
-                                    <input class="form-check-input" type="checkbox" value="Photo Studio" id="studioList" name="studioList" />
-                                    <label class="form-check-label" for="studioList"> Photo Studio </label><br />
-                                    <input class="form-check-input" type="checkbox" value="Dance Rehersal Studio" id="studioList" name="studioList" />
-                                    <label class="form-check-label" for="studioList"> Dance Rehersal Studio</label><br />
-                                    <input class="form-check-input" type="checkbox" value="Ceramics Studio" id="studioList" name="studioList" />
-                                    <label class="form-check-label" for="studioList"> Ceramics Studio</label><br />
-                                    <input class="form-check-input" type="checkbox" value="Painting Workshop" id="studioList" name="studioList" />
-                                    <label class="form-check-label" for="studioList"> Painting Workshop</label><br />
-                                    <input class="form-check-input" type="checkbox" value="Other" id="studioList" name="studioList" />
-                                    <label class="form-check-label" for="studioList"> Other</label>*@
-
+                                <div class="row mb-4">
                                     <div class="col d-flex justify-content-center">
-                                        <div class="form-group checkbox">
-                                            <p>Amenities</p>
-                                            @Html.CheckBoxFor(m => m.Filter.Amenities.Parking, true) Parking <br />
-                                            @Html.CheckBoxFor(m => m.Filter.Amenities.AirCon, true) Air conditioning <br />
-                                            @*//@Html.CheckBoxFor("kitchen", kitchen) Kitchen <br />
-                                            //@Html.CheckBoxFor("naturalLight", naturalLight) Natural Light <br />
-                                            //@Html.CheckBoxFor("aucusticTreatment", aucusticTreatment) Acoustic Treatment <br />
-                                            //@Html.CheckBoxFor("runningWater", runningWater) Running Water <br />
-                                            //@Html.CheckBoxFor("storage", storage) Storage <br />
-                                            //@Html.CheckBoxFor("other", other) Other <br />*@
+                                        <!-- Checkbox -->
+                                        <div class="form-check">
+                                            @Html.CheckBoxFor(m => m.Filter.MusikStudio, true) Music Studio<br />
+                                            @Html.CheckBoxFor(m => m.Filter.ArtStudio, true) Art Studio<br />
+                                            @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true) Photo Studio<br />
+                                            @Html.CheckBoxFor(m => m.Filter.DanceRehersalStudio, true) Dance Rehersal Studio<br />
+                                            @Html.CheckBoxFor(m => m.Filter.CeramicsStudio, true) Ceramics Studio<br />
+                                            @Html.CheckBoxFor(m => m.Filter.PaintingWorkshop, true) Painting Workshop<br />
+                                            @Html.CheckBoxFor(m => m.Filter.OtherStudio, true) Other
+                                        </div>
+                                        <br />
 
-
-
-                                            @*<input class="form-check-input" type="checkbox" name="amenitiesList" value="Parking">
-                                            <label for="amenitiesList"> Parking space</label><br>
-                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="AirCon">
-                                            <label for="amenitiesList">Air conditioning</label><br>
-                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="Kitchen">
-                                            <label for="amenitiesList"> Kitchen</label><br>
-                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="NaturalLight">
-                                            <label for="amenitiesList">Natural light</label><br>
-                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="AcousticTreatment">
-                                            <label for="amenitiesList">Acoustic treatment</label><br>
-                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="RunningWater">
-                                            <label for="amenitiesList">Running water</label><br>
-                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="Storage">
-                                            <label for="amenitiesList">Storage</label><br>
-                                            <input class="form-check-input" type="checkbox" name="amenitiesList" value="Other">
-                                            <label for="amenitiesList">Other</label><br>
-
-                                            <label for="amenitiesList">Other</label>
-                                            <input type="text" name="amenitiesList" />*@
-
+                                        <div class="col d-flex justify-content-center">
+                                            <div class="form-group checkbox">
+                                                <p>Amenities</p>
+                                                @Html.CheckBoxFor(m => m.Filter.Parking, true) Parking <br />
+                                                @Html.CheckBoxFor(m => m.Filter.AirCon, true) Air conditioning <br />
+                                                @Html.CheckBoxFor(m => m.Filter.Kitchen) Kitchen <br />
+                                                @Html.CheckBoxFor(m => m.Filter.NaturalLight) Natural Light <br />
+                                                @Html.CheckBoxFor(m => m.Filter.AcousticTreatment) Acoustic Treatment <br />
+                                                @Html.CheckBoxFor(m => m.Filter.RunningWater) Running Water <br />
+                                                @Html.CheckBoxFor(m => m.Filter.Storage) Storage <br />
+                                                @Html.CheckBoxFor(m => m.Filter.OtherAmenities) Other <br />
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex justify-content-center">
+                                            <div class="form-group checkbox">
+                                                <p>Studio is avalible following days:</p>
+                                                @Html.CheckBoxFor(m => m.Filter.Monday) Monday <br />
+                                                @Html.CheckBoxFor(m => m.Filter.Tuesday) Tuesday <br />
+                                                @Html.CheckBoxFor(m => m.Filter.Wednesday) Wednesday <br />
+                                                @Html.CheckBoxFor(m => m.Filter.Thursday) Thursday <br />
+                                                @Html.CheckBoxFor(m => m.Filter.Friday) Friday <br />
+                                                @Html.CheckBoxFor(m => m.Filter.Saturday) Saturday <br />
+                                                @Html.CheckBoxFor(m => m.Filter.Sunday) Sunday <br />
+                                            </div>
                                         </div>
                                     </div>
-                                    @*<div class="col d-flex justify-content-center">
-                                    <div class="form-group checkbox">
-                                    <p>Studio is avalible following days:</p>
-                                    @Html.CheckBox("monday", monday) Monday <br />
-                                    @Html.CheckBox("tuesday", tuesday) Tuesday <br />
-                                    @Html.CheckBox("wednesday", wednesday) Wednesday <br />
-                                    @Html.CheckBox("thursday", thursday) Thursday <br />
-                                    @Html.CheckBox("friday", friday) Friday <br />
-                                    @Html.CheckBox("saturday", saturday) Saturday <br />
-                                    @Html.CheckBox("sunday", sunday) Sunday <br />
-                                    </div>
-                                    </div>*@
                                 </div>
 
-                                <!-- Submit button -->
-                                <button type="submit" asp-controller="Adverts" asp-action="Adverts" class="btn btn-primary btn-block">Apply filters</button>
-                        </form>
+
+                                <button type="submit" class="btn btn-primary btn-block">Apply filters</button>
+                            }
+                        </div>
                         <div class="dropdown-divider"></div>
                         <p>Testtext</p>
                     </div>

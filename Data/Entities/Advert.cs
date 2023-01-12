@@ -35,8 +35,11 @@ namespace LingonberryStudio.Data.Entities
         public int? PhoneNumber { get; set; }
 
         [Required]
+        [NotMapped]
+        public string OfferingLooking { get; set; }
+
         public bool Offering { get; set; }
-        [Required]
+        
         public bool Looking { get; set; }
 
         [Required]

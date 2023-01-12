@@ -28,6 +28,7 @@ namespace LingonberryStudio.Data.Entities
         ErrorMessage = "Only letters allowed")]
         public string Description { get; set; }
 
+
         public List<bool> GetList()
         {
             List<bool> list = new List<bool>() { MusicStudio, ArtStudio, PhotoStudio, DanceRehersalStudio, CeramicsStudio, PaintingWorkshop};
