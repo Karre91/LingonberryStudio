@@ -1,8 +1,14 @@
-﻿@model LingonberryStudio.Data.Entities.Advert
+﻿@using LingonberryStudio.Data.Entities
+@using System.ComponentModel;
+@model LingonberryStudio.Data.Entities.Advert
 <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-@using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post, new { @class = "frmValidation", @novalidate = "", enctype = "multipart/form-data" }))
+
+
+
+
+@using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <!-- Modal -->
     <div class="modal fade table-responsive" id="formModal" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
@@ -15,24 +21,32 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-
                 <div class="modal-body ">
                     <div class="row">
                         <div class="col">
                             <div class="form-check mt-2 mx-3">
-                                <input class="form-check-input" type="radio" asp-for="Offering" value="true" required> 
-                                @*<label asp-for="OfferingLooking"> I am offering a studio</label><br>*@
-                               @* <input class="form-check-input" type="radio" id="OfferingLooking" asp-for="OfferingLooking" value="looking">*@ @*required*@
-                                @*<label asp-for="OfferingLooking"> I am looking for a studio</label><br>*@
-                                <span class="invalid-feedback">Please tick a box</span>
+                              @*  @Html.RadioButtonFor(m => Model.Looking, new { })
+                                @Html.RadioButtonFor(m => Model.Offering, new{ })*@
+                                
+                              
+                             @*  <input class="form-check-input" type="radio" asp-for="Offering" name="OfferingLooking" value="true" id="AgreeTerms" required>
+                                <label asp-for="Offering"> I am offering a studio</label><br>
+                                
+                                <input class="form-check-input" type="radio"  asp-for="Looking" id="AgreeTerms" name="OfferingLooking" value="looking" required>
+                                <label asp-for="Looking"> I am looking for a studio</label><br>*@
+                                @*@Html.ValidationMessageFor(model => model.Looking, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.Offering, "", new { @class = "text-danger"})*@
+                             @*   <span asp-validation-for="Offering" class="text-danger"></span>*@
+                                @*@Html.HiddenFor(x => Model.isTrue)*@
+                             
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label asp-for="City">City</label>
-                                <input type="text" class="form-control" asp-for="City"> @*required*@
+                                <input type="text" class="form-control" asp-for="City" required> 
                                 <span class="invalid-feedback">Please enter city</span>
-                                <span asp-validation-for="City" class="text-danger"></span>
+                               
                             </div>
                         </div>
                         <div class="col">
@@ -48,7 +62,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label asp-for="FirstName">First name</label>
-                                <input type="text" asp-for="FirstName" class="form-control "> @*required*@
+                                <input type="text" asp-for="FirstName" class="form-control " required>
                                 <span class="invalid-feedback">Please enter first name</span>
                                 <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
@@ -56,7 +70,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label asp-for="LastName">Last name</label>
-                                <input type="text" asp-for="LastName" class="form-control "> @*required*@
+                                <input type="text" asp-for="LastName" class="form-control " required>
                                 <span class="invalid-feedback">Please enter surname</span>
                                 <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
@@ -66,7 +80,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label asp-for="Email">Email</label>
-                                <input type="email" asp-for="Email" class="form-control"> @*required*@
+                                <input type="email" asp-for="Email" class="form-control" required>
                                 <span class="invalid-feedback">Please enter Email</span>
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
@@ -88,38 +102,25 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group">
-                                @*<label asp-for="WorkspaceDescription">Workspace</label>*@
-                                <br>
-                                <input list="WorkspaceDescription" name="WorkspaceDescription">
-                                @*required*@
-                                <datalist asp-for="WorkspaceDescription" id="WorkspaceDescription">
-                                    <option value="" selected disabled>Options</option>
-                                    <option value="Music Studio">Music Studio</option>
-                                    <option value="Art Studio">Art Studio</option>
-                                    <option value="Photo Studio">Photo Studio</option>
-                                    <option value="Dance Rehersal Studio">Dance Rehersal Studio</option>
-                                    <option value="Ceramics Studio">Ceramics Studio</option>
-                                    <option value="Painting Studio">Painting Studio</option>
-                                    <option value="Workshop">Workshop</option>                                
-                                </datalist>
-                                <span class="invalid-feedback">Please choose one</span>                   
-                            </div>
+                            
+                           @Html.DropDownList("workPlaces", new SelectList(Enum.GetValues(typeof(WorkPlaces))),"Select studio")
+    
+                            
                         </div>
                         
                     </div>               
                         <div class="form-group">
-                           @* <label asp-for="Description.WorkPlaceDescription">Description</label>*@
-                       @* <textarea type="text" placeholder="Please type a short description(Workspace, genre, set-up, background etc)" asp-for="Description.Desc" class="form-control"></textarea>*@ @*required*@
+                          <label asp-for="WorkPlaces.Description">Description</label>
+                        <textarea type="text" placeholder="Please type a short description(Workspace, genre, set-up, background etc)" asp-for="WorkPlaces.Description" class="form-control" required></textarea>
                             
                             <span class="invalid-feedback">Please enter Description</span>
-                            @*<span asp-validation-for="Description.Desc" class="text-danger"></span>*@
+                            <span asp-validation-for="WorkPlaces.Description" class="text-danger"></span>
                         </div>
                     <div class="col">
-                     @*   <div class="form-group">
-                            <label asp-for="Description.formFile">Studio image</label>
-                            <input asp-for="Description.formFile" class="form-control" />
-                        </div>*@
+                       <div class="form-group">
+                            <label asp-for="WorkPlaces.FormFile">Studio image</label>
+                            <input asp-for="WorkPlaces.FormFile" class="form-control" />
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -188,9 +189,9 @@
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" asp-for="Measurements.FeetOrMeters" value="Square foot">
+                                <input class="form-check-input" type="radio" asp-for="Measurements.Feet" name="Measurements" value="Square foot">
                                 <label asp-for="Measurements">Area square foot</label><br>
-                                <input class="form-check-input" type="radio" asp-for="Measurements.FeetOrMeters" value="Square metres">
+                                <input class="form-check-input" type="radio" asp-for="Measurements.Meters" name="Measurements" value="Square metres">
                                 <label asp-for="Measurements">Area in square metres</label><br>
                                 <input type="number" asp-for="@Model.Measurements.Number" />
                                 <span class="invalid-feedback">Please tick a box</span>
@@ -203,11 +204,11 @@
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                @*<input class="form-check-input" type="radio" asp-for="Budgets.MonthOrWeek" value="Month">*@ @*required*@
+                                <input class="form-check-input" type="radio" asp-for="Budgets.Month" value="Month" required>
                                 <label asp-for="Budgets">Price per month</label><br>
-                               @* <input class="form-check-input" type="radio" asp-for="Budgets.MonthOrWeek" value="Week">*@ @*required*@
+                               <input class="form-check-input" type="radio" asp-for="Budgets.Week" name="Budget" value="Week" required>
                                 <label asp-for="Budgets">Price per week</label><br>
-                                <input type="number" asp-for="@Model.Budgets.Price" /> @*required*@
+                                <input type="number" asp-for="@Model.Budgets.Price" required/>
                                 <span class="invalid-feedback">Please tick a box</span>
                             </div>
                             <div class="form-group mx-4">
@@ -257,20 +258,6 @@ $("#Start_date_picker").change(function () {
     $("#End_date_picker").val(""); //clear end date input when start date changes
 });
 </script>
-
-<script>
-    $(function () {
-        Array.prototype.filter.call($('.frmValidation'), function (form) {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    });</script>
-
 <script type="text/javascript">
     function OnComplete() {
         $("#formModal").modal("hide");

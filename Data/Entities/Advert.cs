@@ -11,6 +11,7 @@ namespace LingonberryStudio.Data.Entities
     {
         [Key]
         public int AdvertID { get; set; }
+     
         public DateTime TimeCreated { get; set; } = DateTime.Now;
 
         [Required]
@@ -22,6 +23,7 @@ namespace LingonberryStudio.Data.Entities
         [RegularExpression(@"^[a-zA-Z''-'\s-]{1,40}$",
         ErrorMessage = "Only letters allowed.")]
         public string LastName { get; set; }
+
 
         [Required]
         [EmailAddress]
@@ -35,10 +37,15 @@ namespace LingonberryStudio.Data.Entities
         public int? PhoneNumber { get; set; }
 
         [Required]
-        public bool Offering { get; set; }
-        [Required]
-        public bool Looking { get; set; }
+        public bool Offering{ get; set; }
 
+        public bool isTrue
+        { get { return true; } }
+
+        [Required]
+        [Compare("isTrue", ErrorMessage = "Please choose one")]
+        public bool Looking { get; set; }
+    
         [Required]
         [RegularExpression(@"^[a-zA-Z''-'\s-]{1,60}$",
         ErrorMessage = "Only letters allowed")]

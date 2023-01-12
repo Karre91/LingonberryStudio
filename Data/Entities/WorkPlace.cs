@@ -1,4 +1,6 @@
-﻿using Microsoft.Identity.Client.Extensions.Msal;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Identity.Client.Extensions.Msal;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
@@ -33,5 +35,14 @@ namespace LingonberryStudio.Data.Entities
             List<bool> list = new List<bool>() { MusicStudio, ArtStudio, PhotoStudio, DanceRehersalStudio, CeramicsStudio, PaintingWorkshop};
             return list;
         }
+        public WorkPlaces workPlaces { get; set; }
     }
+    public enum WorkPlaces
+    {
+        Music, Art, Photo, Dance, Ceramics, Painting, Workshop
+
+    }
+
+
+
 }
