@@ -101,13 +101,9 @@
                                 <span asp-validation-for="Artist" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col">
-                            
-                           @Html.DropDownList("workPlaces", new SelectList(Enum.GetValues(typeof(WorkPlaces))),"Select studio")
-    
-                            
-                        </div>
-                        
+                        <div class="col">                           
+                           @Html.DropDownList("workPlaces", new SelectList(Enum.GetValues(typeof(Studios))),"Select studio")
+                        </div>                      
                     </div>               
                         <div class="form-group">
                           <label asp-for="WorkPlaces.Description">Description</label>
@@ -189,13 +185,13 @@
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" asp-for="Measurements.Feet" name="Measurements" value="Square foot">
+                       @*         <input class="form-check-input" type="radio" asp-for="Measurements.Feet" name="Measurements" value="Square foot">
                                 <label asp-for="Measurements">Area square foot</label><br>
                                 <input class="form-check-input" type="radio" asp-for="Measurements.Meters" name="Measurements" value="Square metres">
                                 <label asp-for="Measurements">Area in square metres</label><br>
                                 <input type="number" asp-for="@Model.Measurements.Number" />
                                 <span class="invalid-feedback">Please tick a box</span>
-                                <span asp-validation-for="Measurements.Number" class="text-danger"></span>
+                                <span asp-validation-for="Measurements.Number" class="text-danger"></span>*@
                             </div>
                             <div class="form-group mx-4">
                                 <input id="Start_date_picker" type="date" asp-for="@Model.DatesAndTimes.StartDate">
@@ -204,12 +200,12 @@
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" asp-for="Budgets.Month" value="Month" required>
+                               @* <input class="form-check-input" type="radio" asp-for="Budgets.Month" value="Month" required>
                                 <label asp-for="Budgets">Price per month</label><br>
                                <input class="form-check-input" type="radio" asp-for="Budgets.Week" name="Budget" value="Week" required>
                                 <label asp-for="Budgets">Price per week</label><br>
                                 <input type="number" asp-for="@Model.Budgets.Price" required/>
-                                <span class="invalid-feedback">Please tick a box</span>
+                                <span class="invalid-feedback">Please tick a box</span>*@
                             </div>
                             <div class="form-group mx-4">
                                 <label class="formAlignment" asp-for="DatesAndTimes">Select time</label> <br>

@@ -24,7 +24,6 @@ namespace LingonberryStudio.Data.Entities
         ErrorMessage = "Only letters allowed.")]
         public string LastName { get; set; }
 
-
         [Required]
         [EmailAddress]
         [DataType(DataType.EmailAddress)]
@@ -36,15 +35,15 @@ namespace LingonberryStudio.Data.Entities
         [RegularExpression(@"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$", ErrorMessage = "Not a valid Phone number")]
         public int? PhoneNumber { get; set; }
 
-        [Required]
-        public bool Offering{ get; set; }
+        [AllowNull]
+        public bool? Offering{ get; set; }
 
         public bool isTrue
         { get { return true; } }
 
-        [Required]
-        [Compare("isTrue", ErrorMessage = "Please choose one")]
-        public bool Looking { get; set; }
+        [AllowNull]
+        //[Compare("isTrue", ErrorMessage = "Please choose one")]
+        public bool? Looking { get; set; }
     
         [Required]
         [RegularExpression(@"^[a-zA-Z''-'\s-]{1,60}$",
@@ -75,14 +74,17 @@ namespace LingonberryStudio.Data.Entities
         public virtual Amenity Amenities { get; set; }
 
         [Display(Name = "Budget")]
-        public virtual int BudgetID { get; set; }
+        public virtual int BudgetIdentity { get; set; }
+      
+        [AllowNull]
         [ForeignKey("BudgetID")]
-        public virtual Budget Budgets { get; set; }
+        public virtual Budget? Budgets { get; set; }
 
         [Display(Name = "Measurement")]
-        public virtual int MeasurementID { get; set; }
+        public virtual int MeasurementIdentity { get; set; }
+        [AllowNull]
         [ForeignKey("MeasurementID")]
-        public virtual Measurement Measurements { get; set; }
+        public virtual Measurement? Measurements { get; set; }
         [Display(Name = "DatesAndTime")]
         public virtual int DatesAndTimeID { get; set; }
         [ForeignKey("DatesAndTimeID")]
