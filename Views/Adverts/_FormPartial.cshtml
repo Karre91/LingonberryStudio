@@ -2,7 +2,7 @@
 <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-@using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post, new { @class = "frmValidation", @novalidate = "", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <!-- Modal -->
     <div class="modal fade table-responsive" id="formModal" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
@@ -20,17 +20,18 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-check mt-2 mx-3">
-                                <input class="form-check-input" type="radio" asp-for="Offering" value="true" required> 
-                                @*<label asp-for="OfferingLooking"> I am offering a studio</label><br>*@
-                               @* <input class="form-check-input" type="radio" id="OfferingLooking" asp-for="OfferingLooking" value="looking">*@ @*required*@
-                                @*<label asp-for="OfferingLooking"> I am looking for a studio</label><br>*@
-                                <span class="invalid-feedback">Please tick a box</span>
+                                <input class="form-check-input" type="radio" asp-for="Offering" name="A" value="true"> 
+                                <label asp-for="Offering"> I am offering a studio</label><br>
+                                @*<input class="form-check-input" type="radio" id="OfferingLooking" asp-for="Looking" value="true" name="Looking "
+                                   checked="@(Looking  == true ? "checked": null)>*@
+                                <label asp-for="Looking"> I am looking for a studio</label><br>
+                                <span asp-validation-for="Looking" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label asp-for="City">City</label>
-                                <input type="text" class="form-control" asp-for="City"> @*required*@
+                                <input type="text" class="form-control" asp-for="City" required> @*required*@
                                 <span class="invalid-feedback">Please enter city</span>
                                 <span asp-validation-for="City" class="text-danger"></span>
                             </div>
