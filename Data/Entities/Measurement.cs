@@ -7,13 +7,15 @@ namespace LingonberryStudio.Data.Entities
     {
         [Key]
         public int MeasurementID { get; set; }
+       
         public bool Feet { get; set; }
+       
         public bool Meters { get; set; }
 
         //[Required]
         public string? FeetOrMeters { get; set; }
 
-        //[Required]
+        [AllowNull]
         [RegularExpression(@"^[0-9]{1,6}$",
         ErrorMessage = "Maximum 6 digits")]
         public int? Number { get; set; }

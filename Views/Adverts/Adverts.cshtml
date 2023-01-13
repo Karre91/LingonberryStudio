@@ -127,10 +127,8 @@
                         <img src="/@(ad.WorkPlaces.ImgUrl)" class="img-fluid mx-auto ad-image">
                     </div>
                     <div>
-                        <p class="fw-bold mb-0 mt-3">@ad.WorkPlaces.DanceRehersalStudio</p>
+                        <p class="fw-bold mb-0 mt-3">
                         <p class="mb-0">@ad.City</p>
-                        <p>£@ad.Budgets.Price/</p> @*@ad.Budgets.MonthOrWeek*@
-
                     </div>
                 </a>
                 @await Html.PartialAsync("_ChosenAdPartial", ad)
