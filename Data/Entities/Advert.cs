@@ -38,8 +38,8 @@ namespace LingonberryStudio.Data.Entities
         [AllowNull]
         public bool? Offering{ get; set; }
 
-        public bool isTrue
-        { get { return true; } }
+        //public bool isTrue
+        //{ get { return true; } }
 
         [AllowNull]
         //[Compare("isTrue", ErrorMessage = "Please choose one")]
@@ -74,14 +74,14 @@ namespace LingonberryStudio.Data.Entities
         public virtual Amenity Amenities { get; set; }
 
         [Display(Name = "Budget")]
-        public virtual int BudgetIdentity { get; set; }
+        public virtual int BudgetID { get; set; }
       
         [AllowNull]
         [ForeignKey("BudgetID")]
         public virtual Budget? Budgets { get; set; }
 
         [Display(Name = "Measurement")]
-        public virtual int MeasurementIdentity { get; set; }
+        public virtual int MeasurementID { get; set; }
         [AllowNull]
         [ForeignKey("MeasurementID")]
         public virtual Measurement? Measurements { get; set; }
