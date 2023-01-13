@@ -139,22 +139,22 @@ namespace LingonberryStudio.Controllers.Adverts
         [ValidateAntiForgeryToken]
         public IActionResult CreateAd(Advert ad)
         {
-            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
 
             if (ModelState.IsValid)
             {
-                //ad.City = ad.City?.ToUpper();
+                ad.City = ad.City?.ToUpper();
 
-                //if (ad.Description.formFile != null)
-                //{
-                //    ad.Description.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.Description.formFile.FileName;
-                //    var path = Path.Combine(_Web.WebRootPath, ad.Description.ImgUrl);
-                //    ad.Description.formFile.CopyToAsync(new FileStream(path, FileMode.Create));
-                //}
-                //else
-                //{
-                //    ad.Description.ImgUrl = "StudioImages/handshake.jpg";
-                //}
+                if (ad.WorkPlaces.FormFile != null)
+                {
+                    ad.WorkPlaces.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.WorkPlaces.FormFile.FileName;
+                    var path = Path.Combine(_Web.WebRootPath, ad.WorkPlaces.ImgUrl);
+                    ad.WorkPlaces.FormFile.CopyToAsync(new FileStream(path, FileMode.Create));
+                }
+                else
+                {
+                    ad.WorkPlaces.ImgUrl = "StudioImages/handshake.jpg";
+                }
 
                 _db.Adverts.Add(ad);
                 _db.SaveChanges();
