@@ -11,31 +11,59 @@ namespace LingonberryStudio.Data.Entities
     {
         [Key]
         public int WorkPlaceID { get; set; }
-        public bool MusicStudio { get; set; }
-        public bool ArtStudio { get; set; }
-        public bool PhotoStudio { get; set; }
-        public bool DanceRehersalStudio { get; set; }
-        public bool CeramicsStudio { get; set; }
-        public bool PaintingWorkshop { get; set; }
+
+        [Required]
+        [RegularExpression(@"^[a-zA-Z''-'\s-]{1,60}$",
+        ErrorMessage = "Only letters allowed")]
+        public string City { get; set; }
         [AllowNull]
-        public string? OtherStudio { get; set; }
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
+        ErrorMessage = "Only letters allowed")]
+        public string? Area { get; set; }
+
+
+        [Required]
+        public string StudioType { get; set; }
         [AllowNull]
         public string? ImgUrl { get; set; }
         [AllowNull]
         [NotMapped]
         public IFormFile? FormFile { get; set; }
-
         [Required]
         [RegularExpression(@"^[a-zA-Z''-'\s]{1,300}$",
         ErrorMessage = "Only letters allowed")]
         public string Description { get; set; }
 
 
-        public List<bool> GetList()
-        {
-            List<bool> list = new List<bool>() { MusicStudio, ArtStudio, PhotoStudio, DanceRehersalStudio, CeramicsStudio, PaintingWorkshop};
-            return list;
-        }
+        [AllowNull]
+        public string? Period { get; set; }
+        [AllowNull]
+        public int? Currency { get; set; }
+
+
+        [AllowNull]
+        public string? MeasurementType { get; set; }
+        [AllowNull]
+        [RegularExpression(@"^[0-9]{1,6}$",
+        ErrorMessage = "Maximum 6 digits")]
+        public int? MeasurementNumber { get; set; }
+
+
+
+        [Display(Name = "Amenity")]
+        public virtual int AmenityID { get; set; }
+        [ForeignKey("AmenityID")]
+        public virtual Amenity AmenityTypes { get; set; }
+
+
+        [Display(Name = "TimeFrame")]
+        public virtual int TimeFrameID { get; set; }
+        [ForeignKey("TimeFrameID")]
+        public virtual TimeFrame TimeFrames { get; set; }
+
+
+
+    
     }
 
 }

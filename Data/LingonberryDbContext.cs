@@ -11,12 +11,9 @@ namespace LingonberryStudio.Data
         }
 
         public DbSet<Advert> Adverts { get; set; }
-        public DbSet<Amenity> Amenities { get; set; }
-        public DbSet<Measurement> Measurements { get; set; }
-        public DbSet<DatesAndTime> DatesAndTimes { get; set; }
-        public DbSet<Day> Days { get; set; }
-        public DbSet<Budget> Budgets { get; set; }
-        public DbSet<WorkPlace> WorkPlaces { get; set; }
+        public DbSet<Amenity> AmenityTypes { get; set; }
+        public DbSet<TimeFrame> TimeFrames { get; set; }
+        public DbSet<WorkPlace> WorkPlace { get; set; }
 
     }
 }

@@ -33,21 +33,21 @@ namespace LingonberryStudio.Controllers.Adverts
             _Web = web;
         }
 
-        private List<Advert> GetAdsInDB()
-        {
-            allAdsInDB = _db.Adverts
-                    .Include(ads => ads.Amenities)
-                    .Include(ads => ads.Budgets)
-                    .Include(ads => ads.DatesAndTimes)
-                    .Include(ads => ads.DatesAndTimes.Days)
-                    .Include(ads => ads.Measurements)
-                    .Include(ads => ads.WorkPlaces)
-                    .AsNoTracking()
-                    .ToList();
+        //private List<Advert> GetAdsInDB()
+        //{
+        //    allAdsInDB = _db.Adverts
+        //            .Include(ads => ads.Amenities)
+        //            .Include(ads => ads.Budgets)
+        //            .Include(ads => ads.DatesAndTimes)
+        //            .Include(ads => ads.DatesAndTimes.Days)
+        //            .Include(ads => ads.Measurements)
+        //            .Include(ads => ads.WorkPlaces)
+        //            .AsNoTracking()
+        //            .ToList();
 
-            allAdsInDB = excludeOldAds(allAdsInDB);
-            return allAdsInDB;
-        }
+        //    allAdsInDB = excludeOldAds(allAdsInDB);
+        //    return allAdsInDB;
+        //}
 
         private List<Advert> excludeOldAds(List<Advert> allAdsInDB)
         {
@@ -56,55 +56,55 @@ namespace LingonberryStudio.Controllers.Adverts
         }
 
         [HttpGet]
-        public IActionResult Adverts(AdvertViewMoldel a, int Budget)
-        {
-            AdvertViewMoldel advertViewModel = new();
-            if (a.AdvertList == null && a.Filter == null)
-            {
-                advertViewModel.AdvertList = GetAdsInDB();
-            }
-            if (a.Filter != null)
-            {
-                advertViewModel.Filter = a.Filter;
-                a.AdvertList = Filter(a);
-            }
+        //public IActionResult Adverts(AdvertViewMoldel a, int Budget)
+        //{
+        //    AdvertViewMoldel advertViewModel = new();
+        //    if (a.AdvertList == null && a.Filter == null)
+        //    {
+        //        advertViewModel.AdvertList = GetAdsInDB();
+        //    }
+        //    if (a.Filter != null)
+        //    {
+        //        advertViewModel.Filter = a.Filter;
+        //        a.AdvertList = Filter(a);
+        //    }
 
-            ViewBag.Total = advertViewModel.AdvertList.Count();
-            return View(advertViewModel);
-        }
+        //    ViewBag.Total = advertViewModel.AdvertList.Count();
+        //    return View(advertViewModel);
+        //}
 
-        public List<Advert> Filter(AdvertViewMoldel a)
-        {
-            if (a.Filter.City != null) { a.Filter.City = a.Filter.City.ToUpper(); }
+        //public List<Advert> Filter(AdvertViewMoldel a)
+        //{
+        //    if (a.Filter.City != null) { a.Filter.City = a.Filter.City.ToUpper(); }
 
-            //if (a.Filter.Budgets.Month) { weekBud = a.Filter.Budgets.Price / 4; monthBud = a.Filter.Budgets.Price; }
-            //if (a.Filter.Budgets.Week) { monthBud = a.Filter.Budgets.Price * 4; weekBud = a.Filter.Budgets.Price; }
-            int weekBud = 0, monthBud = 0;
+        //    //if (a.Filter.Budgets.Month) { weekBud = a.Filter.Budgets.Price / 4; monthBud = a.Filter.Budgets.Price; }
+        //    //if (a.Filter.Budgets.Week) { monthBud = a.Filter.Budgets.Price * 4; weekBud = a.Filter.Budgets.Price; }
+        //    int weekBud = 0, monthBud = 0;
 
-            if (a.Filter.OfferingLooking != null && a.Filter.OfferingLooking == "Offering") { a.Filter.Offering = true; }
-            else if (a.Filter.OfferingLooking != null) { a.Filter.Looking = true; }
-
-
-            var filtered = _db.Adverts
-                    .Where(ad => ad.Offering == a.Filter.Offering && ad.Looking == a.Filter.Looking)
-                    //.Where(ad => ad.OfferingLooking == a.OfferingLooking || a.OfferingLooking == null)
-                    //.Where(ad => ad.City != null && ad.City == a.City || a.City == null)
-                    //.Where(ad => ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Month" && ad.Budgets.Price <= monthBud
-                    //|| ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Week" && ad.Budgets.Price <= weekBud
-                    //|| a.MonthOrWeek == null)
+        //    if (a.Filter.OfferingLooking != null && a.Filter.OfferingLooking == "Offering") { a.Filter.Offering = true; }
+        //    else if (a.Filter.OfferingLooking != null) { a.Filter.Looking = true; }
 
 
-                    .Include(ads => ads.Amenities)
-                    .Include(ads => ads.Budgets)
-                    .Include(ads => ads.DatesAndTimes)
-                    .Include(ads => ads.DatesAndTimes.Days)
-                    .Include(ads => ads.Measurements)
-                    .Include(ads => ads.WorkPlaces)
-                    .AsNoTracking()
-                    .ToList();
-            return filtered;
+        //    var filtered = _db.Adverts
+        //            .Where(ad => ad.Offering == a.Filter.Offering && ad.Looking == a.Filter.Looking)
+        //            //.Where(ad => ad.OfferingLooking == a.OfferingLooking || a.OfferingLooking == null)
+        //            //.Where(ad => ad.City != null && ad.City == a.City || a.City == null)
+        //            //.Where(ad => ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Month" && ad.Budgets.Price <= monthBud
+        //            //|| ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Week" && ad.Budgets.Price <= weekBud
+        //            //|| a.MonthOrWeek == null)
 
-        }
+
+        //            .Include(ads => ads.Amenities)
+        //            .Include(ads => ads.Budgets)
+        //            .Include(ads => ads.DatesAndTimes)
+        //            .Include(ads => ads.DatesAndTimes.Days)
+        //            .Include(ads => ads.Measurements)
+        //            .Include(ads => ads.WorkPlaces)
+        //            .AsNoTracking()
+        //            .ToList();
+        //    return filtered;
+
+        //}
 
         //[HttpGet("AdvertSearch")]
         //public IActionResult Search(string city, string search)
@@ -135,33 +135,33 @@ namespace LingonberryStudio.Controllers.Adverts
             return PartialView("_FormPartial");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult CreateAd(Advert ad)
-        {
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult CreateAd(Advert ad)
+        //{
+        //    var errors = ModelState.Values.SelectMany(v => v.Errors);
 
-            if (ModelState.IsValid)
-            {
-                ad.City = ad.City?.ToUpper();
+        //    if (ModelState.IsValid)
+        //    {
+        //        ad.City = ad.City?.ToUpper();
 
-                if (ad.WorkPlaces.FormFile != null)
-                {
-                    ad.WorkPlaces.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.WorkPlaces.FormFile.FileName;
-                    var path = Path.Combine(_Web.WebRootPath, ad.WorkPlaces.ImgUrl);
-                    ad.WorkPlaces.FormFile.CopyToAsync(new FileStream(path, FileMode.Create));
-                }
-                else
-                {
-                    ad.WorkPlaces.ImgUrl = "StudioImages/handshake.jpg";
-                }
+        //        if (ad.WorkPlaces.FormFile != null)
+        //        {
+        //            ad.WorkPlaces.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.WorkPlaces.FormFile.FileName;
+        //            var path = Path.Combine(_Web.WebRootPath, ad.WorkPlaces.ImgUrl);
+        //            ad.WorkPlaces.FormFile.CopyToAsync(new FileStream(path, FileMode.Create));
+        //        }
+        //        else
+        //        {
+        //            ad.WorkPlaces.ImgUrl = "StudioImages/handshake.jpg";
+        //        }
 
-                _db.Adverts.Add(ad);
-                _db.SaveChanges();
-                return RedirectToAction("Adverts");
-            }
-            return PartialView("_FormPartial", ad);
-        }
+        //        _db.Adverts.Add(ad);
+        //        _db.SaveChanges();
+        //        return RedirectToAction("Adverts");
+        //    }
+        //    return PartialView("_FormPartial", ad);
+        //}
 
 
 
@@ -261,94 +261,94 @@ namespace LingonberryStudio.Controllers.Adverts
             return goalList;
         }
 
-        private List<Advert> filterByAmenities(List<bool> checkedAmenities, List<Advert> originalList, List<Advert> goalList)
-        {
-            TempData["parking"] = checkedAmenities[0];
-            TempData["airCon"] = checkedAmenities[1];
-            TempData["kitchen"] = checkedAmenities[2];
-            TempData["naturalLight"] = checkedAmenities[3];
-            TempData["aucusticTreatment"] = checkedAmenities[4];
-            TempData["runningWater"] = checkedAmenities[5];
-            TempData["storage"] = checkedAmenities[6];
-            TempData["other"] = checkedAmenities[7];
+        //private List<Advert> filterByAmenities(List<bool> checkedAmenities, List<Advert> originalList, List<Advert> goalList)
+        //{
+        //    TempData["parking"] = checkedAmenities[0];
+        //    TempData["airCon"] = checkedAmenities[1];
+        //    TempData["kitchen"] = checkedAmenities[2];
+        //    TempData["naturalLight"] = checkedAmenities[3];
+        //    TempData["aucusticTreatment"] = checkedAmenities[4];
+        //    TempData["runningWater"] = checkedAmenities[5];
+        //    TempData["storage"] = checkedAmenities[6];
+        //    TempData["other"] = checkedAmenities[7];
 
-            if (checkedAmenities.Contains(true))
-            {
-                List<Advert> tempList = new();
+        //    if (checkedAmenities.Contains(true))
+        //    {
+        //        List<Advert> tempList = new();
 
-                foreach (var ad in originalList)
-                {
-                    var d = ad.Amenities;
-                    var thisAdsAmenitiesList = d.GetList();
-                    bool hasAtleastOne = false;
-                    for (int i = 0; i < thisAdsAmenitiesList.Count; i++)
-                    {
-                        if (checkedAmenities[i] == true && thisAdsAmenitiesList[i] == true)
-                        {
-                            hasAtleastOne = true;
-                        }
-                    }
-                    if (hasAtleastOne)
-                    {
-                        tempList.Add(ad);
-                    }
-                    if (checkedAmenities[7] == true && d.Other != null)
-                    {
-                        tempList.Add(ad);
-                    }
-                }
+        //        foreach (var ad in originalList)
+        //        {
+        //            var d = ad.Amenities;
+        //            var thisAdsAmenitiesList = d.GetList();
+        //            bool hasAtleastOne = false;
+        //            for (int i = 0; i < thisAdsAmenitiesList.Count; i++)
+        //            {
+        //                if (checkedAmenities[i] == true && thisAdsAmenitiesList[i] == true)
+        //                {
+        //                    hasAtleastOne = true;
+        //                }
+        //            }
+        //            if (hasAtleastOne)
+        //            {
+        //                tempList.Add(ad);
+        //            }
+        //            if (checkedAmenities[7] == true && d.Other != null)
+        //            {
+        //                tempList.Add(ad);
+        //            }
+        //        }
 
-                tempList = tempList.Except(goalList).ToList();
-                goalList.AddRange(tempList);
-            }
-            return goalList;
-        }
+        //        tempList = tempList.Except(goalList).ToList();
+        //        goalList.AddRange(tempList);
+        //    }
+        //    return goalList;
+        //}
 
-        private List<Advert> filterByDays(List<bool> checkedDays, List<Advert> originalList, List<Advert> goalList)
-        {
-            TempData["monday"] = checkedDays[0];
-            TempData["tuesday"] = checkedDays[1];
-            TempData["wednesday"] = checkedDays[2];
-            TempData["thursday"] = checkedDays[3];
-            TempData["friday"] = checkedDays[4];
-            TempData["saturday"] = checkedDays[5];
-            TempData["sunday"] = checkedDays[6];
+        //private List<Advert> filterByDays(List<bool> checkedDays, List<Advert> originalList, List<Advert> goalList)
+        //{
+        //    TempData["monday"] = checkedDays[0];
+        //    TempData["tuesday"] = checkedDays[1];
+        //    TempData["wednesday"] = checkedDays[2];
+        //    TempData["thursday"] = checkedDays[3];
+        //    TempData["friday"] = checkedDays[4];
+        //    TempData["saturday"] = checkedDays[5];
+        //    TempData["sunday"] = checkedDays[6];
 
-            if (checkedDays.Contains(true))
-            {
-                List<Advert> tempList = new();
+        //    if (checkedDays.Contains(true))
+        //    {
+        //        List<Advert> tempList = new();
 
-                foreach (var ad in originalList)
-                {
-                    var d = ad.DatesAndTimes.Days;
-                    var thisAdsDaysList = d.GetList();
-                    bool hasAtleastOne = false;
-                    for (int i = 0; i < thisAdsDaysList.Count; i++)
-                    {
-                        if (thisAdsDaysList[i] == true && checkedDays[i] == true)
-                        {
-                            hasAtleastOne = true;
-                        }
-                    }
-                    if (hasAtleastOne)
-                    {
-                        tempList.Add(ad);
-                    }
-                }
+        //        foreach (var ad in originalList)
+        //        {
+        //            var d = ad.DatesAndTimes.Days;
+        //            var thisAdsDaysList = d.GetList();
+        //            bool hasAtleastOne = false;
+        //            for (int i = 0; i < thisAdsDaysList.Count; i++)
+        //            {
+        //                if (thisAdsDaysList[i] == true && checkedDays[i] == true)
+        //                {
+        //                    hasAtleastOne = true;
+        //                }
+        //            }
+        //            if (hasAtleastOne)
+        //            {
+        //                tempList.Add(ad);
+        //            }
+        //        }
 
-                tempList = tempList.Except(goalList).ToList();
-                goalList.AddRange(tempList);
-            }
+        //        tempList = tempList.Except(goalList).ToList();
+        //        goalList.AddRange(tempList);
+        //    }
 
-            return goalList;
-        }
+        //    return goalList;
+        //}
 
-        public IActionResult Empty()
-        {
-            TempData["filtering"] = false;
+        //public IActionResult Empty()
+        //{
+        //    TempData["filtering"] = false;
 
-            return RedirectToAction("Adverts", "Adverts");
-        }
+        //    return RedirectToAction("Adverts", "Adverts");
+        //}
     }
 }
 

@@ -1,4 +1,4 @@
-﻿@using LingonberryStudio.Data.Entities
+﻿@*@using LingonberryStudio.Data.Entities
 @using LingonberryStudio.ViewModels
 @model AdvertViewMoldel
 
@@ -20,13 +20,13 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-check" style="float:right">
-                                            @*@Html.CheckBoxFor(m => m.Filter.Offering, true) I want to rent<br />*@
+                                            @Html.CheckBoxFor(m => m.Filter.Offering, true) I want to rent<br />
                                             @Html.RadioButtonFor(m => m.Filter.OfferingLooking,  "Offering") I want to rent
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-check" style="float:left">
-                                            @*@Html.CheckBoxFor(m => m.Filter.Looking, true) I want to offer<br />*@
+                                            @Html.CheckBoxFor(m => m.Filter.Looking, true) I want to offer<br />
                                             @Html.RadioButtonFor(m => m.Filter.OfferingLooking, "Looking") I want to offer
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@
             </div>
         }
     </div>
-</div>
+</div>*@
 
 <script>
     function myFunction() {
