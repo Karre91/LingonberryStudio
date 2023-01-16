@@ -78,7 +78,10 @@ namespace LingonberryStudio.Migrations
                     b.Property<bool>("AcousticTreatment")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("AirCon")
+                    b.Property<bool>("AirCondition")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("CeramicOven")
                         .HasColumnType("bit");
 
                     b.Property<bool>("Kitchen")
@@ -96,7 +99,13 @@ namespace LingonberryStudio.Migrations
                     b.Property<bool>("RunningWater")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("Shower")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("Storage")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Toilet")
                         .HasColumnType("bit");
 
                     b.HasKey("AmenityID");

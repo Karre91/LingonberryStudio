@@ -1,151 +1,168 @@
-﻿@*@using LingonberryStudio.Data.Entities
+﻿@using LingonberryStudio.Data.Entities
 @using LingonberryStudio.ViewModels
 @model AdvertViewMoldel
-
 
 <div id="area-and-results" class="">
     <div class="row">
         <div class="col">
             <div>
-                <a type="" asp-controller="Adverts" asp-action="Empty" class="btn btn-primary">Clear filters</a>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Filter
-                    </button>
-                    <div class="dropdown-menu">
-                        <div class="form-outline mb-4">
-                            @using (Html.BeginForm("Adverts", "Adverts", FormMethod.Get, new { @class = "px-4 py-3" }))
-                            {
-
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-check" style="float:right">
-                                            @Html.CheckBoxFor(m => m.Filter.Offering, true) I want to rent<br />
-                                            @Html.RadioButtonFor(m => m.Filter.OfferingLooking,  "Offering") I want to rent
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-check" style="float:left">
-                                            @Html.CheckBoxFor(m => m.Filter.Looking, true) I want to offer<br />
-                                            @Html.RadioButtonFor(m => m.Filter.OfferingLooking, "Looking") I want to offer
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dropdown-divider"></div>
-                                <div>
-                                    @Html.TextBoxFor(m => m.Filter.City, "", new { @class = "form-control", placeholder = "City" })
-                                </div>
-                                <div class="dropdown-divider"></div>
-                                <div class="row">
-                                    <div class="col" onclick="ableRange()">
-                                        <div class="form-check">
-                                            @Html.RadioButtonFor(m => m.Filter.MonthOrWeek, "Month") Month
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-check">
-                                            @Html.RadioButtonFor(m => m.Filter.MonthOrWeek, "Week") Week
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label for="Budget" class="form-label">Max budget £<span id="displayBudget"></span></label>
-                                    <input type="range" class="multi-range form-range" asp-for="@Model.Filter.Budget" value="250" id="Budget" name="Budget" min="0" max="500" step="1" onchange="myFunction()" disabled>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col d-flex justify-content-center">
-                                        <!-- Checkbox -->
-                                        <div class="form-check">
-                                            @Html.CheckBoxFor(m => m.Filter.MusikStudio, true) Music Studio<br />
-                                            @Html.CheckBoxFor(m => m.Filter.ArtStudio, true) Art Studio<br />
-                                            @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true) Photo Studio<br />
-                                            @Html.CheckBoxFor(m => m.Filter.DanceRehersalStudio, true) Dance Rehersal Studio<br />
-                                            @Html.CheckBoxFor(m => m.Filter.CeramicsStudio, true) Ceramics Studio<br />
-                                            @Html.CheckBoxFor(m => m.Filter.PaintingWorkshop, true) Painting Workshop<br />
-                                            @Html.CheckBoxFor(m => m.Filter.OtherStudio, true) Other
-                                        </div>
-                                        <br />
-
-                                        <div class="col d-flex justify-content-center">
-                                            <div class="form-group checkbox">
-                                                <p>Amenities</p>
-                                                @Html.CheckBoxFor(m => m.Filter.Parking, true) Parking <br />
-                                                @Html.CheckBoxFor(m => m.Filter.AirCon, true) Air conditioning <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Kitchen) Kitchen <br />
-                                                @Html.CheckBoxFor(m => m.Filter.NaturalLight) Natural Light <br />
-                                                @Html.CheckBoxFor(m => m.Filter.AcousticTreatment) Acoustic Treatment <br />
-                                                @Html.CheckBoxFor(m => m.Filter.RunningWater) Running Water <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Storage) Storage <br />
-                                                @Html.CheckBoxFor(m => m.Filter.OtherAmenities) Other <br />
-                                            </div>
-                                        </div>
-                                        <div class="col d-flex justify-content-center">
-                                            <div class="form-group checkbox">
-                                                <p>Studio is avalible following days:</p>
-                                                @Html.CheckBoxFor(m => m.Filter.Monday) Monday <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Tuesday) Tuesday <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Wednesday) Wednesday <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Thursday) Thursday <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Friday) Friday <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Saturday) Saturday <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Sunday) Sunday <br />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <button type="submit" class="btn btn-primary btn-block">Apply filters</button>
-                            }
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <p>Testtext</p>
-                    </div>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <input type="checkbox" value="true"> <label></label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div>
-                <a class="btn ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">POST YOUR AD</a><br /><br />
-                <p id="result">@ViewBag.Total results</p>
-                <div id="popupForm"></div>
+                <a data-toggle="modal" type="" asp-controller="Adverts" asp-action="Empty" class="btn btn-primary">Clear filters</a>
+                <a class="btn btn-secondary dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter
+                    @await Html.PartialAsync("_FilterPartial")
+                </a>
+                
             </div>
         </div>
     </div>
 </div>
 
-<div class="container-fluid flex-grid-container border-0">
-    <div class="flex-grid-container justify-content-center">
-        @foreach (var ad in Model.AdvertList)
-        {
-            <div class="ad-card">
-                <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertID)">
-                    <div>
-                        <img src="/@(ad.WorkPlaces.ImgUrl)" class="img-fluid mx-auto ad-image">
-                    </div>
-                    <div>
-                        <p class="fw-bold mb-0 mt-3">
-                        <p class="mb-0">@ad.City</p>
-                    </div>
-                </a>
-                @await Html.PartialAsync("_ChosenAdPartial", ad)
-            </div>
-        }
+
+
+    @*<div id="area-and-results" class="">
+    <div class="row">
+    <div class="col">
+    <div>
+    <a type="" asp-controller="Adverts" asp-action="Empty" class="btn btn-primary">Clear filters</a>
+    <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Filter
+    </button>
+    <div class="dropdown-menu">
+    <div class="form-outline mb-4">
+    @using (Html.BeginForm("Adverts", "Adverts", FormMethod.Get, new { @class = "px-4 py-3" }))
+    {
+
+    <div class="row">
+    <div class="col">
+    <div class="form-check" style="float:right">
+    @Html.CheckBoxFor(m => m.Filter.Offering, true) I want to rent<br />
+    @Html.RadioButtonFor(m => m.Filter.OfferingLooking,  "Offering") I want to rent
     </div>
-</div>*@
+    </div>
+    <div class="col">
+    <div class="form-check" style="float:left">
+    @Html.CheckBoxFor(m => m.Filter.Looking, true) I want to offer<br />
+    @Html.RadioButtonFor(m => m.Filter.OfferingLooking, "Looking") I want to offer
+    </div>
+    </div>
+    </div>
+    <div class="dropdown-divider"></div>
+    <div>
+    @Html.TextBoxFor(m => m.Filter.City, "", new { @class = "form-control", placeholder = "City" })
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="row">
+    <div class="col" onclick="ableRange()">
+    <div class="form-check">
+    @Html.RadioButtonFor(m => m.Filter.MonthOrWeek, "Month") Month
+    </div>
+    </div>
+    <div class="col">
+    <div class="form-check">
+    @Html.RadioButtonFor(m => m.Filter.MonthOrWeek, "Week") Week
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <label for="Budget" class="form-label">Max budget £<span id="displayBudget"></span></label>
+    <input type="range" class="multi-range form-range" asp-for="@Model.Filter.Budget" value="250" id="Budget" name="Budget" min="0" max="500" step="1" onchange="myFunction()" disabled>
+    </div>
+    <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+    <!-- Checkbox -->
+    <div class="form-check">
+    @Html.CheckBoxFor(m => m.Filter.MusikStudio, true) Music Studio<br />
+    @Html.CheckBoxFor(m => m.Filter.ArtStudio, true) Art Studio<br />
+    @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true) Photo Studio<br />
+    @Html.CheckBoxFor(m => m.Filter.DanceRehersalStudio, true) Dance Rehersal Studio<br />
+    @Html.CheckBoxFor(m => m.Filter.CeramicsStudio, true) Ceramics Studio<br />
+    @Html.CheckBoxFor(m => m.Filter.PaintingWorkshop, true) Painting Workshop<br />
+    @Html.CheckBoxFor(m => m.Filter.OtherStudio, true) Other
+    </div>
+    <br />
 
-<script>
-    function myFunction() {
-        var x = document.getElementById("Budget").value;
-        document.getElementById("displayBudget").innerHTML = x;
-    }
+    <div class="col d-flex justify-content-center">
+    <div class="form-group checkbox">
+    <p>Amenities</p>
+    @Html.CheckBoxFor(m => m.Filter.Parking, true) Parking <br />
+    @Html.CheckBoxFor(m => m.Filter.AirCon, true) Air conditioning <br />
+    @Html.CheckBoxFor(m => m.Filter.Kitchen) Kitchen <br />
+    @Html.CheckBoxFor(m => m.Filter.NaturalLight) Natural Light <br />
+    @Html.CheckBoxFor(m => m.Filter.AcousticTreatment) Acoustic Treatment <br />
+    @Html.CheckBoxFor(m => m.Filter.RunningWater) Running Water <br />
+    @Html.CheckBoxFor(m => m.Filter.Storage) Storage <br />
+    @Html.CheckBoxFor(m => m.Filter.OtherAmenities) Other <br />
+    </div>
+    </div>
+    <div class="col d-flex justify-content-center">
+    <div class="form-group checkbox">
+    <p>Studio is avalible following days:</p>
+    @Html.CheckBoxFor(m => m.Filter.Monday) Monday <br />
+    @Html.CheckBoxFor(m => m.Filter.Tuesday) Tuesday <br />
+    @Html.CheckBoxFor(m => m.Filter.Wednesday) Wednesday <br />
+    @Html.CheckBoxFor(m => m.Filter.Thursday) Thursday <br />
+    @Html.CheckBoxFor(m => m.Filter.Friday) Friday <br />
+    @Html.CheckBoxFor(m => m.Filter.Saturday) Saturday <br />
+    @Html.CheckBoxFor(m => m.Filter.Sunday) Sunday <br />
+    </div>
+    </div>
+    </div>
+    </div>
 
-    function ableRange() {
-        document.getElementById("Budget").disabled = false;
-        var x = document.getElementById("Budget").value;
-        document.getElementById("displayBudget").innerHTML = x;
+
+    <button type="submit" class="btn btn-primary btn-block">Apply filters</button>
     }
-</script>
+    </div>
+    <div class="dropdown-divider"></div>
+    <p>Testtext</p>
+    </div>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <input type="checkbox" value="true"> <label></label>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="col">
+    <div>
+    <a class="btn ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">POST YOUR AD</a><br /><br />
+    <p id="result">@ViewBag.Total results</p>
+    <div id="popupForm"></div>
+    </div>
+    </div>
+    </div>
+    </div>*@
+
+    <div class="container-fluid flex-grid-container border-0">
+        <div class="flex-grid-container justify-content-center">
+            @foreach (var ad in Model?.AdvertList)
+            {
+                <div class="ad-card">
+                    <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
+                        <div>
+                            <img src="/@(ad.WorkPlace.ImgUrl)" class="img-fluid mx-auto ad-image">
+                        </div>
+                        <div>
+                            <p class="fw-bold mb-0 mt-3">
+                            <p class="mb-0">@ad.WorkPlace.City</p>
+                        </div>
+                    </a>
+                    @await Html.PartialAsync("_ChosenAdPartial", ad)
+                </div>
+            }
+        </div>
+    </div>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("Budget").value;
+            document.getElementById("displayBudget").innerHTML = x;
+        }
+
+        function ableRange() {
+            document.getElementById("Budget").disabled = false;
+            var x = document.getElementById("Budget").value;
+            document.getElementById("displayBudget").innerHTML = x;
+        }
+    </script>
