@@ -36,11 +36,6 @@ namespace LingonberryStudio.Data.Entities
             List<bool> list = new List<bool>() { MusicStudio, ArtStudio, PhotoStudio, DanceRehersalStudio, CeramicsStudio, PaintingWorkshop};
             return list;
         }
-        public Studios studios { get; set; }
     }
-    public enum Studios
-    {
-        Music, Art, Photo, Dance, Ceramics, Painting, Workshop
 
-    }
 }
