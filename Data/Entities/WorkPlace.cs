@@ -21,9 +21,6 @@ namespace LingonberryStudio.Data.Entities
         ErrorMessage = "Only letters allowed")]
         public string? Area { get; set; }
 
-
-        [Required]
-        public string StudioType { get; set; }
         [AllowNull]
         public string? ImgUrl { get; set; }
         [AllowNull]

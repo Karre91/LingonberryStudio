@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LingonberryStudio.Migrations
 {
     [DbContext(typeof(LingonberryDbContext))]
-    [Migration("20230116130707_initial")]
+    [Migration("20230116154014_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -55,6 +55,10 @@ namespace LingonberryStudio.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SocialMedia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StudioType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("TimeCreated")
@@ -104,7 +108,7 @@ namespace LingonberryStudio.Migrations
 
                     b.HasKey("AmenityID");
 
-                    b.ToTable("Amenities");
+                    b.ToTable("AmenityTypes");
                 });
 
             modelBuilder.Entity("LingonberryStudio.Data.Entities.TimeFrame", b =>
@@ -190,10 +194,6 @@ namespace LingonberryStudio.Migrations
                     b.Property<string>("Period")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StudioType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("TimeFrameID")
                         .HasColumnType("int");
 
@@ -203,18 +203,18 @@ namespace LingonberryStudio.Migrations
 
                     b.HasIndex("TimeFrameID");
 
-                    b.ToTable("WorkPlaces");
+                    b.ToTable("WorkPlace");
                 });
 
             modelBuilder.Entity("LingonberryStudio.Data.Entities.Advert", b =>
                 {
-                    b.HasOne("LingonberryStudio.Data.Entities.WorkPlace", "WorkPlaces")
+                    b.HasOne("LingonberryStudio.Data.Entities.WorkPlace", "WorkPlace")
                         .WithMany()
                         .HasForeignKey("WorkPlaceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("WorkPlaces");
+                    b.Navigation("WorkPlace");
                 });
 
             modelBuilder.Entity("LingonberryStudio.Data.Entities.WorkPlace", b =>

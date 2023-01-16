@@ -8,7 +8,7 @@
 
 
 
-@*@using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <!-- Modal -->
     <div class="modal fade table-responsive" id="formModal" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
@@ -34,17 +34,17 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label asp-for="City">City</label>
-                                <input type="text" class="form-control" asp-for="City" required> 
+                                <label asp-for="WorkPlace.City">City</label>
+                                <input type="text" class="form-control" asp-for="WorkPlace.City" required> 
                                 <span class="invalid-feedback">Please enter city</span>
                                
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label asp-for="Area">Area</label>
-                                <input type="text" class="form-control" asp-for="Area">
-                                <span asp-validation-for="Area" class="text-danger"></span>
+                                <label asp-for="WorkPlace.Area">Area</label>
+                                <input type="text" class="form-control" asp-for="WorkPlace.Area">
+                                <span asp-validation-for="WorkPlace.Area" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -92,21 +92,35 @@
                                 <span asp-validation-for="Artist" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col">                           
-                         
-                        </div>                      
-                    </div>               
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="StudioType">Workspace</label>
+                                <br>
+                                <input list="StudioType" name="StudioType" required>
+                                <datalist asp-for="WorkPlace.StudioType" id="StudioType">
+                                    <option value="" selected disabled>Options</option>
+                                    <option value="Music Studio">Music Studio</option>
+                                    <option value="Art Studio">Art Studio</option>
+                                    <option value="Photo Studio">Photo Studio</option>
+                                    <option value="Dance Rehersal Studio">Dance Rehersal Studio</option>
+                                    <option value="Ceramics Studio">Ceramics Studio</option>
+                                    <option value="Painting Workshop">Painting Workshop</option>
+                                </datalist>
+                                <span class="invalid-feedback">Please choose one</span>
+                            </div>
+                        </div>
+                    </div>                        
                         <div class="form-group">
-                        <label asp-for="WorkPlaces.Description">Description</label>
-                       <textarea type="text" placeholder="Please type a short description(Workspace, genre, set-up, background etc)" asp-for="WorkPlaces.Description" class="form-control"></textarea>
+                        <label asp-for="WorkPlace.Description">Description</label>
+                       <textarea type="text" placeholder="Please type a short description(Workspace, genre, set-up, background etc)" asp-for="WorkPlace.Description" class="form-control"></textarea>
                             
                             <span class="invalid-feedback">Please enter Description</span>
-                            <span asp-validation-for="WorkPlaces.Description" class="text-danger"></span>
+                            <span asp-validation-for="WorkPlace.Description" class="text-danger"></span>
                         </div>
                     <div class="col">
                        <div class="form-group">
-                            <label asp-for="WorkPlaces.FormFile">Studio image</label>
-                            <input asp-for="WorkPlaces.FormFile" class="form-control" />
+                            <label asp-for="WorkPlace.FormFile">Studio image</label>
+                            <input asp-for="WorkPlace.FormFile" class="form-control" />
                         </div>
                     </div>
 
@@ -120,26 +134,26 @@
                             <div class="align-content-center border-box">
                                 <div class="form-group checkbox">
                                     <p>Days in the studio:</p>
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Monday" value="true">
-                                    <label asp-for="DatesAndTimes.Days">Monday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.TimeFrames.Monday" value="true">
+                                    <label asp-for="WorkPlace.TimeFrames.Monday">Monday</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Tuesday" value="true">
-                                    <label asp-for="DatesAndTimes.Days">Tuesday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.TimeFrames.Tuesday" value="true">
+                                    <label asp-for="WorkPlace.TimeFrames.Tuesday">Tuesday</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Wednesday" value="true">
-                                    <label asp-for="DatesAndTimes.Days">Wednesday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.TimeFrames.Wednesday" value="true">
+                                    <label asp-for="WorkPlace.TimeFrames.Wednesday">Wednesday</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Thursday" value="true">
-                                    <label asp-for="DatesAndTimes.Days">Thursday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.TimeFrames.Thursday" value="true">
+                                    <label asp-for="WorkPlace.TimeFrames.Thursday">Thursday</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Friday" value="true">
-                                    <label asp-for="DatesAndTimes.Days">Friday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.TimeFrames.Friday" value="true">
+                                    <label asp-for="WorkPlace.TimeFrames.Friday">Friday</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Saturday" value="true">
-                                    <label asp-for="DatesAndTimes.Days">Saturday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.TimeFrames.Saturday" value="true">
+                                    <label asp-for="WorkPlace.TimeFrames.Saturday">Saturday</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.DatesAndTimes.Days.Sunday" value="true">
-                                    <label asp-for="DatesAndTimes.Days">Sunday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.TimeFrames.Sunday" value="true">
+                                    <label asp-for="WorkPlace.TimeFrames.Sunday">Sunday</label><br>
                                 </div>
                             </div>
                         </div>
@@ -147,61 +161,58 @@
                             <div class="align-content-center borderBox">
                                 <div class="form-group checkbox">
                                     <p>Amenities</p>
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.Parking" value=true>
-                                    <label asp-for="Amenities"> Parking space</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.AmenityTypes.Parking" value=true>
+                                    <label asp-for="WorkPlace.AmenityTypes.Parking"> Parking space</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.AirCon" value=true>
-                                    <label asp-for="Amenities">Air conditioning</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.AmenityTypes.AirCon" value=true>
+                                    <label asp-for="WorkPlace.AmenityTypes.AirCon">Air conditioning</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.Kitchen" value=true>
-                                    <label asp-for="Amenities"> Kitchen</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.AmenityTypes.Kitchen" value=true>
+                                    <label asp-for="WorkPlace.AmenityTypes.Kitchen"> Kitchen</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.NaturalLight" value=true>
-                                    <label asp-for="Amenities">Natural light</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.AmenityTypes.AcousticTreatment" value=true>
+                                    <label asp-for="WorkPlace.AmenityTypes.AcousticTreatment">Acoustic treatment</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.AcousticTreatment" value=true>
-                                    <label asp-for="Amenities">Acoustic treatment</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.AmenityTypes.RunningWater" value=true>
+                                    <label asp-for="WorkPlace.AmenityTypes.RunningWater">Running water</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.RunningWater" value=true>
-                                    <label asp-for="Amenities">Running water</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.AmenityTypes.Storage" value=true>
+                                    <label asp-for="WorkPlace.AmenityTypes.Storage">Storage</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.Amenities.Storage" value=true>
-                                    <label asp-for="Amenities">Storage</label><br>
-
-                                    <label asp-for="Amenities">Type your own</label><br>
-                                    <input type="text" asp-for="@Model.Amenities.Other" />
-                                    <span asp-validation-for="Amenities.Other" class="text-danger"></span>
+                                    <label asp-for="WorkPlace.AmenityTypes.Other">Type your own</label><br>
+                                    <input type="text" asp-for="@Model.WorkPlace.AmenityTypes.Other" />
+                                    <span asp-validation-for="WorkPlace.AmenityTypes.Other" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-check">
-                       @*         <input class="form-check-input" type="radio" asp-for="Measurements.Feet" name="Measurements" value="Square foot">
-                                <label asp-for="Measurements">Area square foot</label><br>
-                                <input class="form-check-input" type="radio" asp-for="Measurements.Meters" name="Measurements" value="Square metres">
-                                <label asp-for="Measurements">Area in square metres</label><br>
-                                <input type="number" asp-for="@Model.Measurements.Number" />
+                               <input class="form-check-input" type="radio" asp-for="WorkPlace.MeasurementType" name="Measurements" value="Square foot">
+                                <label asp-for="WorkPlace.MeasurementType">Area square foot</label><br>
+                                <input class="form-check-input" type="radio" asp-for="WorkPlace.MeasurementType" name="Measurements" value="Square metres">
+                                <label asp-for="WorkPlace.MeasurementType">Area in square metres</label><br>
+                                <input type="number" asp-for="@Model.WorkPlace.MeasurementNumber" />
                                 <span class="invalid-feedback">Please tick a box</span>
-                                <span asp-validation-for="Measurements.Number" class="text-danger"></span>
+                                <span asp-validation-for="WorkPlace.MeasurementNumber" class="text-danger"></span>
                             </div>
                             <div class="form-group mx-4">
-                                <input id="Start_date_picker" type="date" asp-for="@Model.DatesAndTimes.StartDate">
-                                <input id="End_date_picker" type="date" asp-for="@Model.DatesAndTimes.EndDate">
+                                <input id="Start_date_picker" type="date" asp-for="@Model.WorkPlace.TimeFrames.StartDate">
+                                <input id="End_date_picker" type="date" asp-for="@Model.WorkPlace.TimeFrames.EndDate">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-check">
-                               @* <input class="form-check-input" type="radio" asp-for="Budgets.Month" value="Month" required>
-                                <label asp-for="Budgets">Price per month</label><br>
-                               <input class="form-check-input" type="radio" asp-for="Budgets.Week" name="Budget" value="Week" required>
-                                <label asp-for="Budgets">Price per week</label><br>
-                                <input type="number" asp-for="@Model.Budgets.Price" required/>
+                                <input class="form-check-input" type="radio" asp-for="WorkPlace.Period" name="Period" value="Month" required>
+                                <label asp-for="WorkPlace.Period">Price per month</label><br>
+                               <input class="form-check-input" type="radio" asp-for="WorkPlace.Period" name="Period" value="Week" required>
+                                <label asp-for="WorkPlace.Period">Price per week</label><br>
+                                <input type="number" asp-for="@Model.WorkPlace.Currency">
                                 <span class="invalid-feedback">Please tick a box</span>
                             </div>
                             <div class="form-group mx-4">
-                                <label class="formAlignment" asp-for="DatesAndTimes">Select time</label> <br>
-                                <input type="time" asp-for="DatesAndTimes.OpeningTime"><br> <br>
-                                <input type="time" asp-for="DatesAndTimes.ClosingTime">
+                                <label class="formAlignment" asp-for="WorkPlace.TimeFrames">Select time</label> <br>
+                                <input type="time" asp-for="WorkPlace.TimeFrames.OpeningTime"><br> <br>
+                                <input type="time" asp-for="WorkPlace.TimeFrames.ClosingTime">
                             </div>
                         </div>
                     </div>
@@ -213,7 +224,7 @@
             </div>
         </div>
     </div>
-}*@
+}
 
 <script type="text/javascript">
     function showfield(name) {

@@ -37,6 +37,8 @@ namespace LingonberryStudio.Data.Entities
         public string? Artist { get; set; }
         [AllowNull]
         public string? SocialMedia { get; set; }
+        [Required]
+        public string StudioType { get; set; }
 
 
         [Display(Name = "WorkPlace")]

@@ -12,7 +12,7 @@ namespace LingonberryStudio.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Amenities",
+                name: "AmenityTypes",
                 columns: table => new
                 {
                     AmenityID = table.Column<int>(type: "int", nullable: false)
@@ -28,7 +28,7 @@ namespace LingonberryStudio.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Amenities", x => x.AmenityID);
+                    table.PrimaryKey("PK_AmenityTypes", x => x.AmenityID);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,14 +55,13 @@ namespace LingonberryStudio.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WorkPlaces",
+                name: "WorkPlace",
                 columns: table => new
                 {
                     WorkPlaceID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Area = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StudioType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Period = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -74,15 +73,15 @@ namespace LingonberryStudio.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WorkPlaces", x => x.WorkPlaceID);
+                    table.PrimaryKey("PK_WorkPlace", x => x.WorkPlaceID);
                     table.ForeignKey(
-                        name: "FK_WorkPlaces_Amenities_AmenityID",
+                        name: "FK_WorkPlace_AmenityTypes_AmenityID",
                         column: x => x.AmenityID,
-                        principalTable: "Amenities",
+                        principalTable: "AmenityTypes",
                         principalColumn: "AmenityID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_WorkPlaces_TimeFrames_TimeFrameID",
+                        name: "FK_WorkPlace_TimeFrames_TimeFrameID",
                         column: x => x.TimeFrameID,
                         principalTable: "TimeFrames",
                         principalColumn: "DatesAndTimeID",
@@ -103,15 +102,16 @@ namespace LingonberryStudio.Migrations
                     PhoneNumber = table.Column<int>(type: "int", nullable: true),
                     Artist = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SocialMedia = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudioType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WorkPlaceID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Adverts", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Adverts_WorkPlaces_WorkPlaceID",
+                        name: "FK_Adverts_WorkPlace_WorkPlaceID",
                         column: x => x.WorkPlaceID,
-                        principalTable: "WorkPlaces",
+                        principalTable: "WorkPlace",
                         principalColumn: "WorkPlaceID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -122,13 +122,13 @@ namespace LingonberryStudio.Migrations
                 column: "WorkPlaceID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WorkPlaces_AmenityID",
-                table: "WorkPlaces",
+                name: "IX_WorkPlace_AmenityID",
+                table: "WorkPlace",
                 column: "AmenityID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WorkPlaces_TimeFrameID",
-                table: "WorkPlaces",
+                name: "IX_WorkPlace_TimeFrameID",
+                table: "WorkPlace",
                 column: "TimeFrameID");
         }
 
@@ -139,10 +139,10 @@ namespace LingonberryStudio.Migrations
                 name: "Adverts");
 
             migrationBuilder.DropTable(
-                name: "WorkPlaces");
+                name: "WorkPlace");
 
             migrationBuilder.DropTable(
-                name: "Amenities");
+                name: "AmenityTypes");
 
             migrationBuilder.DropTable(
                 name: "TimeFrames");

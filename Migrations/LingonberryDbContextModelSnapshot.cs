@@ -54,6 +54,10 @@ namespace LingonberryStudio.Migrations
                     b.Property<string>("SocialMedia")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("StudioType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("TimeCreated")
                         .HasColumnType("datetime2");
 
@@ -185,10 +189,6 @@ namespace LingonberryStudio.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Period")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StudioType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TimeFrameID")
