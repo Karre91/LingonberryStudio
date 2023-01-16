@@ -43,7 +43,7 @@ namespace LingonberryStudio.Data.Entities
         public virtual int WorkPlaceID { get; set; }
 
         [ForeignKey("WorkPlaceID")]
-        public virtual WorkPlace WorkPlaces { get; set; }
+        public virtual WorkPlace WorkPlace { get; set; }
 
         
     }

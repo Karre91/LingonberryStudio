@@ -135,33 +135,34 @@ namespace LingonberryStudio.Controllers.Adverts
             return PartialView("_FormPartial");
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult CreateAd(Advert ad)
-        //{
-        //    var errors = ModelState.Values.SelectMany(v => v.Errors);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateAd(Advert ad)
+        {
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        ad.City = ad.City?.ToUpper();
+            if (ModelState.IsValid)
+            {
+                ad.WorkPlace.City = ad.WorkPlace.City?.ToUpper();
 
-        //        if (ad.WorkPlaces.FormFile != null)
-        //        {
-        //            ad.WorkPlaces.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.WorkPlaces.FormFile.FileName;
-        //            var path = Path.Combine(_Web.WebRootPath, ad.WorkPlaces.ImgUrl);
-        //            ad.WorkPlaces.FormFile.CopyToAsync(new FileStream(path, FileMode.Create));
-        //        }
-        //        else
-        //        {
-        //            ad.WorkPlaces.ImgUrl = "StudioImages/handshake.jpg";
-        //        }
+                if (ad.WorkPlace.FormFile != null)
+                {
+                    ad.WorkPlace.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.WorkPlace.FormFile.FileName;
+                    var path = Path.Combine(_Web.WebRootPath, ad.WorkPlace.ImgUrl);
+                    ad.WorkPlace.FormFile.CopyToAsync(new FileStream(path, FileMode.Create));
+                }
+                else
+                {
+                    // if offering == true osv
+                    ad.WorkPlace.ImgUrl = "StudioImages/handshake.jpg";
+                }
 
-        //        _db.Adverts.Add(ad);
-        //        _db.SaveChanges();
-        //        return RedirectToAction("Adverts");
-        //    }
-        //    return PartialView("_FormPartial", ad);
-        //}
+                _db.Adverts.Add(ad);
+                _db.SaveChanges();
+                return RedirectToAction("Adverts");
+            }
+            return PartialView("_FormPartial", ad);
+        }
 
 
 
