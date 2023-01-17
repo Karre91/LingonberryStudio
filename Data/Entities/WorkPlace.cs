@@ -21,9 +21,6 @@ namespace LingonberryStudio.Data.Entities
         ErrorMessage = "Only letters allowed")]
         public string? Area { get; set; }
 
-
-        [Required]
-        public string StudioType { get; set; }
         [AllowNull]
         public string? ImgUrl { get; set; }
         [AllowNull]
@@ -34,12 +31,10 @@ namespace LingonberryStudio.Data.Entities
         ErrorMessage = "Only letters allowed")]
         public string Description { get; set; }
 
-
         [AllowNull]
         public string? Period { get; set; }
         [AllowNull]
         public int? Currency { get; set; }
-
 
         [AllowNull]
         public string? MeasurementType { get; set; }
@@ -47,7 +42,6 @@ namespace LingonberryStudio.Data.Entities
         [RegularExpression(@"^[0-9]{1,6}$",
         ErrorMessage = "Maximum 6 digits")]
         public int? MeasurementNumber { get; set; }
-
 
 
         [Display(Name = "Amenity")]
@@ -61,9 +55,6 @@ namespace LingonberryStudio.Data.Entities
         [ForeignKey("TimeFrameID")]
         public virtual TimeFrame TimeFrames { get; set; }
 
-
-
-    
     }
 
 }

@@ -50,10 +50,12 @@
                                     <label asp-for="Filter.Currency" class="form-label">Max budget £<span id="displayBudget"></span></label>
                                     <input type="range" class="multi-range form-range" asp-for="Filter.Currency" value="250" id="Currency" name="Filter.Currency" min="0" max="500" step="1" onchange="myFunction()" disabled>
                                 </div>
+                                <div class="dropdown-divider"></div>
                                 <div class="row mb-4">
                                     <div class="col d-flex justify-content-center">
                                         <!-- Checkbox -->
-                                       @* <div class="form-check">
+                                        <div class="form-check">
+                                            <p>Studio Type</p>
                                             @Html.CheckBoxFor(m => m.Filter.MusikStudio, true) Music Studio<br />
                                             @Html.CheckBoxFor(m => m.Filter.ArtStudio, true) Art Studio<br />
                                             @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true) Photo Studio<br />
@@ -61,7 +63,7 @@
                                             @Html.CheckBoxFor(m => m.Filter.CeramicsStudio, true) Ceramics Studio<br />
                                             @Html.CheckBoxFor(m => m.Filter.PaintingWorkshop, true) Painting Workshop<br />
                                             @Html.CheckBoxFor(m => m.Filter.OtherStudio, true) Other
-                                        </div>*@
+                                        </div>
                                         <br />
 
                                         <div class="col d-flex justify-content-center">
@@ -80,7 +82,7 @@
                                                 @Html.CheckBoxFor(m => m.Filter.OtherAmenities) Other <br />
                                             </div>
                                         </div>
-                                        @*<div class="col d-flex justify-content-center">
+                                        <div class="col d-flex justify-content-center">
                                             <div class="form-group checkbox">
                                                 <p>Studio is avalible following days:</p>
                                                 @Html.CheckBoxFor(m => m.Filter.Monday) Monday <br />
@@ -91,10 +93,11 @@
                                                 @Html.CheckBoxFor(m => m.Filter.Saturday) Saturday <br />
                                                 @Html.CheckBoxFor(m => m.Filter.Sunday) Sunday <br />
                                             </div>
-                                        </div>*@
+                                        </div>
                                     </div>
                                 </div>
-                            <button type="submit" class="btn btn-primary btn-block">Apply filters</button>                                            }
+                                <button type="submit" class="btn btn-primary btn-block">Apply filters</button>
+                            }
                         </div>
                         <div class="dropdown-divider"></div>
                         <p>Testtext</p>

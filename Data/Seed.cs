@@ -31,11 +31,11 @@ namespace LingonberryStudio.Data
                         PhoneNumber = 0707310791,
                         Artist = "KarinSjunger",
                         SocialMedia = "@instagram KarinSjunger",
+                        StudioType = "Art Studio",
                         WorkPlace = new()
                         {
                             City = "LONDON",
-                            Area = "EAST",
-                            StudioType = "Art Studio",
+                            Area = "EAST",                            
                             ImgUrl = "seedImg/artOffering.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
@@ -82,11 +82,11 @@ namespace LingonberryStudio.Data
                         PhoneNumber = 123456789,
                         Artist = null,
                         SocialMedia = null,
+                        StudioType = "Photo Studio",
                         WorkPlace = new()
                         {
                             City = "STOCKHOLM",
                             Area = "SOLNA",
-                            StudioType = "Photo Studio",
                             ImgUrl = "seedImg/photoOffering.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
@@ -133,11 +133,11 @@ namespace LingonberryStudio.Data
                         PhoneNumber = 123456789,
                         Artist = null,
                         SocialMedia = null,
+                        StudioType = "Ceramics Studio",
                         WorkPlace = new()
                         {
                             City = "LONDON",
                             Area = "HACKNEY",
-                            StudioType = "Ceramics Studio",
                             ImgUrl = "seedImg/ceramicsOffering.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
@@ -184,11 +184,11 @@ namespace LingonberryStudio.Data
                         PhoneNumber = 123456789,
                         Artist = null,
                         SocialMedia = null,
+                        StudioType = "DanceRehersal Studio",
                         WorkPlace = new()
                         {
                             City = "GOTHENBURG",
                             Area = "MOLNDAL",
-                            StudioType = "DanceRehersal Studio",
                             ImgUrl = "seedImg/danceOffering.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
@@ -235,11 +235,11 @@ namespace LingonberryStudio.Data
                           PhoneNumber = 123456789,
                           Artist = "Madonna",
                           SocialMedia = null,
-                          WorkPlace = new()
+                        StudioType = "Music Studio",
+                        WorkPlace = new()
                           {
                               City = "CARDIFF",
                               Area = "CENTER",
-                              StudioType = "Music Studio",
                               ImgUrl = "seedImg/musicOffering.jpg",
                               Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                               Period = "Week",
@@ -287,11 +287,11 @@ namespace LingonberryStudio.Data
                         PhoneNumber = 0707310791,
                         Artist = "KarinSjunger",
                         SocialMedia = "@instagram KarinSjunger",
+                        StudioType = "Art Studio",
                         WorkPlace = new()
                         {
                             City = "LONDON",
                             Area = "EAST",
-                            StudioType = "Art Studio",
                             ImgUrl = "seedImg/artLooking.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
@@ -338,11 +338,11 @@ namespace LingonberryStudio.Data
                         PhoneNumber = 123456789,
                         Artist = null,
                         SocialMedia = null,
+                        StudioType = "Photo Studio",
                         WorkPlace = new()
                         {
                             City = "STOCKHOLM",
                             Area = "SOLNA",
-                            StudioType = "Photo Studio",
                             ImgUrl = "seedImg/photoLooking.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
@@ -389,11 +389,11 @@ namespace LingonberryStudio.Data
                         PhoneNumber = 123456789,
                         Artist = null,
                         SocialMedia = null,
+                        StudioType = "Ceramics Studio",
                         WorkPlace = new()
                         {
                             City = "LONDON",
                             Area = "HACKNEY",
-                            StudioType = "Ceramics Studio",
                             ImgUrl = "seedImg/ceramicsLooking.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
@@ -440,11 +440,11 @@ namespace LingonberryStudio.Data
                         PhoneNumber = 123456789,
                         Artist = null,
                         SocialMedia = null,
+                        StudioType = "DanceRehersal Studio",
                         WorkPlace = new()
                         {
                             City = "GOTHENBURG",
                             Area = "MOLNDAL",
-                            StudioType = "DanceRehersal Studio",
                             ImgUrl = "seedImg/danceLooking.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
@@ -491,11 +491,11 @@ namespace LingonberryStudio.Data
                         PhoneNumber = 123456789,
                         Artist = "Madonna",
                         SocialMedia = null,
+                        StudioType = "Music Studio",
                         WorkPlace = new()
                         {
                             City = "CARDIFF",
                             Area = "CENTER",
-                            StudioType = "Music Studio",
                             ImgUrl = "seedImg/musicLooking.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
@@ -543,11 +543,11 @@ namespace LingonberryStudio.Data
                         PhoneNumber = 123456789,
                         Artist = "Madonna",
                         SocialMedia = null,
+                        StudioType = "Yoga Studio",
                         WorkPlace = new()
                         {
                             City = "CARDIFF",
                             Area = "CENTER",
-                            StudioType = "Yoga Studio",
                             ImgUrl = "seedImg/yogaOffering.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
@@ -594,11 +594,11 @@ namespace LingonberryStudio.Data
                          PhoneNumber = 123456789,
                          Artist = "Madonna",
                          SocialMedia = null,
-                         WorkPlace = new()
+                        StudioType = "Darkroom",
+                        WorkPlace = new()
                          {
                              City = "CARDIFF",
                              Area = "CENTER",
-                             StudioType = "Darkroom",
                              ImgUrl = "seedImg/darkroom.jpg",
                              Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                              Period = "Week",
@@ -645,11 +645,11 @@ namespace LingonberryStudio.Data
                         PhoneNumber = 123456789,
                         Artist = "Madonna",
                         SocialMedia = null,
+                        StudioType = "Film Studio",
                         WorkPlace = new()
                         {
                             City = "CARDIFF",
                             Area = "CENTER",
-                            StudioType = "Film Studio",
                             ImgUrl = "seedImg/film.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Week",
