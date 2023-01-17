@@ -1,0 +1,182 @@
+﻿@using LingonberryStudio.Data.Entities
+@model Advert
+
+@*<div class="modal fade" id="adModal-@Model.AdvertID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle"> @Model.WorkPlaces.Description </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div>
+					<img src="/@Model.WorkPlaces.ImgUrl" class="img-fluid mx-auto ad-image center">
+				</div>
+				@if (Model.OfferingLooking == "offering")
+				{
+					<label class="fw-bold px-1 mb-2 mt-2">I am @Model.OfferingLooking a @Model.WorkspaceDescription</label>
+				}
+				@if(Model.OfferingLooking=="looking")
+				{
+					<label class="fw-bold px-1 mb-2 mt-2">I am @Model.OfferingLooking for a @Model.WorkspaceDescription</label>
+				}
+				<br />
+				<p class="fw-bold form-text-style">City: </p>
+				<p class="form-text-style">@Model.City</p> <br />
+				@if (Model.Area != null)
+				{
+					<p class="fw-bold form-text-style">Area: </p>
+					<p class="form-text-style">@Model.Area</p>
+					<br />
+				}
+				<p class="fw-bold form-text-style">Name: </p>
+				<p class="form-text-style">@Model.FirstName</p> <br />
+				<p class="fw-bold form-text-style">Surname: </p>
+				<p class="form-text-style">@Model.LastName</p> <br />
+				<p class="fw-bold form-text-style">Email: </p>
+				<p class="form-text-style">@Model.Email</p> <br />
+				@if (Model.PhoneNumber != null)
+				{
+					<p class="fw-bold form-text-style">Phone Number: </p>
+					<p class="form-text-style">@Model.PhoneNumber</p> <br />
+				}
+				@if (Model.Artist != null)
+				{
+					<p class="fw-bold form-text-style">Artist/Project Name: </p>
+					<p class="form-text-style">@Model.Artist</p> <br />
+				}
+				@if (Model.DatesAndTimes.Days.GetList().Contains(true) && Model.OfferingLooking == "offering")
+				{
+					<p class="fw-bold form-text-style">Avaliability: </p> <br />
+				}
+				@if (Model.DatesAndTimes.Days.GetList().Contains(true) && Model.OfferingLooking == "looking")
+				{
+					<p class="fw-bold form-text-style">I am interested in following days: </p> <br />
+				}
+				@if (Model.DatesAndTimes.Days != null)
+				{				
+					@if (Model.DatesAndTimes.Days.Monday)
+					{
+						<p class="form-text-style">Monday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Tuesday)
+					{
+						<p class="form-text-style">Tuesday</p><br />
+					}
+					@if (Model.DatesAndTimes.Days.Wednesday)
+					{
+						<p class="form-text-style">Wednesday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Thursday)
+					{
+						<p class="form-text-style">Thursday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Friday)
+					{
+						<p class="form-text-style">Friday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Saturday)
+					{
+						<p class="form-text-style">Saturday</p> <br />
+					}
+					@if (Model.DatesAndTimes.Days.Sunday)
+					{
+						<p class="form-text-style">Sunday</p> <br />
+					}
+					
+				}
+	
+				@if (Model.Amenities.GetList().Contains(true))
+				{
+					<p class="fw-bold form-text-style">Ametities: </p> <br />
+					@if (Model.Amenities.AcousticTreatment)
+					{
+						<p class="form-text-style">Acoustic Treatment</p> <br />
+						@if (ViewBag.aucusticTreatment != null)
+						{
+							<p class="form-text-style"><b><u>Acoustic Treatment</u></b></p> <br />
+						}
+						else
+						{
+						
+						}			
+					}
+					@if (Model.Amenities.NaturalLight)
+					{
+						<p class="form-text-style">Natural Light</p> <br />
+					}
+					@if (Model.Amenities.Kitchen)
+					{
+						<p class="form-text-style">Kitchen</p> <br />
+					}
+					@if (Model.Amenities.RunningWater)
+					{
+						<p class="form-text-style">Running Water</p> <br />
+					}
+					@if (Model.Amenities.AirCon)
+					{
+						<p class="form-text-style">Aircon</p> <br />
+					}
+					@if (Model.Amenities.Parking)
+					{
+						<p class="form-text-style">Parking</p> <br />
+					}
+					@if (Model.Amenities.Storage)
+					{
+						<p class="form-text-style">Storage</p> <br />
+					}
+					@if (Model.Amenities.Other != null)
+					{
+						<p class="form-text-style">@Model.Amenities.Other</p> <br />
+					}
+
+				}
+				@if (Model.Measurements.FeetOrMeters != null)
+				{
+					<p class="fw-bold form-text-style">Size: </p>
+					<p class="form-text-style"> @Model.Measurements.Number @Model.Measurements.FeetOrMeters</p> <br />
+				}
+				@if (Model.DatesAndTimes.StartDate !=null)
+				{
+					<p class="fw-bold form-text-style"> Start date: </p>
+					<p class="form-text-style">@Model.DatesAndTimes.StartDate.Value.ToShortDateString()</p> <br />
+				}
+				@if (Model.DatesAndTimes.EndDate != null )
+					{
+					<p class="fw-bold form-text-style">End date: </p>
+					<p class="form-text-style">@Model.DatesAndTimes.EndDate.Value.ToShortDateString()</p> <br />
+				}
+
+				@if (Model.OfferingLooking == "offering")
+				{
+					<p class="fw-bold form-text-style">Rent for the studio is: </p>
+				}
+				@if (Model.OfferingLooking == "looking")
+				{
+					<p class="fw-bold form-text-style">My budget is: </p>
+				}
+
+				@if (Model.Budgets != null)
+				{					
+					<p class="form-text-style">@Model.Budgets.Price/@Model.Budgets.MonthOrWeek</p> <br />
+				}
+
+				@if (Model.DatesAndTimes.OpeningTime != null)
+				{
+					<p class="fw-bold form-text-style"> Start time: </p>
+					<p class="form-text-style">@Model.DatesAndTimes.OpeningTime.Value.ToString("HH:mm"); </p>
+				}
+				@if (Model.DatesAndTimes.ClosingTime != null)
+				{
+					<p class="fw-bold form-text-style">Closing time: </p>
+					<p class="form-text-style">@Model.DatesAndTimes.ClosingTime.Value.ToString("HH:mm"); </p> <br />
+				}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>*@

@@ -133,6 +133,11 @@ namespace LingonberryStudio.Controllers.Adverts
             return PartialView("_FormPartial");
         }
 
+        //public IActionResult Filter()
+        //{
+        //    return PartialView("_FilterPartial");
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CreateAd(Advert ad)
@@ -342,12 +347,11 @@ namespace LingonberryStudio.Controllers.Adverts
         //    return goalList;
         //}
 
-        //public IActionResult Empty()
-        //{
-        //    TempData["filtering"] = false;
+        public IActionResult Empty()
+        {
 
-        //    return RedirectToAction("Adverts", "Adverts");
-        //}
+            return RedirectToAction("Adverts", "Adverts");
+        }
     }
 }
 
