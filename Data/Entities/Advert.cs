@@ -31,7 +31,7 @@ namespace LingonberryStudio.Data.Entities
         public string Email { get; set; }
         [AllowNull]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$", ErrorMessage = "Not a valid Phone number")]
+        [RegularExpression(@"^(?!\b(0)\1+\b)(\+?\d{1,3}[. -]?)?\(?\d{3}\)?([. -]?)\d{3}\3\d{4}$", ErrorMessage = "Not a valid Phone number")]
         public int? PhoneNumber { get; set; }
         [AllowNull]
         public string? Artist { get; set; }
