@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LingonberryStudio.Migrations
 {
     [DbContext(typeof(LingonberryDbContext))]
-    [Migration("20230116154014_initial")]
+    [Migration("20230117085731_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -85,7 +85,10 @@ namespace LingonberryStudio.Migrations
                     b.Property<bool>("AcousticTreatment")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("AirCon")
+                    b.Property<bool>("AirCondition")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("CeramicOven")
                         .HasColumnType("bit");
 
                     b.Property<bool>("Kitchen")
@@ -103,7 +106,13 @@ namespace LingonberryStudio.Migrations
                     b.Property<bool>("RunningWater")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("Shower")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("Storage")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Toilet")
                         .HasColumnType("bit");
 
                     b.HasKey("AmenityID");

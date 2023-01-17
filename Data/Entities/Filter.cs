@@ -2,27 +2,26 @@
 {
     public class Filter
     {
-        public string? OfferingLooking { get; set; }
         public bool Offering { get; set; }
         public bool Looking { get; set; }
         public string? City { get; set; }
-
-        public string? MonthOrWeek { get; set; }
-        public bool Month { get; set; }        
-        public bool Week { get; set; }
-        public int Budget { get; set; }
+        public string? Period { get; set; }
+        public int Currency { get; set; }
 
         public bool Parking { get; set; }
-        public bool AirCon { get; set; }
+        public bool Shower { get; set; }
+        public bool AirCondition { get; set; }
         public bool Kitchen { get; set; }
         public bool NaturalLight { get; set; }
         public bool AcousticTreatment { get; set; }
         public bool RunningWater { get; set; }
         public bool Storage { get; set; }
+        public bool Toilet { get; set; }
+        public bool CeramicOven { get; set; }
         public bool OtherAmenities { get; set; }
 
 
-        public WorkPlace WorkPlaceTest { get; set; }
+        //public Amenity AmenityTypeTest { get; set; }
         public bool MusikStudio { get; set; }
         public bool ArtStudio { get; set; }
         public bool PhotoStudio { get; set; }

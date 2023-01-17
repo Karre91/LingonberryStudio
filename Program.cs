@@ -35,7 +35,7 @@ using (var scope = app.Services.CreateScope())
 	{
 		try
 		{
-			//Seed.Initialize(services);
+			Seed.Initialize(services);
 		}
 		catch (Exception ex)
 		{

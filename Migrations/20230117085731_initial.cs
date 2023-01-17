@@ -18,12 +18,15 @@ namespace LingonberryStudio.Migrations
                     AmenityID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Parking = table.Column<bool>(type: "bit", nullable: false),
-                    AirCon = table.Column<bool>(type: "bit", nullable: false),
+                    Shower = table.Column<bool>(type: "bit", nullable: false),
+                    AirCondition = table.Column<bool>(type: "bit", nullable: false),
                     Kitchen = table.Column<bool>(type: "bit", nullable: false),
                     NaturalLight = table.Column<bool>(type: "bit", nullable: false),
                     AcousticTreatment = table.Column<bool>(type: "bit", nullable: false),
                     RunningWater = table.Column<bool>(type: "bit", nullable: false),
                     Storage = table.Column<bool>(type: "bit", nullable: false),
+                    Toilet = table.Column<bool>(type: "bit", nullable: false),
+                    CeramicOven = table.Column<bool>(type: "bit", nullable: false),
                     Other = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
