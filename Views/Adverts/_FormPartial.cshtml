@@ -24,31 +24,31 @@
                 <div class="modal-body ">
                     <div class="row">
                         <div class="col">
-                            <div class="form-check mt-2 mx-3">
+                            <div class="form-check mt-2 mx-2">
                                 <input class="form-check-input" type="radio" asp-for="Offering" name="Offering" value="true">
-                                <label asp-for="Offering"> I am offering a studio</label><br>
+                                <label id="offering" asp-for="Offering"> I am offering a studio</label><br>
                                 <input class="form-check-input" type="radio" id="Offering" asp-for="Offering" value="false">
-                                <label asp-foroking"> I am looking for a studio</label><br>
+                                <label asp-for="Offering" id="looking"> I am looking for a studio</label><br>
                                 <span asp-validation-for="Offering" class="text-danger"></span>
                             </div>
                         </div>
+                    </div>
+                        <div class="row">
                         <div class="col">
-                            <div class="form-group">
+                            <div class="form-group" id="city">
                                 <label asp-for="WorkPlace.City">City</label>
                                 <input type="text" class="form-control" asp-for="WorkPlace.City" required> 
                                 <span class="invalid-feedback">Please enter city</span>
-                               
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group">
+                            <div class="form-group" id="area">
                                 <label asp-for="WorkPlace.Area">Area</label>
                                 <input type="text" class="form-control" asp-for="WorkPlace.Area">
                                 <span asp-validation-for="WorkPlace.Area" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -92,7 +92,7 @@
                                 <span asp-validation-for="Artist" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col mt-2 workspace">
                             <div class="form-group">
                                 <label asp-for="StudioType">Workspace</label>
                                 <br>
@@ -158,7 +158,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="align-content-center borderBox">
+                            <div class="align-content-center border-box">
                                 <div class="form-group checkbox">
                                     <p>Amenities</p>
                                     <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.AmenityTypes.Parking" value=true>
@@ -195,7 +195,8 @@
                                 <span class="invalid-feedback">Please tick a box</span>
                                 <span asp-validation-for="WorkPlace.MeasurementNumber" class="text-danger"></span>
                             </div>
-                            <div class="form-group mx-4">
+                            <div class="form-group mx-4 mt-3">
+                                <label class="formAlignment" asp-for="WorkPlace.TimeFrames">Select Date</label> <br>
                                 <input id="Start_date_picker" type="date" asp-for="@Model.WorkPlace.TimeFrames.StartDate">
                                 <input id="End_date_picker" type="date" asp-for="@Model.WorkPlace.TimeFrames.EndDate">
                             </div>
@@ -209,7 +210,7 @@
                                 <input type="number" asp-for="@Model.WorkPlace.Currency">
                                 <span class="invalid-feedback">Please tick a box</span>
                             </div>
-                            <div class="form-group mx-4">
+                            <div class="form-group mx-4 mt-3">
                                 <label class="formAlignment" asp-for="WorkPlace.TimeFrames">Select time</label> <br>
                                 <input type="time" asp-for="WorkPlace.TimeFrames.OpeningTime"><br> <br>
                                 <input type="time" asp-for="WorkPlace.TimeFrames.ClosingTime">
