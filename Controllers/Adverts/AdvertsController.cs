@@ -1,24 +1,8 @@
 ﻿using LingonberryStudio.Data;
 using LingonberryStudio.Data.Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client.Extensions.Msal;
-using Newtonsoft.Json;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Formats.Tar;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Numerics;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using LingonberryStudio.ViewModels;
-using Microsoft.IdentityModel.Tokens;
-using System.Linq.Expressions;
 
 namespace LingonberryStudio.Controllers.Adverts
 {
@@ -36,7 +20,7 @@ namespace LingonberryStudio.Controllers.Adverts
         private List<Advert> GetAdsInDB()
         {
             allAdsInDB = _db.Adverts
-                    .Include(ads => ads.WorkPlace)
+                    .Include(ads=> ads.WorkPlace)
                     .ThenInclude(ads=>ads.AmenityTypes)
                     .Include(ads => ads.WorkPlace)
                     .ThenInclude(ads => ads.TimeFrames)
@@ -54,55 +38,49 @@ namespace LingonberryStudio.Controllers.Adverts
         }
 
         [HttpGet]
-        public IActionResult Adverts(AdvertViewMoldel a)
+        public IActionResult Adverts(AdvertViewMoldel? viewModel)
         {
             AdvertViewMoldel advertViewModel = new();
-            if (a.AdvertList == null && a.Filter == null)
+            if (viewModel.AdvertList == null)
             {
                 advertViewModel.AdvertList = GetAdsInDB();
             }
-            //if (a.Filter != null)
-            //{
-            //    advertViewModel.Filter = a.Filter;
-            //    a.AdvertList = Filter(a);
-            //}
+            if (viewModel.Filter != null)
+            {
+                advertViewModel.AdvertList = Filter(viewModel);                
+            }
 
             ViewBag.Total = advertViewModel.AdvertList.Count();
             return View(advertViewModel);
         }
 
-        //public List<Advert> Filter(AdvertViewMoldel a)
-        //{
-        //    if (a.Filter.City != null) { a.Filter.City = a.Filter.City.ToUpper(); }
+        public List<Advert> Filter(AdvertViewMoldel? viewModel)
+        {
+            if (viewModel.Filter.City != null) { viewModel.Filter.City = viewModel.Filter.City.ToUpper(); }
 
-        //    //if (a.Filter.Budgets.Month) { weekBud = a.Filter.Budgets.Price / 4; monthBud = a.Filter.Budgets.Price; }
-        //    //if (a.Filter.Budgets.Week) { monthBud = a.Filter.Budgets.Price * 4; weekBud = a.Filter.Budgets.Price; }
-        //    int weekBud = 0, monthBud = 0;
-
-        //    if (a.Filter.OfferingLooking != null && a.Filter.OfferingLooking == "Offering") { a.Filter.Offering = true; }
-        //    else if (a.Filter.OfferingLooking != null) { a.Filter.Looking = true; }
+            //if (a.Filter.Budgets.Month) { weekBud = a.Filter.Budgets.Price / 4; monthBud = a.Filter.Budgets.Price; }
+            //if (a.Filter.Budgets.Week) { monthBud = a.Filter.Budgets.Price * 4; weekBud = a.Filter.Budgets.Price; }
+            int weekBud = 0, monthBud = 0;
 
 
-        //    var filtered = _db.Adverts
-        //            .Where(ad => ad.Offering == a.Filter.Offering && ad.Looking == a.Filter.Looking)
-        //            //.Where(ad => ad.OfferingLooking == a.OfferingLooking || a.OfferingLooking == null)
-        //            //.Where(ad => ad.City != null && ad.City == a.City || a.City == null)
-        //            //.Where(ad => ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Month" && ad.Budgets.Price <= monthBud
-        //            //|| ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Week" && ad.Budgets.Price <= weekBud
-        //            //|| a.MonthOrWeek == null)
 
 
-        //            .Include(ads => ads.Amenities)
-        //            .Include(ads => ads.Budgets)
-        //            .Include(ads => ads.DatesAndTimes)
-        //            .Include(ads => ads.DatesAndTimes.Days)
-        //            .Include(ads => ads.Measurements)
-        //            .Include(ads => ads.WorkPlaces)
-        //            .AsNoTracking()
-        //            .ToList();
-        //    return filtered;
+            var filtered = _db.Adverts
+                    .Where(ad => ad.Offering == viewModel.Filter.Offering || ad.Offering != viewModel.Filter.Looking || ad.Offering == viewModel.Filter.Offering && ad.Offering != viewModel.Filter.Looking)
+                    
+                    //.Where(ad => ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Month" && ad.Budgets.Price <= monthBud
+                    //|| ad.Budgets.MonthOrWeek != null && ad.Budgets.MonthOrWeek == "Week" && ad.Budgets.Price <= weekBud
+                    //|| a.MonthOrWeek == null)
+                    .Include(ads => ads.WorkPlace)
+                    .Where(ad => ad.WorkPlace.City == viewModel.Filter.City ||  viewModel.Filter.City == null)
+                    .Include(ads => ads.WorkPlace)
+                    .ThenInclude(ads => ads.TimeFrames)
+                    .Include(ads => ads.WorkPlace).ThenInclude(ads => ads.AmenityTypes)
+                    .AsNoTracking()
+                    .ToList();
+            return filtered;
 
-        //}
+        }
 
         //[HttpGet("AdvertSearch")]
         //public IActionResult Search(string city, string search)
