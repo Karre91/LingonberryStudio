@@ -33,21 +33,19 @@ namespace LingonberryStudio.Controllers.Adverts
             _Web = web;
         }
 
-        //private List<Advert> GetAdsInDB()
-        //{
-        //    allAdsInDB = _db.Adverts
-        //            .Include(ads => ads.Amenities)
-        //            .Include(ads => ads.Budgets)
-        //            .Include(ads => ads.DatesAndTimes)
-        //            .Include(ads => ads.DatesAndTimes.Days)
-        //            .Include(ads => ads.Measurements)
-        //            .Include(ads => ads.WorkPlaces)
-        //            .AsNoTracking()
-        //            .ToList();
+        private List<Advert> GetAdsInDB()
+        {
+            allAdsInDB = _db.Adverts
+                    .Include(ads => ads.WorkPlace)
+                    .ThenInclude(ads=>ads.AmenityTypes)
+                    .Include(ads => ads.WorkPlace)
+                    .ThenInclude(ads => ads.TimeFrames)
+                    .AsNoTracking()
+                    .ToList();
 
-        //    allAdsInDB = excludeOldAds(allAdsInDB);
-        //    return allAdsInDB;
-        //}
+            allAdsInDB = excludeOldAds(allAdsInDB);
+            return allAdsInDB;
+        }
 
         private List<Advert> excludeOldAds(List<Advert> allAdsInDB)
         {
@@ -56,22 +54,22 @@ namespace LingonberryStudio.Controllers.Adverts
         }
 
         [HttpGet]
-        //public IActionResult Adverts(AdvertViewMoldel a, int Budget)
-        //{
-        //    AdvertViewMoldel advertViewModel = new();
-        //    if (a.AdvertList == null && a.Filter == null)
-        //    {
-        //        advertViewModel.AdvertList = GetAdsInDB();
-        //    }
-        //    if (a.Filter != null)
-        //    {
-        //        advertViewModel.Filter = a.Filter;
-        //        a.AdvertList = Filter(a);
-        //    }
+        public IActionResult Adverts(AdvertViewMoldel a)
+        {
+            AdvertViewMoldel advertViewModel = new();
+            if (a.AdvertList == null && a.Filter == null)
+            {
+                advertViewModel.AdvertList = GetAdsInDB();
+            }
+            //if (a.Filter != null)
+            //{
+            //    advertViewModel.Filter = a.Filter;
+            //    a.AdvertList = Filter(a);
+            //}
 
-        //    ViewBag.Total = advertViewModel.AdvertList.Count();
-        //    return View(advertViewModel);
-        //}
+            ViewBag.Total = advertViewModel.AdvertList.Count();
+            return View(advertViewModel);
+        }
 
         //public List<Advert> Filter(AdvertViewMoldel a)
         //{
@@ -134,6 +132,11 @@ namespace LingonberryStudio.Controllers.Adverts
         {
             return PartialView("_FormPartial");
         }
+
+        //public IActionResult Filter()
+        //{
+        //    return PartialView("_FilterPartial");
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -344,12 +347,11 @@ namespace LingonberryStudio.Controllers.Adverts
         //    return goalList;
         //}
 
-        //public IActionResult Empty()
-        //{
-        //    TempData["filtering"] = false;
+        public IActionResult Empty()
+        {
 
-        //    return RedirectToAction("Adverts", "Adverts");
-        //}
+            return RedirectToAction("Adverts", "Adverts");
+        }
     }
 }
 

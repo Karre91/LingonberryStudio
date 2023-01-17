@@ -1,4 +1,4 @@
-﻿@*@using LingonberryStudio.Data.Entities
+﻿@using LingonberryStudio.Data.Entities
 @using LingonberryStudio.ViewModels
 @model AdvertViewMoldel
 
@@ -20,14 +20,12 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-check" style="float:right">
-                                            @Html.CheckBoxFor(m => m.Filter.Offering, true) I want to rent<br />
-                                            @Html.RadioButtonFor(m => m.Filter.OfferingLooking,  "Offering") I want to rent
+                                            @Html.CheckBoxFor(m => m.Filter.Offering, true)See ads that offers space.<br />
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-check" style="float:left">
-                                            @Html.CheckBoxFor(m => m.Filter.Looking, true) I want to offer<br />
-                                            @Html.RadioButtonFor(m => m.Filter.OfferingLooking, "Looking") I want to offer
+                                            @Html.CheckBoxFor(m => m.Filter.Looking, true)See ads that is looking to rent a space.<br />
                                         </div>
                                     </div>
                                 </div>
@@ -39,23 +37,25 @@
                                 <div class="row">
                                     <div class="col" onclick="ableRange()">
                                         <div class="form-check">
-                                            @Html.RadioButtonFor(m => m.Filter.MonthOrWeek, "Month") Month
+                                            @Html.RadioButtonFor(m => m.Filter.Period, "Month") Month
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-check">
-                                            @Html.RadioButtonFor(m => m.Filter.MonthOrWeek, "Week") Week
+                                            @Html.RadioButtonFor(m => m.Filter.Period, "Week") Week
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label for="Budget" class="form-label">Max budget £<span id="displayBudget"></span></label>
-                                    <input type="range" class="multi-range form-range" asp-for="@Model.Filter.Budget" value="250" id="Budget" name="Budget" min="0" max="500" step="1" onchange="myFunction()" disabled>
+                                    <label asp-for="Filter.Currency" class="form-label">Max budget £<span id="displayBudget"></span></label>
+                                    <input type="range" class="multi-range form-range" asp-for="Filter.Currency" value="250" id="Currency" name="Filter.Currency" min="0" max="500" step="1" onchange="myFunction()" disabled>
                                 </div>
+                                <div class="dropdown-divider"></div>
                                 <div class="row mb-4">
                                     <div class="col d-flex justify-content-center">
                                         <!-- Checkbox -->
                                         <div class="form-check">
+                                            <p>Studio Type</p>
                                             @Html.CheckBoxFor(m => m.Filter.MusikStudio, true) Music Studio<br />
                                             @Html.CheckBoxFor(m => m.Filter.ArtStudio, true) Art Studio<br />
                                             @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true) Photo Studio<br />
@@ -70,12 +70,15 @@
                                             <div class="form-group checkbox">
                                                 <p>Amenities</p>
                                                 @Html.CheckBoxFor(m => m.Filter.Parking, true) Parking <br />
-                                                @Html.CheckBoxFor(m => m.Filter.AirCon, true) Air conditioning <br />
+                                                @Html.CheckBoxFor(m => m.Filter.Shower, true) Shower <br />
+                                                @Html.CheckBoxFor(m => m.Filter.AirCondition, true) Air conditioning <br />
                                                 @Html.CheckBoxFor(m => m.Filter.Kitchen) Kitchen <br />
                                                 @Html.CheckBoxFor(m => m.Filter.NaturalLight) Natural Light <br />
                                                 @Html.CheckBoxFor(m => m.Filter.AcousticTreatment) Acoustic Treatment <br />
                                                 @Html.CheckBoxFor(m => m.Filter.RunningWater) Running Water <br />
                                                 @Html.CheckBoxFor(m => m.Filter.Storage) Storage <br />
+                                                @Html.CheckBoxFor(m => m.Filter.Toilet, true) Toilet <br />
+                                                @Html.CheckBoxFor(m => m.Filter.CeramicOven, true) Ceramic oven <br />
                                                 @Html.CheckBoxFor(m => m.Filter.OtherAmenities) Other <br />
                                             </div>
                                         </div>
@@ -93,8 +96,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <button type="submit" class="btn btn-primary btn-block">Apply filters</button>
                             }
                         </div>
@@ -107,6 +108,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col">
             <div>
                 <a class="btn ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">POST YOUR AD</a><br /><br />
@@ -117,35 +119,40 @@
     </div>
 </div>
 
+
+
+
+
+
 <div class="container-fluid flex-grid-container border-0">
     <div class="flex-grid-container justify-content-center">
-        @foreach (var ad in Model.AdvertList)
+        @foreach (var ad in Model?.AdvertList)
         {
             <div class="ad-card">
-                <a data-toggle="modal" data-target="@("#adModal-"+ad.AdvertID)">
+                <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
                     <div>
-                        <img src="/@(ad.WorkPlaces.ImgUrl)" class="img-fluid mx-auto ad-image">
+                        <img src="/@(ad.WorkPlace.ImgUrl)" class="img-fluid mx-auto ad-image">
                     </div>
                     <div>
                         <p class="fw-bold mb-0 mt-3">
-                        <p class="mb-0">@ad.City</p>
+                        <p class="mb-0">@ad.WorkPlace.City</p>
                     </div>
                 </a>
                 @await Html.PartialAsync("_ChosenAdPartial", ad)
             </div>
         }
     </div>
-</div>*@
+</div>
 
 <script>
     function myFunction() {
-        var x = document.getElementById("Budget").value;
+        var x = document.getElementById("Currency").value;
         document.getElementById("displayBudget").innerHTML = x;
     }
 
     function ableRange() {
-        document.getElementById("Budget").disabled = false;
-        var x = document.getElementById("Budget").value;
+        document.getElementById("Currency").disabled = false;
+        var x = document.getElementById("Currency").value;
         document.getElementById("displayBudget").innerHTML = x;
     }
 </script>
