@@ -191,6 +191,20 @@ a {
         float: unset;
         float: none;
     }
+    #offering {
+        width: 100%;
+        position: fixed;
+    }
+    #looking {
+        width: 100%;
+        position: fixed;
+    }
+    #city{
+        margin-top:70px;
+    }
+    #area {
+        margin-top: 70px;
+    }
 
     .intro {
         display: none;

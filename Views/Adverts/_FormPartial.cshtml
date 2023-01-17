@@ -26,14 +26,15 @@
                         <div class="col">
                             <div class="form-check mt-2 mx-3">
                                 <input class="form-check-input" type="radio" asp-for="Offering" name="Offering" value="true">
-                                <label asp-for="Offering"> I am offering a studio</label><br>
+                                <label id="offering" asp-for="Offering"> I am offering a studio</label><br>
                                 <input class="form-check-input" type="radio" id="Offering" asp-for="Offering" value="false">
-                                <label asp-foroking"> I am looking for a studio</label><br>
+                                <label asp-for="Offering" id="looking"> I am looking for a studio</label><br>
                                 <span asp-validation-for="Offering" class="text-danger"></span>
                             </div>
                         </div>
+                        <div class="row">
                         <div class="col">
-                            <div class="form-group">
+                            <div class="form-group" id="city">
                                 <label asp-for="WorkPlace.City">City</label>
                                 <input type="text" class="form-control" asp-for="WorkPlace.City" required> 
                                 <span class="invalid-feedback">Please enter city</span>
@@ -41,14 +42,14 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group">
+                            <div class="form-group" id="area">
                                 <label asp-for="WorkPlace.Area">Area</label>
                                 <input type="text" class="form-control" asp-for="WorkPlace.Area">
                                 <span asp-validation-for="WorkPlace.Area" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
-
+                    </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
