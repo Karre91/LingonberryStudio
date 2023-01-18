@@ -9,6 +9,37 @@
 
     public class WorkPlace
     {
+        public WorkPlace()
+        {
+            City = "TEST";
+            Area = "Test";
+            ImgUrl = "Test";
+            Description = "Test";
+            Period = "Test";
+            Currency = 1;
+            MeasurementNumber = 1;
+            MeasurementType = "Test";
+            AmenityTypes = new Amenity();
+            TimeFrames = new TimeFrame();
+        }
+
+        public WorkPlace(string city, string area, string imgUrl, IFormFile? formFile, string description, string period, int currency, string measurementType, int measurementNumber, int amenityID, Amenity amenityTypes, int timeFrameID, TimeFrame timeFrames)
+        {
+            City = city;
+            Area = area;
+            ImgUrl = imgUrl;
+            FormFile = formFile;
+            Description = description;
+            Period = period;
+            Currency = currency;
+            MeasurementType = measurementType;
+            MeasurementNumber = measurementNumber;
+            AmenityID = amenityID;
+            AmenityTypes = amenityTypes;
+            TimeFrameID = timeFrameID;
+            TimeFrames = timeFrames;
+        }
+
         [Key]
         public int WorkPlaceID { get; set; }
 
@@ -16,16 +47,16 @@
         [RegularExpression(
             @"^[a-zA-Z''-'\s-]{1,60}$",
             ErrorMessage = "Only letters allowed")]
-        public string? City { get; set; }
+        public string City { get; set; }
 
         [AllowNull]
         [RegularExpression(
             @"^[a-zA-Z''-'\s]{1,40}$",
             ErrorMessage = "Only letters allowed")]
-        public string? Area { get; set; }
+        public string Area { get; set; }
 
         [AllowNull]
-        public string? ImgUrl { get; set; }
+        public string ImgUrl { get; set; }
 
         [AllowNull]
         [NotMapped]
@@ -35,33 +66,33 @@
         [RegularExpression(
             @"^[a-zA-Z''-'\s]{1,300}$",
             ErrorMessage = "Only letters allowed")]
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
         [AllowNull]
-        public string? Period { get; set; }
+        public string Period { get; set; }
 
         [AllowNull]
-        public int? Currency { get; set; }
+        public int Currency { get; set; }
 
         [AllowNull]
-        public string? MeasurementType { get; set; }
+        public string MeasurementType { get; set; }
 
         [AllowNull]
         [RegularExpression(
             @"^[0-9]{1,6}$",
             ErrorMessage = "Maximum 6 digits")]
-        public int? MeasurementNumber { get; set; }
+        public int MeasurementNumber { get; set; }
 
         [Display(Name = "Amenity")]
         public virtual int AmenityID { get; set; }
 
         [ForeignKey("AmenityID")]
-        public virtual Amenity? AmenityTypes { get; set; }
+        public virtual Amenity AmenityTypes { get; set; }
 
         [Display(Name = "TimeFrame")]
         public virtual int TimeFrameID { get; set; }
 
         [ForeignKey("TimeFrameID")]
-        public virtual TimeFrame? TimeFrames { get; set; }
+        public virtual TimeFrame TimeFrames { get; set; }
     }
 }

@@ -28,37 +28,33 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateAd(Advert? ad)
+        public IActionResult CreateAd(AdvertViewMoldel potentialAd)
         {
-            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+            // var errors = ModelState.Values.SelectMany(v => v.Errors);
 
-            if (ModelState.IsValid && ad is not null && ad.WorkPlace is not null)
+            if (/*ModelState.IsValid*/ true)
             {
-                ad?.WorkPlace?.City?.ToUpper();
+                potentialAd.Advert.WorkPlace.City = potentialAd.Advert.WorkPlace.City.ToUpper();
 
-                if (ad?.WorkPlace?.FormFile != null)
+                if (potentialAd.Advert.WorkPlace.FormFile != null)
                 {
-                    ad.WorkPlace.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + ad.WorkPlace.FormFile.FileName;
-                    var path = Path.Combine(web.WebRootPath, ad.WorkPlace.ImgUrl);
-                    ad.WorkPlace.FormFile.CopyToAsync(new FileStream(path, FileMode.Create));
+                    potentialAd.Advert.WorkPlace.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + potentialAd.Advert.WorkPlace.FormFile.FileName;
+
+                    // var path = Path.Combine(web.WebRootPath, ad.WorkPlace.ImgUrl);
+                    // advert.WorkPlace.FormFile.CopyToAsync(new FileStream(path, FileMode.Create));
                 }
                 else
                 {
-                    if (ad?.WorkPlace is not null)
-                    {
-                        // if offering == true osv
-                        ad.WorkPlace.ImgUrl = "StudioImages/handshake.jpg";
-                    }
+                    // if offering == true osv
+                    potentialAd.Advert.WorkPlace.ImgUrl = "StudioImages/handshake.jpg";
                 }
 
-#pragma warning disable CS8604 // Possible null reference argument.
-                db.Adverts.Add(ad);
-#pragma warning restore CS8604 // Possible null reference argument.
+                db.Adverts.Add(potentialAd.Advert);
                 db.SaveChanges();
                 return RedirectToAction("Adverts");
             }
 
-            return PartialView("_FormPartial", ad);
+            // return PartialView("_FormPartial", potentialAd);
         }
 
         public new IActionResult Empty()
@@ -151,7 +147,11 @@
         {
             if (db.Adverts != null)
             {
-                List<Advert> allAdsInDB = db.Adverts.Include(ads => ads.WorkPlace)
+                List<Advert> allAdsInDB = db.Adverts
+                    .Include(ads => ads.WorkPlace)
+                    .ThenInclude(ads => ads.AmenityTypes)
+                    .Include(ads => ads.WorkPlace)
+                    .ThenInclude(ads => ads.TimeFrames)
                 .AsNoTracking()
                 .ToList();
 

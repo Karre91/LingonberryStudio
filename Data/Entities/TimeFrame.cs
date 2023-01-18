@@ -6,6 +6,36 @@
 
     public class TimeFrame
     {
+        public TimeFrame()
+        {
+            OpeningTime = DateTime.Now;
+            ClosingTime = DateTime.Now;
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now;
+            Monday = false;
+            Tuesday = false;
+            Wednesday = false;
+            Thursday = false;
+            Friday = false;
+            Saturday = false;
+            Sunday = false;
+        }
+
+        public TimeFrame(DateTime? openingTime, DateTime? closingTime, DateTime? startDate, DateTime? endDate, bool monday, bool tuesday, bool wednesday, bool thursday, bool friday, bool saturday, bool sunday)
+        {
+            OpeningTime = openingTime;
+            ClosingTime = closingTime;
+            StartDate = startDate;
+            EndDate = endDate;
+            Monday = monday;
+            Tuesday = tuesday;
+            Wednesday = wednesday;
+            Thursday = thursday;
+            Friday = friday;
+            Saturday = saturday;
+            Sunday = sunday;
+        }
+
         [Key]
         public int DatesAndTimeID { get; set; }
 

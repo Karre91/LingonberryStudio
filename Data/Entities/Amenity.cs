@@ -5,6 +5,36 @@
 
     public class Amenity
     {
+        public Amenity()
+        {
+            Parking = false;
+            Shower = false;
+            AirCondition = false;
+            Kitchen = false;
+            NaturalLight = false;
+            AcousticTreatment = false;
+            RunningWater = false;
+            Storage = false;
+            Toilet = false;
+            CeramicOven = false;
+            Other = "test";
+        }
+
+        public Amenity(bool parking, bool shower, bool airCondition, bool kitchen, bool naturalLight, bool acousticTreatment, bool runningWater, bool storage, bool toilet, bool ceramicOven, string? other)
+        {
+            Parking = parking;
+            Shower = shower;
+            AirCondition = airCondition;
+            Kitchen = kitchen;
+            NaturalLight = naturalLight;
+            AcousticTreatment = acousticTreatment;
+            RunningWater = runningWater;
+            Storage = storage;
+            Toilet = toilet;
+            CeramicOven = ceramicOven;
+            Other = other;
+        }
+
         [Key]
         public int AmenityID { get; set; }
 
