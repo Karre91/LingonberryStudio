@@ -14,30 +14,30 @@ namespace LingonberryStudio.Data.Entities
      
         public DateTime TimeCreated { get; set; } = DateTime.Now;
 
-        [Required]
+        [Required(ErrorMessage ="This field is required")]
         public bool Offering { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The first name field is required.")]
         [RegularExpression(@"^[a-zA-Z''-'\s-]{1,40}$",
         ErrorMessage = "Only letters allowed")]
         public string FirstName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The last name field is required.")]
         [RegularExpression(@"^[a-zA-Z''-'\s-]{1,40}$",
         ErrorMessage = "Only letters allowed.")]
         public string LastName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The email field is required.")]
         [EmailAddress]
         [DataType(DataType.EmailAddress)]
         [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Not a valid Email address")]
         public string Email { get; set; }
         [AllowNull]
-        [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^(?!\b(0)\1+\b)(\+?\d{1,3}[. -]?)?\(?\d{3}\)?([. -]?)\d{3}\3\d{4}$", ErrorMessage = "Not a valid Phone number")]
-        public int? PhoneNumber { get; set; }
+        [RegularExpression(@"(\+\d{1,3}\s?)?((\(\d{3}\)\s?)|(\d{3})(\s|-?))(\d{3}(\s|-?))(\d{4})(\s?(([E|e]xt[:|.|]?)|x|X)(\s?\d+))?", ErrorMessage = "Not a valid Phone number")]
+        public string? PhoneNumber { get; set; }
         [AllowNull]
         public string? Artist { get; set; }
         [AllowNull]
         public string? SocialMedia { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "The workplace field is required.")]
         public string StudioType { get; set; }
 
 

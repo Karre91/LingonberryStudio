@@ -179,6 +179,18 @@
                                     <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.AmenityTypes.Storage" value=true>
                                     <label asp-for="WorkPlace.AmenityTypes.Storage">Storage</label><br>
 
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.AmenityTypes.NaturalLight" value=true>
+                                    <label asp-for="WorkPlace.AmenityTypes.NaturalLight">Natural light</label><br>
+
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.AmenityTypes.CeramicOven" value=true>
+                                    <label asp-for="WorkPlace.AmenityTypes.CeramicOven">Ceramic oven</label><br>
+
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.AmenityTypes.Toilet" value=true>
+                                    <label asp-for="WorkPlace.AmenityTypes.Toilet">Toilet</label><br>
+
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.WorkPlace.AmenityTypes.Shower" value=true>
+                                    <label asp-for="WorkPlace.AmenityTypes.Shower">Shower</label><br>
+
                                     <label asp-for="WorkPlace.AmenityTypes.Other">Type your own</label><br>
                                     <input type="text" asp-for="@Model.WorkPlace.AmenityTypes.Other" />
                                     <span asp-validation-for="WorkPlace.AmenityTypes.Other" class="text-danger"></span>
