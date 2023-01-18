@@ -1,12 +1,16 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿// <copyright file="20230117085731_initial.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 #nullable disable
 
 namespace LingonberryStudio.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,7 +31,7 @@ namespace LingonberryStudio.Migrations
                     Storage = table.Column<bool>(type: "bit", nullable: false),
                     Toilet = table.Column<bool>(type: "bit", nullable: false),
                     CeramicOven = table.Column<bool>(type: "bit", nullable: false),
-                    Other = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Other = table.Column<string>(type: "nvarchar(max)", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -50,7 +54,7 @@ namespace LingonberryStudio.Migrations
                     Thursday = table.Column<bool>(type: "bit", nullable: false),
                     Friday = table.Column<bool>(type: "bit", nullable: false),
                     Saturday = table.Column<bool>(type: "bit", nullable: false),
-                    Sunday = table.Column<bool>(type: "bit", nullable: false)
+                    Sunday = table.Column<bool>(type: "bit", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -72,7 +76,7 @@ namespace LingonberryStudio.Migrations
                     MeasurementType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MeasurementNumber = table.Column<int>(type: "int", nullable: true),
                     AmenityID = table.Column<int>(type: "int", nullable: false),
-                    TimeFrameID = table.Column<int>(type: "int", nullable: false)
+                    TimeFrameID = table.Column<int>(type: "int", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -106,7 +110,7 @@ namespace LingonberryStudio.Migrations
                     Artist = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SocialMedia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StudioType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WorkPlaceID = table.Column<int>(type: "int", nullable: false)
+                    WorkPlaceID = table.Column<int>(type: "int", nullable: false),
                 },
                 constraints: table =>
                 {

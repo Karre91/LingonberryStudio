@@ -1,10 +1,8 @@
-﻿using LingonberryStudio.Data.Entities;
-
-namespace LingonberryStudio.ViewModels
+﻿namespace LingonberryStudio.ViewModels
 {
-	public class AdvertViewMoldel
-	{
-       
+    using LingonberryStudio.Data.Entities;
+    public class AdvertViewMoldel
+    {
         public List<Advert>? AdvertList { get; set; }
 
         public Filter? Filter { get; set; }
