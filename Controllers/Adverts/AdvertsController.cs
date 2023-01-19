@@ -81,20 +81,16 @@
                 viewModel.Filter.City = viewModel.Filter.City.ToUpper();
             }
 
-            //    //int weekBud = 0, monthBud = 0;
-            //    //if (viewModel.Filter.Period == "Month")
-            //    //{
-            //    //    weekBud = viewModel.Filter.Currency / 4;
-            //    //    monthBud = viewModel.Filter.Currency;
-            //    //}
+            if (viewModel.Filter.Period != null && viewModel.Filter.Period == "Month")
+            {
+                viewModel.Filter.CalculatedPounds = viewModel.Filter.PeriodPounds / 4;
+            }
+            else if (viewModel.Filter.Period != null && viewModel.Filter.Period == "Week")
+            {
+                viewModel.Filter.CalculatedPounds = viewModel.Filter.PeriodPounds * 4;
+            }
 
-            //    //if (viewModel?.Filter?.Period == "Week")
-            //    //{
-            //    //    monthBud = viewModel.Filter.Currency * 4;
-            //    //    weekBud = viewModel.Filter.Currency;
-            //    //}
-
-            //    //var checkedPreDecidedStudios = viewModel?.Filter?.GetChosenStudioTypes();
+            // var checkedPreDecidedStudios = viewModel.Filter.GetChosenStudioTypes();
 
             //    List<string> preDecidedStudios = new ();
             //    if (viewModel?.Filter?.OtherStudio == true)
@@ -106,28 +102,27 @@
             //        });
             //    }
 
-            //    var filtered = db.Adverts
-            //            .Where(a => a.Offering.Equals(viewModel.Filter.Advert.Offering))
+            var filtered = db.Adverts
+                .Include(a => a.WorkPlace)
+                .ThenInclude(ads => ads.TimeFrames)
+                .Include(ads => ads.WorkPlace)
+                .ThenInclude(ads => ads.AmenityTypes).Where(a => a.WorkPlaceID.Equals(a.ID))
 
-            //            // => (a.Offering.Equals(viewModel.Filter.Offering) || (a.Offering.Equals(!viewModel.Filter.Looking)
-            //            // || (a.Offering.Equals(viewModel.Filter.Offering && a.Offering.Equals(!viewModel.Filter.Looking)
-            //            .Include(ads => ads.WorkPlace)
-            //            .ThenInclude(ads => ads.TimeFrames)
-            //            .Include(ads => ads.WorkPlace)
-            //            .ThenInclude(ads => ads.AmenityTypes)
+                .Where(a => a.Offering.Equals(viewModel.Filter.Offering) || a.Offering.Equals(!viewModel.Filter.Looking))
+                .Where(a => a.WorkPlace.City.Equals(viewModel.Filter.City) || (a.WorkPlace.City != null && viewModel.Filter.City == null))
+                .AsNoTracking()
+                .ToList();
 
-            //            // .Where(adverts
-            //            // => adverts.WorkPlace.City == viewModel.Filter.City
-            //            // || viewModel.Filter.City == null)
 
             //            // .Where(ad => (ad.WorkPlace.Period != null && ad.WorkPlace.Period == "Month" && ad.WorkPlace.Currency <= monthBud) || (ad.WorkPlace.Period != null && ad.WorkPlace.Period == "Week" && ad.WorkPlace.Currency <= weekBud)
             //            // || viewModel.Filter.Period == null)
 
             //            // .Where(ad => checkedPreDecidedStudios.Contains(ad.StudioType))
-            //            .AsNoTracking()
-            //            .ToList();
 
-            return new List<Advert>();
+            return filtered;
+
+            //            // => (a.Offering.Equals(viewModel.Filter.Offering) || (a.Offering.Equals(!viewModel.Filter.Looking)
+            //            // || (a.Offering.Equals(viewModel.Filter.Offering && a.Offering.Equals(!viewModel.Filter.Looking)
         }
 
         private static List<Advert> ExcludeOldAds(List<Advert> allAdsInDB)

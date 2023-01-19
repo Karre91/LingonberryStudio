@@ -17,7 +17,9 @@
 
         public string? Period { get; set; }
 
-        public int Currency { get; set; }
+        public int PeriodPounds { get; set; }
+
+        public int CalculatedPounds { get; set; }
 
         public bool MusicStudio { get; set; }
 
