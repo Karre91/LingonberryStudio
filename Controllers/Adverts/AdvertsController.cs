@@ -32,7 +32,7 @@
         {
             // var errors = ModelState.Values.SelectMany(v => v.Errors);
 
-            if (/*ModelState.IsValid*/ true)
+            if (ModelState.IsValid)
             {
                 potentialAd.Advert.WorkPlace.City = potentialAd.Advert.WorkPlace.City.ToUpper();
 
@@ -54,7 +54,7 @@
                 return RedirectToAction("Adverts");
             }
 
-            // return PartialView("_FormPartial", potentialAd);
+            return PartialView("_FormPartial", potentialAd);
         }
 
         public new IActionResult Empty()
@@ -63,79 +63,78 @@
         }
 
         [HttpGet]
-        public IActionResult Adverts(AdvertViewMoldel? viewModel)
+        public IActionResult Adverts(AdvertViewMoldel viewModel)
         {
             AdvertViewMoldel advertViewModel = new ();
-            if (viewModel?.AdvertList == null)
+            if (viewModel.AdvertList.Count < 1)
             {
                 advertViewModel.AdvertList = this.GetAdsInDB();
             }
 
-            if (viewModel?.Filter != null)
-            {
-                advertViewModel.AdvertList = this.Filter(viewModel);
-            }
+            //if (viewModel.Filter != null)
+            //{
+            //    advertViewModel.AdvertList = this.Filter(viewModel);
+            //}
 
             this.ViewBag.Total = advertViewModel.AdvertList?.Count;
             return this.View(advertViewModel);
         }
 
-        public List<Advert> Filter(AdvertViewMoldel? viewModel)
-        {
-            if (viewModel?.Filter?.City != null)
-            {
-                viewModel.Filter.City = viewModel?.Filter?.City.ToUpper();
-            }
+        //public List<Advert> Filter(AdvertViewMoldel viewModel)
+        //{
+        //    if (viewModel.Advert.Filter.City != null)
+        //    {
+        //        viewModel.Filter.City = viewModel?.Filter?.City.ToUpper();
+        //    }
 
-            //int weekBud = 0, monthBud = 0;
-            //if (viewModel?.Filter?.Period == "Month")
-            //{
-            //    weekBud = viewModel.Filter.Currency / 4;
-            //    monthBud = viewModel.Filter.Currency;
-            //}
+        //    //int weekBud = 0, monthBud = 0;
+        //    //if (viewModel?.Filter?.Period == "Month")
+        //    //{
+        //    //    weekBud = viewModel.Filter.Currency / 4;
+        //    //    monthBud = viewModel.Filter.Currency;
+        //    //}
 
-            //if (viewModel?.Filter?.Period == "Week")
-            //{
-            //    monthBud = viewModel.Filter.Currency * 4;
-            //    weekBud = viewModel.Filter.Currency;
-            //}
+        //    //if (viewModel?.Filter?.Period == "Week")
+        //    //{
+        //    //    monthBud = viewModel.Filter.Currency * 4;
+        //    //    weekBud = viewModel.Filter.Currency;
+        //    //}
 
-            //var checkedPreDecidedStudios = viewModel?.Filter?.GetChosenStudioTypes();
+        //    //var checkedPreDecidedStudios = viewModel?.Filter?.GetChosenStudioTypes();
 
-            List<string> preDecidedStudios = new ();
-            if (viewModel?.Filter?.OtherStudio == true)
-            {
-                preDecidedStudios.AddRange(new List<string>
-                {
-                    "MusicStudio", "ArtStudio", "PhotoStudio", "DanceRehersalStudio",
-                    "CeramicsStudio", "PaintingWorkshop",
-                });
-            }
+        //    List<string> preDecidedStudios = new ();
+        //    if (viewModel?.Filter?.OtherStudio == true)
+        //    {
+        //        preDecidedStudios.AddRange(new List<string>
+        //        {
+        //            "MusicStudio", "ArtStudio", "PhotoStudio", "DanceRehersalStudio",
+        //            "CeramicsStudio", "PaintingWorkshop",
+        //        });
+        //    }
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var filtered = db.Adverts
-                    .Where(a => a.Offering.Equals(viewModel.Filter.Offering))
+        //    var filtered = db.Adverts
+        //            .Where(a => a.Offering.Equals(viewModel.Filter.Advert.Offering))
 
-                    // => (a.Offering.Equals(viewModel.Filter.Offering) || (a.Offering.Equals(!viewModel.Filter.Looking)
-                    // || (a.Offering.Equals(viewModel.Filter.Offering && a.Offering.Equals(!viewModel.Filter.Looking)
-                    .Include(ads => ads.WorkPlace)
-                    .ThenInclude(ads => ads.TimeFrames)
-                    .Include(ads => ads.WorkPlace)
-                    .ThenInclude(ads => ads.AmenityTypes)
+        //            // => (a.Offering.Equals(viewModel.Filter.Offering) || (a.Offering.Equals(!viewModel.Filter.Looking)
+        //            // || (a.Offering.Equals(viewModel.Filter.Offering && a.Offering.Equals(!viewModel.Filter.Looking)
+        //            .Include(ads => ads.WorkPlace)
+        //            .ThenInclude(ads => ads.TimeFrames)
+        //            .Include(ads => ads.WorkPlace)
+        //            .ThenInclude(ads => ads.AmenityTypes)
 
-                    // .Where(adverts
-                    // => adverts.WorkPlace.City == viewModel.Filter.City
-                    // || viewModel.Filter.City == null)
+        //            // .Where(adverts
+        //            // => adverts.WorkPlace.City == viewModel.Filter.City
+        //            // || viewModel.Filter.City == null)
 
-                    // .Where(ad => (ad.WorkPlace.Period != null && ad.WorkPlace.Period == "Month" && ad.WorkPlace.Currency <= monthBud) || (ad.WorkPlace.Period != null && ad.WorkPlace.Period == "Week" && ad.WorkPlace.Currency <= weekBud)
-                    // || viewModel.Filter.Period == null)
+        //            // .Where(ad => (ad.WorkPlace.Period != null && ad.WorkPlace.Period == "Month" && ad.WorkPlace.Currency <= monthBud) || (ad.WorkPlace.Period != null && ad.WorkPlace.Period == "Week" && ad.WorkPlace.Currency <= weekBud)
+        //            // || viewModel.Filter.Period == null)
 
-                    // .Where(ad => checkedPreDecidedStudios.Contains(ad.StudioType))
-                    .AsNoTracking()
-                    .ToList();
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-            return filtered;
-        }
+        //            // .Where(ad => checkedPreDecidedStudios.Contains(ad.StudioType))
+        //            .AsNoTracking()
+        //            .ToList();
+
+        //    return filtered;
+        //}
 
         private static List<Advert> ExcludeOldAds(List<Advert> allAdsInDB)
         {
@@ -145,21 +144,16 @@
 
         private List<Advert> GetAdsInDB()
         {
-            if (db.Adverts != null)
-            {
-                List<Advert> allAdsInDB = db.Adverts
-                    .Include(ads => ads.WorkPlace)
-                    .ThenInclude(ads => ads.AmenityTypes)
-                    .Include(ads => ads.WorkPlace)
-                    .ThenInclude(ads => ads.TimeFrames)
-                .AsNoTracking()
-                .ToList();
+            List<Advert> allAdsInDB = db.Adverts
+            .Include(ads => ads.WorkPlace)
+            .ThenInclude(ads => ads.AmenityTypes)
+            .Include(ads => ads.WorkPlace)
+            .ThenInclude(ads => ads.TimeFrames)
+            .AsNoTracking()
+            .ToList();
 
-                allAdsInDB = ExcludeOldAds(allAdsInDB);
-                return allAdsInDB;
-            }
-
-            return new List<Advert>();
+            allAdsInDB = ExcludeOldAds(allAdsInDB);
+            return allAdsInDB;
         }
 
         //[HttpGet("AdvertSearch")]

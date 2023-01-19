@@ -4,6 +4,11 @@
 
     public class Filter
     {
+        //public Filter(bool offering, bool looking, string? City,)
+        //{
+
+        //}
+
         public bool Offering { get; set; }
 
         public bool Looking { get; set; }

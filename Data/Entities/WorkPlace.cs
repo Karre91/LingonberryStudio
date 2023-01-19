@@ -43,7 +43,7 @@
         [Key]
         public int WorkPlaceID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "The city field is required.")]
         [RegularExpression(
             @"^[a-zA-Z''-'\s-]{1,60}$",
             ErrorMessage = "Only letters allowed")]
@@ -53,7 +53,7 @@
         [RegularExpression(
             @"^[a-zA-Z''-'\s]{1,40}$",
             ErrorMessage = "Only letters allowed")]
-        public string Area { get; set; }
+        public string? Area { get; set; }
 
         [AllowNull]
         public string ImgUrl { get; set; }
@@ -61,27 +61,26 @@
         [AllowNull]
         [NotMapped]
         public IFormFile? FormFile { get; set; }
-
-        [Required]
+        [Required(ErrorMessage = "The description field is required.")]
         [RegularExpression(
             @"^[a-zA-Z''-'\s]{1,300}$",
             ErrorMessage = "Only letters allowed")]
         public string Description { get; set; }
 
         [AllowNull]
-        public string Period { get; set; }
+        public string? Period { get; set; }
 
         [AllowNull]
-        public int Currency { get; set; }
+        public int? Currency { get; set; }
 
         [AllowNull]
-        public string MeasurementType { get; set; }
+        public string? MeasurementType { get; set; }
 
         [AllowNull]
         [RegularExpression(
             @"^[0-9]{1,6}$",
             ErrorMessage = "Maximum 6 digits")]
-        public int MeasurementNumber { get; set; }
+        public int? MeasurementNumber { get; set; }
 
         [Display(Name = "Amenity")]
         public virtual int AmenityID { get; set; }

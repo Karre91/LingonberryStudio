@@ -1,8 +1,4 @@
-﻿// <copyright file="20230117085731_initial.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-#nullable disable
+﻿#nullable disable
 
 namespace LingonberryStudio.Migrations
 {
@@ -69,7 +65,7 @@ namespace LingonberryStudio.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Area = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Period = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Currency = table.Column<int>(type: "int", nullable: true),
@@ -106,7 +102,7 @@ namespace LingonberryStudio.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<int>(type: "int", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Artist = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SocialMedia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StudioType = table.Column<string>(type: "nvarchar(max)", nullable: false),

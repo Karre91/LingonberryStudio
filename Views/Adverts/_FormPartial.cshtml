@@ -96,7 +96,7 @@
                                 <label asp-for="Advert.StudioType">Workspace</label>
                                 <br>
                                 <input list="StudioType" name="StudioType" required>
-                                <datalist asp-for="WorkPlace.StudioType" id="StudioType">
+                                <datalist asp-for="Advert.StudioType" id="StudioType">
                                     <option value="" selected disabled>Options</option>
                                     <option value="Music Studio">Music Studio</option>
                                     <option value="Art Studio">Art Studio</option>
@@ -105,7 +105,7 @@
                                     <option value="Ceramics Studio">Ceramics Studio</option>
                                     <option value="Painting Workshop">Painting Workshop</option>
                                 </datalist>
-                                <span class="invalid-feedback">Please choose one</span>
+                                <span asp-validation-for="Advert.StudioType" class="text-danger"></span>
                             </div>
                         </div>
                     </div>

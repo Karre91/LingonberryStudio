@@ -187,15 +187,16 @@ a {
         .ad-image {
             border-radius: 7%;
             object-fit: cover;
-            max-width: 100px;
-            max-height: 100px;
+            max-width: 250px;
+            max-height: 250px;
             box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
         }
 
         .ad-btn {
-            max-width: 50%;
+           /* max-width: 50%;
             float: unset;
-            float: none;
+            float: none;*/
+           display:none;
         }
 
         .intro {
@@ -389,8 +390,8 @@ a {
     .ad-image {
         border-radius: 7%;
         object-fit: cover;
-        width: 230px;
-        height: 230px;
+        width: 250px;
+        height: 250px;
         box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
     }
 
