@@ -17,7 +17,7 @@
             Storage = false;
             Toilet = false;
             CeramicOven = false;
-            Other = "test";
+            Other = null;
         }
 
         public Amenity(bool parking, bool shower, bool airCondition, bool kitchen, bool naturalLight, bool acousticTreatment, bool runningWater, bool storage, bool toilet, bool ceramicOven, string? other)

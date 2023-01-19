@@ -69,8 +69,9 @@
                     {
                         <p class="form-text-style">@amenity</p> <br />
                     }
+                }
 
-                    @*@if (Model.WorkPlace.AmenityTypes.AcousticTreatment)
+                @*@if (Model.WorkPlace.AmenityTypes.AcousticTreatment)
                 {
                 @if (ViewBag.aucusticTreatment != null)
                 {
@@ -110,7 +111,7 @@
                 <p class="form-text-style">@Model.WorkPlace.AmenityTypes.Other</p> <br />
                 }*@
 
-                }
+                
                 @if (Model.WorkPlace.MeasurementType != null)
                 {
                     <p class="fw-bold form-text-style">Size: </p>

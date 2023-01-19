@@ -13,17 +13,17 @@
         {
             TimeCreated = DateTime.Now;
             Offering = true;
-            FirstName = "Lotta";
-            LastName = "test";
-            Email = "test";
-            PhoneNumber = "1";
-            Artist = "test";
-            SocialMedia = "test";
-            StudioType = "test";
+            FirstName = "Default";
+            LastName = "Default";
+            Email = "Default";
+            PhoneNumber = null;
+            Artist = null;
+            SocialMedia = null;
+            StudioType = "Default";
             WorkPlace = new WorkPlace();
         }
 
-        public Advert(bool offering, string firstName, string lastName, string email, string? phoneNumber, string artist, string socialMedia, string studioType, int workPlaceID, WorkPlace workPlace)
+        public Advert(bool offering, string firstName, string lastName, string email, string? phoneNumber, string? artist, string? socialMedia, string studioType, WorkPlace workPlace)
         {
             TimeCreated = DateTime.UtcNow;
             Offering = offering;
@@ -72,7 +72,7 @@
         [AllowNull]
         public string? SocialMedia { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "The workplace field is required.")]
         public string StudioType { get; set; }
 
         [Display(Name = "WorkPlace")]

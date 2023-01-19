@@ -24,10 +24,10 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-check mt-2 mx-2">
-                                <input class="form-check-input" type="radio" asp-for="Advert.Offering" name="Offering" value="true">
-                                <label id="offering" asp-for="Advert.Offering"> I am offering a studio</label><br>
-                                <input class="form-check-input" type="radio" id="Offering" asp-for="Advert.Offering" value="false">
-                                <label asp-for="Advert.Offering" id="looking"> I am looking for a studio</label><br>
+                                <input class="form-check-input" type="radio" asp-for="Advert.Offering" name="Advert.Offering" value="true">
+                                <label asp-for="Advert.Offering"> I am offering a studio</label><br>
+                                <input class="form-check-input" type="radio" asp-for="Advert.Offering" name="Advert.Offering" value="false">
+                                <label asp-for="Advert.Offering"> I am looking for a studio</label><br>
                                 <span asp-validation-for="Advert.Offering" class="text-danger"></span>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                             <div class="form-group" id="city">
                                 <label asp-for="Advert.WorkPlace.City">City</label>
                                 <input type="text" class="form-control" asp-for="Advert.WorkPlace.City" required>
-                                <span class="invalid-feedback">Please enter city</span>
+                                <span asp-validation-for="Advert.WorkPlace.City" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
@@ -53,7 +53,6 @@
                             <div class="form-group">
                                 <label asp-for="Advert.FirstName">First name</label>
                                 <input type="text" asp-for="Advert.FirstName" class="form-control " required>
-                                <span class="invalid-feedback">Please enter first name</span>
                                 <span asp-validation-for="Advert.FirstName" class="text-danger"></span>
                             </div>
                         </div>
@@ -61,7 +60,6 @@
                             <div class="form-group">
                                 <label asp-for="Advert.LastName">Last name</label>
                                 <input type="text" asp-for="Advert.LastName" class="form-control " required>
-                                <span class="invalid-feedback">Please enter surname</span>
                                 <span asp-validation-for="Advert.LastName" class="text-danger"></span>
                             </div>
                         </div>
@@ -71,7 +69,6 @@
                             <div class="form-group">
                                 <label asp-for="Advert.Email">Email</label>
                                 <input type="email" asp-for="Advert.Email" class="form-control" required>
-                                <span class="invalid-feedback">Please enter Email</span>
                                 <span asp-validation-for="Advert.Email" class="text-danger"></span>
                             </div>
                         </div>
@@ -95,8 +92,23 @@
                             <div class="form-group">
                                 <label asp-for="Advert.StudioType">Workspace</label>
                                 <br>
-                                <input list="StudioType" name="StudioType" required>
-                                <datalist asp-for="Advert.StudioType" id="StudioType">
+                                <input asp-for="Advert.StudioType" list="Advert.StudioType" name="Advert.StudioType" required>
+                                <datalist  id="Advert.StudioType">
+                                    <option value="Options" selected disabled>Options</option>
+                                    <option value="MusicStudio">Music Studio</option>
+                                    <option value="ArtStudio">Art Studio</option>
+                                    <option value="PhotoStudio">Photo Studio</option>
+                                    <option value="DanceRehersalStudio">Dance Rehersal Studio</option>
+                                    <option value="CeramicsStudio">Ceramics Studio</option>
+                                    <option value="PaintingWorkshop">Painting Workshop</option>
+                                </datalist>
+                                <span asp-validation-for="Advert.StudioType" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" hidden>
+                                <label asp-for="Advert.StudioType">Workspace</label>
+                                <br>
+                                <input list="Advert.StudioType" name="Advert.StudioType" required>
+                                <datalist asp-for="Advert.StudioType" id="Advert.StudioType">
                                     <option value="" selected disabled>Options</option>
                                     <option value="Music Studio">Music Studio</option>
                                     <option value="Art Studio">Art Studio</option>
@@ -202,12 +214,11 @@
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" asp-for="Advert.WorkPlace.Period" name="Period" value="Month" required>
+                                <input class="form-check-input" type="radio" asp-for="Advert.WorkPlace.Period" name="Period" value="Month">
                                 <label asp-for="Advert.WorkPlace.Period">Price per month</label><br>
-                                <input class="form-check-input" type="radio" asp-for="Advert.WorkPlace.Period" name="Period" value="Week" required>
+                                <input class="form-check-input" type="radio" asp-for="Advert.WorkPlace.Period" name="Period" value="Week">
                                 <label asp-for="Advert.WorkPlace.Period">Price per week</label><br>
                                 <input type="number" asp-for="Advert.WorkPlace.Currency">
-                                <span class="invalid-feedback">Please tick a box</span>
                             </div>
                             <div class="form-group mx-4 mt-3">
                                 <label class="formAlignment" asp-for="Advert.WorkPlace.TimeFrames">Select time</label> <br>

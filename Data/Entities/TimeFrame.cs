@@ -9,10 +9,10 @@
     {
         public TimeFrame()
         {
-            OpeningTime = DateTime.Now;
-            ClosingTime = DateTime.Now;
-            StartDate = DateTime.Now;
-            EndDate = DateTime.Now;
+            OpeningTime = null;
+            ClosingTime = null;
+            StartDate = null;
+            EndDate = null;
             Monday = false;
             Tuesday = false;
             Wednesday = false;

@@ -11,14 +11,14 @@
     {
         public WorkPlace()
         {
-            City = "TEST";
-            Area = "Test";
-            ImgUrl = "Test";
-            Description = "Test";
-            Period = "Test";
-            Currency = 1;
-            MeasurementNumber = 1;
-            MeasurementType = "Test";
+            City = "Default";
+            Area = null;
+            ImgUrl = null;
+            Description = "Default";
+            Period = null;
+            Currency = null;
+            MeasurementNumber = null;
+            MeasurementType = null;
             AmenityTypes = new Amenity();
             TimeFrames = new TimeFrame();
         }
@@ -56,7 +56,7 @@
         public string? Area { get; set; }
 
         [AllowNull]
-        public string ImgUrl { get; set; }
+        public string? ImgUrl { get; set; }
 
         [AllowNull]
         [NotMapped]
