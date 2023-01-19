@@ -69,5 +69,33 @@
             List<bool> list = new List<bool>() { Parking, Shower, AirCondition, Kitchen, NaturalLight, AcousticTreatment, RunningWater, Storage, Toilet, CeramicOven };
             return list;
         }
+
+        public List<string> GetChosenAmenityList()
+        {
+            var tupleList = new List<Tuple<string, bool>>
+            {
+                Tuple.Create(nameof(Parking), Parking),
+                Tuple.Create(nameof(Shower), Shower),
+                Tuple.Create(nameof(AirCondition), AirCondition),
+                Tuple.Create(nameof(Kitchen), Kitchen),
+                Tuple.Create(nameof(NaturalLight), NaturalLight),
+                Tuple.Create(nameof(AcousticTreatment), AcousticTreatment),
+                Tuple.Create(nameof(RunningWater), RunningWater),
+                Tuple.Create(nameof(Storage), Storage),
+                Tuple.Create(nameof(Toilet), Toilet),
+                Tuple.Create(nameof(CeramicOven), CeramicOven),
+            };
+
+            List<string> checkedAmenitys = new ();
+            foreach (var tuple in tupleList)
+            {
+                if (tuple.Item2)
+                {
+                    checkedAmenitys.Add(tuple.Item1);
+                }
+            }
+
+            return checkedAmenitys;
+        }
     }
 }

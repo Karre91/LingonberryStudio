@@ -1,5 +1,6 @@
 ﻿namespace LingonberryStudio.Data.Entities
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Diagnostics.CodeAnalysis;
@@ -69,6 +70,31 @@
         {
             List<bool> list = new List<bool>() { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday };
             return list;
+        }
+
+        public List<string> GetChosenDaysList()
+        {
+            var tupleList = new List<Tuple<string, bool>>
+            {
+                Tuple.Create(nameof(Monday), Monday),
+                Tuple.Create(nameof(Tuesday), Tuesday),
+                Tuple.Create(nameof(Wednesday), Wednesday),
+                Tuple.Create(nameof(Thursday), Thursday),
+                Tuple.Create(nameof(Friday), Friday),
+                Tuple.Create(nameof(Saturday), Saturday),
+                Tuple.Create(nameof(Sunday), Sunday),
+            };
+
+            List<string> checkedDays = new ();
+            foreach (var tuple in tupleList)
+            {
+                if (tuple.Item2)
+                {
+                    checkedDays.Add(tuple.Item1);
+                }
+            }
+
+            return checkedDays;
         }
     }
 }
