@@ -69,8 +69,8 @@
 
             var test = Filter(viewModel);
             Console.WriteLine(test);
+            ViewBag.Total = advertViewModel.AdvertList.Count;
 
-            this.ViewBag.Total = advertViewModel.AdvertList.Count;
             return View(advertViewModel);
         }
 
@@ -83,11 +83,11 @@
 
             if (viewModel.Filter.Period != null && viewModel.Filter.Period == "Month")
             {
-                viewModel.Filter.CalculatedPounds = viewModel.Filter.PeriodPounds / 4;
+                viewModel.Filter.CalculatedPounds = viewModel.Filter.Pounds / 4;
             }
             else if (viewModel.Filter.Period != null && viewModel.Filter.Period == "Week")
             {
-                viewModel.Filter.CalculatedPounds = viewModel.Filter.PeriodPounds * 4;
+                viewModel.Filter.CalculatedPounds = viewModel.Filter.Pounds * 4;
             }
 
             // var checkedPreDecidedStudios = viewModel.Filter.GetChosenStudioTypes();
@@ -106,26 +106,57 @@
                 .Include(a => a.WorkPlace)
                 .ThenInclude(ads => ads.TimeFrames)
                 .Include(ads => ads.WorkPlace)
-                .ThenInclude(ads => ads.AmenityTypes).Where(a => a.WorkPlaceID.Equals(a.ID))
+                .ThenInclude(ads => ads.AmenityTypes)
+                .Where(a => a.WorkPlaceID.Equals(a.ID) && a.WorkPlace.AmenityID.Equals(a.ID))
 
                 .Where(a => a.Offering.Equals(viewModel.Filter.Offering) || a.Offering.Equals(!viewModel.Filter.Looking))
                 .Where(a => a.WorkPlace.City.Equals(viewModel.Filter.City) || (a.WorkPlace.City != null && viewModel.Filter.City == null))
+
+                .Where(a =>
+                (a.WorkPlace.Period == null && viewModel.Filter.Period == null)
+                || (a.WorkPlace.Period != null && viewModel.Filter.Period == null)
+                || (a.WorkPlace.Period == null && a.WorkPlace.Period!.Equals(viewModel.Filter.Period))
+                || (a.WorkPlace.Period != null && a.WorkPlace.Period.Equals(viewModel.Filter.Period) && a.WorkPlace.Currency <= viewModel.Filter.Pounds
+                && a.WorkPlace.Period != null && a.WorkPlace.Period!.Equals(viewModel.Filter.Period) && a.WorkPlace.Currency <= viewModel.Filter.CalculatedPounds)
+                || (a.WorkPlace.Period != null && a.WorkPlace.Period.Equals(viewModel.Filter.Period) && a.WorkPlace.Currency <= viewModel.Filter.Pounds)
+                || (a.WorkPlace.Period != null && a.WorkPlace.Period!.Equals(viewModel.Filter.Period) && a.WorkPlace.Currency <= viewModel.Filter.CalculatedPounds))
                 .AsNoTracking()
                 .ToList();
 
-
-            //            // .Where(ad => (ad.WorkPlace.Period != null && ad.WorkPlace.Period == "Month" && ad.WorkPlace.Currency <= monthBud) || (ad.WorkPlace.Period != null && ad.WorkPlace.Period == "Week" && ad.WorkPlace.Currency <= weekBud)
-            //            // || viewModel.Filter.Period == null)
-
-            //            // .Where(ad => checkedPreDecidedStudios.Contains(ad.StudioType))
+            // .Where(ad => checkedPreDecidedStudios.Contains(ad.StudioType))
 
             return filtered;
 
             //            // => (a.Offering.Equals(viewModel.Filter.Offering) || (a.Offering.Equals(!viewModel.Filter.Looking)
             //            // || (a.Offering.Equals(viewModel.Filter.Offering && a.Offering.Equals(!viewModel.Filter.Looking)
+
+            //(a.WorkPlace.Period != null && a.WorkPlace.Period.Equals(viewModel.Filter.Period) && a.WorkPlace.Currency <= viewModel.Filter.Pounds
+            //    && a.WorkPlace.Period != null && a.WorkPlace.Period!.Equals(viewModel.Filter.Period) && a.WorkPlace.Currency <= viewModel.Filter.CalculatedPounds)
+            //    ||
         }
 
-        private static List<Advert> ExcludeOldAds(List<Advert> allAdsInDB)
+        private List<Advert> FilterByBudget(Filter filter)
+        {
+            if (filter.Period != null)
+            {
+                if (filter.Period == "Month")
+                {
+                    filter.CalculatedPounds = filter.Pounds / 4;
+                    var goalList = db.Adverts.Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Currency <= filter.Pounds).ToList();
+                    Console.WriteLine(goalList);
+                }
+                else
+                {
+                    filter.CalculatedPounds = filter.Pounds * 4;
+                    var goalList = db.Adverts.Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Currency <= filter.Pounds).ToList();
+                    Console.WriteLine(goalList);
+                }
+            }
+
+            return new List<Advert>();
+        }
+
+        private List<Advert> ExcludeOldAds(List<Advert> allAdsInDB)
         {
             var goalList = allAdsInDB.Except(allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -60)).ToList();
             return goalList;
