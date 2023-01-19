@@ -130,6 +130,21 @@
             return new List<Advert>();
         }
 
+        [HttpGet("AdvertSearch")]
+        public IActionResult Search(string city, bool search, List<Advert> adverts)
+        {
+            if (city == null)
+            {
+                adverts = db.Adverts.Where(ad => ad.Offering == search).ToList();
+            }
+            else
+            {
+                adverts = db.Adverts.Where(ad => ad.Offering == search && ad.WorkPlace.City == city).ToList();
+            }
+
+            return View(adverts);
+        }
+
         private static List<Advert> ExcludeOldAds(List<Advert> allAdsInDB)
         {
             var goalList = allAdsInDB.Except(allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -60)).ToList();
@@ -149,22 +164,5 @@
             allAdsInDB = ExcludeOldAds(allAdsInDB);
             return allAdsInDB;
         }
-
-        //[HttpGet("AdvertSearch")]
-        //public IActionResult Search(string city, bool search)
-        //{
-        //    List<Advert> adverts = new ();
-
-        //    if (city == null)
-        //    {
-        //        adverts = db.Adverts.Where(ad => ad.Offering == search).ToList();
-        //    }
-        //    else
-        //    {
-        //        adverts = db.Adverts.Where(ad => ad.Offering == search && ad.WorkPlace.City == city).ToList();
-        //    }
-
-        //    return View(adverts);
-        //}
     }
 }

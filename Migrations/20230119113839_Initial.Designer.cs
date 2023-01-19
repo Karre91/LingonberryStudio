@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LingonberryStudio.Migrations
 {
     [DbContext(typeof(LingonberryDbContext))]
-    [Migration("20230119062542_Initial")]
+    [Migration("20230119113839_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -192,7 +192,6 @@ namespace LingonberryStudio.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImgUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MeasurementNumber")

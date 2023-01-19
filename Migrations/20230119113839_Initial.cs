@@ -1,11 +1,9 @@
-﻿#nullable disable
-
-namespace LingonberryStudio.Migrations
+﻿namespace LingonberryStudio.Migrations
 {
     using System;
     using Microsoft.EntityFrameworkCore.Migrations;
 
-    /// <inheritdoc />
+   /// <inheritdoc />
     public partial class Initial : Migration
     {
         /// <inheritdoc />
@@ -65,7 +63,7 @@ namespace LingonberryStudio.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Area = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Period = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Currency = table.Column<int>(type: "int", nullable: true),
