@@ -1,28 +1,29 @@
-﻿using LingonberryStudio.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
-
-namespace LingonberryStudio.Controllers.Home
+﻿namespace LingonberryStudio.Controllers.Home
 {
+    using System.Diagnostics;
+    using System.Text.RegularExpressions;
+    using LingonberryStudio.Models;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.VisualBasic;
+
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
+        private readonly ILogger<HomeController> logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
-            _logger = logger;
+            this.logger = logger;
         }
 
         public IActionResult Index()
         {
-			string searchError;
-			if (TempData.ContainsKey("searchError"))
-				searchError = TempData["searchError"].ToString();
+            //string searchError;
+            if (TempData.ContainsKey("searchError"))
+            {
+                //searchError = TempData["searchError"].ToString();
+            }
 
-			return View();
+            return View();
         }
 
         [HttpPost]
@@ -31,11 +32,11 @@ namespace LingonberryStudio.Controllers.Home
             if (ModelState.IsValid)
             {
                 string tmp = searchArea.Trim();
-                tmp = Regex.Replace(tmp, @"[\d-]", string.Empty); //tar bort siffror och tecken
-                if (tmp == "")
+                tmp = Regex.Replace(tmp, @"[\d-]", string.Empty); // tar bort siffror och tecken
+                if (tmp == string.Empty)
                 {
-					TempData["searchError"] = "There is no city called \"" + searchArea + "\"";
-					return RedirectToAction("Index");
+                    TempData["searchError"] = "There is no city called \"" + searchArea + "\"";
+                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -53,26 +54,26 @@ namespace LingonberryStudio.Controllers.Home
         [HttpPost]
         public IActionResult LookingSearch(string searchArea)
         {
-			if (ModelState.IsValid)
-			{
-				string tmp = searchArea.Trim();
-				tmp = Regex.Replace(tmp, @"[\d-]", string.Empty); //tar bort siffror
-                if (tmp == "")
-				{
-					TempData["searchError"] = "There is no city called \"" + searchArea + "\"";
-					return RedirectToAction("Index");
-				}
-				else
-				{
-					tmp = Regex.Replace(tmp, @"\s+", "-");
-					tmp = tmp.ToUpper();
-					return RedirectToAction("Search", "Adverts", new { city = searchArea, search = "Looking" });
-				}
-			}
-			else
-			{
-				return RedirectToAction("Search", "Adverts", new { city = searchArea, search = "Looking" });
-			}			
+            if (ModelState.IsValid)
+            {
+                string tmp = searchArea.Trim();
+                tmp = Regex.Replace(tmp, @"[\d-]", string.Empty); // tar bort siffror
+                if (tmp == string.Empty)
+                {
+                    TempData["searchError"] = "There is no city called \"" + searchArea + "\"";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    tmp = Regex.Replace(tmp, @"\s+", "-");
+                    tmp = tmp.ToUpper();
+                    return RedirectToAction("Search", "Adverts", new { city = tmp, search = "Looking" });
+                }
+            }
+            else
+            {
+                return RedirectToAction("Search", "Adverts", new { city = searchArea, search = "Looking" });
+            }
         }
 
         public IActionResult Privacy()

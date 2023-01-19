@@ -1,11 +1,11 @@
-﻿using LingonberryStudio.Models;
-using LingonberryStudio.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
-
-namespace LingonberryStudio.Data
+﻿namespace LingonberryStudio.Data
 {
-    public class Seed
+    using System.Runtime.CompilerServices;
+    using LingonberryStudio.Data.Entities;
+    using LingonberryStudio.Models;
+    using Microsoft.EntityFrameworkCore;
+
+    public static class Seed
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
@@ -13,14 +13,12 @@ namespace LingonberryStudio.Data
                 serviceProvider.GetRequiredService<
                     DbContextOptions<LingonberryDbContext>>()))
             {
-
                 if (context.Adverts.Any())
                 {
                     return;   // DB has been seeded
                 }
 
                 context.Adverts.AddRange(
-                    // ALL OFFERING
                     new Advert()
                     {
                         TimeCreated = DateTime.Today,
@@ -31,8 +29,8 @@ namespace LingonberryStudio.Data
                         PhoneNumber = "0707310791",
                         Artist = "KarinSjunger",
                         SocialMedia = "@instagram KarinSjunger",
-                        StudioType = "Art Studio",
-                        WorkPlace = new()
+                        StudioType = "ArtStudio",
+                        WorkPlace = new ()
                         {
                             City = "LONDON",
                             Area = "EAST",
@@ -42,7 +40,7 @@ namespace LingonberryStudio.Data
                             Currency = 100,
                             MeasurementType = "Meters",
                             MeasurementNumber = 50,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = true,
                                 Shower = true,
@@ -54,27 +52,27 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = true,
-                                Other = "Changing rooms"
+                                Other = "Changing rooms",
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 02, 14, 08, 30, 00),
-                                ClosingTime = new(2024, 02, 14, 17, 30, 00),
-                                StartDate = new(2023, 02, 14),
-                                EndDate = new(2024, 02, 14),
+                                OpeningTime = new (2023, 02, 14, 08, 30, 00),
+                                ClosingTime = new (2024, 02, 14, 17, 30, 00),
+                                StartDate = new (2023, 02, 14),
+                                EndDate = new (2024, 02, 14),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = true,
                                 Friday = true,
                                 Saturday = false,
-                                Sunday = false
+                                Sunday = false,
                             },
                         },
                     },
                     new Advert()
                     {
-                        TimeCreated = new(2023, 01, 01),
+                        TimeCreated = new (2023, 01, 01),
                         Offering = true,
                         FirstName = "Allan",
                         LastName = "Banan",
@@ -82,8 +80,8 @@ namespace LingonberryStudio.Data
                         PhoneNumber = "123456789",
                         Artist = null,
                         SocialMedia = null,
-                        StudioType = "Photo Studio",
-                        WorkPlace = new()
+                        StudioType = "PhotoStudio",
+                        WorkPlace = new ()
                         {
                             City = "STOCKHOLM",
                             Area = "SOLNA",
@@ -93,7 +91,7 @@ namespace LingonberryStudio.Data
                             Currency = 135,
                             MeasurementType = "Feet",
                             MeasurementNumber = 90,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = false,
                                 Shower = true,
@@ -105,27 +103,27 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = false,
-                                Other = "Tripod"
+                                Other = "Tripod",
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 02, 14, 12, 30, 00),
-                                ClosingTime = new(2024, 02, 14, 21, 30, 00),
-                                StartDate = new(2023, 02, 01),
-                                EndDate = new(2023, 03, 14),
+                                OpeningTime = new (2023, 02, 14, 12, 30, 00),
+                                ClosingTime = new (2024, 02, 14, 21, 30, 00),
+                                StartDate = new (2023, 02, 01),
+                                EndDate = new (2023, 03, 14),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = true,
                                 Friday = true,
                                 Saturday = true,
-                                Sunday = true
+                                Sunday = true,
                             },
                         },
                     },
                     new Advert()
                     {
-                        TimeCreated = new(2023, 01, 02),
+                        TimeCreated = new (2023, 01, 02),
                         Offering = true,
                         FirstName = "Josefin",
                         LastName = "Unefäldt",
@@ -133,8 +131,8 @@ namespace LingonberryStudio.Data
                         PhoneNumber = "123456789",
                         Artist = null,
                         SocialMedia = null,
-                        StudioType = "Ceramics Studio",
-                        WorkPlace = new()
+                        StudioType = "CeramicsStudio",
+                        WorkPlace = new ()
                         {
                             City = "LONDON",
                             Area = "HACKNEY",
@@ -144,7 +142,7 @@ namespace LingonberryStudio.Data
                             Currency = 115,
                             MeasurementType = "Feet",
                             MeasurementNumber = 110,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = false,
                                 Shower = false,
@@ -156,27 +154,27 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = true,
-                                Other = "Oven"
+                                Other = "Oven",
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 02, 14, 08, 00, 00),
-                                ClosingTime = new(2024, 02, 14, 16, 30, 00),
-                                StartDate = new(2023, 02, 01),
-                                EndDate = new(2023, 06, 30),
+                                OpeningTime = new (2023, 02, 14, 08, 00, 00),
+                                ClosingTime = new (2024, 02, 14, 16, 30, 00),
+                                StartDate = new (2023, 02, 01),
+                                EndDate = new (2023, 06, 30),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = false,
                                 Friday = false,
                                 Saturday = false,
-                                Sunday = true
+                                Sunday = true,
                             },
                         },
                     },
                     new Advert()
                     {
-                        TimeCreated = new(2023, 01, 03),
+                        TimeCreated = new (2023, 01, 03),
                         Offering = true,
                         FirstName = "Kalle",
                         LastName = "Josefsson",
@@ -184,8 +182,8 @@ namespace LingonberryStudio.Data
                         PhoneNumber = "123456789",
                         Artist = null,
                         SocialMedia = null,
-                        StudioType = "DanceRehersal Studio",
-                        WorkPlace = new()
+                        StudioType = "DanceRehersalStudio",
+                        WorkPlace = new ()
                         {
                             City = "GOTHENBURG",
                             Area = "MOLNDAL",
@@ -195,7 +193,7 @@ namespace LingonberryStudio.Data
                             Currency = 115,
                             MeasurementType = "Feet",
                             MeasurementNumber = 110,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = false,
                                 Shower = true,
@@ -207,36 +205,36 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = false,
-                                Other = "Lights"
+                                Other = "Lights",
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 02, 14, 08, 00, 00),
-                                ClosingTime = new(2024, 02, 14, 16, 30, 00),
-                                StartDate = new(2023, 02, 01),
-                                EndDate = new(2023, 06, 01),
+                                OpeningTime = new (2023, 02, 14, 08, 00, 00),
+                                ClosingTime = new (2024, 02, 14, 16, 30, 00),
+                                StartDate = new (2023, 02, 01),
+                                EndDate = new (2023, 06, 01),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = true,
                                 Friday = true,
                                 Saturday = true,
-                                Sunday = true
+                                Sunday = true,
                             },
                         },
                     },
                     new Advert()
                     {
-                        TimeCreated = new(2023, 01, 04),
+                        TimeCreated = new (2023, 01, 04),
                         Offering = true,
                         FirstName = "Sara",
                         LastName = "Andersson",
                         Email = "test@gmail.com",
-                        PhoneNumber = "123456789",
+                        PhoneNumber = "1235789",
                         Artist = "Madonna",
                         SocialMedia = null,
-                        StudioType = "Music Studio",
-                        WorkPlace = new()
+                        StudioType = "MusicStudio",
+                        WorkPlace = new ()
                         {
                             City = "CARDIFF",
                             Area = "CENTER",
@@ -246,7 +244,7 @@ namespace LingonberryStudio.Data
                             Currency = 70,
                             MeasurementType = "Meters",
                             MeasurementNumber = 43,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = false,
                                 Shower = true,
@@ -258,25 +256,24 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = false,
-                                Other = "Drumset"
+                                Other = "Drumset",
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 05, 01, 08, 00, 00),
-                                ClosingTime = new(2024, 05, 01, 22, 30, 00),
-                                StartDate = new(2023, 05, 01),
-                                EndDate = new(2024, 05, 01),
+                                OpeningTime = new (2023, 05, 01, 08, 00, 00),
+                                ClosingTime = new (2024, 05, 01, 22, 30, 00),
+                                StartDate = new (2023, 05, 01),
+                                EndDate = new (2024, 05, 01),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = true,
                                 Friday = true,
                                 Saturday = true,
-                                Sunday = true
+                                Sunday = true,
                             },
                         },
                     },
-                    // ALL Looking
                     new Advert()
                     {
                         TimeCreated = DateTime.Today,
@@ -287,8 +284,8 @@ namespace LingonberryStudio.Data
                         PhoneNumber = "123456789",
                         Artist = "KarinSjunger",
                         SocialMedia = "@instagram KarinSjunger",
-                        StudioType = "Art Studio",
-                        WorkPlace = new()
+                        StudioType = "ArtStudio",
+                        WorkPlace = new ()
                         {
                             City = "LONDON",
                             Area = "EAST",
@@ -298,7 +295,7 @@ namespace LingonberryStudio.Data
                             Currency = 100,
                             MeasurementType = "Meters",
                             MeasurementNumber = 50,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = true,
                                 Shower = true,
@@ -310,27 +307,27 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = true,
-                                Other = "Changing rooms"
+                                Other = "Changing rooms",
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 02, 14, 08, 30, 00),
-                                ClosingTime = new(2024, 02, 14, 17, 30, 00),
-                                StartDate = new(2023, 02, 14),
-                                EndDate = new(2024, 02, 14),
+                                OpeningTime = new (2023, 02, 14, 08, 30, 00),
+                                ClosingTime = new (2024, 02, 14, 17, 30, 00),
+                                StartDate = new (2023, 02, 14),
+                                EndDate = new (2024, 02, 14),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = true,
                                 Friday = true,
                                 Saturday = false,
-                                Sunday = false
+                                Sunday = false,
                             },
                         },
                     },
                     new Advert()
                     {
-                        TimeCreated = new(2023, 01, 01),
+                        TimeCreated = new (2023, 01, 01),
                         Offering = false,
                         FirstName = "Allan",
                         LastName = "Banan",
@@ -338,8 +335,8 @@ namespace LingonberryStudio.Data
                         PhoneNumber = "123456789",
                         Artist = null,
                         SocialMedia = null,
-                        StudioType = "Photo Studio",
-                        WorkPlace = new()
+                        StudioType = "PhotoStudio",
+                        WorkPlace = new ()
                         {
                             City = "STOCKHOLM",
                             Area = "SOLNA",
@@ -349,7 +346,7 @@ namespace LingonberryStudio.Data
                             Currency = 135,
                             MeasurementType = "Feet",
                             MeasurementNumber = 90,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = false,
                                 Shower = true,
@@ -361,27 +358,27 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = false,
-                                Other = "Tripod"
+                                Other = "Tripod",
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 02, 14, 12, 30, 00),
-                                ClosingTime = new(2024, 02, 14, 21, 30, 00),
-                                StartDate = new(2023, 02, 01),
-                                EndDate = new(2023, 03, 14),
+                                OpeningTime = new (2023, 02, 14, 12, 30, 00),
+                                ClosingTime = new (2024, 02, 14, 21, 30, 00),
+                                StartDate = new (2023, 02, 01),
+                                EndDate = new (2023, 03, 14),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = true,
                                 Friday = true,
                                 Saturday = true,
-                                Sunday = true
+                                Sunday = true,
                             },
                         },
                     },
                     new Advert()
                     {
-                        TimeCreated = new(2023, 01, 02),
+                        TimeCreated = new (2023, 01, 02),
                         Offering = false,
                         FirstName = "Josefin",
                         LastName = "Unefäldt",
@@ -389,8 +386,8 @@ namespace LingonberryStudio.Data
                         PhoneNumber = "123456789",
                         Artist = null,
                         SocialMedia = null,
-                        StudioType = "Ceramics Studio",
-                        WorkPlace = new()
+                        StudioType = "CeramicsStudio",
+                        WorkPlace = new ()
                         {
                             City = "LONDON",
                             Area = "HACKNEY",
@@ -400,7 +397,7 @@ namespace LingonberryStudio.Data
                             Currency = 115,
                             MeasurementType = "Feet",
                             MeasurementNumber = 110,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = false,
                                 Shower = false,
@@ -412,27 +409,27 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = true,
-                                Other = "Oven"
+                                Other = "Oven",
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 02, 14, 08, 00, 00),
-                                ClosingTime = new(2024, 02, 14, 16, 30, 00),
-                                StartDate = new(2023, 02, 01),
-                                EndDate = new(2023, 06, 30),
+                                OpeningTime = new (2023, 02, 14, 08, 00, 00),
+                                ClosingTime = new (2024, 02, 14, 16, 30, 00),
+                                StartDate = new (2023, 02, 01),
+                                EndDate = new (2023, 06, 30),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = false,
                                 Friday = false,
                                 Saturday = false,
-                                Sunday = true
+                                Sunday = true,
                             },
                         },
                     },
                     new Advert()
                     {
-                        TimeCreated = new(2023, 01, 03),
+                        TimeCreated = new (2023, 01, 03),
                         Offering = false,
                         FirstName = "Kalle",
                         LastName = "Josefsson",
@@ -440,8 +437,8 @@ namespace LingonberryStudio.Data
                         PhoneNumber = "123456789",
                         Artist = null,
                         SocialMedia = null,
-                        StudioType = "DanceRehersal Studio",
-                        WorkPlace = new()
+                        StudioType = "DanceRehersalStudio",
+                        WorkPlace = new ()
                         {
                             City = "GOTHENBURG",
                             Area = "MOLNDAL",
@@ -451,7 +448,7 @@ namespace LingonberryStudio.Data
                             Currency = 115,
                             MeasurementType = "Feet",
                             MeasurementNumber = 110,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = false,
                                 Shower = true,
@@ -463,27 +460,27 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = false,
-                                Other = "Lights"
+                                Other = "Lights",
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 02, 14, 08, 00, 00),
-                                ClosingTime = new(2024, 02, 14, 16, 30, 00),
-                                StartDate = new(2023, 02, 01),
-                                EndDate = new(2023, 06, 01),
+                                OpeningTime = new (2023, 02, 14, 08, 00, 00),
+                                ClosingTime = new (2024, 02, 14, 16, 30, 00),
+                                StartDate = new (2023, 02, 01),
+                                EndDate = new (2023, 06, 01),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = true,
                                 Friday = true,
                                 Saturday = true,
-                                Sunday = true
+                                Sunday = true,
                             },
                         },
                     },
                     new Advert()
                     {
-                        TimeCreated = new(2023, 01, 04),
+                        TimeCreated = new (2023, 01, 04),
                         Offering = false,
                         FirstName = "Sara",
                         LastName = "Andersson",
@@ -491,8 +488,8 @@ namespace LingonberryStudio.Data
                         PhoneNumber = "123456789",
                         Artist = "Madonna",
                         SocialMedia = null,
-                        StudioType = "Music Studio",
-                        WorkPlace = new()
+                        StudioType = "MusicStudio",
+                        WorkPlace = new ()
                         {
                             City = "CARDIFF",
                             Area = "CENTER",
@@ -502,7 +499,7 @@ namespace LingonberryStudio.Data
                             Currency = 200,
                             MeasurementType = "Meters",
                             MeasurementNumber = 43,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = false,
                                 Shower = true,
@@ -514,28 +511,27 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = false,
-                                Other = "Drumset"
+                                Other = "Drumset",
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 05, 01, 08, 00, 00),
-                                ClosingTime = new(2024, 05, 01, 22, 30, 00),
-                                StartDate = new(2023, 05, 01),
-                                EndDate = new(2024, 05, 01),
+                                OpeningTime = new (2023, 05, 01, 08, 00, 00),
+                                ClosingTime = new (2024, 05, 01, 22, 30, 00),
+                                StartDate = new (2023, 05, 01),
+                                EndDate = new (2024, 05, 01),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = true,
                                 Friday = true,
                                 Saturday = true,
-                                Sunday = true
+                                Sunday = true,
                             },
                         },
                     },
-                    // ALL OTHERS
                     new Advert()
                     {
-                        TimeCreated = new(2023, 01, 04),
+                        TimeCreated = new (2023, 01, 04),
                         Offering = true,
                         FirstName = "Sara",
                         LastName = "Andersson",
@@ -544,7 +540,7 @@ namespace LingonberryStudio.Data
                         Artist = "Madonna",
                         SocialMedia = null,
                         StudioType = "Yoga Studio",
-                        WorkPlace = new()
+                        WorkPlace = new ()
                         {
                             City = "CARDIFF",
                             Area = "CENTER",
@@ -554,7 +550,7 @@ namespace LingonberryStudio.Data
                             Currency = 255,
                             MeasurementType = "Meters",
                             MeasurementNumber = 43,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = false,
                                 Shower = true,
@@ -566,27 +562,27 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = false,
-                                Other = "Yoga mats"
+                                Other = "Yoga mats",
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 05, 01, 08, 00, 00),
-                                ClosingTime = new(2024, 05, 01, 22, 30, 00),
-                                StartDate = new(2023, 05, 01),
-                                EndDate = new(2024, 05, 01),
+                                OpeningTime = new (2023, 05, 01, 08, 00, 00),
+                                ClosingTime = new (2024, 05, 01, 22, 30, 00),
+                                StartDate = new (2023, 05, 01),
+                                EndDate = new (2024, 05, 01),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = true,
                                 Friday = true,
                                 Saturday = true,
-                                Sunday = true
+                                Sunday = true,
                             },
                         },
                     },
                     new Advert()
                     {
-                        TimeCreated = new(2023, 01, 04),
+                        TimeCreated = new (2023, 01, 04),
                         Offering = true,
                         FirstName = "Sara",
                         LastName = "Andersson",
@@ -595,7 +591,7 @@ namespace LingonberryStudio.Data
                         Artist = "Madonna",
                         SocialMedia = null,
                         StudioType = "Darkroom",
-                        WorkPlace = new()
+                        WorkPlace = new ()
                         {
                             City = "CARDIFF",
                             Area = "CENTER",
@@ -605,7 +601,7 @@ namespace LingonberryStudio.Data
                             Currency = 45,
                             MeasurementType = "Meters",
                             MeasurementNumber = 43,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = false,
                                 Shower = true,
@@ -617,27 +613,27 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = false,
-                                Other = "Chemicals"
+                                Other = "Chemicals",
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 05, 01, 08, 00, 00),
-                                ClosingTime = new(2024, 05, 01, 22, 30, 00),
-                                StartDate = new(2023, 05, 01),
-                                EndDate = new(2024, 05, 01),
+                                OpeningTime = new (2023, 05, 01, 08, 00, 00),
+                                ClosingTime = new (2024, 05, 01, 22, 30, 00),
+                                StartDate = new (2023, 05, 01),
+                                EndDate = new (2024, 05, 01),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = true,
                                 Friday = true,
                                 Saturday = true,
-                                Sunday = true
+                                Sunday = true,
                             },
                         },
                     },
                     new Advert()
                     {
-                        TimeCreated = new(2023, 01, 04),
+                        TimeCreated = new (2023, 01, 04),
                         Offering = false,
                         FirstName = "Sara",
                         LastName = "Andersson",
@@ -646,7 +642,7 @@ namespace LingonberryStudio.Data
                         Artist = "Madonna",
                         SocialMedia = null,
                         StudioType = "Film Studio",
-                        WorkPlace = new()
+                        WorkPlace = new ()
                         {
                             City = "CARDIFF",
                             Area = "CENTER",
@@ -656,7 +652,7 @@ namespace LingonberryStudio.Data
                             Currency = 75,
                             MeasurementType = "Meters",
                             MeasurementNumber = 43,
-                            AmenityTypes = new()
+                            AmenityTypes = new ()
                             {
                                 Parking = false,
                                 Shower = true,
@@ -668,29 +664,27 @@ namespace LingonberryStudio.Data
                                 Storage = true,
                                 Toilet = true,
                                 CeramicOven = false,
-                                Other = null
+                                Other = null,
                             },
-                            TimeFrames = new()
+                            TimeFrames = new ()
                             {
-                                OpeningTime = new(2023, 05, 01, 08, 00, 00),
-                                ClosingTime = new(2024, 05, 01, 22, 30, 00),
-                                StartDate = new(2023, 05, 01),
-                                EndDate = new(2024, 05, 01),
+                                OpeningTime = new (2023, 05, 01, 08, 00, 00),
+                                ClosingTime = new (2024, 05, 01, 22, 30, 00),
+                                StartDate = new (2023, 05, 01),
+                                EndDate = new (2024, 05, 01),
                                 Monday = true,
                                 Tuesday = true,
                                 Wednesday = true,
                                 Thursday = true,
                                 Friday = true,
                                 Saturday = true,
-                                Sunday = true
+                                Sunday = true,
                             },
                         },
-                    }
-                    );
+                    });
                 context.SaveChanges();
             }
         }
-
     }
 }
 

@@ -1,12 +1,30 @@
-﻿using LingonberryStudio.Data.Entities;
-
-namespace LingonberryStudio.ViewModels
+﻿namespace LingonberryStudio.ViewModels
 {
-	public class AdvertViewMoldel
-	{
-       
-        public List<Advert>? AdvertList { get; set; }
+    using System.ComponentModel.DataAnnotations;
+    using LingonberryStudio.Data.Entities;
 
-        public Filter? Filter { get; set; }
+    public class AdvertViewMoldel
+    {
+        public AdvertViewMoldel()
+        {
+            Advert = new Advert();
+            Filter = new Filter();
+            AdvertList = new List<Advert>();
+        }
+
+        public AdvertViewMoldel(string studioType)
+        {
+            Advert = new Advert();
+            Filter = new Filter();
+            AdvertList = new List<Advert>();
+        }
+
+        public List<Advert> AdvertList { get; set; }
+
+        public Filter Filter { get; set; }
+
+        public Advert Advert { get; set; }
+
+        public bool IsFiltered { get; set; }
     }
 }

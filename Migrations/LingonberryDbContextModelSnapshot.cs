@@ -48,8 +48,8 @@ namespace LingonberryStudio.Migrations
                     b.Property<bool>("Offering")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SocialMedia")
                         .HasColumnType("nvarchar(max)");
@@ -189,6 +189,7 @@ namespace LingonberryStudio.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImgUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MeasurementNumber")

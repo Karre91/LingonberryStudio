@@ -1,179 +1,157 @@
 ﻿@using LingonberryStudio.Data.Entities
 @model Advert
 
+
+@{
+    var chosenDays = Model.WorkPlace.TimeFrames.GetChosenDaysList();
+    var chosenAmenity = Model.WorkPlace.AmenityTypes.GetChosenAmenityList();
+}
+
 <div class="modal fade" id="adModal-@Model.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle"> @Model.StudioType </h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div>
-					<img src="/@Model.WorkPlace.ImgUrl" class="img-fluid mx-auto ad-image center">
-				</div>
-				@if (Model.Offering == true)
-				{
-					<label class="fw-bold px-1 mb-2 mt-2">I am offering a @Model.StudioType</label>
-				}
-				@if(Model.Offering==false)
-				{
-					<label class="fw-bold px-1 mb-2 mt-2">I am looking for a @Model.StudioType</label>
-				}
-				<br />
-				<p class="fw-bold form-text-style">City: </p>
-				<p class="form-text-style">@Model.WorkPlace.City</p> <br />
-				@if (Model.WorkPlace.Area != null)
-				{
-					<p class="fw-bold form-text-style">Area: </p>
-					<p class="form-text-style">@Model.WorkPlace.Area</p>
-					<br />
-				}
-				<p class="fw-bold form-text-style">Name: </p>
-				<p class="form-text-style">@Model.FirstName</p> <br />
-				<p class="fw-bold form-text-style">Surname: </p>
-				<p class="form-text-style">@Model.LastName</p> <br />
-				<p class="fw-bold form-text-style">Email: </p>
-				<p class="form-text-style">@Model.Email</p> <br />
-				@if (Model.PhoneNumber != null)
-				{
-					<p class="fw-bold form-text-style">Phone Number: </p>
-					<p class="form-text-style">@Model.PhoneNumber</p> <br />
-				}
-				@if (Model.Artist != null)
-				{
-					<p class="fw-bold form-text-style">Artist/Project Name: </p>
-					<p class="form-text-style">@Model.Artist</p> <br />
-				}
-				@if (Model.WorkPlace.TimeFrames.GetList().Contains(true) && Model.Offering == true)
-				{
-					<p class="fw-bold form-text-style">Avaliability: </p> <br />
-				}
-				@if (Model.WorkPlace.TimeFrames.GetList().Contains(true) && Model.Offering == false)
-				{
-					<p class="fw-bold form-text-style">I am interested in following days: </p> <br />
-				}
-							
-				@if (Model.WorkPlace.TimeFrames.Monday)
-				{
-					<p class="form-text-style">Monday</p> <br />
-				}			
-				@if (Model.WorkPlace.TimeFrames.Tuesday)
-				{
-					<p class="form-text-style">Tuesday</p> <br />
-				}
-				@if (Model.WorkPlace.TimeFrames.Wednesday)
-				{
-					<p class="form-text-style">Wednesday</p> <br />
-				}
-				@if (Model.WorkPlace.TimeFrames.Thursday)
-				{
-					<p class="form-text-style">Thursday</p> <br />
-				}
-				@if (Model.WorkPlace.TimeFrames.Friday)
-				{
-					<p class="form-text-style">Friday</p> <br />
-				}
-				@if (Model.WorkPlace.TimeFrames.Saturday)
-				{
-					<p class="form-text-style">Saturday</p> <br />
-				}
-				@if (Model.WorkPlace.TimeFrames.Sunday)
-				{
-					<p class="form-text-style">Sunday</p> <br />
-				}
-				
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"> @Model.StudioType </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <img src="/@Model.WorkPlace.ImgUrl" class="img-fluid mx-auto ad-image center">
+                </div>
+                @if (Model.Offering)
+                {
+                    <label class="fw-bold px-1 mb-2 mt-2">I am offering a @Model.StudioType</label>
+                }
+                @if (!Model.Offering)
+                {
+                    <label class="fw-bold px-1 mb-2 mt-2">I am looking for a @Model.StudioType</label>
+                }
+                <br />
+                <p class="fw-bold form-text-style">City: </p>
+                <p class="form-text-style">@Model.WorkPlace.City</p> <br />
+                @if (Model.WorkPlace.Area != null)
+                {
+                    <p class="fw-bold form-text-style">Area: </p>
+                    <p class="form-text-style">@Model.WorkPlace.Area</p>
+                    <br />
+                }
+                <p class="fw-bold form-text-style">Name: </p><p class="form-text-style">@Model.FirstName</p> <br />
+                <p class="fw-bold form-text-style">Surname: </p><p class="form-text-style">@Model.LastName</p> <br />
+                <p class="fw-bold form-text-style">Email: </p><p class="form-text-style">@Model.Email</p> <br />
+                @if (Model.PhoneNumber != null)
+                {
+                    <p class="fw-bold form-text-style">Phone Number: </p>
+                    <p class="form-text-style">@Model.PhoneNumber</p> <br />
+                }
+                @if (Model.Artist != null)
+                {
+                    <p class="fw-bold form-text-style">Artist/Project Name: </p>
+                    <p class="form-text-style">@Model.Artist</p> <br />
+                }
+                @if (Model.WorkPlace.TimeFrames.GetList().Contains(true) && Model.Offering)
+                {
+                    <p class="fw-bold form-text-style">Avaliability: </p> <br />
+                }
+                @if (Model.WorkPlace.TimeFrames.GetList().Contains(true) && !Model.Offering)
+                {
+                    <p class="fw-bold form-text-style">I am interested in following days: </p> <br />
+                }
+                @foreach (var day in chosenDays)
+                {
+                    <p class="form-text-style">@day</p> <br />
+                }
+                @if (Model.WorkPlace.AmenityTypes.GetList().Contains(true))
+                {
+                    <p class="fw-bold form-text-style">Ametities: </p> <br />
+                    @foreach (var amenity in chosenAmenity)
+                    {
+                        <p class="form-text-style">@amenity</p> <br />
+                    }
+                }
 
-				@if (Model.WorkPlace.AmenityTypes.GetList().Contains(true))
-				{
-					<p class="fw-bold form-text-style">Ametities: </p> <br />
-					@if (Model.WorkPlace.AmenityTypes.AcousticTreatment)
-					{						
-						@if (ViewBag.aucusticTreatment != null)
-						{
-							<p class="form-text-style"><b><u>Acoustic Treatment</u></b></p> <br />
-						}
-						else
-						{
-							<p class="form-text-style">Acoustic Treatment</p> <br />
-						}			
-					}
-					@if (Model.WorkPlace.AmenityTypes.NaturalLight)
-					{
-						<p class="form-text-style">Natural Light</p> <br />
-					}
-					@if (Model.WorkPlace.AmenityTypes.Kitchen)
-					{
-						<p class="form-text-style">Kitchen</p> <br />
-					}
-					@if (Model.WorkPlace.AmenityTypes.RunningWater)
-					{
-						<p class="form-text-style">Running Water</p> <br />
-					}
-					@if (Model.WorkPlace.AmenityTypes.AirCondition)
-					{
-						<p class="form-text-style">Aircon</p> <br />
-					}
-					@if (Model.WorkPlace.AmenityTypes.Parking)
-					{
-						<p class="form-text-style">Parking</p> <br />
-					}
-					@if (Model.WorkPlace.AmenityTypes.Storage)
-					{
-						<p class="form-text-style">Storage</p> <br />
-					}
-					@if (Model.WorkPlace.AmenityTypes.Other !=null)
-					{
-						<p class="form-text-style">@Model.WorkPlace.AmenityTypes.Other</p> <br />
-					}
+                @*@if (Model.WorkPlace.AmenityTypes.AcousticTreatment)
+                {
+                @if (ViewBag.aucusticTreatment != null)
+                {
+                <p class="form-text-style"><b><u>Acoustic Treatment</u></b></p> <br />
+                }
+                else
+                {
+                <p class="form-text-style">Acoustic Treatment</p> <br />
+                }
+                }
+                @if (Model.WorkPlace.AmenityTypes.NaturalLight)
+                {
+                <p class="form-text-style">Natural Light</p> <br />
+                }
+                @if (Model.WorkPlace.AmenityTypes.Kitchen)
+                {
+                <p class="form-text-style">Kitchen</p> <br />
+                }
+                @if (Model.WorkPlace.AmenityTypes.RunningWater)
+                {
+                <p class="form-text-style">Running Water</p> <br />
+                }
+                @if (Model.WorkPlace.AmenityTypes.AirCondition)
+                {
+                <p class="form-text-style">Aircon</p> <br />
+                }
+                @if (Model.WorkPlace.AmenityTypes.Parking)
+                {
+                <p class="form-text-style">Parking</p> <br />
+                }
+                @if (Model.WorkPlace.AmenityTypes.Storage)
+                {
+                <p class="form-text-style">Storage</p> <br />
+                }
+                @if (Model.WorkPlace.AmenityTypes.Other !=null)
+                {
+                <p class="form-text-style">@Model.WorkPlace.AmenityTypes.Other</p> <br />
+                }*@
 
-				}
-				@if (Model.WorkPlace.MeasurementType != null)
-				{
-					<p class="fw-bold form-text-style">Size: </p>
-					<p class="form-text-style"> @Model.WorkPlace.MeasurementNumber @Model.WorkPlace.MeasurementType</p> <br />
-				}
-				@if (Model.WorkPlace.TimeFrames.StartDate !=null)
-				{
-					<p class="fw-bold form-text-style"> Start date: </p>
-					<p class="form-text-style">@Model.WorkPlace.TimeFrames.StartDate.Value.ToShortDateString()</p> <br />
-				}
-				@if (Model.WorkPlace.TimeFrames.EndDate != null )
-					{
-					<p class="fw-bold form-text-style">End date: </p>
-					<p class="form-text-style">@Model.WorkPlace.TimeFrames.EndDate.Value.ToShortDateString()</p> <br />
-				}
-
-				@if (Model.Offering == true)
-				{
-					<p class="fw-bold form-text-style">Rent for the studio is: </p>
-				}
-				@if (Model.Offering == false)
-				{
-					<p class="fw-bold form-text-style">My budget is: </p>
-				}
-
-				@if (Model.WorkPlace.Period != null)
-				{					
-					<p class="form-text-style">@Model.WorkPlace.Currency/@Model.WorkPlace.Period</p> <br />
-				}
-
-				@if (Model.WorkPlace.TimeFrames.OpeningTime != null)
-				{
-					<p class="fw-bold form-text-style"> Start time: </p>
-					<p class="form-text-style">@Model.WorkPlace.TimeFrames.OpeningTime.Value.ToString("HH:mm"); </p>
-				}
-				@if (Model.WorkPlace.TimeFrames.ClosingTime != null)
-				{
-					<p class="fw-bold form-text-style">Closing time: </p>
-					<p class="form-text-style">@Model.WorkPlace.TimeFrames.ClosingTime.Value.ToString("HH:mm"); </p> <br />
-				}
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
+                
+                @if (Model.WorkPlace.MeasurementType != null)
+                {
+                    <p class="fw-bold form-text-style">Size: </p>
+                    <p class="form-text-style"> @Model.WorkPlace.MeasurementNumber Square @Model.WorkPlace.MeasurementType</p> <br />
+                }
+                @if (Model.WorkPlace.TimeFrames.StartDate !=null)
+                {
+                    <p class="fw-bold form-text-style"> Start date: </p>
+                    <p class="form-text-style">@Model.WorkPlace.TimeFrames.StartDate.Value.ToShortDateString()</p> <br />
+                }
+                @if (Model.WorkPlace.TimeFrames.EndDate != null)
+                {
+                    <p class="fw-bold form-text-style">End date: </p>
+                    <p class="form-text-style">@Model.WorkPlace.TimeFrames.EndDate.Value.ToShortDateString()</p> <br />
+                }
+                @if (Model.Offering && Model.WorkPlace.Period != null)
+                {
+                    <p class="fw-bold form-text-style">Rent for the studio is: </p>
+                    <p class="form-text-style">£ @Model.WorkPlace.Currency/@Model.WorkPlace.Period</p> <br />
+                }
+                @if (!Model.Offering && Model.WorkPlace.Period != null)
+                {
+                    <p class="fw-bold form-text-style">My budget is: </p>
+                    <p class="form-text-style">£ @Model.WorkPlace.Currency/@Model.WorkPlace.Period</p> <br />
+                }
+                @if (Model.WorkPlace.TimeFrames.OpeningTime != null)
+                {
+                    <p class="fw-bold form-text-style"> Start time: </p>
+                    <p class="form-text-style">@Model.WorkPlace.TimeFrames.OpeningTime.Value.ToString("HH:mm") </p>
+                }
+                @if (Model.WorkPlace.TimeFrames.ClosingTime != null)
+                {
+                    <p class="fw-bold form-text-style">Closing time: </p>
+                    <p class="form-text-style">@Model.WorkPlace.TimeFrames.ClosingTime.Value.ToString("HH:mm") </p>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            }
+        </div>
+    </div>
 </div>

@@ -2,12 +2,11 @@
 @using LingonberryStudio.ViewModels
 @model AdvertViewMoldel
 
-
 <div id="area-and-results" class="">
     <div class="row">
         <div class="col">
             <div>
-                <a type="" asp-controller="Adverts" asp-action="Empty" class="btn btn-primary">Clear filters</a>
+                <a asp-controller="Adverts" asp-action="Empty" class="btn btn-primary">Clear filters</a>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Filter
@@ -16,7 +15,6 @@
                         <div class="form-outline mb-4">
                             @using (Html.BeginForm("Adverts", "Adverts", FormMethod.Get, new { @class = "px-4 py-3" }))
                             {
-
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-check" style="float:right">
@@ -40,7 +38,7 @@
                                             @Html.RadioButtonFor(m => m.Filter.Period, "Month") Month
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col" onclick="ableRange()">
                                         <div class="form-check">
                                             @Html.RadioButtonFor(m => m.Filter.Period, "Week") Week
                                         </div>
@@ -56,7 +54,7 @@
                                         <!-- Checkbox -->
                                         <div class="form-check">
                                             <p>Studio Type</p>
-                                            @Html.CheckBoxFor(m => m.Filter.MusikStudio, true) Music Studio<br />
+                                            @Html.CheckBoxFor(m => m.Filter.MusicStudio, true) Music Studio<br />
                                             @Html.CheckBoxFor(m => m.Filter.ArtStudio, true) Art Studio<br />
                                             @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true) Photo Studio<br />
                                             @Html.CheckBoxFor(m => m.Filter.DanceRehersalStudio, true) Dance Rehersal Studio<br />
@@ -121,7 +119,7 @@
 
 <div class="container-fluid flex-grid-container border-0">
     <div class="flex-grid-container justify-content-center">
-        @foreach (var ad in Model?.AdvertList)
+        @foreach (var ad in Model.AdvertList)
         {
             <div class="ad-card">
                 <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
@@ -139,7 +137,7 @@
                 </a>
                 @await Html.PartialAsync("_ChosenAdPartial", ad)
             </div>
-        }
+        }        
     </div>
 </div>
 
