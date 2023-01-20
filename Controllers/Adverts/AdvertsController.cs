@@ -62,13 +62,19 @@
         }
 
         [HttpGet]
-        public IActionResult Adverts(AdvertViewMoldel viewModel)
+        public IActionResult Adverts(AdvertViewMoldel viewModel, bool search, string city)
         {
+            if (city != null)
+            {
+                viewModel.AdvertList = db.Adverts.Where(ad => ad.Offering == search && ad.WorkPlace.City == city).ToList();
+                return View(viewModel);
+            }
+
             AdvertViewMoldel advertViewModel = new ();
             advertViewModel.AdvertList = GetAdsInDB();
 
             var test = Filter(viewModel);
-            Console.WriteLine(test);
+            Console.WriteLine(test + "heeeeeeeeeeeeeej");
 
             this.ViewBag.Total = advertViewModel.AdvertList.Count;
             return View(advertViewModel);
@@ -113,7 +119,6 @@
                 .AsNoTracking()
                 .ToList();
 
-
             //            // .Where(ad => (ad.WorkPlace.Period != null && ad.WorkPlace.Period == "Month" && ad.WorkPlace.Currency <= monthBud) || (ad.WorkPlace.Period != null && ad.WorkPlace.Period == "Week" && ad.WorkPlace.Currency <= weekBud)
             //            // || viewModel.Filter.Period == null)
 
@@ -126,18 +131,11 @@
         }
 
         [HttpGet("AdvertSearch")]
-        public IActionResult Search(string city, bool search, List<Advert> adverts)
+        public IActionResult Search(string city, bool search, AdvertViewMoldel advertViewMoldel)
         {
-            if (city == null)
-            {
-                adverts = db.Adverts.Where(ad => ad.Offering == search).ToList();
-            }
-            else
-            {
-                adverts = db.Adverts.Where(ad => ad.Offering == search && ad.WorkPlace.City == city).ToList();
-            }
+            advertViewMoldel.AdvertList = db.Adverts.Where(ad => ad.Offering == search && ad.WorkPlace.City == city).ToList();
 
-            return View(adverts);
+            return View(advertViewMoldel);
         }
 
         private static List<Advert> ExcludeOldAds(List<Advert> allAdsInDB)

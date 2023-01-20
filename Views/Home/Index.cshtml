@@ -13,8 +13,8 @@
             <h2 id="studio-title">FIND CREATIVE STUDIO</h2>
 			<input type="text" id="searchArea" name="searchArea" placeholder="City" class="pt-2 pb-2" onkeyup="this.value = this.value.replace(/[^A-Za-z /-]/, '')" />
 			<div>
-				<button asp-controller="Home" asp-action="OfferingSearch"  id="share-mine" type="submit" title="I have a studio that I want to share">SHARE MINE</button>
-				<button asp-controller="Home" asp-action="LookingSearch" id="find-theirs" type="submit" title="I don't have a studio but would love to share one">FIND THEIRS</button>
+				<button asp-controller="Home" asp-action="IndexSearch" name="offeringLooking" value="true" id="share-mine" type="submit" title="I have a studio that I want to share">SHARE MINE</button>
+				<button asp-controller="Home" asp-action="IndexSearch" name="offeringLooking" value="false" id="find-theirs" type="submit" title="I don't have a studio but would love to share one">FIND THEIRS</button>
 			</div> 
 		</form>
 		<div class="container align-content-center align-content-center error-message"><span>@TempData["searchError"]</span></div>

@@ -3,51 +3,50 @@
     using System.Diagnostics;
     using System.Text;
     using System.Text.RegularExpressions;
+    using LingonberryStudio.Data;
+    using LingonberryStudio.Data.Entities;
     using LingonberryStudio.Models;
     using LingonberryStudio.ViewModels;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Internal;
     using Microsoft.VisualBasic;
 
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> logger;
+        private readonly LingonberryDbContext db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, LingonberryDbContext db)
         {
             this.logger = logger;
+            this.db = db;
         }
 
-        public IActionResult Index(string cityNotFound)
+        public IActionResult Index()
         {
-            return View(cityNotFound);
-        }
-
-        [HttpPost]
-        public IActionResult OfferingSearch(string searchArea)
-        {
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction("Search", "Adverts", new { city = searchArea, search = "Offering" });
-            }
-            else
-            {
-                var cityNotFound = TempData["searchError"] = "Search field was empty, please try again!";
-                return RedirectToAction("Index", cityNotFound);
-            }
+            return View();
         }
 
         [HttpPost]
-        public IActionResult LookingSearch(string searchArea)
+        public IActionResult IndexSearch(string searchArea, AdvertViewMoldel advertViewMoldel, bool offeringLooking)
         {
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(searchArea))
             {
-                return RedirectToAction("Search", "Adverts", new { city = searchArea, search = "Looking" });
+                var emptyString = TempData["searchError"] = "Search field was empty, please try again!";
+                return RedirectToAction("Index", emptyString);
+            }
+
+            advertViewMoldel.AdvertList = db.Adverts.Where(ad => ad.WorkPlace.City == searchArea).ToList();
+
+            if (advertViewMoldel.AdvertList.Count == 0)
+            {
+                var cityNotFound = TempData["searchError"] = $"No results with the city {searchArea}\"";
+                return RedirectToAction("Index", cityNotFound);
             }
             else
             {
-                var cityNotFound = TempData["searchError"] = "Search field was empty, please try again!";
-                return RedirectToAction("Index", cityNotFound);
+               return RedirectToAction("Adverts", "Adverts", new { city = searchArea, search = offeringLooking });
             }
         }
 
