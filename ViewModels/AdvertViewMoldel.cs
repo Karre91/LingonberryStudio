@@ -12,13 +12,6 @@
             AdvertList = new List<Advert>();
         }
 
-        public AdvertViewMoldel(string studioType)
-        {
-            Advert = new Advert();
-            Filter = new Filter();
-            AdvertList = new List<Advert>();
-        }
-
         public List<Advert> AdvertList { get; set; }
 
         public Filter Filter { get; set; }
