@@ -41,7 +41,7 @@
 
             if (advertViewMoldel.AdvertList.Count == 0)
             {
-                var cityNotFound = TempData["searchError"] = $"No results with the city {searchArea}\"";
+                var cityNotFound = TempData["searchError"] = $"No results with the city \"{searchArea}\"";
                 return RedirectToAction("Index", cityNotFound);
             }
             else

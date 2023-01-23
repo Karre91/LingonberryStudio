@@ -67,6 +67,18 @@
             if (city != null)
             {
                 viewModel.AdvertList = db.Adverts.Where(ad => ad.Offering == search && ad.WorkPlace.City == city).ToList();
+                viewModel.IsFiltered = true;
+                viewModel.Filter.City = city;
+
+                if (search)
+                {
+                    viewModel.Filter.Offering = search;
+                }
+                else
+                {
+                    viewModel.Filter.Looking = search;
+                }
+
                 return View(viewModel);
             }
 
@@ -74,7 +86,7 @@
             advertViewModel.AdvertList = GetAdsInDB();
 
             var test = Filter(viewModel);
-            Console.WriteLine(test + "heeeeeeeeeeeeeej");
+            Console.WriteLine(test);
 
             this.ViewBag.Total = advertViewModel.AdvertList.Count;
             return View(advertViewModel);
