@@ -5,13 +5,15 @@
 @{
     var chosenDays = Model.WorkPlace.TimeFrames.GetChosenDaysList();
     var chosenAmenity = Model.WorkPlace.AmenityTypes.GetChosenAmenityList();
+    var city = Model.WorkPlace.City.Substring(0, 1) + Model.WorkPlace.City.Substring(1).ToLower();
+    var split = Model.SplitCamelCase(Model.StudioType);
 }
 
 <div class="modal fade" id="adModal-@Model.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle"> @Model.StudioType </h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">@Model.StudioType</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -21,20 +23,28 @@
                     <img src="/@Model.WorkPlace.ImgUrl" class="img-fluid mx-auto ad-image center">
                 </div>
                 @if (Model.Offering)
-                {
-                    <label class="fw-bold px-1 mb-2 mt-2">I am offering a @Model.StudioType</label>
+                {     <label class="split mb-2 fw-bold mt-2">I am offering a</label>              
+                     @for (int i = 0; i < split.Length; i++)
+                    {
+                       <small class="split fw-bold mb-2 mt-2">@split[i]</small>
+                      }                
                 }
                 @if (!Model.Offering)
                 {
-                    <label class="fw-bold px-1 mb-2 mt-2">I am looking for a @Model.StudioType</label>
+                <label class="split mb-2 fw-bold mt-2">I am looking for a</label>
+                    @for (int i = 0; i < split.Length; i++)
+                    {
+                        <small class="split fw-bold mb-2 mt-2">@split[i]</small>
+                    }
                 }
                 <br />
                 <p class="fw-bold form-text-style">City: </p>
-                <p class="form-text-style">@Model.WorkPlace.City</p> <br />
+                <p class="form-text-style">@city</p> <br />
                 @if (Model.WorkPlace.Area != null)
                 {
+                    var area = Model.WorkPlace.Area.Substring(0, 1) + Model.WorkPlace.Area.Substring(1).ToLower();
                     <p class="fw-bold form-text-style">Area: </p>
-                    <p class="form-text-style">@Model.WorkPlace.Area</p>
+                    <p class="form-text-style">@area</p>
                     <br />
                 }
                 <p class="fw-bold form-text-style">Name: </p><p class="form-text-style">@Model.FirstName</p> <br />

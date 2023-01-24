@@ -121,23 +121,21 @@
 <div class="container-fluid flex-grid-container border-0">
     <div class="flex-grid-container justify-content-center">
         @foreach (var ad in Model.AdvertList)
-        {
-   var split = ad.SplitCamelCase(ad.StudioType);
+        {   
+          var city = ad.WorkPlace.City.Substring(0, 1) + ad.WorkPlace.City.Substring(1).ToLower();       
+          var split = ad.SplitCamelCase(ad.StudioType);
             <div class="ad-card">
                 <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
                     <div>
-                        <img src="/@(ad.WorkPlace.ImgUrl)" class="img-fluid mx-auto ad-image">
+                        <img src="/@(ad.WorkPlace.ImgUrl)" class="img-fluid mx-auto ad-image mb-2">
                     </div>
                     <div>
                         @{
-                            var city = ad.WorkPlace.City.Substring(0, 1) + ad.WorkPlace.City.Substring(1).ToLower();
-                        }
-                            @{
-                                foreach(var studioType in split)
-                                {
-                                <p class="mb-0 fw-bold">@studioType</p>
-                                }
+                            @for (int i = 0; i < split.Length; i++)
+                            {
+                                <small class="split fw-bold">@split[i]</small>
                             }
+                          }
                         <p class="mb-0">@city</p>
                         <p class="mb-0">@ad.WorkPlace.Pounds/@ad.WorkPlace.Period</p>
                     </div>
