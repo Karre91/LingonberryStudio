@@ -45,8 +45,8 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label asp-for="Filter.PeriodPounds" class="form-label">Max budget £<span id="displayBudget"></span></label>
-                                    <input type="range" class="multi-range form-range" asp-for="Filter.PeriodPounds" value="250" id="Currency" name="Filter.PeriodPounds" min="0" max="500" step="1" onchange="myFunction()" disabled>
+                                    <label asp-for="Filter.Pounds" class="form-label">Max budget £<span id="displayBudget"></span></label>
+                                    <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="250" id="Currency" name="Filter.Pounds" min="0" max="500" step="1" onchange="myFunction()" disabled>
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row mb-4">
@@ -77,7 +77,7 @@
                                                 @Html.CheckBoxFor(m => m.Filter.Storage) Storage <br />
                                                 @Html.CheckBoxFor(m => m.Filter.Toilet, true) Toilet <br />
                                                 @Html.CheckBoxFor(m => m.Filter.CeramicOven, true) Ceramic oven <br />
-                                                @Html.CheckBoxFor(m => m.Filter.OtherAmenities) Other <br />
+                                                @Html.CheckBoxFor(m => m.Filter.Other) Other <br />
                                             </div>
                                         </div>
                                         <div class="col d-flex justify-content-center">
@@ -94,7 +94,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block">Apply filters</button>
+                                <button type="submit" name="hasFilter" value="true" class="btn btn-primary btn-block">Apply filters</button>
                             }
                         </div>
                         <div class="dropdown-divider"></div>

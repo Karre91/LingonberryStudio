@@ -16,14 +16,14 @@
             ImgUrl = null;
             Description = "Default";
             Period = null;
-            Currency = null;
+            Pounds = null;
             MeasurementNumber = null;
             MeasurementType = null;
             AmenityTypes = new Amenity();
             TimeFrames = new TimeFrame();
         }
 
-        public WorkPlace(string city, string area, string imgUrl, IFormFile? formFile, string description, string period, int currency, string measurementType, int measurementNumber, int amenityID, Amenity amenityTypes, int timeFrameID, TimeFrame timeFrames)
+        public WorkPlace(string city, string area, string imgUrl, IFormFile? formFile, string description, string period, int pounds, string measurementType, int measurementNumber, int amenityID, Amenity amenityTypes, int timeFrameID, TimeFrame timeFrames)
         {
             City = city;
             Area = area;
@@ -31,7 +31,7 @@
             FormFile = formFile;
             Description = description;
             Period = period;
-            Currency = currency;
+            Pounds = pounds;
             MeasurementType = measurementType;
             MeasurementNumber = measurementNumber;
             AmenityID = amenityID;
@@ -71,7 +71,7 @@
         public string? Period { get; set; }
 
         [AllowNull]
-        public int? Currency { get; set; }
+        public int? Pounds { get; set; }
 
         [AllowNull]
         public string? MeasurementType { get; set; }
