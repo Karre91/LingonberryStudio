@@ -1,6 +1,13 @@
 ﻿@using LingonberryStudio.Data.Entities
 @model Advert
+@{
+    Filter filter = new();
+    filter = ViewBag.Filter;
+    var filterAmenityString = filter.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1);
+    var filterAmenityTuple = filter.GetAllAmenityTuple().Where(a => a.Item2.Equals(true));
 
+    var modelAm = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Where(a => a.Item2.Equals(true));
+}
 
 @{
     var chosenDays = Model.WorkPlace.TimeFrames.GetAllDaysTuple().Where(a => a.Item2.Equals(true)).Select(day => day.Item1);
@@ -67,14 +74,28 @@
                     <p class="fw-bold form-text-style">Ametities: </p> <br />
                     @foreach (var amenity in chosenAmenity)
                     {
-                        if (amenity != "Other")
+                        @if (filterAmenityString.Contains(amenity))
                         {
-                            <p class="form-text-style">@amenity</p> <br />
+                            if (amenity == "Other")
+                            {
+                                <p class="form-text-style"><u>@Model.WorkPlace.AmenityTypes.Other</u></p> <br />
+                            }
+                            else
+                            {
+                                <p class="form-text-style"><u>@amenity</u></p> <br />
+                            }                            
                         }
                         else
                         {
-                            <p class="form-text-style">@Model.WorkPlace.AmenityTypes.Other</p> <br />
-                        }                        
+                            if (amenity == "Other")
+                            {
+                                <p class="form-text-style">@Model.WorkPlace.AmenityTypes.Other</p> <br />
+                            }
+                            else
+                            {
+                                <p class="form-text-style">@amenity</p> <br />
+                            }
+                        }
                     }
                 }
                 @if (Model.WorkPlace.MeasurementType != null)

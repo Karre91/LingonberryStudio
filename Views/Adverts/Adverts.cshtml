@@ -1,6 +1,9 @@
 ﻿@using LingonberryStudio.Data.Entities
 @using LingonberryStudio.ViewModels
 @model AdvertViewMoldel
+@{
+    var a = new AdvertViewMoldel();
+}
 
 <div id="area-and-results" class="">
     <div class="row">
@@ -135,9 +138,10 @@
                         <p class="mb-0">@city</p>
                     </div>
                 </a>
+
                 @await Html.PartialAsync("_ChosenAdPartial", ad)
             </div>
-        }        
+        }              
     </div>
 </div>
 
