@@ -5,8 +5,6 @@
 @{
     var chosenDays = Model.WorkPlace.TimeFrames.GetAllDaysTuple().Where(a => a.Item2.Equals(true)).Select(day => day.Item1);
     var chosenAmenity = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1);
-    var chosenDays = Model.WorkPlace.TimeFrames.GetChosenDaysList();
-    var chosenAmenity = Model.WorkPlace.AmenityTypes.GetChosenAmenityList();
     var city = Model.WorkPlace.City.Substring(0, 1) + Model.WorkPlace.City.Substring(1).ToLower();
     var split = Model.SplitCamelCase(Model.StudioType);
 }
