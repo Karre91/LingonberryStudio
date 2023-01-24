@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Diagnostics.CodeAnalysis;
     using System.Numerics;
+    using System.Text.RegularExpressions;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
@@ -80,5 +81,10 @@
 
         [ForeignKey("WorkPlaceID")]
         public virtual WorkPlace WorkPlace { get; set; }
+
+        public string[] SplitCamelCase(string source)
+        {
+            return Regex.Split(source, @"(?<!^)(?=[A-Z])");
+        }
     }
 }

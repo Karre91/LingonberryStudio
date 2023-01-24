@@ -117,10 +117,12 @@
     </div>
 </div>
 
+
 <div class="container-fluid flex-grid-container border-0">
     <div class="flex-grid-container justify-content-center">
         @foreach (var ad in Model.AdvertList)
         {
+   var split = ad.SplitCamelCase(ad.StudioType);
             <div class="ad-card">
                 <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
                     <div>
@@ -128,11 +130,16 @@
                     </div>
                     <div>
                         @{
-                          var city = ad.WorkPlace.City.Substring(0, 1) + ad.WorkPlace.City.Substring(1).ToLower();
+                            var city = ad.WorkPlace.City.Substring(0, 1) + ad.WorkPlace.City.Substring(1).ToLower();
                         }
-                        <p class="fw-bold mb-0 mt-3">
-                        <p class="mb-0 fw-bolder">@ad.StudioType</p>
+                            @{
+                                foreach(var studioType in split)
+                                {
+                                <p class="mb-0 fw-bold">@studioType</p>
+                                }
+                            }
                         <p class="mb-0">@city</p>
+                        <p class="mb-0">@ad.WorkPlace.Pounds/@ad.WorkPlace.Period</p>
                     </div>
                 </a>
                 @await Html.PartialAsync("_ChosenAdPartial", ad)
