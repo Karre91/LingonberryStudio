@@ -82,7 +82,6 @@
             }
 
             ViewBag.Total = viewModel.AdvertList.Count;
-
             return View(viewModel);
         }
 
@@ -95,17 +94,7 @@
             ids = FilterByAmenities(filter, ids);
             ids = FilterByDays(filter, ids);
 
-            List<Advert> allAdsInDB = db.Adverts
-            .Include(ads => ads.WorkPlace)
-            .ThenInclude(ads => ads.AmenityTypes)
-            .Include(ads => ads.WorkPlace)
-            .ThenInclude(ads => ads.TimeFrames)
-            .Where(p => ids.Contains(p.ID))
-            .AsNoTracking()
-            .ToList();
-
-            allAdsInDB = ExcludeOldAds(allAdsInDB);
-            return allAdsInDB;
+            return GetAdsInDB(ids);
         }
 
         private List<int> FilterByOfferingLooking(Filter filter)
@@ -279,6 +268,21 @@
             return goalList;
         }
 
+        private List<Advert> GetAdsInDB(List<int> ids)
+        {
+            List<Advert> allAdsInDB = db.Adverts
+                .Include(ads => ads.WorkPlace)
+                .ThenInclude(ads => ads.AmenityTypes)
+                .Include(ads => ads.WorkPlace)
+                .ThenInclude(ads => ads.TimeFrames)
+                .Where(p => ids.Contains(p.ID))
+                .AsNoTracking()
+                .ToList();
+
+            allAdsInDB = ExcludeOldAds(allAdsInDB);
+            return allAdsInDB;
+        }
+
         private List<Advert> GetAdsInDB()
         {
             List<Advert> allAdsInDB = db.Adverts
@@ -292,22 +296,5 @@
             allAdsInDB = ExcludeOldAds(allAdsInDB);
             return allAdsInDB;
         }
-
-        //[HttpGet("AdvertSearch")]
-        //public IActionResult Search(string city, bool search)
-        //{
-        //    List<Advert> adverts = new ();
-
-        //    if (city == null)
-        //    {
-        //        adverts = db.Adverts.Where(ad => ad.Offering == search).ToList();
-        //    }
-        //    else
-        //    {
-        //        adverts = db.Adverts.Where(ad => ad.Offering == search && ad.WorkPlace.City == city).ToList();
-        //    }
-
-        //    return View(adverts);
-        //}
     }
 }
