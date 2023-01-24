@@ -1,14 +1,9 @@
-﻿namespace LingonberryStudio.Data.Entities
+﻿namespace LingonberryStudio.Models
 {
     using System.Collections.Generic;
 
     public class Filter
     {
-        //public Filter(bool offering, bool looking, string? City,)
-        //{
-
-        //}
-
         public bool Offering { get; set; }
 
         public bool Looking { get; set; }
@@ -84,7 +79,7 @@
                 Tuple.Create(nameof(OtherStudio), OtherStudio),
             };
 
-            List<string> checkedSudios = new ();
+            List<string> checkedSudios = new();
             foreach (var tuple in tupleList)
             {
                 if (tuple.Item2)

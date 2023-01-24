@@ -7,6 +7,7 @@
     using System.Security.Cryptography;
     using LingonberryStudio.Data;
     using LingonberryStudio.Data.Entities;
+    using LingonberryStudio.Models;
     using LingonberryStudio.ViewModels;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
@@ -67,8 +68,26 @@
         }
 
         [HttpGet]
-        public IActionResult Adverts(AdvertViewMoldel viewModel, bool hasFilter)
+        public IActionResult Adverts(AdvertViewMoldel viewModel, bool hasFilter, bool search, string city)
         {
+            if (city != null)
+            {
+                viewModel.AdvertList = db.Adverts.Where(ad => ad.Offering == search && ad.WorkPlace.City == city).ToList();
+                viewModel.IsFiltered = true;
+                viewModel.Filter.City = city;
+
+                if (search)
+                {
+                    viewModel.Filter.Offering = search;
+                }
+                else
+                {
+                    viewModel.Filter.Looking = search;
+                }
+
+                return View(viewModel);
+            }
+
             if (hasFilter)
             {
                 viewModel.AdvertList = Filter(viewModel.Filter);

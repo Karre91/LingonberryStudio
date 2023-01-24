@@ -1,9 +1,10 @@
 ﻿@using LingonberryStudio.Data.Entities
-@model List<Advert>
+@using LingonberryStudio.ViewModels
+@model AdvertViewMoldel
 
 
 <div id="areaAndResults" class="">
-    <p id="result">@Model.Count results</p>
+        <p id="result">@Model.AdvertList.Count Results</p>
     <div id="popupForm"></div>
     <a asp-controller="Adverts" asp-action="Form" class="btn ad-btn" data-target="#formModal" data-toggle="modal">POST YOUR AD</a>
 </div>
@@ -29,3 +30,26 @@
         }
     </div>
 </div>*@
+<div class="container-fluid flex-grid-container border-0">
+    <div class="flex-grid-container justify-content-center">
+        @foreach (var ad in Model.AdvertList)
+        {
+            <div class="ad-card">
+                <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
+                    <div>
+                        <img src="/@(ad.WorkPlace.ImgUrl)" class="img-fluid mx-auto ad-image">
+                    </div>
+                    <div>
+                        @{
+                            var city = ad.WorkPlace.City.Substring(0, 1) + ad.WorkPlace.City.Substring(1).ToLower();
+                        }
+                        <p class="fw-bold mb-0 mt-3">
+                        <p class="mb-0 fw-bolder">@ad.StudioType</p>
+                        <p class="mb-0">@city</p>
+                    </div>
+                </a>
+                @await Html.PartialAsync("_ChosenAdPartial", ad)
+            </div>
+        }
+    </div>
+</div>

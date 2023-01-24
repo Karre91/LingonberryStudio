@@ -1,78 +1,52 @@
 ﻿namespace LingonberryStudio.Controllers.Home
 {
     using System.Diagnostics;
+    using System.Text;
     using System.Text.RegularExpressions;
+    using LingonberryStudio.Data;
+    using LingonberryStudio.Data.Entities;
     using LingonberryStudio.Models;
+    using LingonberryStudio.ViewModels;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Internal;
     using Microsoft.VisualBasic;
 
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> logger;
+        private readonly LingonberryDbContext db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, LingonberryDbContext db)
         {
             this.logger = logger;
+            this.db = db;
         }
 
         public IActionResult Index()
         {
-            //string searchError;
-            if (TempData.ContainsKey("searchError"))
-            {
-                //searchError = TempData["searchError"].ToString();
-            }
-
             return View();
         }
 
         [HttpPost]
-        public IActionResult OfferingSearch(string searchArea)
+        public IActionResult IndexSearch(string searchArea, AdvertViewMoldel advertViewMoldel, bool offeringLooking)
         {
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(searchArea))
             {
-                string tmp = searchArea.Trim();
-                tmp = Regex.Replace(tmp, @"[\d-]", string.Empty); // tar bort siffror och tecken
-                if (tmp == string.Empty)
-                {
-                    TempData["searchError"] = "There is no city called \"" + searchArea + "\"";
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    tmp = Regex.Replace(tmp, @"\s+", "-");
-                    tmp = tmp.ToUpper();
-                    return RedirectToAction("Search", "Adverts", new { city = tmp, search = "Offering" });
-                }
+                var emptyString = TempData["searchError"] = "Search field was empty, please try again!";
+                return RedirectToAction("Index", emptyString);
             }
-            else
-            {
-                return RedirectToAction("Search", "Adverts", new { city = searchArea, search = "Offering" });
-            }
-        }
 
-        [HttpPost]
-        public IActionResult LookingSearch(string searchArea)
-        {
-            if (ModelState.IsValid)
+            advertViewMoldel.AdvertList = db.Adverts.Where(ad => ad.WorkPlace.City == searchArea).ToList();
+
+            if (advertViewMoldel.AdvertList.Count == 0)
             {
-                string tmp = searchArea.Trim();
-                tmp = Regex.Replace(tmp, @"[\d-]", string.Empty); // tar bort siffror
-                if (tmp == string.Empty)
-                {
-                    TempData["searchError"] = "There is no city called \"" + searchArea + "\"";
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    tmp = Regex.Replace(tmp, @"\s+", "-");
-                    tmp = tmp.ToUpper();
-                    return RedirectToAction("Search", "Adverts", new { city = tmp, search = "Looking" });
-                }
+                var cityNotFound = TempData["searchError"] = $"No results with the city \"{searchArea}\"";
+                return RedirectToAction("Index", cityNotFound);
             }
             else
             {
-                return RedirectToAction("Search", "Adverts", new { city = searchArea, search = "Looking" });
+               return RedirectToAction("Adverts", "Adverts", new { city = searchArea, search = offeringLooking });
             }
         }
 

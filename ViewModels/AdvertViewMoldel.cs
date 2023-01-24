@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using LingonberryStudio.Data.Entities;
+    using LingonberryStudio.Models;
 
     public class AdvertViewMoldel
     {
