@@ -66,13 +66,7 @@
 
         public bool Sunday { get; set; }
 
-        public List<bool> GetList()
-        {
-            List<bool> list = new List<bool>() { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday };
-            return list;
-        }
-
-        public List<string> GetChosenDaysList()
+        public List<Tuple<string, bool>> GetAllDaysTuple()
         {
             var tupleList = new List<Tuple<string, bool>>
             {
@@ -85,16 +79,7 @@
                 Tuple.Create(nameof(Sunday), Sunday),
             };
 
-            List<string> checkedDays = new ();
-            foreach (var tuple in tupleList)
-            {
-                if (tuple.Item2)
-                {
-                    checkedDays.Add(tuple.Item1);
-                }
-            }
-
-            return checkedDays;
+            return tupleList;
         }
     }
 }

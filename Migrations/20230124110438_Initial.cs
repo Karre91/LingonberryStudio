@@ -1,9 +1,11 @@
-﻿namespace LingonberryStudio.Migrations
-{
-    using System;
-    using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-   /// <inheritdoc />
+#nullable disable
+
+namespace LingonberryStudio.Migrations
+{
+    /// <inheritdoc />
     public partial class Initial : Migration
     {
         /// <inheritdoc />
@@ -25,7 +27,7 @@
                     Storage = table.Column<bool>(type: "bit", nullable: false),
                     Toilet = table.Column<bool>(type: "bit", nullable: false),
                     CeramicOven = table.Column<bool>(type: "bit", nullable: false),
-                    Other = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Other = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,7 +50,7 @@
                     Thursday = table.Column<bool>(type: "bit", nullable: false),
                     Friday = table.Column<bool>(type: "bit", nullable: false),
                     Saturday = table.Column<bool>(type: "bit", nullable: false),
-                    Sunday = table.Column<bool>(type: "bit", nullable: false),
+                    Sunday = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,11 +68,11 @@
                     ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Period = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Currency = table.Column<int>(type: "int", nullable: true),
+                    Pounds = table.Column<int>(type: "int", nullable: true),
                     MeasurementType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MeasurementNumber = table.Column<int>(type: "int", nullable: true),
                     AmenityID = table.Column<int>(type: "int", nullable: false),
-                    TimeFrameID = table.Column<int>(type: "int", nullable: false),
+                    TimeFrameID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,7 +106,7 @@
                     Artist = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SocialMedia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StudioType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WorkPlaceID = table.Column<int>(type: "int", nullable: false),
+                    WorkPlaceID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

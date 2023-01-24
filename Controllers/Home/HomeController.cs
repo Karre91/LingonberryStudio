@@ -29,25 +29,15 @@
         }
 
         [HttpPost]
-        public IActionResult IndexSearch(string searchArea, AdvertViewMoldel advertViewMoldel, bool offeringLooking)
+        public IActionResult IndexSearch(string city, bool offering)
         {
-            if (string.IsNullOrEmpty(searchArea))
+            if (string.IsNullOrEmpty(city))
             {
                 var emptyString = TempData["searchError"] = "Search field was empty, please try again!";
                 return RedirectToAction("Index", emptyString);
             }
 
-            advertViewMoldel.AdvertList = db.Adverts.Where(ad => ad.WorkPlace.City == searchArea).ToList();
-
-            if (advertViewMoldel.AdvertList.Count == 0)
-            {
-                var cityNotFound = TempData["searchError"] = $"No results with the city \"{searchArea}\"";
-                return RedirectToAction("Index", cityNotFound);
-            }
-            else
-            {
-               return RedirectToAction("Adverts", "Adverts", new { city = searchArea, search = offeringLooking });
-            }
+            return RedirectToAction("Adverts", "Adverts", new { city = city, search = offering });
         }
 
         public IActionResult Privacy()
