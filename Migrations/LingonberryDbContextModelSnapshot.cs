@@ -181,9 +181,6 @@ namespace LingonberryStudio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Currency")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -199,6 +196,9 @@ namespace LingonberryStudio.Migrations
 
                     b.Property<string>("Period")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Pounds")
+                        .HasColumnType("int");
 
                     b.Property<int>("TimeFrameID")
                         .HasColumnType("int");

@@ -37,7 +37,7 @@
                             ImgUrl = "seedImg/artOffering.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
-                            Currency = 100,
+                            Pounds = 100,
                             MeasurementType = "Meters",
                             MeasurementNumber = 50,
                             AmenityTypes = new ()
@@ -88,7 +88,7 @@
                             ImgUrl = "seedImg/photoOffering.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
-                            Currency = 135,
+                            Pounds = 135,
                             MeasurementType = "Feet",
                             MeasurementNumber = 90,
                             AmenityTypes = new ()
@@ -139,7 +139,7 @@
                             ImgUrl = "seedImg/ceramicsOffering.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
-                            Currency = 115,
+                            Pounds = 115,
                             MeasurementType = "Feet",
                             MeasurementNumber = 110,
                             AmenityTypes = new ()
@@ -190,7 +190,7 @@
                             ImgUrl = "seedImg/danceOffering.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
-                            Currency = 115,
+                            Pounds = 115,
                             MeasurementType = "Feet",
                             MeasurementNumber = 110,
                             AmenityTypes = new ()
@@ -241,7 +241,7 @@
                             ImgUrl = "seedImg/musicOffering.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Week",
-                            Currency = 70,
+                            Pounds = 70,
                             MeasurementType = "Meters",
                             MeasurementNumber = 43,
                             AmenityTypes = new ()
@@ -292,7 +292,7 @@
                             ImgUrl = "seedImg/artLooking.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
-                            Currency = 100,
+                            Pounds = 100,
                             MeasurementType = "Meters",
                             MeasurementNumber = 50,
                             AmenityTypes = new ()
@@ -343,7 +343,7 @@
                             ImgUrl = "seedImg/photoLooking.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
-                            Currency = 135,
+                            Pounds = 135,
                             MeasurementType = "Feet",
                             MeasurementNumber = 90,
                             AmenityTypes = new ()
@@ -394,7 +394,7 @@
                             ImgUrl = "seedImg/ceramicsLooking.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
-                            Currency = 115,
+                            Pounds = 115,
                             MeasurementType = "Feet",
                             MeasurementNumber = 110,
                             AmenityTypes = new ()
@@ -445,7 +445,7 @@
                             ImgUrl = "seedImg/danceLooking.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
-                            Currency = 115,
+                            Pounds = 115,
                             MeasurementType = "Feet",
                             MeasurementNumber = 110,
                             AmenityTypes = new ()
@@ -496,7 +496,7 @@
                             ImgUrl = "seedImg/musicLooking.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
-                            Currency = 200,
+                            Pounds = 200,
                             MeasurementType = "Meters",
                             MeasurementNumber = 43,
                             AmenityTypes = new ()
@@ -547,7 +547,7 @@
                             ImgUrl = "seedImg/yogaOffering.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Month",
-                            Currency = 255,
+                            Pounds = 255,
                             MeasurementType = "Meters",
                             MeasurementNumber = 43,
                             AmenityTypes = new ()
@@ -598,7 +598,7 @@
                             ImgUrl = "seedImg/darkroom.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Week",
-                            Currency = 45,
+                            Pounds = 45,
                             MeasurementType = "Meters",
                             MeasurementNumber = 43,
                             AmenityTypes = new ()
@@ -649,7 +649,7 @@
                             ImgUrl = "seedImg/film.jpg",
                             Description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
                             Period = "Week",
-                            Currency = 75,
+                            Pounds = 75,
                             MeasurementType = "Meters",
                             MeasurementNumber = 43,
                             AmenityTypes = new ()
