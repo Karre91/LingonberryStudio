@@ -67,20 +67,7 @@
         }
 
         [HttpGet]
-        public IActionResult Adverts(AdvertViewMoldel viewModel, bool hasFilter)
-        {
-            if (hasFilter)
-            {
-                viewModel.AdvertList = Filter(viewModel.Filter);
-            }
-            else
-            {
-                if (viewModel.AdvertList.Count <= 0)
-                {
-                    viewModel.AdvertList = GetAdsInDB();
-                }
-            }
-        public IActionResult Adverts(AdvertViewMoldel viewModel, bool search, string city)
+        public IActionResult Adverts(AdvertViewMoldel viewModel, bool hasFilter, bool search, string city)
         {
             if (city != null)
             {
@@ -98,6 +85,18 @@
                 }
 
                 return View(viewModel);
+            }
+
+            if (hasFilter)
+            {
+                viewModel.AdvertList = Filter(viewModel.Filter);
+            }
+            else
+            {
+                if (viewModel.AdvertList.Count <= 0)
+                {
+                    viewModel.AdvertList = GetAdsInDB();
+                }
             }
 
             AdvertViewMoldel advertViewModel = new ();
@@ -127,6 +126,12 @@
 
             allAdsInDB = ExcludeOldAds(allAdsInDB);
             return allAdsInDB;
+        }
+
+        private static List<Advert> ExcludeOldAds(List<Advert> allAdsInDB)
+        {
+            var goalList = allAdsInDB.Except(allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -60)).ToList();
+            return goalList;
         }
 
         private List<int> FilterByOfferingLooking(Filter filter)
@@ -302,21 +307,6 @@
         //    }
         //    return goalList;
         //}
-
-        private List<Advert> ExcludeOldAds(List<Advert> allAdsInDB)
-        [HttpGet("AdvertSearch")]
-        public IActionResult Search(string city, bool search, AdvertViewMoldel advertViewMoldel)
-        {
-            advertViewMoldel.AdvertList = db.Adverts.Where(ad => ad.Offering == search && ad.WorkPlace.City == city).ToList();
-
-            return View(advertViewMoldel);
-        }
-
-        private static List<Advert> ExcludeOldAds(List<Advert> allAdsInDB)
-        {
-            var goalList = allAdsInDB.Except(allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -60)).ToList();
-            return goalList;
-        }
 
         private List<Advert> GetAdsInDB()
         {
