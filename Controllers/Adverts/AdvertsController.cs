@@ -93,6 +93,7 @@
             ids = FilterByCity(filter, ids);
             ids = FilterByBudget(filter, ids);
             ids = FilterByAmenities(filter, ids);
+            ids = FilterByDays(filter, ids);
 
             List<Advert> allAdsInDB = db.Adverts
             .Include(ads => ads.WorkPlace)
@@ -222,16 +223,16 @@
 
         private List<int> FilterByAmenities(Filter filter, List<int> ids)
         {
-            if (filter.GetAllBool().Contains(true))
+            if (filter.GetAllAmenityTuple().Any(a => a.Item2.Equals(true)))
             {
                 List<int> filteredIds = new();
                 foreach (var ad in db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace).ThenInclude(a => a.AmenityTypes).Select(a => a.WorkPlace.AmenityTypes).ToList())
                 {
-                    var thisAdsAmenitiesList = ad.GetAllBool();
-                    var fBool = filter.GetAllBool();
+                    var thisAdsAmenitiesList = ad.GetAllAmenityTuple().Select(amenity => amenity.Item2).ToList();
+                    var filterAmenitiesList = filter.GetAllAmenityTuple().Select(amenity => amenity.Item2).ToList();
                     for (int i = 0; i < thisAdsAmenitiesList.Count; i++)
                     {
-                        if (fBool[i] && thisAdsAmenitiesList[i])
+                        if (filterAmenitiesList[i] && thisAdsAmenitiesList[i])
                         {
                             filteredIds.Add(ad.AmenityID);
 
@@ -246,40 +247,31 @@
             return ids;
         }
 
-        //private List<Advert> filterByDays(List<bool> checkedDays, List<Advert> originalList, List<Advert> goalList)
-        //{
-        //    TempData["monday"] = checkedDays[0];
-        //    TempData["tuesday"] = checkedDays[1];
-        //    TempData["wednesday"] = checkedDays[2];
-        //    TempData["thursday"] = checkedDays[3];
-        //    TempData["friday"] = checkedDays[4];
-        //    TempData["saturday"] = checkedDays[5];
-        //    TempData["sunday"] = checkedDays[6];
-        //    if (checkedDays.Contains(true))
-        //    {
-        //        List<Advert> tempList = new();
-        //        foreach (var ad in originalList)
-        //        {
-        //            var d = ad.DatesAndTimes.Days;
-        //            var thisAdsDaysList = d.GetList();
-        //            bool hasAtleastOne = false;
-        //            for (int i = 0; i < thisAdsDaysList.Count; i++)
-        //            {
-        //                if (thisAdsDaysList[i] == true && checkedDays[i] == true)
-        //                {
-        //                    hasAtleastOne = true;
-        //                }
-        //            }
-        //            if (hasAtleastOne)
-        //            {
-        //                tempList.Add(ad);
-        //            }
-        //        }
-        //        tempList = tempList.Except(goalList).ToList();
-        //        goalList.AddRange(tempList);
-        //    }
-        //    return goalList;
-        //}
+        private List<int> FilterByDays(Filter filter, List<int> ids)
+        {
+            if (filter.GetAllDaysTuple().Any(a => a.Item2.Equals(true)))
+            {
+                List<int> filteredIds = new();
+                foreach (var ad in db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace).ThenInclude(a => a.TimeFrames).Select(a => a.WorkPlace.TimeFrames).ToList())
+                {
+                    var thisAdsDaysList = ad.GetAllDaysTuple().Select(day => day.Item2).ToList();
+                    var filterDaysList = filter.GetAllDaysTuple().Select(day => day.Item2).ToList();
+                    for (int i = 0; i < thisAdsDaysList.Count; i++)
+                    {
+                        if (filterDaysList[i] && thisAdsDaysList[i])
+                        {
+                            filteredIds.Add(ad.DatesAndTimeID);
+
+                            break;
+                        }
+                    }
+                }
+
+                return filteredIds;
+            }
+
+            return ids;
+        }
 
         private List<Advert> ExcludeOldAds(List<Advert> allAdsInDB)
         {

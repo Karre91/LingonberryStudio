@@ -3,8 +3,8 @@
 
 
 @{
-    var chosenDays = Model.WorkPlace.TimeFrames.GetChosenDaysList();
-    var chosenAmenity = Model.WorkPlace.AmenityTypes.GetChosenAmenityList();
+    var chosenDays = Model.WorkPlace.TimeFrames.GetAllDaysTuple();
+    var chosenAmenity = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple();
 }
 
 <div class="modal fade" id="adModal-@Model.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -50,24 +50,24 @@
                     <p class="fw-bold form-text-style">Artist/Project Name: </p>
                     <p class="form-text-style">@Model.Artist</p> <br />
                 }
-                @if (Model.WorkPlace.TimeFrames.GetList().Contains(true) && Model.Offering)
+                @if (Model.WorkPlace.TimeFrames.GetAllDaysTuple().Any(d => d.Item2.Equals(true)) && Model.Offering)
                 {
                     <p class="fw-bold form-text-style">Avaliability: </p> <br />
                 }
-                @if (Model.WorkPlace.TimeFrames.GetList().Contains(true) && !Model.Offering)
+                @if (Model.WorkPlace.TimeFrames.GetAllDaysTuple().Any(d => d.Item2.Equals(true)) && !Model.Offering)
                 {
                     <p class="fw-bold form-text-style">I am interested in following days: </p> <br />
                 }
                 @foreach (var day in chosenDays)
                 {
-                    <p class="form-text-style">@day</p> <br />
+                    <p class="form-text-style">@day.Item1</p> <br />
                 }
-                @if (Model.WorkPlace.AmenityTypes.GetList().Contains(true))
+                @if (Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Any(a => a.Item2.Equals(true)))
                 {
                     <p class="fw-bold form-text-style">Ametities: </p> <br />
                     @foreach (var amenity in chosenAmenity)
                     {
-                        <p class="form-text-style">@amenity</p> <br />
+                        <p class="form-text-style">@amenity.Item1</p> <br />
                     }
                 }
 
