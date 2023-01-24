@@ -146,3 +146,6 @@ dotnet_diagnostic.SA1200.severity = none
 
 # SA1413: Use trailing comma in multi-line initializers
 dotnet_diagnostic.SA1413.severity = none
+
+# SA1027: Use tabs correctly
+dotnet_diagnostic.SA1027.severity = none

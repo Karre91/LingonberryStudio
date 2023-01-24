@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using LingonberryStudio.Data.Entities;
+    using LingonberryStudio.Models;
 
     public class AdvertViewMoldel
     {
@@ -17,7 +18,5 @@
         public Filter Filter { get; set; }
 
         public Advert Advert { get; set; }
-
-        public bool IsFiltered { get; set; }
     }
 }

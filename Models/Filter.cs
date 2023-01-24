@@ -1,14 +1,9 @@
-﻿namespace LingonberryStudio.Data.Entities
+﻿namespace LingonberryStudio.Models
 {
     using System.Collections.Generic;
 
     public class Filter
     {
-        //public Filter(bool offering, bool looking, string? City,)
-        //{
-
-        //}
-
         public bool Offering { get; set; }
 
         public bool Looking { get; set; }
@@ -84,7 +79,7 @@
                 Tuple.Create(nameof(OtherStudio), OtherStudio),
             };
 
-            List<string> checkedSudios = new ();
+            List<string> checkedSudios = new();
             foreach (var tuple in tupleList)
             {
                 if (tuple.Item2)
@@ -96,7 +91,7 @@
             return checkedSudios;
         }
 
-        public List<string> GetString()
+        public List<Tuple<string, bool>> GetAllAmenityTuple()
         {
             var tupleList = new List<Tuple<string, bool>>
             {
@@ -113,53 +108,23 @@
                 Tuple.Create(nameof(Other), Other),
             };
 
-            List<string> checkedAmenitys = tupleList.Where(amenity => amenity.Item2.Equals(true)).Select(tuple => tuple.Item1).ToList();
-
-            return checkedAmenitys;
+            return tupleList;
         }
 
-        public List<Tuple<string, bool>> GetTuple()
+        public List<Tuple<string, bool>> GetAllDaysTuple()
         {
             var tupleList = new List<Tuple<string, bool>>
             {
-                Tuple.Create(nameof(Parking), Parking),
-                Tuple.Create(nameof(Shower), Shower),
-                Tuple.Create(nameof(AirCondition), AirCondition),
-                Tuple.Create(nameof(Kitchen), Kitchen),
-                Tuple.Create(nameof(NaturalLight), NaturalLight),
-                Tuple.Create(nameof(AcousticTreatment), AcousticTreatment),
-                Tuple.Create(nameof(RunningWater), RunningWater),
-                Tuple.Create(nameof(Storage), Storage),
-                Tuple.Create(nameof(Toilet), Toilet),
-                Tuple.Create(nameof(CeramicOven), CeramicOven),
-                Tuple.Create(nameof(Other), Other),
+                Tuple.Create(nameof(Monday), Monday),
+                Tuple.Create(nameof(Tuesday), Tuesday),
+                Tuple.Create(nameof(Wednesday), Wednesday),
+                Tuple.Create(nameof(Thursday), Thursday),
+                Tuple.Create(nameof(Friday), Friday),
+                Tuple.Create(nameof(Saturday), Saturday),
+                Tuple.Create(nameof(Sunday), Sunday),
             };
 
-            List<Tuple<string, bool>> tuple = tupleList.Select(tuple => tuple).ToList();
-
-            return tuple;
-        }
-
-        public List<bool> GetAllBool()
-        {
-            var tupleList = new List<Tuple<string, bool>>
-            {
-                Tuple.Create(nameof(Parking), Parking),
-                Tuple.Create(nameof(Shower), Shower),
-                Tuple.Create(nameof(AirCondition), AirCondition),
-                Tuple.Create(nameof(Kitchen), Kitchen),
-                Tuple.Create(nameof(NaturalLight), NaturalLight),
-                Tuple.Create(nameof(AcousticTreatment), AcousticTreatment),
-                Tuple.Create(nameof(RunningWater), RunningWater),
-                Tuple.Create(nameof(Storage), Storage),
-                Tuple.Create(nameof(Toilet), Toilet),
-                Tuple.Create(nameof(CeramicOven), CeramicOven),
-                Tuple.Create(nameof(Other), Other),
-            };
-
-            List<bool> checkedAmenitys = tupleList.Select(tuple => tuple.Item2).ToList();
-
-            return checkedAmenitys;
+            return tupleList;
         }
     }
 }
