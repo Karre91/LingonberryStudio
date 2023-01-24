@@ -130,12 +130,12 @@
                 @if (Model.Offering && Model.WorkPlace.Period != null)
                 {
                     <p class="fw-bold form-text-style">Rent for the studio is: </p>
-                    <p class="form-text-style">£ @Model.WorkPlace.Currency/@Model.WorkPlace.Period</p> <br />
+                    <p class="form-text-style">£ @Model.WorkPlace.Pounds/@Model.WorkPlace.Period</p> <br />
                 }
                 @if (!Model.Offering && Model.WorkPlace.Period != null)
                 {
                     <p class="fw-bold form-text-style">My budget is: </p>
-                    <p class="form-text-style">£ @Model.WorkPlace.Currency/@Model.WorkPlace.Period</p> <br />
+                    <p class="form-text-style">£ @Model.WorkPlace.Pounds/@Model.WorkPlace.Period</p> <br />
                 }
                 @if (Model.WorkPlace.TimeFrames.OpeningTime != null)
                 {

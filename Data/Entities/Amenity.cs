@@ -97,5 +97,121 @@
 
             return checkedAmenitys;
         }
+
+        //public List<string> GetCheckedAmenitiesList()
+        //{
+        //    bool other = false;
+        //    if (Other is not null)
+        //    {
+        //        other = true;
+        //    }
+
+        //    var tupleList = new List<Tuple<string, bool>>
+        //    {
+        //        Tuple.Create(nameof(Parking), Parking),
+        //        Tuple.Create(nameof(Shower), Shower),
+        //        Tuple.Create(nameof(AirCondition), AirCondition),
+        //        Tuple.Create(nameof(Kitchen), Kitchen),
+        //        Tuple.Create(nameof(NaturalLight), NaturalLight),
+        //        Tuple.Create(nameof(AcousticTreatment), AcousticTreatment),
+        //        Tuple.Create(nameof(RunningWater), RunningWater),
+        //        Tuple.Create(nameof(Storage), Storage),
+        //        Tuple.Create(nameof(Toilet), Toilet),
+        //        Tuple.Create(nameof(CeramicOven), CeramicOven),
+        //        Tuple.Create(nameof(Other), other),
+        //    };
+
+        //    List<string> checkedAmenitys = tupleList.Where(amenity => amenity.Item2.Equals(true)).Select(tuple => tuple.Item1).ToList();
+
+        //    //List<Tuple<string, bool>> test = tupleList.Where(amenity => amenity.Item2.Equals(true)).Select(tuple => tuple).ToList();
+
+        //    //return test;
+
+        //    return checkedAmenitys;
+        //}
+
+        public List<string> GetString()
+        {
+            bool other = false;
+            if (Other is not null)
+            {
+                other = true;
+            }
+
+            var tupleList = new List<Tuple<string, bool>>
+            {
+                Tuple.Create(nameof(Parking), Parking),
+                Tuple.Create(nameof(Shower), Shower),
+                Tuple.Create(nameof(AirCondition), AirCondition),
+                Tuple.Create(nameof(Kitchen), Kitchen),
+                Tuple.Create(nameof(NaturalLight), NaturalLight),
+                Tuple.Create(nameof(AcousticTreatment), AcousticTreatment),
+                Tuple.Create(nameof(RunningWater), RunningWater),
+                Tuple.Create(nameof(Storage), Storage),
+                Tuple.Create(nameof(Toilet), Toilet),
+                Tuple.Create(nameof(CeramicOven), CeramicOven),
+                Tuple.Create(nameof(Other), other),
+            };
+
+            List<string> checkedAmenitys = tupleList.Where(amenity => amenity.Item2.Equals(true)).Select(tuple => tuple.Item1).ToList();
+
+            return checkedAmenitys;
+        }
+
+        public List<Tuple<string, bool>> GetTuple()
+        {
+            bool other = false;
+            if (Other is not null)
+            {
+                other = true;
+            }
+
+            var tupleList = new List<Tuple<string, bool>>
+            {
+                Tuple.Create(nameof(Parking), Parking),
+                Tuple.Create(nameof(Shower), Shower),
+                Tuple.Create(nameof(AirCondition), AirCondition),
+                Tuple.Create(nameof(Kitchen), Kitchen),
+                Tuple.Create(nameof(NaturalLight), NaturalLight),
+                Tuple.Create(nameof(AcousticTreatment), AcousticTreatment),
+                Tuple.Create(nameof(RunningWater), RunningWater),
+                Tuple.Create(nameof(Storage), Storage),
+                Tuple.Create(nameof(Toilet), Toilet),
+                Tuple.Create(nameof(CeramicOven), CeramicOven),
+                Tuple.Create(nameof(Other), other),
+            };
+
+            List<Tuple<string, bool>> tuple = tupleList.Where(amenity => amenity.Item2.Equals(true)).Select(tuple => tuple).ToList();
+
+            return tuple;
+        }
+
+        public List<bool> GetAllBool()
+        {
+            bool other = false;
+            if (Other is not null)
+            {
+                other = true;
+            }
+
+            var tupleList = new List<Tuple<string, bool>>
+            {
+                Tuple.Create(nameof(Parking), Parking),
+                Tuple.Create(nameof(Shower), Shower),
+                Tuple.Create(nameof(AirCondition), AirCondition),
+                Tuple.Create(nameof(Kitchen), Kitchen),
+                Tuple.Create(nameof(NaturalLight), NaturalLight),
+                Tuple.Create(nameof(AcousticTreatment), AcousticTreatment),
+                Tuple.Create(nameof(RunningWater), RunningWater),
+                Tuple.Create(nameof(Storage), Storage),
+                Tuple.Create(nameof(Toilet), Toilet),
+                Tuple.Create(nameof(CeramicOven), CeramicOven),
+                Tuple.Create(nameof(Other), other),
+            };
+
+            List<bool> checkedAmenitys = tupleList.Select(tuple => tuple.Item2).ToList();
+
+            return checkedAmenitys;
+        }
     }
 }

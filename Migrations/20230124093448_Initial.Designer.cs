@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LingonberryStudio.Migrations
 {
     [DbContext(typeof(LingonberryDbContext))]
-    [Migration("20230119062542_Initial")]
+    [Migration("20230124093448_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -184,15 +184,11 @@ namespace LingonberryStudio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Currency")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImgUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MeasurementNumber")
@@ -203,6 +199,9 @@ namespace LingonberryStudio.Migrations
 
                     b.Property<string>("Period")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Pounds")
+                        .HasColumnType("int");
 
                     b.Property<int>("TimeFrameID")
                         .HasColumnType("int");

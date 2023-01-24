@@ -1,7 +1,10 @@
 ﻿namespace LingonberryStudio.Controllers.Adverts
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection.Metadata;
+    using System.Security.Cryptography;
     using LingonberryStudio.Data;
     using LingonberryStudio.Data.Entities;
     using LingonberryStudio.ViewModels;
@@ -9,6 +12,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.ChangeTracking;
     using Microsoft.EntityFrameworkCore.Metadata.Internal;
+    using Microsoft.VisualBasic;
     using static System.Net.Mime.MediaTypeNames;
 
     public class AdvertsController : Controller
@@ -63,26 +67,44 @@
         }
 
         [HttpGet]
-        public IActionResult Adverts(AdvertViewMoldel viewModel)
+        public IActionResult Adverts(AdvertViewMoldel viewModel, bool hasFilter)
         {
-            AdvertViewMoldel advertViewModel = new();
-            advertViewModel.AdvertList = GetAdsInDB();
+            if (hasFilter)
+            {
+                viewModel.AdvertList = Filter(viewModel.Filter);
+            }
+            else
+            {
+                if (viewModel.AdvertList.Count <= 0)
+                {
+                    viewModel.AdvertList = GetAdsInDB();
+                }
+            }
 
-            Filter(viewModel.Filter);
+            ViewBag.Total = viewModel.AdvertList.Count;
 
-            ViewBag.Total = advertViewModel.AdvertList.Count;
-
-            return View(advertViewModel);
+            return View(viewModel);
         }
 
-        public void Filter(Filter filter)
+        public List<Advert> Filter(Filter filter)
         {
             List<int> ids = FilterByOfferingLooking(filter);
-            var a = FilterByStudioType(filter, ids);
-            var b = FilterByCity(filter, a);
-            var c = FilterByBudget(filter, b);
+            ids = FilterByStudioType(filter, ids);
+            ids = FilterByCity(filter, ids);
+            ids = FilterByBudget(filter, ids);
+            ids = FilterByAmenities(filter, ids);
 
-            Console.WriteLine(c);
+            List<Advert> allAdsInDB = db.Adverts
+            .Include(ads => ads.WorkPlace)
+            .ThenInclude(ads => ads.AmenityTypes)
+            .Include(ads => ads.WorkPlace)
+            .ThenInclude(ads => ads.TimeFrames)
+            .Where(p => ids.Contains(p.ID))
+            .AsNoTracking()
+            .ToList();
+
+            allAdsInDB = ExcludeOldAds(allAdsInDB);
+            return allAdsInDB;
         }
 
         private List<int> FilterByOfferingLooking(Filter filter)
@@ -125,19 +147,15 @@
 
                 return filteredIds;
             }
-            else
-            {
-                return ids;
-            }
+
+            return ids;
         }
 
         private List<int> FilterByCity(Filter filter, List<int> ids)
         {
             if (filter.City != null)
             {
-                var filteredIds = db.Adverts
-                   .Include(a => a.WorkPlace)
-                   .Where(a => ids.Contains(a.ID))
+                var filteredIds = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
                    .Where(a => a.WorkPlace.City.ToUpper().Equals(filter.City) || (a.WorkPlace.City != null && filter.City == null))
                    .Select(a => a.ID)
                    .ToList();
@@ -154,9 +172,7 @@
         {
             if (filter.Period != null)
             {
-                List<int> filteredIds = db.Adverts
-                       .Include(a => a.WorkPlace)
-                       .Where(a => ids.Contains(a.ID))
+                List<int> filteredIds = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
                        .Where(a => a.WorkPlace.Period == null)
                        .Select(a => a.ID)
                        .ToList();
@@ -165,20 +181,16 @@
                 {
                     filter.CalculatedPounds = filter.Pounds / 4;
 
-                    var filteredOnMonth = db.Adverts
-                       .Include(a => a.WorkPlace)
-                       .Where(a => ids.Contains(a.ID))
-                       .Where(a => (a.WorkPlace.Period != null) && (a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Currency <= filter.Pounds))
+                    var filteredOnMonth = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
+                       .Where(a => (a.WorkPlace.Period != null) && (a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Pounds <= filter.Pounds))
                        .Select(a => a.ID)
                        .ToList();
                     filteredIds.AddRange(filteredOnMonth);
 
-                    var filteredOnWeek = db.Adverts
-                       .Include(a => a.WorkPlace)
-                       .Where(a => ids.Contains(a.ID))
-                       .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period != filter.Period && a.WorkPlace.Currency <= filter.CalculatedPounds)
-                       .Select(a => a.ID)
-                       .ToList();
+                    var filteredOnWeek = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
+                        .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period != filter.Period && a.WorkPlace.Pounds <= filter.CalculatedPounds)
+                        .Select(a => a.ID)
+                        .ToList();
 
                     filteredIds.AddRange(filteredOnWeek);
                 }
@@ -187,19 +199,15 @@
                 {
                     filter.CalculatedPounds = filter.Pounds * 4;
 
-                    var filteredOnWeek = db.Adverts
-                       .Include(a => a.WorkPlace)
-                       .Where(a => ids.Contains(a.ID))
-                       .Where(a => (a.WorkPlace.Period != null) && (a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Currency <= filter.Pounds))
+                    var filteredOnWeek = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
+                       .Where(a => (a.WorkPlace.Period != null) && (a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Pounds <= filter.Pounds))
                        .Select(a => a.ID)
                        .ToList();
 
                     filteredIds.AddRange(filteredOnWeek);
 
-                    var filteredOnMonth = db.Adverts
-                       .Include(a => a.WorkPlace)
-                       .Where(a => ids.Contains(a.ID))
-                       .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period != filter.Period && a.WorkPlace.Currency <= filter.CalculatedPounds)
+                    var filteredOnMonth = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
+                       .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period != filter.Period && a.WorkPlace.Pounds <= filter.CalculatedPounds)
                        .Select(a => a.ID)
                        .ToList();
 
@@ -208,43 +216,34 @@
 
                 return filteredIds;
             }
-            else
-            {
-                return ids;
-            }
+
+            return ids;
         }
 
-        private List<int> FilterByAmenities(/*Filter filter*/)
+        private List<int> FilterByAmenities(Filter filter, List<int> ids)
         {
-            //if (filter.checkedAmenities.Contains(true))
-            //{
-            //    List<Advert> tempList = new();
-            //    foreach (var ad in originalList)
-            //    {
-            //        var d = ad.Amenities;
-            //        var thisAdsAmenitiesList = d.GetList();
-            //        bool hasAtleastOne = false;
-            //        for (int i = 0; i < thisAdsAmenitiesList.Count; i++)
-            //        {
-            //            if (checkedAmenities[i] == true && thisAdsAmenitiesList[i] == true)
-            //            {
-            //                hasAtleastOne = true;
-            //            }
-            //        }
-            //        if (hasAtleastOne)
-            //        {
-            //            tempList.Add(ad);
-            //        }
-            //        if (checkedAmenities[7] == true && d.Other != null)
-            //        {
-            //            tempList.Add(ad);
-            //        }
-            //    }
-            //    tempList = tempList.Except(goalList).ToList();
-            //    goalList.AddRange(tempList);
-            //}
+            if (filter.GetAllBool().Contains(true))
+            {
+                List<int> filteredIds = new();
+                foreach (var ad in db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace).ThenInclude(a => a.AmenityTypes).Select(a => a.WorkPlace.AmenityTypes).ToList())
+                {
+                    var thisAdsAmenitiesList = ad.GetAllBool();
+                    var fBool = filter.GetAllBool();
+                    for (int i = 0; i < thisAdsAmenitiesList.Count; i++)
+                    {
+                        if (fBool[i] && thisAdsAmenitiesList[i])
+                        {
+                            filteredIds.Add(ad.AmenityID);
 
-            return new List<int>();
+                            break;
+                        }
+                    }
+                }
+
+                return filteredIds;
+            }
+
+            return ids;
         }
 
         //private List<Advert> filterByDays(List<bool> checkedDays, List<Advert> originalList, List<Advert> goalList)
