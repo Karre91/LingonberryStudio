@@ -79,39 +79,42 @@
                     {
                         if (filterDaysStrings.Contains(day))
                         {
-                            <p class="form-text-style"><u>@day</u></p> <br />
+                            <p class="form-text-style"><u>@day,</u></p> <br />
                         }
                         else
                         {
-                            <p class="form-text-style">@day</p> <br />
+                            <p class="form-text-style">@day,</p> <br />
                         }
                     }
                 }
+                <br />
                 @if (modelHasAmenity)
                 {
-                    <p class="fw-bold form-text-style">Ametities: </p> <br />
+                   <br /> <p class="fw-bold form-text-style">Ametities: </p> <br />
                     @foreach (var amenity in modelChosenAmenityStrings)
                     {
                         @if (filterAmenityString.Contains(amenity))
                         {
                             if (amenity == "Other")
                             {
-                                <p class="form-text-style"><u>@Model.WorkPlace.AmenityTypes.Other</u></p> <br />
+                                <p class="form-text-style"><u>@Model.WorkPlace.AmenityTypes.Other,</u></p> <br />
                             }
                             else
                             {
-                                <p class="form-text-style"><u>@amenity</u></p> <br />
+                                <p class="form-text-style"><u>@amenity,</u></p> <br />
                             }
                         }
                         else
                         {
                             if (amenity == "Other")
                             {
-                                <p class="form-text-style">@Model.WorkPlace.AmenityTypes.Other</p> <br />
+                                <p class="form-text-style">@Model.WorkPlace.AmenityTypes.Other,</p> <br />
                             }
                             else
                             {
-                                <p class="form-text-style">@amenity</p> <br />
+                                string[] splitAmenity = Model.SplitCamelCase(amenity);
+                                string chosenAmenity = string.Join(" ", splitAmenity);
+                                <p class="form-text-style">@chosenAmenity,</p>
                             }
                         }
                     }
