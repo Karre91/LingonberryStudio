@@ -3,17 +3,16 @@
 @{
     Filter filter = new();
     filter = ViewBag.Filter;
+
     List<string> filterAmenityString = filter.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1).ToList();
     List<string> filterDaysStrings = filter.GetAllDaysTuple().Where(a => a.Item2.Equals(true)).Select(day => day.Item1).ToList();
-    //var filterAmenityTuple = filter.GetAllAmenityTuple().Where(a => a.Item2.Equals(true));
 
     bool modelHasAmenity = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Any(a => a.Item2.Equals(true));
     bool modelHasDays = Model.WorkPlace.TimeFrames.GetAllDaysTuple().Any(a => a.Item2.Equals(true));
-}
 
-@{
     var chosenDays = Model.WorkPlace.TimeFrames.GetAllDaysTuple().Where(a => a.Item2.Equals(true)).Select(day => day.Item1);
     var chosenAmenity = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1);
+
     var city = Model.WorkPlace.City.Substring(0, 1) + Model.WorkPlace.City.Substring(1).ToLower();
     var split = Model.SplitCamelCase(Model.StudioType);
 }
