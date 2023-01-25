@@ -8,7 +8,7 @@
 <div id="area-and-results" class="">
     <div class="row">
         <div class="col">
-            <div>             
+            <div>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Filter
@@ -118,29 +118,30 @@
     </div>
 </div>
 
-   
+
 <div class="container-fluid flex-grid-container border-0">
     <div class="flex-grid-container justify-content-center">
-        <div class="container align-content-center align-content-center error-message"><span>@ViewBag.CityNotFound</span></div>;
+        <div class="container align-content-center align-content-center error-message"><span>@ViewBag.CityNotFound</span></div>
         @foreach (var ad in Model.AdvertList)
-        {   
-          string city = ad.WorkPlace.City.Substring(0, 1) + ad.WorkPlace.City.Substring(1).ToLower();
+        {
+            string city = ad.WorkPlace.City.Substring(0, 1) + ad.WorkPlace.City.Substring(1).ToLower();
             string[] split = ad.SplitCamelCase(ad.StudioType);
             string studioType = string.Join(" ", split);
+
             <div class="ad-card">
                 <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
                     <div>
                         <img src="/@(ad.WorkPlace.ImgUrl)" class="img-fluid mx-auto ad-image mb-2">
                     </div>
-                    <div>               
-                          <small class="split fw-bold">@studioType</small>
+                    <div class="under-image-info">
+                        <small class="split fw-bold">@studioType</small>
                         <p class="mb-0">@city</p>
                         <p class="mb-0"><u>£@ad.WorkPlace.Pounds/@ad.WorkPlace.Period</u></p>
                     </div>
                 </a>
                 @await Html.PartialAsync("_ChosenAdPartial", ad)
             </div>
-        }              
+        }
     </div>
 </div>
 

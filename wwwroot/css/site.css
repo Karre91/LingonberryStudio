@@ -185,7 +185,12 @@ a {
         }
 
         .flex-grid-container {
-            max-width: 75%;
+            max-width: 100%;
+        }
+        
+        /*HEEEEEEEEEEEEEEELP*/
+        .under-image-info{
+            position: center;
         }
 
         .ad-image {
@@ -384,7 +389,6 @@ a {
 
     .flex-grid-container {
         display: flex;
-        padding-top: 3rem;
         flex-wrap: wrap;
         gap: 3rem;
     }
