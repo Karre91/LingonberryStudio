@@ -3,10 +3,12 @@
 @{
     Filter filter = new();
     filter = ViewBag.Filter;
-    var filterAmenityString = filter.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1);
-    var filterAmenityTuple = filter.GetAllAmenityTuple().Where(a => a.Item2.Equals(true));
+    List<string> filterAmenityString = filter.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1).ToList();
+    List<string> filterDaysStrings = filter.GetAllDaysTuple().Where(a => a.Item2.Equals(true)).Select(day => day.Item1).ToList();
+    //var filterAmenityTuple = filter.GetAllAmenityTuple().Where(a => a.Item2.Equals(true));
 
-    var modelAm = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Where(a => a.Item2.Equals(true));
+    bool modelHasAmenity = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Any(a => a.Item2.Equals(true));
+    bool modelHasDays = Model.WorkPlace.TimeFrames.GetAllDaysTuple().Any(a => a.Item2.Equals(true));
 }
 
 @{
@@ -57,19 +59,26 @@
                     <p class="fw-bold form-text-style">Artist/Project Name: </p>
                     <p class="form-text-style">@Model.Artist</p> <br />
                 }
-                @if (Model.WorkPlace.TimeFrames.GetAllDaysTuple().Any(d => d.Item2.Equals(true)) && Model.Offering)
+                @if (modelHasDays && Model.Offering)
                 {
                     <p class="fw-bold form-text-style">Avaliability: </p> <br />
                 }
-                @if (Model.WorkPlace.TimeFrames.GetAllDaysTuple().Any(d => d.Item2.Equals(true)) && !Model.Offering)
+                @if (modelHasDays && !Model.Offering)
                 {
                     <p class="fw-bold form-text-style">I am interested in following days: </p> <br />
                 }
                 @foreach (var day in chosenDays)
                 {
-                    <p class="form-text-style">@day</p> <br />
+                    if (filterDaysStrings.Contains(day))
+                    {
+                        <p class="form-text-style"><u>@day</u></p> <br />
+                    }
+                    else
+                    {
+                        <p class="form-text-style">@day</p> <br />
+                    }
                 }
-                @if (Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Any(a => a.Item2.Equals(true)))
+                @if (modelHasAmenity)
                 {
                     <p class="fw-bold form-text-style">Ametities: </p> <br />
                     @foreach (var amenity in chosenAmenity)
