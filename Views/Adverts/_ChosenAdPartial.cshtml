@@ -96,6 +96,8 @@
                             <p class="fw-bold form-text-style">Ametities: </p> <br />
                             @foreach (var amenity in modelChosenAmenityStrings)
                             {
+                                string[] splitAmenity = Model.SplitCamelCase(amenity);
+                                string chosenAmenity = string.Join(" ", splitAmenity);
                                 @if (filterAmenityString.Contains(amenity))
                                 {
                                     if (amenity == "Other")
@@ -104,7 +106,7 @@
                                     }
                                     else
                                     {
-                                        <p class="form-text-style"><u>@amenity</u></p> <br />
+                                        <p class="form-text-style"><u>@chosenAmenity</u></p> <br />
                                     }
                                 }
                                 else
@@ -115,7 +117,7 @@
                                     }
                                     else
                                     {
-                                        <p class="form-text-style">@amenity</p> <br />
+                                        <p class="form-text-style">@chosenAmenity</p> <br />
                                     }
                                 }
                             }
