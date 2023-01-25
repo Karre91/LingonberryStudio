@@ -25,6 +25,7 @@
 
         public IActionResult Index()
         {
+            ViewBag.CityNotFound = TempData["searchError"];
             return View();
         }
 
@@ -33,8 +34,8 @@
         {
             if (string.IsNullOrEmpty(city))
             {
-                var emptyString = TempData["searchError"] = "Search field was empty, please try again!";
-                return RedirectToAction("Index", emptyString);
+                var emptySearch = TempData["searchError"] = "Search field was empty, please try again!";
+                return RedirectToAction("Index", emptySearch);
             }
 
             return RedirectToAction("Adverts", "Adverts", new { city = city, search = offering });
