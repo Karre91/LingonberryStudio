@@ -187,11 +187,6 @@ a {
         .flex-grid-container {
             max-width: 100%;
         }
-        
-        /*HEEEEEEEEEEEEEEELP*/
-        .under-image-info{
-            position: center;
-        }
 
         .ad-image {
             border-radius: 7%;
@@ -421,9 +416,6 @@ a {
 
     .center {
         display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
     }
 
     .error-message {
