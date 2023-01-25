@@ -91,7 +91,7 @@
 			if (hasFilter)
 			{
 				viewModel.AdvertList = Filter(viewModel.Filter);
-			}
+            }
 			else
 			{
 				if (viewModel.AdvertList.Count <= 0)
@@ -100,6 +100,7 @@
 				}
 			}
 
+			ViewBag.Filter = viewModel.Filter;
 			ViewBag.Total = viewModel.AdvertList.Count;
 			return View(viewModel);
 		}

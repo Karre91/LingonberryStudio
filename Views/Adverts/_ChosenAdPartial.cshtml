@@ -1,10 +1,18 @@
 ﻿@using LingonberryStudio.Data.Entities
 @model Advert
-
-
 @{
+    Filter filter = new();
+    filter = ViewBag.Filter;
+
+    List<string> filterAmenityString = filter.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1).ToList();
+    List<string> filterDaysStrings = filter.GetAllDaysTuple().Where(a => a.Item2.Equals(true)).Select(day => day.Item1).ToList();
+
+    bool modelHasAmenity = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Any(a => a.Item2.Equals(true));
+    bool modelHasDays = Model.WorkPlace.TimeFrames.GetAllDaysTuple().Any(a => a.Item2.Equals(true));
+
     var chosenDays = Model.WorkPlace.TimeFrames.GetAllDaysTuple().Where(a => a.Item2.Equals(true)).Select(day => day.Item1);
     var chosenAmenity = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1);
+
     var city = Model.WorkPlace.City.Substring(0, 1) + Model.WorkPlace.City.Substring(1).ToLower();
     var split = Model.SplitCamelCase(Model.StudioType);
 }
@@ -60,31 +68,52 @@
                     <p class="fw-bold form-text-style">Artist/Project Name: </p>
                     <p class="form-text-style">@Model.Artist</p> <br />
                 }
-                @if (Model.WorkPlace.TimeFrames.GetAllDaysTuple().Any(d => d.Item2.Equals(true)) && Model.Offering)
+                @if (modelHasDays && Model.Offering)
                 {
                     <p class="fw-bold form-text-style">Avaliability: </p> <br />
                 }
-                @if (Model.WorkPlace.TimeFrames.GetAllDaysTuple().Any(d => d.Item2.Equals(true)) && !Model.Offering)
+                @if (modelHasDays && !Model.Offering)
                 {
                     <p class="fw-bold form-text-style">I am interested in following days: </p> <br />
                 }
                 @foreach (var day in chosenDays)
                 {
-                    <p class="form-text-style">@day</p> <br />
+                    if (filterDaysStrings.Contains(day))
+                    {
+                        <p class="form-text-style"><u>@day</u></p> <br />
+                    }
+                    else
+                    {
+                        <p class="form-text-style">@day</p> <br />
+                    }
                 }
-                @if (Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Any(a => a.Item2.Equals(true)))
+                @if (modelHasAmenity)
                 {
                     <p class="fw-bold form-text-style">Ametities: </p> <br />
                     @foreach (var amenity in chosenAmenity)
                     {
-                        if (amenity != "Other")
+                        @if (filterAmenityString.Contains(amenity))
                         {
-                            <p class="form-text-style">@amenity</p> <br />
+                            if (amenity == "Other")
+                            {
+                                <p class="form-text-style"><u>@Model.WorkPlace.AmenityTypes.Other</u></p> <br />
+                            }
+                            else
+                            {
+                                <p class="form-text-style"><u>@amenity</u></p> <br />
+                            }                            
                         }
                         else
                         {
-                            <p class="form-text-style">@Model.WorkPlace.AmenityTypes.Other</p> <br />
-                        }                        
+                            if (amenity == "Other")
+                            {
+                                <p class="form-text-style">@Model.WorkPlace.AmenityTypes.Other</p> <br />
+                            }
+                            else
+                            {
+                                <p class="form-text-style">@amenity</p> <br />
+                            }
+                        }
                     }
                 }
                 @if (Model.WorkPlace.MeasurementType != null)
