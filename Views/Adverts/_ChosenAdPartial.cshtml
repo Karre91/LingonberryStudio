@@ -15,11 +15,10 @@
 
     string city = Model.WorkPlace.City.Substring(0, 1) + Model.WorkPlace.City.Substring(1).ToLower();
     string area = Model.WorkPlace.Area?.Substring(0, 1) + Model.WorkPlace.Area?.Substring(1).ToLower();
-    string[] split = Model.SplitCamelCase(Model.StudioType);
-    string studioType = string.Join(" ", split);
+    string splitStudio = Model.SplitCamelCase(Model.StudioType);
 
     string aOrAn = "a";
-    if (studioType.StartsWith("A") || studioType.StartsWith("a"))
+    if (splitStudio.StartsWith("A") || splitStudio.StartsWith("a"))
     {
         aOrAn = "an";
     }
@@ -29,7 +28,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">@studioType</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">@splitStudio</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -41,12 +40,12 @@
                 @if (Model.Offering)
                 {
                     <label class="split mb-2 fw-bold mt-2">I am offering @aOrAn</label>
-                    <small class="split fw-bold mb-2 mt-2">@studioType</small>
+                    <small class="split fw-bold mb-2 mt-2">@splitStudio</small>
                 }
                 @if (!Model.Offering)
                 {
                     <label class="split mb-2 fw-bold mt-2">I am looking for @aOrAn</label>
-                    <small class="split fw-bold mb-2 mt-2">@studioType</small>
+                    <small class="split fw-bold mb-2 mt-2">@splitStudio</small>
                 }
                 <br /><p class="form-text-style"><b>City:</b> @city </p><br />
                 @if (Model.WorkPlace.Area != null)
@@ -75,7 +74,7 @@
                             }
                             @if (!Model.Offering)
                             {
-                                <p class="fw-bold form-text-style">I am interested in following days:<br></p>
+                                <p class="fw-bold form-text-style">Days of interest:<br></p><br />
                             }
                             @foreach (var day in modelChosenDaysStrings)
                             {
@@ -96,8 +95,7 @@
                             <p class="fw-bold form-text-style">Ametities: </p> <br />
                             @foreach (var amenity in modelChosenAmenityStrings)
                             {
-                                string[] splitAmenity = Model.SplitCamelCase(amenity);
-                                string chosenAmenity = string.Join(" ", splitAmenity);
+                                string splitAmenity = Model.SplitCamelCase(amenity);
                                 @if (filterAmenityString.Contains(amenity))
                                 {
                                     if (amenity == "Other")
@@ -106,7 +104,7 @@
                                     }
                                     else
                                     {
-                                        <p class="form-text-style"><u>@chosenAmenity</u></p> <br />
+                                        <p class="form-text-style"><u>@splitAmenity</u></p> <br />
                                     }
                                 }
                                 else
@@ -117,7 +115,7 @@
                                     }
                                     else
                                     {
-                                        <p class="form-text-style">@chosenAmenity</p> <br />
+                                        <p class="form-text-style">@splitAmenity</p> <br />
                                     }
                                 }
                             }

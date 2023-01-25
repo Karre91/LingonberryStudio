@@ -125,8 +125,7 @@
         @foreach (var ad in Model.AdvertList)
         {
             string city = ad.WorkPlace.City.Substring(0, 1) + ad.WorkPlace.City.Substring(1).ToLower();
-            string[] split = ad.SplitCamelCase(ad.StudioType);
-            string studioType = string.Join(" ", split);
+            string splitStudio = ad.SplitCamelCase(ad.StudioType);
 
             <div class="ad-card">
                 <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
@@ -134,7 +133,7 @@
                         <img src="/@(ad.WorkPlace.ImgUrl)" class="img-fluid mx-auto ad-image mb-2">
                     </div>
                     <div class="under-image-info">
-                        <small class="split fw-bold">@studioType</small>
+                        <small class="split fw-bold">@splitStudio</small>
                         <p class="mb-0">@city</p>
                         <p class="mb-0"><u>£@ad.WorkPlace.Pounds/@ad.WorkPlace.Period</u></p>
                     </div>
