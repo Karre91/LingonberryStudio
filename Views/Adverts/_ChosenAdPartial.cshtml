@@ -64,61 +64,66 @@
                 {
                     <p class="form-text-style"><b>Artist/Project Name:</b> @Model.Artist</p> <br />
                 }
-                <p class="form-text-style"><b>Desctiption:</b> <br /> @Model.WorkPlace.Description</p>
-                @if (modelHasDays)
-                {
-                    @if (Model.Offering)
-                    {
-                        <p class="fw-bold form-text-style">Avaliability: </p> <br />
-                    }
-                    @if (!Model.Offering)
-                    {
-                        <p class="fw-bold form-text-style">I am interested in following days: </p> <br />
-                    }
-                    @foreach (var day in modelChosenDaysStrings)
-                    {
-                        if (filterDaysStrings.Contains(day))
+                <p class="form-text-style"><b>Desctiption:</b><br /> @Model.WorkPlace.Description</p>
+                <div class="row">
+                    <div class="col">
+                        @if (modelHasDays)
                         {
-                            <p class="form-text-style"><u>@day,</u></p> <br />
-                        }
-                        else
-                        {
-                            <p class="form-text-style">@day,</p> <br />
-                        }
-                    }
-                }
-                <br />
-                @if (modelHasAmenity)
-                {
-                   <br /> <p class="fw-bold form-text-style">Ametities: </p> <br />
-                    @foreach (var amenity in modelChosenAmenityStrings)
-                    {
-                        @if (filterAmenityString.Contains(amenity))
-                        {
-                            if (amenity == "Other")
+                            @if (Model.Offering)
                             {
-                                <p class="form-text-style"><u>@Model.WorkPlace.AmenityTypes.Other,</u></p> <br />
+                                <p class="fw-bold form-text-style">Avaliability: </p> <br />
                             }
-                            else
+                            @if (!Model.Offering)
                             {
-                                <p class="form-text-style"><u>@amenity,</u></p> <br />
+                                <p class="fw-bold form-text-style">I am interested in following days:<br></p>
+                            }
+                            @foreach (var day in modelChosenDaysStrings)
+                            {
+                                if (filterDaysStrings.Contains(day))
+                                {
+                                    <p class="form-text-style"><u>@day</u></p><br />
+                                }
+                                else
+                                {
+                                    <p class="form-text-style">@day</p><br />
+                                }
                             }
                         }
-                        else
+                    </div>
+                    <div class="col">
+                        @if (modelHasAmenity)
                         {
-                            if (amenity == "Other")
-                            {
-                                <p class="form-text-style">@Model.WorkPlace.AmenityTypes.Other,</p> <br />
-                            }
-                            else
+                            <p class="fw-bold form-text-style">Ametities: </p> <br />
+                            @foreach (var amenity in modelChosenAmenityStrings)
                             {
                                 string[] splitAmenity = Model.SplitCamelCase(amenity);
                                 string chosenAmenity = string.Join(" ", splitAmenity);
-                                <p class="form-text-style">@chosenAmenity,</p>
+                                @if (filterAmenityString.Contains(amenity))
+                                {
+                                    if (amenity == "Other")
+                                    {
+                                        <p class="form-text-style"><u>@Model.WorkPlace.AmenityTypes.Other</u></p> <br />
+                                    }
+                                    else
+                                    {
+                                        <p class="form-text-style"><u>@chosenAmenity</u></p> <br />
+                                    }
+                                }
+                                else
+                                {
+                                    if (amenity == "Other")
+                                    {
+                                        <p class="form-text-style">@Model.WorkPlace.AmenityTypes.Other</p> <br />
+                                    }
+                                    else
+                                    {
+                                        <p class="form-text-style">@chosenAmenity</p> <br />
+                                    }
+                                }
                             }
                         }
-                    }
-                }
+                    </div>
+                </div>          
                 @if (Model.WorkPlace.MeasurementType != null)
                 {
                     <p class="form-text-style"><b>Size:</b> @Model.WorkPlace.MeasurementNumber Square @Model.WorkPlace.MeasurementType</p> <br />
