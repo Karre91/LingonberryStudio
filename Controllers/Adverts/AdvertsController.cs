@@ -296,7 +296,8 @@
 				.Include(ads => ads.WorkPlace)
 				.ThenInclude(ads => ads.TimeFrames)
 				.Where(p => ids.Contains(p.ID))
-				.AsNoTracking()
+                .OrderBy(p => p.TimeCreated).Reverse()
+                .AsNoTracking()
 				.ToList();
 
 			allAdsInDB = ExcludeOldAds(allAdsInDB);
@@ -310,7 +311,8 @@
 			.ThenInclude(ads => ads.AmenityTypes)
 			.Include(ads => ads.WorkPlace)
 			.ThenInclude(ads => ads.TimeFrames)
-			.AsNoTracking()
+            .OrderBy(p => p.TimeCreated).Reverse()
+            .AsNoTracking()
 			.ToList();
 
 			allAdsInDB = ExcludeOldAds(allAdsInDB);
