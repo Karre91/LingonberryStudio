@@ -288,7 +288,7 @@
 
         private List<Advert> ExcludeOldAds(List<Advert> allAdsInDB)
         {
-            var goalList = allAdsInDB.Except(allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -60)).ToList();
+            var goalList = allAdsInDB.Except(allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -180)).ToList();
             return goalList;
         }
 
