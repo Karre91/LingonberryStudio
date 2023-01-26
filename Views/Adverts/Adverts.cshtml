@@ -19,13 +19,21 @@
                             {
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-check" style="float:right">
+                                        <div class="form-check" style="float:left">
                                             @Html.CheckBoxFor(m => m.Filter.Offering, true)See ads that offers space.<br />
+                                            @Html.CheckBoxFor(m => m.Filter.Looking, true)See ads that is looking to rent a space.
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-check" style="float:left">
-                                            @Html.CheckBoxFor(m => m.Filter.Looking, true)See ads that is looking to rent a space.<br />
+                                        <div  style="float:left">
+                                            @*<div class="btn-group dropright">
+                                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Dropright
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    TEST
+                                                </div>
+                                            </div>*@
                                         </div>
                                     </div>
                                 </div>
