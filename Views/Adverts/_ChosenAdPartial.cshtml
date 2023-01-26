@@ -38,14 +38,16 @@
                 <div class="row">
                     <div>
                         <img src="/@Model.WorkPlace.ImgUrl" class="img-fluid mx-auto ad-image mb-2">
-                        @if (Model.Offering)
-                        {
-                            <label class="split mb-2 fw-bold mt-2"><u>I am offering @aOrAn @studioType</u></label>
-                        }
-                        @if (!Model.Offering)
-                        {
-                            <label class="split mb-2 fw-bold mt-2"><u>I am looking for @aOrAn @studioType</u></label>
-                        }
+                        <div>
+                            @if (Model.Offering)
+                            {
+                                <label class="split mb-2 fw-bold mt-2"><u>I am offering @aOrAn @studioType</u></label>
+                            }
+                            @if (!Model.Offering)
+                            {
+                                <label class="split mb-2 fw-bold mt-2"><u>I am looking for @aOrAn @studioType</u></label>
+                            }
+                        </div>
                         <div class="pt-2 pb-2 row">
                             <p class="form-text-style"><b>Desctiption:</b><br /> @Model.WorkPlace.Description</p>
                         </div>
