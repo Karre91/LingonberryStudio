@@ -36,16 +36,18 @@
             <div class="modal-body">
                 <div class="row">
                     <div>
-                        <img src="/@Model.WorkPlace.ImgUrl" class="img-fluid mx-auto ad-image mb-2">
-                        <div>
-                            @if (Model.Offering)
-                            {
-                                <label class="split mb-2 fw-bold mt-2 text-decoration-underline">I am offering @aOrAn @studioType</label>
-                            }
-                            else
-                            {
-                                <label class="split mb-2 fw-bold mt-2 text-decoration-underline">I am looking for @aOrAn @studioType</label>
-                            }
+                        <img src="/@Model.WorkPlace.ImgUrl" class="img-fluid mx-auto ad-image mb-2 center">
+                        <div class="row">
+                            <div class="mx-auto">
+                                @if (Model.Offering)
+                                {
+                                    <label class="split mb-2 fw-bold mt-2">I am offering @aOrAn @studioType</label>
+                                }
+                                else
+                                {
+                                    <label class="split mb-2 fw-bold mt-2">I am looking for @aOrAn @studioType</label>
+                                }
+                            </div>
                         </div>
                         <div class="pt-2 pb-2 row">
                             <p class="form-text-style"><b>Desctiption:</b><br /> @Model.WorkPlace.Description</p>
@@ -134,7 +136,6 @@
                                 @foreach (var amenity in modelChosenAmenityStrings)
                                 {
                                     string splitAmenity = Model.SplitCamelCase(amenity);
-
                                     @if (filterAmenityString.Contains(amenity))
                                     {
 
