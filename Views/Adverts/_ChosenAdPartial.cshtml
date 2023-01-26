@@ -15,10 +15,10 @@
 
     string city = Model.WorkPlace.City.Substring(0, 1) + Model.WorkPlace.City.Substring(1).ToLower();
     string area = Model.WorkPlace.Area?.Substring(0, 1) + Model.WorkPlace.Area?.Substring(1).ToLower();
-    string splitStudio = Model.SplitCamelCase(Model.StudioType);
+    string studioType = Model.SplitCamelCase(Model.StudioType);
 
     string aOrAn = "a";
-    if (splitStudio.StartsWith("A") || splitStudio.StartsWith("a"))
+    if (studioType.StartsWith("A") || studioType.StartsWith("a"))
     {
         aOrAn = "an";
     }
@@ -28,42 +28,73 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">@splitStudio</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">@studioType</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div>
-                    <img src="/@Model.WorkPlace.ImgUrl" class="img-fluid mx-auto ad-image center">
+                <div class="row">
+                    <div>
+                        <img src="/@Model.WorkPlace.ImgUrl" class="img-fluid mx-auto ad-image mb-2">
+                        <div>
+                            @if (Model.Offering)
+                            {
+                                <label class="split mb-2 fw-bold mt-2"><u>I am offering @aOrAn @studioType</u></label>
+                            }
+                            @if (!Model.Offering)
+                            {
+                                <label class="split mb-2 fw-bold mt-2"><u>I am looking for @aOrAn @studioType</u></label>
+                            }
+                        </div>
+                        <div class="pt-2 pb-2 row">
+                            <p class="form-text-style"><b>Desctiption:</b><br /> @Model.WorkPlace.Description</p>
+                        </div>
+                    </div>
                 </div>
-                @if (Model.Offering)
-                {
-                    <label class="split mb-2 fw-bold mt-2">I am offering @aOrAn</label>
-                    <small class="split fw-bold mb-2 mt-2">@splitStudio</small>
-                }
-                @if (!Model.Offering)
-                {
-                    <label class="split mb-2 fw-bold mt-2">I am looking for @aOrAn</label>
-                    <small class="split fw-bold mb-2 mt-2">@splitStudio</small>
-                }
-                <br /><p class="form-text-style"><b>City:</b> @city </p><br />
-                @if (Model.WorkPlace.Area != null)
-                {
-                    <p class=" form-text-style"><b>Area:</b> @area </p><br />
-                }
-                <p class="form-text-style"><b>Name:</b> @Model.FirstName</p> <br />
-                <p class="form-text-style"><b>Surname:</b> @Model.LastName</p> <br />
-                <p class="form-text-style"><b>Email:</b> @Model.Email</p> <br />
-                @if (Model.PhoneNumber != null)
-                {
-                    <p class="form-text-style"><b>Phone Number:</b> @Model.PhoneNumber</p> <br />
-                }
-                @if (Model.Artist != null)
-                {
-                    <p class="form-text-style"><b>Artist/Project Name:</b> @Model.Artist</p> <br />
-                }
-                <p class="form-text-style"><b>Desctiption:</b><br /> "@Model.WorkPlace.Description"</p>
+                <hr />
+                <div class="row">
+                    <div>
+                        @if (Model.WorkPlace.Period != null)
+                        {
+                            @if (Model.Offering)
+                            {
+                                <p class="form-text-style"><b>Rent for the studio is:</b> £ @Model.WorkPlace.Pounds/@Model.WorkPlace.Period</p> <br />
+
+                            }
+                            @if (!Model.Offering)
+                            {
+                                <p class="form-text-style"><b>My budget is:</b> £ @Model.WorkPlace.Pounds/@Model.WorkPlace.Period</p> <br />
+
+                            }
+                        }
+                    </div>
+                </div>
+                <hr />
+                <div class="row pt-2">
+                    <div class="col mx-auto">
+                        <p class="form-text-style"><b>City:</b> @city </p><br />
+                        @if (Model.WorkPlace.Area != null)
+                        {
+                            <p class="form-text-style"><b>Area:</b> @area </p>
+
+                            <br />
+                        }
+                        @if (Model.Artist != null)
+                        {
+                            <p class="form-text-style"><b>Artist/Project:</b> @Model.Artist</p> <br />
+                        }
+                    </div>
+                    <div class="col">
+                        <p class="form-text-style"><b>Name:</b> @Model.FirstName @Model.LastName</p> <br />
+                        <p class="form-text-style"><b>Email:</b> @Model.Email</p> <br />
+                        @if (Model.PhoneNumber != null)
+                        {
+                            <p class="form-text-style"><b>Phone:</b> @Model.PhoneNumber</p> <br />
+                        }
+                    </div>
+                </div>
+                <hr />
                 <div class="row">
                     <div class="col">
                         @if (modelHasDays)
