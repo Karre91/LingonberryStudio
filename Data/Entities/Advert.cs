@@ -82,9 +82,11 @@
         [ForeignKey("WorkPlaceID")]
         public virtual WorkPlace WorkPlace { get; set; }
 
-        public string[] SplitCamelCase(string source)
+        public string SplitCamelCase(string formInput)
         {
-            return Regex.Split(source, @"(?<!^)(?=[A-Z])");
+            string[] split = Regex.Split(formInput, @"(?<!^)(?=[A-Z])");
+            string joinedSplit = string.Join(" ", split);
+            return joinedSplit;
         }
     }
 }
