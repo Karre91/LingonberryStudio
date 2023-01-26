@@ -184,54 +184,37 @@
 
         private List<int> FilterByBudget(Filter filter, List<int> ids)
         {
-            if (filter.Period != null)
+            switch (filter.Period)
             {
-                List<int> filteredIds = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
-                       .Where(a => a.WorkPlace.Period == null)
-                       .Select(a => a.ID)
-                       .ToList();
-
-                if (filter.Period == "Month")
-                {
+                case "Month":
                     filter.CalculatedPounds = filter.Pounds / 4;
-
-                    var filteredOnMonth = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
-                       .Where(a => (a.WorkPlace.Period != null) && (a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Pounds <= filter.Pounds))
-                       .Select(a => a.ID)
-                       .ToList();
-                    filteredIds.AddRange(filteredOnMonth);
-
-                    var filteredOnWeek = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
-                        .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period != filter.Period && a.WorkPlace.Pounds <= filter.CalculatedPounds)
-                        .Select(a => a.ID)
-                        .ToList();
-
-                    filteredIds.AddRange(filteredOnWeek);
-                }
-
-                if (filter.Period == "Week")
-                {
+                    break;
+                case "Week":
                     filter.CalculatedPounds = filter.Pounds * 4;
-
-                    var filteredOnWeek = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
-                       .Where(a => (a.WorkPlace.Period != null) && (a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Pounds <= filter.Pounds))
-                       .Select(a => a.ID)
-                       .ToList();
-
-                    filteredIds.AddRange(filteredOnWeek);
-
-                    var filteredOnMonth = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
-                       .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period != filter.Period && a.WorkPlace.Pounds <= filter.CalculatedPounds)
-                       .Select(a => a.ID)
-                       .ToList();
-
-                    filteredIds.AddRange(filteredOnMonth);
-                }
-
-                return filteredIds;
+                    break;
+                default: return ids;
             }
 
-            return ids;
+            List<int> filteredIds = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
+                   .Where(a => a.WorkPlace.Period == null)
+                   .Select(a => a.ID)
+                   .ToList();
+
+            var filteredOnMonth = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
+               .Where(a => (a.WorkPlace.Period != null) && (a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Pounds <= filter.Pounds))
+               .Select(a => a.ID)
+               .ToList();
+
+            var filteredOnWeek = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
+                .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period != filter.Period && a.WorkPlace.Pounds <= filter.CalculatedPounds)
+                .Select(a => a.ID)
+                .ToList();
+
+            filteredIds.AddRange(filteredOnMonth);
+
+            filteredIds.AddRange(filteredOnWeek);
+
+            return filteredIds;
         }
 
         private List<int> FilterByAmenities(Filter filter, List<int> ids)
