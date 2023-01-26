@@ -15,8 +15,7 @@
 
     string city = Model.WorkPlace.City.Substring(0, 1) + Model.WorkPlace.City.Substring(1).ToLower();
     string area = Model.WorkPlace.Area?.Substring(0, 1) + Model.WorkPlace.Area?.Substring(1).ToLower();
-    string[] split = Model.SplitCamelCase(Model.StudioType);
-    string studioType = string.Join(" ", split);
+    string studioType = Model.SplitCamelCase(Model.StudioType);
 
     string aOrAn = "a";
     if (studioType.StartsWith("A") || studioType.StartsWith("a"))
@@ -29,7 +28,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">@splitStudio</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">@studioType</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
