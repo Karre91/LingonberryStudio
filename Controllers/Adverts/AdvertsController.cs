@@ -287,10 +287,10 @@
             switch (myOrder)
             {
                 case OrderBy.PriceLowToHigh:
-                    query = query.OrderBy(p => p.WorkPlace.Pounds).Reverse();
+                    query = query.OrderBy(p => p.WorkPlace.Pounds);
                     break;
                 case OrderBy.PriceHighToLow:
-                    query = query.OrderBy(p => p.WorkPlace.Pounds);
+                    query = query.OrderBy(p => p.WorkPlace.Pounds).Reverse();
                     break;
                 case OrderBy.DateNewToOld:
                     query = query.OrderBy(p => p.TimeCreated).Reverse();
