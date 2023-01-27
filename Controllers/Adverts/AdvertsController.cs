@@ -93,7 +93,7 @@
                 viewModel.AdvertList = Filter(viewModel.Filter);
                 if (viewModel.AdvertList.Count <= 0)
                 {
-                    ViewBag.CityNotFound = $"TEST No results with the city \"{viewModel.Filter.City}\"";
+                    ViewBag.CityNotFound = $"No results with the city \"{viewModel.Filter.City}\"";
                 }
             }
             else
@@ -118,7 +118,7 @@
             ids = FilterByAmenities(filter, ids);
             ids = FilterByDays(filter, ids);
 
-            return GetAdsInDB(ids);
+            return GetAdsInDB(ids, filter.OrderByTest);
         }
 
         private List<int> FilterByOfferingLooking(Filter filter)
@@ -275,15 +275,32 @@
             return goalList;
         }
 
-        private List<Advert> GetAdsInDB(List<int> ids)
+        private List<Advert> GetAdsInDB(List<int> ids, OrderBy myOrder = OrderBy.DateNewToOld)
         {
-            List<Advert> allAdsInDB = db.Adverts
+            var query = db.Adverts
                 .Include(ads => ads.WorkPlace)
                 .ThenInclude(ads => ads.AmenityTypes)
                 .Include(ads => ads.WorkPlace)
                 .ThenInclude(ads => ads.TimeFrames)
-                .Where(p => ids.Contains(p.ID))
-                .OrderBy(p => p.TimeCreated).Reverse()
+                .Where(p => ids.Contains(p.ID));
+
+            switch (myOrder)
+            {
+                case OrderBy.PriceLowToHigh:
+                    query = query.OrderBy(p => p.WorkPlace.Pounds).Reverse();
+                    break;
+                case OrderBy.PriceHighToLow:
+                    query = query.OrderBy(p => p.WorkPlace.Pounds);
+                    break;
+                case OrderBy.DateNewToOld:
+                    query = query.OrderBy(p => p.TimeCreated).Reverse();
+                    break;
+                case OrderBy.DateOldToNew:
+                    query = query.OrderBy(p => p.TimeCreated);
+                    break;
+            }
+
+            var allAdsInDB = query
                 .AsNoTracking()
                 .ToList();
 

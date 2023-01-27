@@ -1,8 +1,10 @@
 ﻿@using LingonberryStudio.Data.Entities
 @using LingonberryStudio.ViewModels
+@using static LingonberryStudio.Models.Filter;
+@using LingonberryStudio.Models;
 @model AdvertViewMoldel
 @{
-    var a = new AdvertViewMoldel();
+
 }
 
 <div id="area-and-results" class="">
@@ -25,15 +27,11 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div  style="float:left">
-                                            <div class="btn-group dropright">
-                                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Dropright
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    TEST
-                                                </div>
-                                            </div>
+                                        <div style="float:left">
+                                                Order by:
+                                                <br>
+                                                @Html.DropDownListFor(m => m.Filter.OrderByTest, Model.Filter.OrderByTest.ToSelectList<OrderBy>(),
+                                                "Test select")
                                         </div>
                                     </div>
                                 </div>

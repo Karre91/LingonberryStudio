@@ -1,6 +1,34 @@
 ﻿namespace LingonberryStudio.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel;
+
+    public enum OrderBy
+    {
+        /// <summary>
+        /// Order by lowest price first.
+        /// </summary>
+        [Description("Price: Low -> High")]
+        PriceLowToHigh,
+
+        /// <summary>
+        /// Order by highest price first.
+        /// </summary>
+        [Description("Price: High -> Low")]
+        PriceHighToLow,
+
+        /// <summary>
+        /// Order by newest ad first.
+        /// </summary>
+        [Description("Date: Newest first")]
+        DateNewToOld,
+
+        /// <summary>
+        /// Order by oldest ad first.
+        /// </summary>
+        [Description("Date: Oldest first")]
+        DateOldToNew
+    }
 
     public class Filter
     {
@@ -65,6 +93,8 @@
         public bool Saturday { get; set; }
 
         public bool Sunday { get; set; }
+
+        public OrderBy OrderByTest { get; set; }
 
         public List<string> GetChosenStudioTypes()
         {
