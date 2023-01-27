@@ -1,6 +1,6 @@
 ﻿window.onload = function () {
 
-    const slideshowImages = document.querySelectorAll(".intro .slideshow-img");
+    const slideshowImages = document.querySelectorAll("#hero-banner-container .slideshow-img");
 
     if (slideshowImages.length != 0) {
         const nextImageDelay = 3000;

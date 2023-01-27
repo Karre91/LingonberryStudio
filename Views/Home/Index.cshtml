@@ -3,17 +3,17 @@
 }
 <div >
     <div class="full-width">
-        <div class="intro">
-            <img src="~/img/1.jpg" class="img-fluid slideshow-img" />
-            <img src="~/img/2.jpg" class="img-fluid slideshow-img" />
-            <img src="~/img/3.jpg" class="img-fluid slideshow-img" />
+		<div id="hero-banner-container">
+			<img src="~/img/1.jpg" class="img-fluid slideshow-img" alt="first slide picturing a studio space" />
+			<img src="~/img/2.jpg" class="img-fluid slideshow-img" alt="second slide picturing a studio space" />
+            <img src="~/img/3.jpg" class="img-fluid slideshow-img" alt="Third slide picturing a studio space" />
         </div>
-        <form method="post" class="searchBox table-responsive" asp-action="IndexSearch" asp-controller="Home">
-            <h2 id="studio-title">FIND CREATIVE STUDIO</h2>
-			<input type="text" name="city" id="searchArea" placeholder="City" class="pt-2 pb-2" onkeyup="this.value = this.value.replace(/[^A-Za-z /-]/, '')" />
+        <form method="post" id="search-box" class="table-responsive" asp-action="IndexSearch" asp-controller="Home">
+            <h2 id="search-box-title">FIND CREATIVE STUDIO</h2>
+			<input type="text" name="city" id="search-area" placeholder="City" class="pt-2 pb-2" onkeyup="this.value = this.value.replace(/[^A-Za-z /-]/, '')" />
 			<div>
-				<button name="offering" value="true" id="share-mine" type="submit" title="I have a studio that I want to share">SHARE MINE</button>
-				<button name="offering" value="false" id="find-theirs" type="submit" title="I don't have a studio but would love to share one">FIND THEIRS</button>
+				<button name="offering" value="true" class="search-buttons" type="submit" title="I have a studio that I want to share">SHARE MINE</button>
+				<button name="offering" value="false" class="search-buttons" type="submit" title="I don't have a studio but would love to share one">FIND THEIRS</button>
 			</div> 
 		</form>
 		<div class="container align-content-center align-content-center error-message"><span>@TempData["searchError"]</span></div>
@@ -25,7 +25,7 @@
 					<div>
 						<div class="card-body" >
 							<div style="text-align:center">
-								<img src="~/img/Connect.png" style="width:125px" class="mb-3" />
+								<img src="~/img/Connect.png" alt="Green illustration of connected people" style="width:125px" class="mb-3" />
 							<h5 class="card-title">CONNECT</h5>
 							</div>
 							<p class="card-text">
@@ -38,7 +38,7 @@
 					<div>
 						<div class="card-body">
 							<div style="text-align:center">
-							<img src="~/img/Idea.png" style="width:125px" class="mb-3" />
+							<img src="~/img/Idea.png" style="width:125px" alt="Red lamp illustrating concept" class="mb-3" />
 							<h5 class="card-title">CONCEPT</h5>
 							</div>
 							<p class="card-text">
@@ -51,7 +51,7 @@
 					<div>
 						<div class="card-body">
 							<div style="text-align:center">
-								<img src="~/img/Safety.png" style="width:125px" class="mb-3" />
+								<img src="~/img/Safety.png" alt="Green lock illustrating safety" style="width:125px" class="mb-3" />
 							<h5 class="card-title">SAFETY</h5>
 							</div>
 							<p class="card-text">	
@@ -63,7 +63,7 @@
 			</div>
 		</div>
 </section>
-<section id="final-text" class="contact section-bg">
+<section id="index-last-section-container" class="section-bg">
 		<div class="container justify-content-center">
 			<div class="section-title">
 				<h2>Lorem ipsum</h2>
