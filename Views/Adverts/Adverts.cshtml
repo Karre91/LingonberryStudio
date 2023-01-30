@@ -3,6 +3,8 @@
 @model AdvertViewMoldel
 @{
     var a = new AdvertViewMoldel();
+    int? maxInput = Model.AdvertList.Max(x => x.WorkPlace.Pounds);
+    int? maxBudget = maxInput + 100;
 }
 
 <div id="filter-container" class="">
@@ -43,20 +45,20 @@
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row">
-                                    <div class="col" onclick="ableRange()">
-                                        <div class="form-check">
+                                    <div class="col">
+                                        <div class="form-check" onclick="ableRange()">
                                             @Html.RadioButtonFor(m => m.Filter.Period, "Month") Month
                                         </div>
                                     </div>
-                                    <div class="col" onclick="ableRange()">
-                                        <div class="form-check">
+                                    <div class="col">
+                                        <div class="form-check" onclick="ableRange()">
                                             @Html.RadioButtonFor(m => m.Filter.Period, "Week") Week
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row">                                  
                                     <label asp-for="Filter.Pounds" class="form-label">Max budget £<span id="displayBudget"></span></label>
-                                    <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="250" id="Currency" name="Filter.Pounds" min="0" max="500" step="1" onchange="myFunction()" disabled>
+                                    <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="250" id="Currency" name="Filter.Pounds" min="0" max=@maxBudget step="1" onchange="myFunction()" disabled>
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row mb-4">

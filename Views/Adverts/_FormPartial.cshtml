@@ -209,10 +209,10 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-check" onclick="enableMeasurement()">
-                                <input class="form-check-input" type="radio" asp-for="Advert.WorkPlace.MeasurementType" name="Measurements" value="Square foot">
+                            <div class="form-check">
+                                <input class="form-check-input" onclick="enableMeasurement()" type="radio" asp-for="Advert.WorkPlace.MeasurementType" name="Measurements" value="Square foot">
                                 <label asp-for="Advert.WorkPlace.MeasurementType">Area square foot</label><br>
-                                <input class="form-check-input" type="radio" asp-for="Advert.WorkPlace.MeasurementType" name="Measurements" value="Square metres">
+                                <input class="form-check-input" type="radio" onclick="enableMeasurement()" asp-for="Advert.WorkPlace.MeasurementType" name="Measurements" value="Square metres">
                                 <label asp-for="Advert.WorkPlace.MeasurementType">Area in square metres</label><br>
                                 <input type="number" id="measurement-number" asp-for="Advert.WorkPlace.MeasurementNumber" disabled />
                                 <span class="invalid-feedback">Please tick a box</span>
@@ -225,10 +225,10 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-check" onclick="enableBudget()">
-                                <input class="form-check-input" type="radio" asp-for="Advert.WorkPlace.Period" name="Period" value="Month">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" onclick="enableBudget()" asp-for="Advert.WorkPlace.Period" name="Period" value="Month">
                                 <label asp-for="Advert.WorkPlace.Period">Price per month</label><br>
-                                <input class="form-check-input" type="radio" asp-for="Advert.WorkPlace.Period" name="Period" value="Week">
+                                <input class="form-check-input" type="radio" onclick="enableBudget()" asp-for="Advert.WorkPlace.Period" name="Period" value="Week">
                                 <label asp-for="Advert.WorkPlace.Period">Price per week</label><br>
                                 <input type="number" asp-for="Advert.WorkPlace.Pounds" id="budget-number" disabled>
                             </div>
