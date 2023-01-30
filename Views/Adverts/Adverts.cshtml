@@ -135,13 +135,13 @@
             string city = ad.WorkPlace.City.Substring(0, 1) + ad.WorkPlace.City.Substring(1).ToLower();
             string studio = ad.SplitCamelCase(ad.StudioType);
 
-            <div class="ad-card">
+            <div id="ad-card">
                 <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
                     <div>
-                        <img src="/@(ad.WorkPlace.ImgUrl)" alt="Work space area" class="img-fluid mx-auto ad-image mb-2">
+                        <img src="/@(ad.WorkPlace.ImgUrl)" alt="Work space area" id="ad-image" class="img-fluid mx-auto mb-2">
                     </div>
                     <div>
-                        <p class="fw-bold">@studio</p>
+                        <p class="fw-bold mb-0">@studio</p>
                         <p class="mb-0">@city</p>
                         <p class="mb-0"><u>£@ad.WorkPlace.Pounds/@ad.WorkPlace.Period</u></p>
                     </div>

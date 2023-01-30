@@ -2,12 +2,13 @@
     ViewData["Title"] = "Home Page";
 }
 <div >
-    <div class="full-width">
+    <div id="full-width-banner">
 		<div id="hero-banner-container">
 			<img src="~/img/1.jpg" class="img-fluid slideshow-img" alt="first slide picturing a studio space" />
 			<img src="~/img/2.jpg" class="img-fluid slideshow-img" alt="second slide picturing a studio space" />
             <img src="~/img/3.jpg" class="img-fluid slideshow-img" alt="Third slide picturing a studio space" />
         </div>
+		<div id="search-box-container">
         <form method="post" id="search-box" class="table-responsive" asp-action="IndexSearch" asp-controller="Home">
             <h2 id="search-box-title">FIND CREATIVE STUDIO</h2>
 			<input type="text" name="city" id="search-area" placeholder="City" class="pt-2 pb-2" onkeyup="this.value = this.value.replace(/[^A-Za-z /-]/, '')" />
@@ -16,6 +17,7 @@
 				<button name="offering" value="false" class="search-buttons" type="submit" title="I don't have a studio but would love to share one">FIND THEIRS</button>
 			</div> 
 		</form>
+		</div>
 		<div class="container align-content-center align-content-center error-message"><span>@TempData["searchError"]</span></div>
     </div>
 	<section class="section-bg table-responsive">

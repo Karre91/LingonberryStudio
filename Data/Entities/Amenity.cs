@@ -60,7 +60,7 @@
 
         [AllowNull]
         [RegularExpression(
-            @"^[a-zA-Z''-'\s]{1,40}$",
+            @"^[a-zA-Z''-'\s\(,)]{1,40}$",
             ErrorMessage = "Characters are not allowed.")]
         public string? Other { get; set; }
 
