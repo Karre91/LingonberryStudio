@@ -34,7 +34,7 @@
                                 <div id="popupForm"></div>
                                 <a asp-controller="Adverts" asp-action="Form" class="nav-link text-dark" data-target="#formModal" data-toggle="modal">Create your ad</a>
                             </li>
-                            <li><div class="vertical-line mx-3"></div></li>
+                            <li><div id="menu-vertical-line" class="mx-3"></div></li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="About">About us</a>
                             </li>
@@ -53,9 +53,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer footer-color">
+    <footer class="border-top footer" id="footer-container">
         <div class="container">
-            &copy; 2022 - LingonberryStudio - <a class="footer-color" asp-area="" asp-controller="Contact" asp-action="Contact">Contact us</a>
+            &copy; 2022 - LingonberryStudio - <a id="footer-link" asp-area="" asp-controller="Contact" asp-action="Contact">Contact us</a>
         </div>
 
     </footer>

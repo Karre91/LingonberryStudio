@@ -18,22 +18,22 @@
 				<div class="form-group">
 					<div class="form-group inputField">
 						<input type="text" asp-for="Name" class="form-control" placeholder="Name" required />
-						<span class="invalid-feedback">Please enter your name</span>
+						<span class="invalid-feedback text-danger">Please enter your name</span>
 						@Html.ValidationMessageFor(m=>m.Name)
 					</div>
 					<input type="email" asp-for="From" class="form-control" placeholder="Email" required />
-					<span class="invalid-feedback">Please enter your email</span>
+					<span class="invalid-feedback text-danger">Please enter your email</span>
 					@Html.ValidationMessageFor(m=>m.From)
 				</div>	
 				<div class="form-group">
 					<input type="text" asp-for="Subject" class="form-control" placeholder="Subject" required />
-					<span class="invalid-feedback">Please write a subject</span>
+					<span class="invalid-feedback text-danger">Please write a subject</span>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<textarea class="form-control" asp-for="Body" style="width: 100%; height: 150px;" placeholder="Message" required></textarea>
-					<span class="invalid-feedback">Please write a message</span>
+					<span class="invalid-feedback text-danger">Please write a message</span>
 				</div>
 			</div>
 			<div class="form-group">

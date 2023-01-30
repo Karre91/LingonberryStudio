@@ -63,7 +63,7 @@
         public IFormFile? FormFile { get; set; }
         [Required(ErrorMessage = "The description field is required.")]
         [RegularExpression(
-            @"^[a-zA-Z''-'\s\(\)\.\!\?\\\-]{1,300}$",
+            @"^[a-zA-Z''-'\s\(\)\,\\.\!\?\\\-]{1,300}$",
             ErrorMessage = "Only letters allowed")]
         public string Description { get; set; }
 
