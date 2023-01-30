@@ -34,27 +34,32 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateAd(AdvertViewMoldel potentialAd)
+        public IActionResult CreateAd(AdvertViewMoldel incoming)
         {
             // var errors = ModelState.Values.SelectMany(v => v.Errors);
-
+            var potentialAd = incoming.Advert;
             if (ModelState.IsValid)
             {
-                potentialAd.Advert.WorkPlace.City = potentialAd.Advert.WorkPlace.City.ToUpper();
+                potentialAd.WorkPlace.City = potentialAd.WorkPlace.City.ToUpper();
 
-                if (potentialAd.Advert.WorkPlace.FormFile != null)
+                if (potentialAd.WorkPlace.FormFile != null)
                 {
-                    potentialAd.Advert.WorkPlace.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + potentialAd.Advert.WorkPlace.FormFile.FileName;
-                    var path = Path.Combine(web.WebRootPath, potentialAd.Advert.WorkPlace.ImgUrl);
-                    potentialAd.Advert.WorkPlace.FormFile.CopyToAsync(new FileStream(path, FileMode.Create));
+                    potentialAd.WorkPlace.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + potentialAd.WorkPlace.FormFile.FileName;
+                    var path = Path.Combine(web.WebRootPath, potentialAd.WorkPlace.ImgUrl);
+                    potentialAd.WorkPlace.FormFile.CopyToAsync(new FileStream(path, FileMode.Create));
                 }
                 else
                 {
                     // if offering == true osv
-                    potentialAd.Advert.WorkPlace.ImgUrl = "StudioImages/handshake.jpg";
+                    potentialAd.WorkPlace.ImgUrl = "StudioImages/handshake.jpg";
                 }
 
-                db.Adverts.Add(potentialAd.Advert);
+                if (potentialAd.WorkPlace.Period == "Week")
+                {
+                    potentialAd.WorkPlace.Pounds = potentialAd.WorkPlace.Pounds * 4;
+                }
+
+                db.Adverts.Add(potentialAd);
                 db.SaveChanges();
                 return RedirectToAction("Adverts");
             }
