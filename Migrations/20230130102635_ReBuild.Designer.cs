@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LingonberryStudio.Migrations
 {
     [DbContext(typeof(LingonberryDbContext))]
-    [Migration("20230124110438_Initial")]
-    partial class Initial
+    [Migration("20230130102635_ReBuild")]
+    partial class ReBuild
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
