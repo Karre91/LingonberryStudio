@@ -3,8 +3,7 @@
 @model AdvertViewMoldel
 @{
     var a = new AdvertViewMoldel();
-    int? maxInput = Model.AdvertList.Max(x => x.WorkPlace.Pounds);
-    int? maxBudget = maxInput + 100;
+    int? maxBudget = Model.AdvertList.Max(x => x.WorkPlace.Pounds+100);
 }
 
 <div id="filter-container" class="">
