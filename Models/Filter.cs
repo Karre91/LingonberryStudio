@@ -6,6 +6,18 @@
     public enum OrderBy
     {
         /// <summary>
+        /// Order by newest ad first.
+        /// </summary>
+        [Description("Date: Newest first")]
+        DateNewToOld,
+
+        /// <summary>
+        /// Order by oldest ad first.
+        /// </summary>
+        [Description("Date: Oldest first")]
+        DateOldToNew,
+
+        /// <summary>
         /// Order by lowest price first.
         /// </summary>
         [Description("Price: Low -> High")]
@@ -16,18 +28,6 @@
         /// </summary>
         [Description("Price: High -> Low")]
         PriceHighToLow,
-
-        /// <summary>
-        /// Order by newest ad first.
-        /// </summary>
-        [Description("Date: Newest first")]
-        DateNewToOld,
-
-        /// <summary>
-        /// Order by oldest ad first.
-        /// </summary>
-        [Description("Date: Oldest first")]
-        DateOldToNew
     }
 
     public class Filter

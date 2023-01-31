@@ -152,3 +152,12 @@ dotnet_diagnostic.SA1027.severity = none
 
 # SA1602: Enumeration items should be documented
 dotnet_diagnostic.SA1602.severity = warning
+
+# SA1508: Closing braces should not be preceded by blank line
+dotnet_diagnostic.SA1508.severity = none
+
+# SA1300: Element should begin with upper-case letter
+dotnet_diagnostic.SA1300.severity = warning
+
+# S101: Types should be named in PascalCase
+dotnet_diagnostic.S101.severity = warning
