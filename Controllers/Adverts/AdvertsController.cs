@@ -50,8 +50,14 @@
                 }
                 else
                 {
-                    // if offering == true osv
-                    potentialAd.WorkPlace.ImgUrl = "StudioImages/handshake.jpg";
+                    if (potentialAd.Offering)
+                    {
+                        potentialAd.WorkPlace.ImgUrl = "StudioImages/handshakeOffering.jpg";
+                    }
+                    else
+                    {
+                        potentialAd.WorkPlace.ImgUrl = "StudioImages/handshakeLooking.jpg";
+                    }
                 }
 
                 if (potentialAd.WorkPlace.Period == "Week")
