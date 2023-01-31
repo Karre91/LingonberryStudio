@@ -241,7 +241,7 @@
                             ImgUrl = "seedImg/musicOffering.jpg",
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             Period = "Week",
-                            Pounds = 70,
+                            Pounds = 280,
                             MeasurementType = "Meters",
                             MeasurementNumber = 43,
                             AmenityTypes = new ()
@@ -292,7 +292,7 @@
                             ImgUrl = "seedImg/artLooking.jpg",
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             Period = "Week",
-                            Pounds = 25,
+                            Pounds = 400,
                             MeasurementType = "Meters",
                             MeasurementNumber = 25,
                             AmenityTypes = new ()
@@ -343,7 +343,7 @@
                             ImgUrl = "seedImg/paintLooking.jpg",
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             Period = "Week",
-                            Pounds = 199,
+                            Pounds = 796,
                             MeasurementType = "Metres",
                             MeasurementNumber = 90,
                             AmenityTypes = new ()
@@ -546,8 +546,8 @@
                             Area = "PIER",
                             ImgUrl = "seedImg/yogaOffering.jpg",
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                            Period = "Month",
-                            Pounds = 280,
+                            Period = null,
+                            Pounds = 0,
                             MeasurementType = "Meters",
                             MeasurementNumber = 65,
                             AmenityTypes = new ()
@@ -598,7 +598,7 @@
                             ImgUrl = "seedImg/darkroom.jpg",
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             Period = "Week",
-                            Pounds = 99,
+                            Pounds = 306,
                             MeasurementType = "Meters",
                             MeasurementNumber = 63,
                             AmenityTypes = new ()
@@ -649,7 +649,7 @@
                                  ImgUrl = "seedImg/musicOffering.jpg",
                                  Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                                  Period = "Week",
-                                 Pounds = 180,
+                                 Pounds = 720,
                                  MeasurementType = "Meters",
                                  MeasurementNumber = 63,
                                  AmenityTypes = new()
@@ -699,8 +699,8 @@
                             Area = "DUDLEY",
                             ImgUrl = "seedImg/film.jpg",
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                            Period = "Week",
-                            Pounds = 125,
+                            Period = null,
+                            Pounds = 0,
                             MeasurementType = "Meters",
                             MeasurementNumber = 85,
                             AmenityTypes = new ()

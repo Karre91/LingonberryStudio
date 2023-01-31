@@ -29,10 +29,9 @@
                                     </div>
                                     <div class="col">
                                         <div style="float:left">
-                                                Order by:
-                                                <br>
-                                                @Html.DropDownListFor(m => m.Filter.OrderByTest, Model.Filter.OrderByTest.ToSelectList<OrderBy>(),
-                                                "Test select")
+                                            Order by:
+                                            <br>
+                                            @Html.DropDownListFor(m => m.Filter.OrderByTest, Model.Filter.OrderByTest.ToSelectList<OrderBy>())
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +141,14 @@
                     <div>
                         <p class="fw-bold mb-0">@studio</p>
                         <p class="mb-0">@city</p>
-                        <p class="mb-0"><u>£@ad.WorkPlace.Pounds/@ad.WorkPlace.Period</u></p>
+                        @if (ad.WorkPlace.Period != null)
+                        {
+                            if (ad.WorkPlace.Period == "Week")
+                            {
+                                ad.WorkPlace.Pounds = ad.WorkPlace.Pounds / 4;
+                            }
+                            <p class="mb-0"><u>£@ad.WorkPlace.Pounds/@ad.WorkPlace.Period</u></p>
+                        }
                     </div>
                 </a>
                 @await Html.PartialAsync("_ChosenAdPartial", ad)
