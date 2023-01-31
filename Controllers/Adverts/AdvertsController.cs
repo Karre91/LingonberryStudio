@@ -44,7 +44,7 @@
 
                 if (potentialAd.WorkPlace.FormFile != null)
                 {
-                    potentialAd.WorkPlace.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + potentialAd.WorkPlace.FormFile.FileName;
+                    potentialAd.WorkPlace.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + ".jpg";
                     var path = Path.Combine(web.WebRootPath, potentialAd.WorkPlace.ImgUrl);
                     potentialAd.WorkPlace.FormFile.CopyToAsync(new FileStream(path, FileMode.Create));
                 }
