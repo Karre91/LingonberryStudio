@@ -14,11 +14,11 @@
             <div>
                 <p id="result">@ViewBag.Total Results</p>
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle filter-buttons" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn dropdown-toggle project-buttons beige-buttons" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         FILTER
                     </button>
                     <div class="dropdown-menu">
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-4 table-responsive-lg">
                             @using (Html.BeginForm("Adverts", "Adverts", FormMethod.Get, new { @class = "px-4 py-3" }))
                             {
                                 <div class="row">
@@ -31,7 +31,7 @@
                                     <div class="col">
                                         <div style="float:left">
                                             @Html.DropDownListFor(m => m.Filter.OrderByTest, Model.Filter.OrderByTest.ToSelectList<OrderBy>())
-                                            <a asp-controller="Adverts" asp-action="Empty" id="margin" class="btn filter-buttons">Clear filters</a>
+                                            <a asp-controller="Adverts" asp-action="Empty" id="clear-button" class="btn project-buttons beige-buttons">CLEAR</a>
                                         </div>
                                     </div>
                                 </div>
@@ -102,10 +102,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" name="hasFilter" id="apply-filter" value="true" class="btn btn-primary btn-block">Apply filters</button> <br /> <br />
+                                <button type="submit" name="hasFilter" value="true" class="btn btn-block project-buttons red-buttons">APPLY FILTERS</button>
                             }
                         </div>
-                        <div class="dropdown-divider"></div>
                     </div>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <input type="checkbox" value="true"> <label></label>
@@ -115,7 +114,7 @@
         </div>
         <div class="col">
             <div>
-                <a class="btn" id="ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">CREATE</a><br /><br />
+                <a class="btn project-buttons" id="ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">CREATE</a><br /><br />
                 <div id="popupForm"></div>
             </div>
         </div>
