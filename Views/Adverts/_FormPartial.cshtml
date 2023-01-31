@@ -184,8 +184,20 @@
                                     <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.AcousticTreatment" value=true>
                                     <label asp-for="Advert.WorkPlace.AmenityTypes.AcousticTreatment">Acoustic treatment</label><br>
 
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.NaturalLight" value=true>
+                                    <label asp-for="Advert.WorkPlace.AmenityTypes.NaturalLight">Natural light</label><br>
+
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.CeramicOven" value=true>
+                                    <label asp-for="Advert.WorkPlace.AmenityTypes.CeramicOven">Ceramic oven</label><br>
+
                                     <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.RunningWater" value=true>
                                     <label asp-for="Advert.WorkPlace.AmenityTypes.RunningWater">Running water</label><br>
+
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.Shower" value=true>
+                                    <label asp-for="Advert.WorkPlace.AmenityTypes.Shower">Shower</label><br>
+
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.Toilet" value=true>
+                                    <label asp-for="Advert.WorkPlace.AmenityTypes.Toilet">Toilet</label><br>
 
                                     <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.Storage" value=true>
                                     <label asp-for="Advert.WorkPlace.AmenityTypes.Storage">Storage</label><br>
@@ -198,14 +210,13 @@
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                @Html.RadioButtonFor(m => m.Advert.WorkPlace.MeasurementType, "Square foot") Area square foot
-                                @*<input class="form-check-input" type="radio" asp-for="Advert.WorkPlace.MeasurementType" name="Measurements" value="Square foot">*@
-                                @*<label asp-for="Advert.WorkPlace.MeasurementType">Area square foot</label><br>*@
-                                @Html.RadioButtonFor(m => m.Advert.WorkPlace.MeasurementType, "Square metres") Area in square metres
-                                @*<input class="form-check-input" type="radio" asp-for="Advert.WorkPlace.MeasurementType" name="Measurements" value="Square metres">*@
-                                @*<label asp-for="Advert.WorkPlace.MeasurementType">Area in square metres</label><br>*@
-                                <input type="number" asp-for="Advert.WorkPlace.MeasurementNumber" />
-                                @*<span asp-validation-for="Advert.WorkPlace.MeasurementNumber" class="text-danger"></span>*@
+                                <input class="form-check-input" onclick="enableMeasurement()" type="radio" asp-for="Advert.WorkPlace.MeasurementType" name="Measurements" value="Square foot">
+                                <label asp-for="Advert.WorkPlace.MeasurementType">Area square foot</label><br>
+                                <input class="form-check-input" type="radio" onclick="enableMeasurement()" asp-for="Advert.WorkPlace.MeasurementType" name="Measurements" value="Square metres">
+                                <label asp-for="Advert.WorkPlace.MeasurementType">Area in square metres</label><br>
+                                <input type="number" id="measurement-number" asp-for="Advert.WorkPlace.MeasurementNumber" disabled />
+                                <span class="invalid-feedback">Please tick a box</span>
+                                <span asp-validation-for="Advert.WorkPlace.MeasurementNumber" class="text-danger"></span>
                             </div>
                             <div class="form-group mx-4 mt-3">
                                 <label class="formAlignment" asp-for="Advert.WorkPlace.TimeFrames">Select Date</label> <br>
@@ -215,11 +226,11 @@
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                @Html.RadioButtonFor(m => m.Advert.WorkPlace.Period, "Month") Price per month
-                                @*<label asp-for="Advert.WorkPlace.Period">Price per month</label><br>*@
-                                @Html.RadioButtonFor(m => m.Advert.WorkPlace.Period, "Week") Price per week
-                                @*<label asp-for="Advert.WorkPlace.Period">Price per week</label><br>*@
-                                <input type="number" asp-for="Advert.WorkPlace.Pounds">
+                                <input class="form-check-input" type="radio" onclick="enableBudget()" asp-for="Advert.WorkPlace.Period" name="Period" value="Month">
+                                <label asp-for="Advert.WorkPlace.Period">Price per month</label><br>
+                                <input class="form-check-input" type="radio" onclick="enableBudget()" asp-for="Advert.WorkPlace.Period" name="Period" value="Week">
+                                <label asp-for="Advert.WorkPlace.Period">Price per week</label><br>
+                                <input type="number" asp-for="Advert.WorkPlace.Pounds" id="budget-number" disabled>
                             </div>
                             <div class="form-group mx-4 mt-3">
                                 <label class="formAlignment" asp-for="Advert.WorkPlace.TimeFrames">Select time</label> <br>
@@ -246,6 +257,16 @@
     function showfield(name) {
         if (name == 'Other') document.getElementById('div1').innerHTML = 'Other: <input type="text" name="other" />';
         else document.getElementById('div1').innerHTML = '';
+    }
+
+    function enableMeasurement() {
+        document.getElementById("measurement-number").disabled = false;
+        var x = document.getElementById("measurement-number").value;
+    }
+
+    function enableBudget() {
+        document.getElementById("budget-number").disabled = false;
+        var x = document.getElementById("budget-number").value;
     }
 </script>
 <script language="javascript">
