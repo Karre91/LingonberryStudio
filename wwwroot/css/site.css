@@ -30,6 +30,11 @@ a {
     height: 400px;
     position: relative;
 }
+#budget {
+    font-synthesis: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: bold;
+}
 
 .checkbox {
     margin-left: 20px;
@@ -81,7 +86,6 @@ a {
     padding: 10px;
     font-family: 'Jost', sans-serif;
     font-weight: bolder 500;
-    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.10);
 }
 #ad-btn {
     padding: 10px;
@@ -113,14 +117,6 @@ a {
     background-color: beige;
     color: black;
 }
-
-#clear-button {
-    padding: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-left:30px;
-}
-
 .red-buttons {
     background-color: #c7342a;
 }
@@ -131,6 +127,7 @@ a {
 .form-buttons {
     width: 7rem;
 }
+
 
 #search-area {
     position: relative;
@@ -351,11 +348,6 @@ input:focus::placeholder, textarea:focus::placeholder {
         margin: auto;
     }
 
-    #clear-button {
-        margin-left: 20px;
-        margin-top: 4px;
-    }
-
     #search-box-container {
         display: flex;
         justify-content: center;
@@ -367,9 +359,12 @@ input:focus::placeholder, textarea:focus::placeholder {
             display: none;
         }
 
+        .index-buttons{
+            margin-bottom:3px;
+        }
+
         #clear-button {
-            margin-left: 20px;
-            margin-top: 4px;
+         margin-top:6px;
         }
 
         .search-buttons {

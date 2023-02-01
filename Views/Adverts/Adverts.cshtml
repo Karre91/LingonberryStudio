@@ -13,7 +13,7 @@
         <div class="col">
             <div>
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle project-buttons beige-buttons" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn dropdown-toggle project-buttons beige-buttons form-buttons" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         FILTER
                     </button>
                     <div class="dropdown-menu">
@@ -22,15 +22,14 @@
                             {
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-check" style="float:left">
-                                            @Html.CheckBoxFor(m => m.Filter.Offering, true)Offering space.<br />
-                                            @Html.CheckBoxFor(m => m.Filter.Looking, true)Looking to rent a space.
+                                        <div class="form-check p-2">
+                                            @Html.CheckBoxFor(m => m.Filter.Offering, true) Offering space.<br>
+                                            @Html.CheckBoxFor(m => m.Filter.Looking, true) Looking to rent.
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div style="float:left">
+                                        <div>
                                             @Html.DropDownListFor(m => m.Filter.OrderByTest, Model.Filter.OrderByTest.ToSelectList<OrderBy>())
-                                            <a asp-controller="Adverts" asp-action="Empty" id="clear-button" class="btn project-buttons beige-buttons">CLEAR</a>
                                         </div>
                                     </div>
                                 </div>
@@ -40,19 +39,18 @@
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col mb-0">
+                                        <label asp-for="Filter.Pounds" class="form-label mb-0" id="budget">Max budget £:<span id="displayBudget"></span> </label>
                                         <div class="form-check" onclick="ableRange()">
                                             @Html.RadioButtonFor(m => m.Filter.Period, "Month") Month
                                         </div>
-                                    </div>
-                                    <div class="col">
                                         <div class="form-check" onclick="ableRange()">
                                             @Html.RadioButtonFor(m => m.Filter.Period, "Week") Week
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label asp-for="Filter.Pounds" class="form-label">Max budget £<span id="displayBudget"></span></label>
+                              
                                     <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="250" id="Currency" name="Filter.Pounds" min="0" max=@maxBudget step="1" onchange="myFunction()" disabled>
                                 </div>
                                 <div class="dropdown-divider"></div>
@@ -60,7 +58,7 @@
                                     <div class="col d-flex col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <!-- Checkbox -->
                                         <div class="form-check">
-                                            <p>Studio Type</p>
+                                            <p><b>Studio Type:</b></p>
                                             @Html.CheckBoxFor(m => m.Filter.MusicStudio, true) Music<br />
                                             @Html.CheckBoxFor(m => m.Filter.ArtStudio, true) Art<br />
                                             @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true) Photo<br />
@@ -72,7 +70,7 @@
                                     </div>
                                     <div class="col d-flex col-sm-12 col-md-6 col-lg-4">
                                             <div class="form-group checkbox">
-                                            <p>Availability:</p>
+                                            <p><b>Availability:</b></p>
                                             @Html.CheckBoxFor(m => m.Filter.Monday) Monday <br />
                                             @Html.CheckBoxFor(m => m.Filter.Tuesday) Tuesday <br />
                                             @Html.CheckBoxFor(m => m.Filter.Wednesday) Wednesday <br />
@@ -84,7 +82,7 @@
                                         </div>
                                     <div class="col d-flex col-sm-12 col-md-12 col-lg-4">
                                             <div class="form-group checkbox">
-                                            <p>Amenities:</p>
+                                            <p><b>Amenities:</b></p>
                                             @Html.CheckBoxFor(m => m.Filter.Parking, true) Parking <br />
                                             @Html.CheckBoxFor(m => m.Filter.Shower, true) Shower <br />
                                             @Html.CheckBoxFor(m => m.Filter.AirCondition, true) Air conditioning <br />
@@ -101,6 +99,7 @@
                                     </div>
                                 <button type="submit" name="hasFilter" value="true" class="btn-block project-buttons green-buttons">APPLY FILTERS</button>
                                 <button onclick="history.back()" class="red-buttons project-buttons mt-2 form-buttons">CLOSE</button>
+                                <a asp-controller="Adverts" asp-action="Empty" id="clear-button" class="btn project-buttons beige-buttons form-buttons">CLEAR</a>
                             }
                         </div>
                     </div>
