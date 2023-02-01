@@ -52,7 +52,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">                                  
+                                <div class="row">
                                     <label asp-for="Filter.Pounds" class="form-label">Max budget £<span id="displayBudget"></span></label>
                                     <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="250" id="Currency" name="Filter.Pounds" min="0" max=@maxBudget step="1" onchange="myFunction()" disabled>
                                 </div>
@@ -135,10 +135,22 @@
 
             <div id="ad-card">
                 <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
-                    <div>
+                    <div class="container">
                         <img src="/@(ad.WorkPlace.ImgUrl)" alt="Work space area" id="ad-image" class="img-fluid mx-auto mb-2">
+                        @if (ad.Offering)
+                        {
+                            <div class="text-block-offering">OFFERING</div>
+                        }
+                        else
+                        {
+                            <div class="text-block-offering">LOOKING</div>
+                        }
+                        @if (ad.WorkPlace.ImgUrl!.StartsWith("seed"))
+                        {
+                            <div class="text-block-seed">DEMO</div>
+                        }
                     </div>
-                    <div>
+                    <div class="container">
                         <p class="fw-bold mb-0">@studio</p>
                         <p class="mb-0">@city</p>
                         @if (ad.WorkPlace.Period != null)
@@ -156,6 +168,9 @@
         }
     </div>
 </div>
+
+
+
 
 <script>
     function myFunction() {
