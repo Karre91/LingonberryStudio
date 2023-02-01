@@ -132,15 +132,15 @@
                         <img src="/@(ad.WorkPlace.ImgUrl)" alt="Work space area" id="ad-image" class="img-fluid mx-auto mb-2">
                         @if (ad.Offering)
                         {
-                            <div class="text-block-offering">OFFERING</div>
+                            <div class="text-block offering-block">OFFERING</div>
                         }
                         else
                         {
-                            <div class="text-block-offering">LOOKING</div>
+                            <div class="text-block offering-block">LOOKING</div>
                         }
                         @if (ad.WorkPlace.ImgUrl!.StartsWith("seed"))
                         {
-                            <div class="text-block-seed">DEMO</div>
+                            <div class="text-block" id="seed-block">DEMO</div>
                         }
                     </div>
                     <div class="container">
