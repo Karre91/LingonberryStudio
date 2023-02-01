@@ -50,14 +50,7 @@
                 }
                 else
                 {
-                    if (potentialAd.Offering)
-                    {
-                        potentialAd.WorkPlace.ImgUrl = "StudioImages/handshakeOffering.jpg";
-                    }
-                    else
-                    {
-                        potentialAd.WorkPlace.ImgUrl = "StudioImages/handshakeLooking.jpg";
-                    }
+                    potentialAd.WorkPlace.ImgUrl = "StudioImages/handshake.jpg";
                 }
 
                 if (potentialAd.WorkPlace.Period == "Week")
