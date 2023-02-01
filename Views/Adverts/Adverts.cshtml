@@ -58,7 +58,7 @@
                                     <div class="col d-flex col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <!-- Checkbox -->
                                         <div class="form-check">
-                                            <p><b>Studio Type:</b></p>
+                                            <p class="mb-1"><b>Studio Type:</b></p>
                                             @Html.CheckBoxFor(m => m.Filter.MusicStudio, true) Music<br />
                                             @Html.CheckBoxFor(m => m.Filter.ArtStudio, true) Art<br />
                                             @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true) Photo<br />
@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="col d-flex col-sm-12 col-md-6 col-lg-4">
                                             <div class="form-group checkbox">
-                                            <p><b>Availability:</b></p>
+                                            <p class="mb-1"><b>Availability:</b></p>
                                             @Html.CheckBoxFor(m => m.Filter.Monday) Monday <br />
                                             @Html.CheckBoxFor(m => m.Filter.Tuesday) Tuesday <br />
                                             @Html.CheckBoxFor(m => m.Filter.Wednesday) Wednesday <br />
@@ -82,7 +82,7 @@
                                         </div>
                                     <div class="col d-flex col-sm-12 col-md-12 col-lg-4">
                                             <div class="form-group checkbox">
-                                            <p><b>Amenities:</b></p>
+                                            <p class="mb-1"><b>Amenities:</b></p>
                                             @Html.CheckBoxFor(m => m.Filter.Parking, true) Parking <br />
                                             @Html.CheckBoxFor(m => m.Filter.Shower, true) Shower <br />
                                             @Html.CheckBoxFor(m => m.Filter.AirCondition, true) Air conditioning <br />
