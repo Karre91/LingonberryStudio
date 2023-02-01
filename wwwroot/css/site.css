@@ -206,42 +206,42 @@ a {
         border: solid 1px;
     }
 
-.contact-form form {
-    padding: 14%;
-}
-
-    .contact-form form .row {
-        margin-bottom: -7%;
+    .contact-form form {
+        padding: 14%;
     }
 
-.contact-form h3 {
-    margin-bottom: 8%;
-    margin-top: -10%;
-    text-align: center;
-    color: #333e04;
-    font-family: 'Jost', sans-serif;
-    font-weight: bolder 500;
-    font-synthesis: none;
-}
+        .contact-form form .row {
+            margin-bottom: -7%;
+        }
 
-.contact-form .btnContact {
-    background-color: #c7342a;
-    border: none;
-    border-radius: 40px;
-    border-radius: 40px;
-    color: white;
-    padding-right: 25px;
-    padding-left: 25px;
-    margin-right: 5px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    font-family: 'Jost', sans-serif;
-    font-weight: bolder 500;
-    font-synthesis: none;
-}
+    .contact-form h3 {
+        margin-bottom: 8%;
+        margin-top: -10%;
+        text-align: center;
+        color: #333e04;
+        font-family: 'Jost', sans-serif;
+        font-weight: bolder 500;
+        font-synthesis: none;
+    }
+
+    .contact-form .btnContact {
+        background-color: #c7342a;
+        border: none;
+        border-radius: 40px;
+        border-radius: 40px;
+        color: white;
+        padding-right: 25px;
+        padding-left: 25px;
+        margin-right: 5px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        font-family: 'Jost', sans-serif;
+        font-weight: bolder 500;
+        font-synthesis: none;
+    }
 
 /*Styling for contact form*/
-input::-webkit-outer-spin-button, 
+input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
@@ -269,8 +269,9 @@ input:focus::placeholder, textarea:focus::placeholder {
     text-decoration: none;
     width: 100%;
 }
-#footer-link{
-    color:black;
+
+#footer-link {
+    color: black;
 }
 
 .flex-grid-container {
@@ -283,12 +284,36 @@ input:focus::placeholder, textarea:focus::placeholder {
     max-width: 350px;
 }
 
-#ad-image {
+.container {
+    position: relative;
+}
+
+#ad-image {    
+    position:relative;
     border-radius: 7%;
     object-fit: cover;
     width: 250px;
     height: 250px;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
+}
+.text-block-offering {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: black;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.text-block-seed {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: black;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 #filter-container {
