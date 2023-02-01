@@ -71,6 +71,9 @@
         public string? Period { get; set; }
 
         [AllowNull]
+        [RegularExpression(
+            @"^[0-9]{1,6}$",
+            ErrorMessage = "Maximum 6 digits")]
         public int? Pounds { get; set; }
 
         [AllowNull]

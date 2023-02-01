@@ -8,13 +8,13 @@
     int? maxBudget = Model.AdvertList.Max(x => x.WorkPlace.Pounds+100);
 }
 
-<div id="filter-container" class="">
+<div id="filter-container">
     <div class="row">
         <div class="col">
             <div>
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Filter
+                    <button class="btn dropdown-toggle project-buttons beige-buttons form-buttons" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        FILTER
                     </button>
                     <div class="dropdown-menu">
                         <div class="form-outline mb-4">
@@ -22,15 +22,13 @@
                             {
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-check" style="float:left">
-                                            @Html.CheckBoxFor(m => m.Filter.Offering, true)See ads that offers space.<br />
-                                            @Html.CheckBoxFor(m => m.Filter.Looking, true)See ads that is looking to rent a space.
+                                        <div class="form-check p-2">
+                                            @Html.CheckBoxFor(m => m.Filter.Offering, true) Offering space.<br>
+                                            @Html.CheckBoxFor(m => m.Filter.Looking, true) Looking to rent.
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div style="float:left">
-                                            Order by:
-                                            <br>
+                                        <div>
                                             @Html.DropDownListFor(m => m.Filter.OrderByTest, Model.Filter.OrderByTest.ToSelectList<OrderBy>())
                                         </div>
                                     </div>
@@ -41,72 +39,69 @@
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col mb-0">
+                                        <label asp-for="Filter.Pounds" class="form-label mb-0" id="budget">Max budget £:<span id="displayBudget"></span> </label>
                                         <div class="form-check" onclick="ableRange()">
                                             @Html.RadioButtonFor(m => m.Filter.Period, "Month") Month
                                         </div>
-                                    </div>
-                                    <div class="col">
                                         <div class="form-check" onclick="ableRange()">
                                             @Html.RadioButtonFor(m => m.Filter.Period, "Week") Week
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label asp-for="Filter.Pounds" class="form-label">Max budget £<span id="displayBudget"></span></label>
+                              
                                     <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="250" id="Currency" name="Filter.Pounds" min="0" max=@maxBudget step="1" onchange="myFunction()" disabled>
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row mb-4">
-                                    <div class="col d-flex justify-content-center">
+                                    <div class="col d-flex col-sm-12 col-md-6 col-lg-4 mb-3">
                                         <!-- Checkbox -->
                                         <div class="form-check">
-                                            <p>Studio Type</p>
-                                            @Html.CheckBoxFor(m => m.Filter.MusicStudio, true) Music Studio<br />
-                                            @Html.CheckBoxFor(m => m.Filter.ArtStudio, true) Art Studio<br />
-                                            @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true) Photo Studio<br />
-                                            @Html.CheckBoxFor(m => m.Filter.DanceRehersalStudio, true) Dance Rehersal Studio<br />
-                                            @Html.CheckBoxFor(m => m.Filter.CeramicsStudio, true) Ceramics Studio<br />
+                                            <p class="mb-1"><b>Studio Type:</b></p>
+                                            @Html.CheckBoxFor(m => m.Filter.MusicStudio, true) Music<br />
+                                            @Html.CheckBoxFor(m => m.Filter.ArtStudio, true) Art<br />
+                                            @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true) Photo<br />
+                                            @Html.CheckBoxFor(m => m.Filter.DanceRehersalStudio, true) Dance Rehersal<br />
+                                            @Html.CheckBoxFor(m => m.Filter.CeramicsStudio, true) Ceramics<br />
                                             @Html.CheckBoxFor(m => m.Filter.PaintingWorkshop, true) Painting Workshop<br />
                                             @Html.CheckBoxFor(m => m.Filter.OtherStudio, true) Other
                                         </div>
-                                        <br />
-
-                                        <div class="col d-flex justify-content-center">
+                                    </div>
+                                    <div class="col d-flex col-sm-12 col-md-6 col-lg-4">
                                             <div class="form-group checkbox">
-                                                <p>Amenities</p>
-                                                @Html.CheckBoxFor(m => m.Filter.Parking, true) Parking <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Shower, true) Shower <br />
-                                                @Html.CheckBoxFor(m => m.Filter.AirCondition, true) Air conditioning <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Kitchen) Kitchen <br />
-                                                @Html.CheckBoxFor(m => m.Filter.NaturalLight) Natural Light <br />
-                                                @Html.CheckBoxFor(m => m.Filter.AcousticTreatment) Acoustic Treatment <br />
-                                                @Html.CheckBoxFor(m => m.Filter.RunningWater) Running Water <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Storage) Storage <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Toilet, true) Toilet <br />
-                                                @Html.CheckBoxFor(m => m.Filter.CeramicOven, true) Ceramic oven <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Other) Other <br />
+                                            <p class="mb-1"><b>Availability:</b></p>
+                                            @Html.CheckBoxFor(m => m.Filter.Monday) Monday <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Tuesday) Tuesday <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Wednesday) Wednesday <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Thursday) Thursday <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Friday) Friday <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Saturday) Saturday <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Sunday) Sunday <br />
                                             </div>
                                         </div>
-                                        <div class="col d-flex justify-content-center">
+                                    <div class="col d-flex col-sm-12 col-md-12 col-lg-4">
                                             <div class="form-group checkbox">
-                                                <p>Studio is avalible following days:</p>
-                                                @Html.CheckBoxFor(m => m.Filter.Monday) Monday <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Tuesday) Tuesday <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Wednesday) Wednesday <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Thursday) Thursday <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Friday) Friday <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Saturday) Saturday <br />
-                                                @Html.CheckBoxFor(m => m.Filter.Sunday) Sunday <br />
+                                            <p class="mb-1"><b>Amenities:</b></p>
+                                            @Html.CheckBoxFor(m => m.Filter.Parking, true) Parking <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Shower, true) Shower <br />
+                                            @Html.CheckBoxFor(m => m.Filter.AirCondition, true) Air conditioning <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Kitchen) Kitchen <br />
+                                            @Html.CheckBoxFor(m => m.Filter.NaturalLight) Natural Light <br />
+                                            @Html.CheckBoxFor(m => m.Filter.AcousticTreatment) Acoustic Treatment <br />
+                                            @Html.CheckBoxFor(m => m.Filter.RunningWater) Running Water <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Storage) Storage <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Toilet, true) Toilet <br />
+                                            @Html.CheckBoxFor(m => m.Filter.CeramicOven, true) Ceramic oven <br />
+                                            @Html.CheckBoxFor(m => m.Filter.Other) Other <br />
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <button type="submit" name="hasFilter" value="true" class="btn btn-primary btn-block">Apply filters</button> <br /> <br />
-                                <a asp-controller="Adverts" asp-action="Empty" class="btn btn-primary">Clear filters</a>
+                                <button type="submit" name="hasFilter" value="true" class="btn-block project-buttons green-buttons">APPLY FILTERS</button>
+                                <button onclick="history.back()" class="red-buttons project-buttons mt-2 form-buttons">CLOSE</button>
+                                <a asp-controller="Adverts" asp-action="Empty" id="clear-button" class="btn project-buttons beige-buttons form-buttons">CLEAR</a>
                             }
                         </div>
-                        <div class="dropdown-divider"></div>
                     </div>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <input type="checkbox" value="true"> <label></label>
@@ -116,15 +111,13 @@
         </div>
         <div class="col">
             <div>
-                <a class="btn" id="ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">CREATE</a><br /><br />
-                <p id="result">@ViewBag.Total Results</p>
+                <a class="btn project-buttons form-buttons" id="ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">CREATE</a><br /><br />
                 <div id="popupForm"></div>
             </div>
         </div>
     </div>
 </div>
-
-
+<p id="result">@ViewBag.Total Results</p>
 <div class="container-fluid flex-grid-container border-0">
     <div class="flex-grid-container justify-content-center">
         <div class="container align-content-center align-content-center error-message"><span>@ViewBag.CityNotFound</span></div>
@@ -139,15 +132,15 @@
                         <img src="/@(ad.WorkPlace.ImgUrl)" alt="Work space area" id="ad-image" class="img-fluid mx-auto mb-2">
                         @if (ad.Offering)
                         {
-                            <div class="text-block-offering">OFFERING</div>
+                            <div class="text-block offering-block">OFFERING</div>
                         }
                         else
                         {
-                            <div class="text-block-offering">LOOKING</div>
+                            <div class="text-block offering-block">LOOKING</div>
                         }
                         @if (ad.WorkPlace.ImgUrl!.StartsWith("seed"))
                         {
-                            <div class="text-block-seed">DEMO</div>
+                            <div class="text-block" id="seed-block">DEMO</div>
                         }
                     </div>
                     <div class="container">
@@ -168,9 +161,6 @@
         }
     </div>
 </div>
-
-
-
 
 <script>
     function myFunction() {
