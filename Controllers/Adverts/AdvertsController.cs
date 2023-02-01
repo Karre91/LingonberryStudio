@@ -44,20 +44,13 @@
 
                 if (potentialAd.WorkPlace.FormFile != null)
                 {
-                    potentialAd.WorkPlace.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + ".jpg";
+                    potentialAd.WorkPlace.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + potentialAd.WorkPlace.FormFile.FileName;
                     var path = Path.Combine(web.WebRootPath, potentialAd.WorkPlace.ImgUrl);
                     potentialAd.WorkPlace.FormFile.CopyToAsync(new FileStream(path, FileMode.Create));
                 }
                 else
                 {
-                    if (potentialAd.Offering)
-                    {
-                        potentialAd.WorkPlace.ImgUrl = "StudioImages/handshakeOffering.jpg";
-                    }
-                    else
-                    {
-                        potentialAd.WorkPlace.ImgUrl = "StudioImages/handshakeLooking.jpg";
-                    }
+                    potentialAd.WorkPlace.ImgUrl = "StudioImages/handshake.jpg";
                 }
 
                 if (potentialAd.WorkPlace.Period == "Week")
