@@ -1,19 +1,19 @@
-﻿using LingonberryStudio.Data;
-using LingonberryStudio.Data.Entities;
-using Microsoft.AspNetCore.Mvc;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace LingonberryStudio.Controllers.About
+﻿namespace LingonberryStudio.Controllers.About
 {
+    using LingonberryStudio.Data;
+    using LingonberryStudio.Data.Entities;
+    using Microsoft.AspNetCore.Mvc;
+    using static System.Runtime.InteropServices.JavaScript.JSType;
+
     public class AboutController : Controller
     {
-        private readonly LingonberryDbContext _db;
-        public readonly IWebHostEnvironment _Web;
+        private readonly IWebHostEnvironment web;
+        private readonly LingonberryDbContext db;
 
         public AboutController(LingonberryDbContext db, IWebHostEnvironment web)
         {
-            _db = db;
-            _Web = web;
+            this.db = db;
+            this.web = web;
         }
 
         public IActionResult About()

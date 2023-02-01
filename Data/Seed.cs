@@ -1,10 +1,11 @@
-﻿using LingonberryStudio.Models;
-using LingonberryStudio.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-
-namespace LingonberryStudio.Data
+﻿namespace LingonberryStudio.Data
 {
-    public class Seed
+    using System.Runtime.CompilerServices;
+    using LingonberryStudio.Data.Entities;
+    using LingonberryStudio.Models;
+    using Microsoft.EntityFrameworkCore;
+
+    public static class Seed
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
@@ -12,35 +13,730 @@ namespace LingonberryStudio.Data
                 serviceProvider.GetRequiredService<
                     DbContextOptions<LingonberryDbContext>>()))
             {
+                if (context.Adverts.Any())
+                {
+                    return;   // DB has been seeded
+                }
 
-                //    if (context.Adverts.Any())
-                //    {
-                //        return;   // DB has been seeded
-                //    }
-
-                //    context.Adverts.AddRange(
-                //        new Advert()
-                //        {
-                //            Name = "Havve,",
-                //            Description = "fin"
-                //        },
-                //        new Advert()
-                //        {
-                //            Name = "Havve,",
-                //            Description = "ful"
-                //        }
-                //        );
-
-                //    if (context.Adverts.Any())
-                //    {
-                //        return;   // DB has been seeded
-                //    }
-
-
-                //    context.SaveChanges();
-                //}
+                context.Adverts.AddRange(
+                    new Advert()
+                    {
+                        TimeCreated = DateTime.Today,
+                        Offering = true,
+                        FirstName = "Karin",
+                        LastName = "Eurenius",
+                        Email = "kleurenius@gmail.com",
+                        PhoneNumber = "0707310798",
+                        Artist = "KarinSjunger",
+                        SocialMedia = "@instagram KarinSjunger",
+                        StudioType = "ArtStudio",
+                        WorkPlace = new ()
+                        {
+                            City = "LONDON",
+                            Area = "WANDSWORTH",
+                            ImgUrl = "seedImg/artOffering.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = "Month",
+                            Pounds = 300,
+                            MeasurementType = "Meters",
+                            MeasurementNumber = 50,
+                            AmenityTypes = new ()
+                            {
+                                Shower = false,
+                                CeramicOven = false,
+                                Parking = true,
+                                AirCondition = true,
+                                Kitchen = true,
+                                NaturalLight = true,
+                                RunningWater = true,
+                                Storage = true,
+                                Toilet = true,
+                                AcousticTreatment = false,
+                                Other = "Changing rooms",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 05, 19, 08, 30, 00),
+                                ClosingTime = new (2024, 05, 19, 17, 30, 00),
+                                StartDate = new (2023, 05, 19),
+                                EndDate = new (2024, 05, 19),
+                                Monday = true,
+                                Tuesday = true,
+                                Wednesday = true,
+                                Thursday = true,
+                                Friday = true,
+                                Saturday = false,
+                                Sunday = false,
+                            },
+                        },
+                    },
+                    new Advert()
+                    {
+                        TimeCreated = new (2023, 01, 01),
+                        Offering = true,
+                        FirstName = "Mark",
+                        LastName = "Bichan",
+                        Email = "bichan4twin@gmail.com",
+                        PhoneNumber = "+447528402600",
+                        Artist = null,
+                        SocialMedia = null,
+                        StudioType = "PhotoStudio",
+                        WorkPlace = new ()
+                        {
+                            City = "EDINBURGH",
+                            Area = "STOCKBRIDGE",
+                            ImgUrl = "seedImg/photoOffering.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = "Month",
+                            Pounds = 230,
+                            MeasurementType = "Feet",
+                            MeasurementNumber = 90,
+                            AmenityTypes = new ()
+                            {
+                                Parking = false,
+                                Shower = true,
+                                AirCondition = false,
+                                Kitchen = false,
+                                NaturalLight = true,
+                                AcousticTreatment = false,
+                                RunningWater = true,
+                                Storage = true,
+                                Toilet = true,
+                                CeramicOven = false,
+                                Other = "Tripod",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 02, 26, 12, 30, 00),
+                                ClosingTime = new (2024, 02, 26, 22, 30, 00),
+                                StartDate = new (2023, 02, 26),
+                                EndDate = new (2024, 02, 26),
+                                Monday = true,
+                                Tuesday = true,
+                                Wednesday = true,
+                                Thursday = true,
+                                Friday = true,
+                                Saturday = true,
+                                Sunday = true,
+                            },
+                        },
+                    },
+                    new Advert()
+                    {
+                        TimeCreated = new (2023, 01, 01),
+                        Offering = true,
+                        FirstName = "Josefin",
+                        LastName = "Unefäldt",
+                        Email = "jossebosse@gmail.com",
+                        PhoneNumber = "+447511482830",
+                        Artist = "Jojo",
+                        SocialMedia = null,
+                        StudioType = "CeramicsStudio",
+                        WorkPlace = new ()
+                        {
+                            City = "LONDON",
+                            Area = "HACKNEY",
+                            ImgUrl = "seedImg/ceramicsOffering.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = "Month",
+                            Pounds = 115,
+                            MeasurementType = "Feet",
+                            MeasurementNumber = 110,
+                            AmenityTypes = new ()
+                            {
+                                Parking = false,
+                                Shower = false,
+                                AirCondition = false,
+                                Kitchen = false,
+                                NaturalLight = true,
+                                AcousticTreatment = false,
+                                RunningWater = true,
+                                Storage = false,
+                                Toilet = true,
+                                CeramicOven = true,
+                                Other = "Greenery",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 02, 28, 08, 00, 00),
+                                ClosingTime = new (2024, 02, 28, 16, 00, 00),
+                                StartDate = new (2023, 02, 28),
+                                EndDate = new (2024, 02, 28),
+                                Monday = true,
+                                Tuesday = true,
+                                Wednesday = true,
+                                Thursday = false,
+                                Friday = false,
+                                Saturday = false,
+                                Sunday = true,
+                            },
+                        },
+                    },
+                    new Advert()
+                    {
+                        TimeCreated = new (2023, 01, 13),
+                        Offering = true,
+                        FirstName = "Kalle",
+                        LastName = "Josefsson",
+                        Email = "kalle_j@gmail.com",
+                        PhoneNumber = "0703002001",
+                        Artist = null,
+                        SocialMedia = "@instagram dance_with_kj",
+                        StudioType = "DanceRehersalStudio",
+                        WorkPlace = new ()
+                        {
+                            City = "OXFORD",
+                            Area = "CENTER",
+                            ImgUrl = "seedImg/danceOffering.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = "Month",
+                            Pounds = 880,
+                            MeasurementType = "Meters",
+                            MeasurementNumber = 110,
+                            AmenityTypes = new ()
+                            {
+                                Parking = false,
+                                Shower = true,
+                                AirCondition = true,
+                                Kitchen = false,
+                                NaturalLight = true,
+                                AcousticTreatment = true,
+                                RunningWater = true,
+                                Storage = true,
+                                Toilet = true,
+                                CeramicOven = false,
+                                Other = "Vinyl player",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 01, 14, 08, 00, 00),
+                                ClosingTime = new (2024, 01, 14, 17, 00, 00),
+                                StartDate = new (2023, 01, 14),
+                                EndDate = new (2024, 01, 14),
+                                Monday = true,
+                                Tuesday = true,
+                                Wednesday = true,
+                                Thursday = true,
+                                Friday = true,
+                                Saturday = true,
+                                Sunday = false,
+                            },
+                        },
+                    },
+                    new Advert()
+                    {
+                        TimeCreated = new (2023, 01, 24),
+                        Offering = true,
+                        FirstName = "Sara",
+                        LastName = "Andersson",
+                        Email = "saraAAA_music@gmail.com",
+                        PhoneNumber = "00447526781180",
+                        Artist = "Sari",
+                        SocialMedia = "@instagram sari_jamming",
+                        StudioType = "MusicStudio",
+                        WorkPlace = new ()
+                        {
+                            City = "CARDIFF",
+                            Area = "CENTER",
+                            ImgUrl = "seedImg/musicOffering.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = "Week",
+                            Pounds = 280,
+                            MeasurementType = "Meters",
+                            MeasurementNumber = 43,
+                            AmenityTypes = new ()
+                            {
+                                Parking = false,
+                                Shower = true,
+                                AirCondition = true,
+                                Kitchen = false,
+                                NaturalLight = true,
+                                AcousticTreatment = true,
+                                RunningWater = true,
+                                Storage = true,
+                                Toilet = true,
+                                CeramicOven = false,
+                                Other = "CCTV",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 04, 01, 10, 00, 00),
+                                ClosingTime = new (2024, 04, 01, 23, 30, 00),
+                                StartDate = new (2023, 04, 01),
+                                EndDate = new (2024, 04, 01),
+                                Monday = true,
+                                Tuesday = true,
+                                Wednesday = true,
+                                Thursday = true,
+                                Friday = true,
+                                Saturday = true,
+                                Sunday = true,
+                            },
+                        },
+                    },
+                    new Advert()
+                    {
+                        TimeCreated = DateTime.Today,
+                        Offering = false,
+                        FirstName = "Tomas",
+                        LastName = "Karkalas",
+                        Email = "karkalas@gmail.com",
+                        PhoneNumber = "+447578000128",
+                        Artist = null,
+                        SocialMedia = "@instagram tKar_art",
+                        StudioType = "ArtStudio",
+                        WorkPlace = new ()
+                        {
+                            City = "LONDON",
+                            Area = "DALSTON",
+                            ImgUrl = "seedImg/artLooking.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = "Week",
+                            Pounds = 400,
+                            MeasurementType = "Meters",
+                            MeasurementNumber = 25,
+                            AmenityTypes = new ()
+                            {
+                                Parking = true,
+                                Shower = false,
+                                AirCondition = true,
+                                Kitchen = false,
+                                NaturalLight = true,
+                                AcousticTreatment = false,
+                                RunningWater = true,
+                                Storage = false,
+                                Toilet = true,
+                                CeramicOven = true,
+                                Other = "Changing rooms",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 06, 03, 08, 30, 00),
+                                ClosingTime = new (2024, 06, 03, 17, 30, 00),
+                                StartDate = new (2023, 06, 03),
+                                EndDate = new (2024, 06, 03),
+                                Monday = false,
+                                Tuesday = false,
+                                Wednesday = true,
+                                Thursday = true,
+                                Friday = false,
+                                Saturday = false,
+                                Sunday = false,
+                            },
+                        },
+                    },
+                    new Advert()
+                    {
+                        TimeCreated = new (2023, 01, 20),
+                        Offering = false,
+                        FirstName = "Patrik",
+                        LastName = "Ekstedt",
+                        Email = "ekstedt_pat@gmail.com",
+                        PhoneNumber = "+44703180616",
+                        Artist = null,
+                        SocialMedia = null,
+                        StudioType = "PaintingWorkshop",
+                        WorkPlace = new ()
+                        {
+                            City = "COTSWOLDS",
+                            Area = "OUTSKIRTS",
+                            ImgUrl = "seedImg/paintLooking.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = "Week",
+                            Pounds = 796,
+                            MeasurementType = "Metres",
+                            MeasurementNumber = 90,
+                            AmenityTypes = new ()
+                            {
+                                Parking = false,
+                                Shower = true,
+                                AirCondition = false,
+                                Kitchen = false,
+                                NaturalLight = true,
+                                AcousticTreatment = false,
+                                RunningWater = true,
+                                Storage = true,
+                                Toilet = true,
+                                CeramicOven = false,
+                                Other = "Printer",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 05, 14, 12, 30, 00),
+                                ClosingTime = new (2024, 05, 14, 21, 30, 00),
+                                StartDate = new (2023, 05, 01),
+                                EndDate = new (2023, 05, 14),
+                                Monday = false,
+                                Tuesday = true,
+                                Wednesday = true,
+                                Thursday = true,
+                                Friday = true,
+                                Saturday = true,
+                                Sunday = true,
+                            },
+                        },
+                    },
+                    new Advert()
+                    {
+                        TimeCreated = new (2023, 01, 02),
+                        Offering = false,
+                        FirstName = "Elly",
+                        LastName = "Goude",
+                        Email = "Eegoude@gmail.com",
+                        PhoneNumber = "00447522907860",
+                        Artist = null,
+                        SocialMedia = null,
+                        StudioType = "PhotoStudio",
+                        WorkPlace = new ()
+                        {
+                            City = "NEWQUAY",
+                            Area = null,
+                            ImgUrl = "seedImg/ceramicsLooking.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = "Month",
+                            Pounds = 360,
+                            MeasurementType = "Feet",
+                            MeasurementNumber = 110,
+                            AmenityTypes = new ()
+                            {
+                                Parking = false,
+                                Shower = false,
+                                AirCondition = false,
+                                Kitchen = false,
+                                NaturalLight = true,
+                                AcousticTreatment = false,
+                                RunningWater = true,
+                                Storage = true,
+                                Toilet = true,
+                                CeramicOven = true,
+                                Other = "Wifi",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 02, 14, 08, 00, 00),
+                                ClosingTime = new (2024, 02, 14, 19, 30, 00),
+                                StartDate = new (2023, 02, 14),
+                                EndDate = new (2023, 02, 14),
+                                Monday = true,
+                                Tuesday = false,
+                                Wednesday = false,
+                                Thursday = false,
+                                Friday = true,
+                                Saturday = true,
+                                Sunday = true,
+                            },
+                        },
+                    },
+                    new Advert()
+                    {
+                        TimeCreated = new (2023, 01, 03),
+                        Offering = false,
+                        FirstName = "John",
+                        LastName = "Eriksson",
+                        Email = "erkan@gmail.com",
+                        PhoneNumber = "+44705150616",
+                        Artist = null,
+                        SocialMedia = null,
+                        StudioType = "ArtStudio",
+                        WorkPlace = new ()
+                        {
+                            City = "MANCHESTER",
+                            Area = null,
+                            ImgUrl = "seedImg/artLooking.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = "Month",
+                            Pounds = 480,
+                            MeasurementType = "Feet",
+                            MeasurementNumber = 125,
+                            AmenityTypes = new ()
+                            {
+                                Parking = true,
+                                Shower = false,
+                                AirCondition = true,
+                                Kitchen = true,
+                                NaturalLight = true,
+                                AcousticTreatment = false,
+                                RunningWater = true,
+                                Storage = true,
+                                Toilet = true,
+                                CeramicOven = false,
+                                Other = "Camera",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 02, 14, 08, 00, 00),
+                                ClosingTime = new (2024, 02, 14, 16, 30, 00),
+                                StartDate = new (2023, 02, 01),
+                                EndDate = new (2023, 06, 01),
+                                Monday = true,
+                                Tuesday = true,
+                                Wednesday = true,
+                                Thursday = false,
+                                Friday = false,
+                                Saturday = true,
+                                Sunday = true,
+                            },
+                        },
+                    },
+                    new Advert()
+                    {
+                        TimeCreated = new (2023, 01, 02),
+                        Offering = false,
+                        FirstName = "Sara",
+                        LastName = "Christiansen",
+                        Email = "chrissi@gmail.com",
+                        PhoneNumber = "+447526582681",
+                        Artist = "Chrissi",
+                        SocialMedia = null,
+                        StudioType = "MusicStudio",
+                        WorkPlace = new ()
+                        {
+                            City = "BRISTOL",
+                            Area = "ASHLEY",
+                            ImgUrl = "seedImg/musicLooking.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = "Month",
+                            Pounds = 350,
+                            MeasurementType = "Meters",
+                            MeasurementNumber = 43,
+                            AmenityTypes = new ()
+                            {
+                                Parking = true,
+                                Shower = false,
+                                AirCondition = true,
+                                Kitchen = true,
+                                NaturalLight = true,
+                                AcousticTreatment = true,
+                                RunningWater = true,
+                                Storage = true,
+                                Toilet = true,
+                                CeramicOven = false,
+                                Other = "Woodwinds",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 02, 01, 08, 00, 00),
+                                ClosingTime = new (2024, 02, 01, 20, 30, 00),
+                                StartDate = new (2023, 02, 01),
+                                EndDate = new (2024, 02, 01),
+                                Monday = true,
+                                Tuesday = false,
+                                Wednesday = true,
+                                Thursday = true,
+                                Friday = true,
+                                Saturday = true,
+                                Sunday = false,
+                            },
+                        },
+                    },
+                    new Advert()
+                    {
+                        TimeCreated = new (2022, 12, 29),
+                        Offering = true,
+                        FirstName = "Sara",
+                        LastName = "Andersson",
+                        Email = "y0gamat@gmail.com",
+                        PhoneNumber = "+447544806280",
+                        Artist = null,
+                        SocialMedia = "@instagram brighton_Yogamat",
+                        StudioType = "Yoga Studio",
+                        WorkPlace = new ()
+                        {
+                            City = "BRIGHTON",
+                            Area = "PIER",
+                            ImgUrl = "seedImg/yogaOffering.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = null,
+                            Pounds = 0,
+                            MeasurementType = "Meters",
+                            MeasurementNumber = 65,
+                            AmenityTypes = new ()
+                            {
+                                Parking = true,
+                                Shower = true,
+                                AirCondition = true,
+                                Kitchen = false,
+                                NaturalLight = true,
+                                AcousticTreatment = true,
+                                RunningWater = true,
+                                Storage = false,
+                                Toilet = true,
+                                CeramicOven = false,
+                                Other = "Yoga mats",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 01, 01, 09, 00, 00),
+                                ClosingTime = new (2024, 01, 01, 21, 00, 00),
+                                StartDate = new (2023, 01, 01),
+                                EndDate = new (2024, 01, 01),
+                                Monday = true,
+                                Tuesday = true,
+                                Wednesday = true,
+                                Thursday = true,
+                                Friday = true,
+                                Saturday = true,
+                                Sunday = true,
+                            },
+                        },
+                    },
+                    new Advert()
+                    {
+                        TimeCreated = new (2023, 01, 01),
+                        Offering = true,
+                        FirstName = "Carl",
+                        LastName = "Mccaldin",
+                        Email = "mccaldin@gmail.com",
+                        PhoneNumber = "+447580402687",
+                        Artist = null,
+                        SocialMedia = null,
+                        StudioType = "Darkroom",
+                        WorkPlace = new ()
+                        {
+                            City = "CAMBRIDGE",
+                            Area = "SRAWBERRY HILL",
+                            ImgUrl = "seedImg/darkroom.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = "Week",
+                            Pounds = 306,
+                            MeasurementType = "Meters",
+                            MeasurementNumber = 63,
+                            AmenityTypes = new ()
+                            {
+                                Parking = true,
+                                Shower = false,
+                                AirCondition = true,
+                                Kitchen = false,
+                                NaturalLight = false,
+                                AcousticTreatment = false,
+                                RunningWater = true,
+                                Storage = false,
+                                Toilet = true,
+                                CeramicOven = false,
+                                Other = "Photographic emulsion",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 06, 02, 10, 00, 00),
+                                ClosingTime = new (2024, 06, 02, 17, 30, 00),
+                                StartDate = new (2023, 06, 02),
+                                EndDate = new (2024, 06, 02),
+                                Monday = true,
+                                Tuesday = true,
+                                Wednesday = true,
+                                Thursday = true,
+                                Friday = true,
+                                Saturday = true,
+                                Sunday = true,
+                            },
+                        },
+                    },
+                    new Advert()
+                         {
+                             TimeCreated = new(2023, 01, 06),
+                             Offering = true,
+                             FirstName = "Edvin",
+                             LastName = "Melson",
+                             Email = "mels0n@gmail.com",
+                             PhoneNumber = "+447580402777",
+                             Artist = null,
+                             SocialMedia = null,
+                             StudioType = "MusicStudio",
+                             WorkPlace = new()
+                             {
+                                 City = "LONDON",
+                                 Area = "CHISWICK",
+                                 ImgUrl = "seedImg/musicOffering.jpg",
+                                 Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                                 Period = "Week",
+                                 Pounds = 720,
+                                 MeasurementType = "Meters",
+                                 MeasurementNumber = 63,
+                                 AmenityTypes = new()
+                                 {
+                                     Parking = true,
+                                     Shower = false,
+                                     AirCondition = true,
+                                     Kitchen = true,
+                                     NaturalLight = true,
+                                     AcousticTreatment = true,
+                                     RunningWater = true,
+                                     Storage = false,
+                                     Toilet = true,
+                                     CeramicOven = false,
+                                     Other = null,
+                                 },
+                                 TimeFrames = new()
+                                 {
+                                     OpeningTime = new(2023, 08, 02, 10, 00, 00),
+                                     ClosingTime = new(2024, 08, 02, 18, 00, 00),
+                                     StartDate = new(2023, 08, 02),
+                                     EndDate = new(2024, 08, 02),
+                                     Monday = true,
+                                     Tuesday = true,
+                                     Wednesday = true,
+                                     Thursday = true,
+                                     Friday = true,
+                                     Saturday = true,
+                                     Sunday = true,
+                                 },
+                             },
+                         },
+                    new Advert()
+                    {
+                        TimeCreated = new (2022, 12, 04),
+                        Offering = false,
+                        FirstName = "Jennifer",
+                        LastName = "Andersson",
+                        Email = "ja_1990@gmail.com",
+                        PhoneNumber = "+447512482890",
+                        Artist = null,
+                        SocialMedia = null,
+                        StudioType = "Film Studio",
+                        WorkPlace = new ()
+                        {
+                            City = "BIRMINGHAM",
+                            Area = "DUDLEY",
+                            ImgUrl = "seedImg/film.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            Period = null,
+                            Pounds = 0,
+                            MeasurementType = "Meters",
+                            MeasurementNumber = 85,
+                            AmenityTypes = new ()
+                            {
+                                Parking = false,
+                                Shower = false,
+                                AirCondition = true,
+                                Kitchen = true,
+                                NaturalLight = false,
+                                AcousticTreatment = true,
+                                RunningWater = true,
+                                Storage = true,
+                                Toilet = true,
+                                CeramicOven = false,
+                                Other = "Cleaner",
+                            },
+                            TimeFrames = new ()
+                            {
+                                OpeningTime = new (2023, 06, 01, 08, 00, 00),
+                                ClosingTime = new (2025, 06, 01, 18, 00, 00),
+                                StartDate = new (2023, 06, 01),
+                                EndDate = new (2025, 06, 01),
+                                Monday = true,
+                                Tuesday = true,
+                                Wednesday = true,
+                                Thursday = true,
+                                Friday = true,
+                                Saturday = false,
+                                Sunday = false,
+                            },
+                        },
+                    });
+                context.SaveChanges();
             }
         }
     }
 }
+
 

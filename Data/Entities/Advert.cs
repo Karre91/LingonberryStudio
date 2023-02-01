@@ -1,66 +1,71 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
-
-namespace LingonberryStudio.Data.Entities
+﻿namespace LingonberryStudio.Data.Entities
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Numerics;
+    using System.Text.RegularExpressions;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+
     public class Advert
     {
+        public Advert()
+        {
+            TimeCreated = DateTime.Now;
+            Offering = true;
+            FirstName = "Default";
+            LastName = "Default";
+            Email = "Default";
+            PhoneNumber = null;
+            Artist = null;
+            SocialMedia = null;
+            StudioType = "Default";
+            WorkPlace = new WorkPlace();
+        }
+
+        public Advert(bool offering, string firstName, string lastName, string email, string? phoneNumber, string? artist, string? socialMedia, string studioType, WorkPlace workPlace)
+        {
+            TimeCreated = DateTime.UtcNow;
+            Offering = offering;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            PhoneNumber = phoneNumber;
+            Artist = artist;
+            SocialMedia = socialMedia;
+            StudioType = studioType;
+            WorkPlace = workPlace;
+        }
+
         [Key]
-        public int AdvertId { get; set; }
+        public int ID { get; set; }
 
-		public DateTime TimeCreated { get; set; } = DateTime.Now;
+        public DateTime TimeCreated { get; set; }/* = DateTime.Now;*/
 
-		//[Required]
-		public string? FirstName { get; set; }
+        [Required(ErrorMessage = "This field is required")]
+        public bool Offering { get; set; }
 
-        //[Required]
-        public string? LastName { get; set; }
-
-        //[Required]
+        [Required(ErrorMessage = "The first name field is required.")]
+        [RegularExpression(
+            @"^[a-zA-Z''-'\s-]{1,40}$",
+            ErrorMessage = "Only letters allowed")]
+        public string FirstName { get; set; }
+        [Required(ErrorMessage = "The last name field is required.")]
+        [RegularExpression(
+            @"^[a-zA-Z''-'\s-]{1,40}$",
+            ErrorMessage = "Only letters allowed.")]
+        public string LastName { get; set; }
+        [Required(ErrorMessage = "The email field is required.")]
         [EmailAddress]
-        public string? Email { get; set; }
+        [DataType(DataType.EmailAddress)]
+        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Not a valid Email address")]
+        public string Email { get; set; }
 
         [AllowNull]
-        public int? PhoneNumber { get; set; }
-
-        [Required]
-        public string OfferingLooking { get; set; }
-
-        //[Required]
-        public string? WorkspaceDescription { get; set; }
-
-        //[Required]
-        public string? City { get; set; }
-
-		public string? Area { get; set; }
-
-		[Display(Name = "Amenity")]
-        public virtual int AmenityID { get; set; }
-
-        [ForeignKey("AmenityID")]
-        public virtual Amenity Amenities { get; set; }
-
-		[Display(Name = "Budget")]
-		public virtual int BudgetId { get; set; }
-
-		[ForeignKey("BudgetId")]
-		public virtual Budget Budgets { get; set; }
-
-        [Display(Name = "Measurement")]
-        public virtual int MeasurementID { get; set; }
-
-        [ForeignKey("MeasurementID")]
-        public virtual Measurement Measurements { get; set; }
-
-        [Display(Name = "DatesAndTime")]
-        public virtual int DatesAndTimeID { get; set; }
-
-        [ForeignKey("DatesAndTimeID")]
-        public virtual DatesAndTime DatesAndTimes { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$", ErrorMessage = "Not a valid Phone number")]
+        public string? PhoneNumber { get; set; }
 
         [AllowNull]
         public string? Artist { get; set; }
@@ -68,11 +73,20 @@ namespace LingonberryStudio.Data.Entities
         [AllowNull]
         public string? SocialMedia { get; set; }
 
-        [Display(Name = "Description")]
-        public virtual int DescriptionID { get; set; }
+        [Required(ErrorMessage = "The workplace field is required.")]
+        public string StudioType { get; set; }
 
-        [ForeignKey("DescriptionID")]
-        public virtual Description Description { get; set; }
+        [Display(Name = "WorkPlace")]
+        public virtual int WorkPlaceID { get; set; }
+
+        [ForeignKey("WorkPlaceID")]
+        public virtual WorkPlace WorkPlace { get; set; }
+
+        public string SplitCamelCase(string formInput)
+        {
+            string[] split = Regex.Split(formInput, @"(?<!^)(?=[A-Z])");
+            string joinedSplit = string.Join(" ", split);
+            return joinedSplit;
+        }
     }
 }
-

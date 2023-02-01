@@ -1,30 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Net.Mail;
-using System.Net;
-using LingonberryStudio.Models;
-
-namespace LingonberryStudio.Controllers.Contact
+﻿namespace LingonberryStudio.Controllers.Contact
 {
+    using System.Net;
+    using System.Net.Mail;
+    using LingonberryStudio.Models;
+    using Microsoft.AspNetCore.Mvc;
+
     public class ContactController : Controller
     {
         public IActionResult Contact()
         {
-            return View();
+            return this.View();
         }
 
-
         [HttpPost]
-        public IActionResult Contact(LingonberryStudio.Models.gmail _objModelMail)
+        public IActionResult Contact(Gmail objModelMail)
         {
-            _objModelMail.To = "lingonberrystudio@gmail.com";
-            if (ModelState.IsValid)
+            objModelMail.To = "lingonberrystudio@gmail.com";
+            if (ModelState.IsValid && objModelMail is not null)
             {
                 MailMessage mail = new MailMessage();
-                mail.To.Add(_objModelMail.To);
-                mail.From = new MailAddress(_objModelMail.From);
-                mail.Subject = _objModelMail.Subject;
-                string Body = $"{_objModelMail.Body} sender {_objModelMail.From} Name: {_objModelMail.Name}";
-                mail.Body = Body;
+                mail.To.Add(objModelMail.To);
+#pragma warning disable CS8604 // Possible null reference argument.
+                mail.From = new MailAddress(objModelMail.From);
+#pragma warning restore CS8604 // Possible null reference argument.
+                mail.Subject = objModelMail.Subject;
+                string body = $"{objModelMail.Body} sender {objModelMail.From} Name: {objModelMail.Name}";
+                mail.Body = body;
                 mail.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
@@ -33,17 +34,16 @@ namespace LingonberryStudio.Controllers.Contact
                 smtp.Credentials = new System.Net.NetworkCredential("lingonberrystudio@gmail.com", "mzukfalqsmhgodpm");
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
-				ViewBag.Message = "Thank You for your message";
-
-			    return View();
-
-			}
-			else
-            {
-				ViewBag.Message = "Oops something went wrong, please try again!";
-				return View();
+                ViewBag.Message = "Thank you for your message!";
+                ModelState.Clear();
+                return View();
             }
-
+            else
+            {
+                ViewBag.Message = "Oops something went wrong, please try again!";
+                ModelState.Clear();
+                return View();
+            }
         }
     }
 }

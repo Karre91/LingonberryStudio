@@ -1,23 +1,24 @@
-﻿using LingonberryStudio.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-
-namespace LingonberryStudio.Data
+﻿namespace LingonberryStudio.Data
 {
+    using LingonberryStudio.Data.Entities;
+    using Microsoft.EntityFrameworkCore;
+
     public class LingonberryDbContext : DbContext
     {
-		
-		public LingonberryDbContext(DbContextOptions<LingonberryDbContext> options) : base(options)
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        public LingonberryDbContext(DbContextOptions<LingonberryDbContext> options)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+            : base(options)
         {
         }
 
         public DbSet<Advert> Adverts { get; set; }
-        public DbSet<Amenity> Amenities { get; set; }
-        public DbSet<Measurement> Measurements { get; set; }
-        public DbSet<DatesAndTime> DatesAndTimes { get; set; }
-        public DbSet<Day> Days { get; set; }
-        public DbSet<Budget> Budgets { get; set; }
-        public DbSet<Description> Descriptions { get; set; }
 
+        public DbSet<Amenity> AmenityTypes { get; set; }
+
+        public DbSet<TimeFrame> TimeFrames { get; set; }
+
+        public DbSet<WorkPlace> WorkPlace { get; set; }
     }
 }
 

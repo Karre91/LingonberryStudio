@@ -1,25 +1,224 @@
 ﻿@using LingonberryStudio.Data.Entities
 @model Advert
+@{
+    Filter filter = new();
+    filter = ViewBag.Filter;
 
-<div class="modal fade" id="adModal-@Model.AdvertId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    List<string> filterAmenityString = filter.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1).ToList();
+    List<string> filterDaysStrings = filter.GetAllDaysTuple().Where(a => a.Item2.Equals(true)).Select(day => day.Item1).ToList();
+
+    bool modelHasAmenity = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Any(a => a.Item2.Equals(true));
+    bool modelHasDays = Model.WorkPlace.TimeFrames.GetAllDaysTuple().Any(a => a.Item2.Equals(true));
+
+    List<string> modelChosenDaysStrings = Model.WorkPlace.TimeFrames.GetAllDaysTuple().Where(a => a.Item2.Equals(true)).Select(day => day.Item1).ToList();
+    List<string> modelChosenAmenityStrings = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1).ToList();
+
+    string city = Model.WorkPlace.City.Substring(0, 1) + Model.WorkPlace.City.Substring(1).ToLower();
+    string area = Model.WorkPlace.Area?.Substring(0, 1) + Model.WorkPlace.Area?.Substring(1).ToLower();
+    string studioType = Model.SplitCamelCase(Model.StudioType);
+
+    string aOrAn = "a";
+    if (studioType.StartsWith("A") || studioType.StartsWith("a"))
+    {
+        aOrAn = "an";
+    }
+}
+
+<div class="modal fade" id="adModal-@Model.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle"> @Model.WorkspaceDescription </h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">@studioType</h5>
+                <p class="form-text-style mt-1">@Model.TimeCreated.ToShortDateString()</p>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                @Model.OfferingLooking
-                @Model.City
-               <br />
-                Description:<br />
-                @Model.Description.Desc
+                <div class="row">
+                    <div>
+                        <img src="/@Model.WorkPlace.ImgUrl" alt="Work space area" id="ad-image" class="img-fluid mx-auto mb-2 d-block">
+                        <div>
+                            <div>
+                                @if (Model.Offering)
+                                {
+                                    <label class="mb-2 fw-bold mt-2 justify-content-center d-xl-flex">I am offering @aOrAn @studioType</label>
+                                }
+                                else
+                                {
+                                    <label class="mb-2 fw-bold mt-2 justify-content-center d-xl-flex">I am looking for @aOrAn @studioType</label>
+                                }
+                            </div>
+
+                        </div>
+                        <div class="pt-2 pb-2 row">
+                            <p class="form-text-style"><b>Desctiption:</b><br /> @Model.WorkPlace.Description</p>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div>
+                        @if (Model.WorkPlace.Period != null)
+                        {
+                            @if (Model.Offering)
+                            {
+                                <p class="form-text-style"><b>Rent for the studio is:</b> £ @Model.WorkPlace.Pounds/@Model.WorkPlace.Period</p>
+
+                            }
+                            @if (!Model.Offering)
+                            {
+                                <p class="form-text-style"><b>My budget is:</b> £ @Model.WorkPlace.Pounds/@Model.WorkPlace.Period</p>
+
+                            }
+                            <br />
+                            <hr />
+                        }
+                    </div>
+                </div>
+
+                <div class="row pt-2">
+                    <div class="col mx-auto">
+                        <p class="form-text-style"><b>City:</b> @city </p><br />
+                        @if (Model.WorkPlace.Area != null)
+                        {
+                            <p class="form-text-style"><b>Area:</b> @area </p>
+
+                            <br />
+                        }
+                        @if (Model.Artist != null)
+                        {
+                            <p class="form-text-style"><b>Artist/Project:</b> @Model.Artist</p> <br />
+                        }
+                    </div>
+                    <div class="col">
+                        <p class="form-text-style"><b>Name:</b> @Model.FirstName @Model.LastName</p> <br />
+                        <p class="form-text-style"><b>Email:</b> @Model.Email</p> <br />
+                        @if (Model.PhoneNumber != null)
+                        {
+                            <p class="form-text-style"><b>Phone:</b> @Model.PhoneNumber</p> <br />
+                        }
+                    </div>
+                </div>                
+                @if (modelHasDays || modelHasAmenity)
+                {
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            @if (modelHasDays)
+                            {
+                                <p class="form-text-style">
+                                    @if (Model.Offering)
+                                    {
+                                        <b>Avaliability:</b>
+                                    }
+                                    @if (!Model.Offering)
+                                    {
+                                        <b>I am interested in following days:</b>
+                                    }
+                                    <br>
+                                    @foreach (var day in modelChosenDaysStrings)
+                                    {
+
+                                        @if (filterDaysStrings.Contains(day))
+                                        {
+                                            <u>@day</u>
+                                        }
+                                        else
+                                        {
+                                            @day
+                                        }
+                                        <br />
+                                    }
+                                </p>
+                            }
+                        </div>
+                        <div class="col">
+                            @if (modelHasAmenity)
+                            {
+                                <p class=" form-text-style">
+                                    <b>Ametities:</b><br />
+                                    @foreach (var noSpaceAmenity in modelChosenAmenityStrings)
+                                    {
+                                        string amenity = Model.SplitCamelCase(noSpaceAmenity);
+                                        @if (filterAmenityString.Contains(amenity))
+                                        {
+
+                                            if (amenity == "Other")
+                                            {
+                                                <u>@Model.WorkPlace.AmenityTypes.Other</u>
+                                            }
+                                            else
+                                            {
+                                                <u>@amenity</u>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            if (amenity == "Other")
+                                            {
+                                                @Model.WorkPlace.AmenityTypes.Other
+                                            }
+                                            else
+                                            {
+                                                @amenity
+                                            }
+                                        }
+                                        <br />
+                                    }
+                                </p>
+                            }
+                        </div>
+                    </div>
+                }                
+                @if (Model.WorkPlace.TimeFrames.StartDate != null || Model.WorkPlace.TimeFrames.EndDate != null
+                || Model.WorkPlace.TimeFrames.OpeningTime != null || Model.WorkPlace.TimeFrames.ClosingTime != null)
+                {
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <p class="form-text-style">
+                                @if (Model.WorkPlace.TimeFrames.StartDate != null)
+                                {
+                                    <b>Start date:</b> @Model.WorkPlace.TimeFrames.StartDate.Value.ToShortDateString()
+                                }
+                                <br />
+                                @if (Model.WorkPlace.TimeFrames.EndDate != null)
+                                {
+                                    <b>End date:</b> @Model.WorkPlace.TimeFrames.EndDate.Value.ToShortDateString()
+                                }
+                                <br />
+                            </p>
+                        </div>
+                        <div class="col">
+                            <p class="form-text-style">
+                                @if (Model.WorkPlace.TimeFrames.OpeningTime != null)
+                                {
+                                    <b>Start time:</b> @Model.WorkPlace.TimeFrames.OpeningTime.Value.ToString("HH:mm")
+                                }
+                                <br />
+                                @if (Model.WorkPlace.TimeFrames.ClosingTime != null)
+                                {
+                                    <b>Closing time:</b> @Model.WorkPlace.TimeFrames.ClosingTime.Value.ToString("HH:mm")
+                                }
+                            </p>
+                        </div>
+                    </div>
+                   
+                }
+                <div class="row col">
+                    @if (Model.WorkPlace.MeasurementType != null)
+                    {
+                        <hr />
+                        <p class="form-text-style"><b>Size:</b> @Model.WorkPlace.MeasurementNumber Square @Model.WorkPlace.MeasurementType</p> <br />
+                    }
+                </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer pb-0">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
+            }
         </div>
     </div>
 </div>

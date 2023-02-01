@@ -1,6 +1,6 @@
 ﻿window.onload = function () {
 
-    const slideshowImages = document.querySelectorAll(".intro .slideshow-img");
+    const slideshowImages = document.querySelectorAll("#hero-banner-container .slideshow-img");
 
     if (slideshowImages.length != 0) {
         const nextImageDelay = 3000;
@@ -17,19 +17,6 @@
         }
     }
 }
-
-$(document).on("change", "#from", function () {
-    /*debugger*/
-    var date = $(this).val();
-    $('#to').attr('min', date);
-});
-
-$(document).on("change", "#to", function () {
-    /*debugger*/
-    var date = $(this).val();
-    $('#from').attr('min', date);
-});
-
 
 $('#popupForm').load("/Adverts/Form");
 
