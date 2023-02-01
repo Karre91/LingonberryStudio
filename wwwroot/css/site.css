@@ -81,6 +81,7 @@ a {
     padding: 10px;
     font-family: 'Jost', sans-serif;
     font-weight: bolder 500;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.10);
 }
 #ad-btn {
     padding: 10px;
@@ -90,14 +91,27 @@ a {
     right: 0;
     background-color: #c7342a;
 }
+#ad-btn:hover{
+    background-color:red;
+}
+.dropdown-menu.show {
+    min-width:50vw;
+}
 
 .green-buttons {
     background: #333e04;
+}
+.green-buttons:hover {
+    background-color:forestgreen;
 }
 
 .beige-buttons {
     background-color: #d8c7b3;
     color:black;
+}
+.beige-buttons:hover {
+    background-color: beige;
+    color: black;
 }
 
 #clear-button {
@@ -109,6 +123,9 @@ a {
 
 .red-buttons {
     background-color: #c7342a;
+}
+.red-buttons:hover{
+    background-color:red;
 }
 
 .form-buttons {
@@ -136,6 +153,11 @@ a {
     text-align: center;
     padding-bottom: 30px;
 }
+   .flex-grid-containers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1px;
+        }
 
 #menu-vertical-line {
     border-left: 1px solid black;
@@ -278,9 +300,9 @@ input:focus::placeholder, textarea:focus::placeholder {
 }
 
 #result {
-    position: relative;
-    float: right;
-    right: 0;
+   text-align:center;
+   margin-bottom:-32px;
+   font-weight:bold;
 }
 .error-message {
     text-align: center;
@@ -302,6 +324,11 @@ input:focus::placeholder, textarea:focus::placeholder {
         margin-top: 10%;
         margin-bottom: 0;
         margin: auto;
+    }
+
+    #clear-button {
+        margin-left: 20px;
+        margin-top: 4px;
     }
 
     #search-box-container {
