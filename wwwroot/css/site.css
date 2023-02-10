@@ -26,6 +26,15 @@ a {
     font-weight: lighter 300;
 }
 
+#lingonberry-logo {
+    width: 150px;
+}
+
+.index-logos{
+    width:125px;
+    margin-bottom:3px;
+}
+
 #hero-banner-container {
     height: 400px;
     position: relative;
