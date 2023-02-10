@@ -14,6 +14,12 @@ h2 {
     font-weight: bolder 500;
 }
 
+h6 {
+    font-synthesis: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: bolder 500;
+}
+
 p {
     font-synthesis: none;
     font-family: 'Jost', sans-serif;
@@ -131,6 +137,17 @@ a {
 }
 .red-buttons:hover{
     background-color:red;
+}
+
+#light-green-button {
+    color: white;
+    background-color: #55976a;
+    width: 10rem;
+}
+
+#light-green-button:hover{
+    background-color:lightgreen;
+    color:black
 }
 
 .form-buttons {
@@ -280,10 +297,29 @@ input:focus::placeholder, textarea:focus::placeholder {
     color: black;
 }
 
-.flex-grid-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
+#about-text{
+    margin-right:25%;
+    margin-left:25%;
+}
+
+.about-headers{
+    color:#55976a;
+}
+
+#josefin-container {
+    margin-right: 2px;
+}
+
+.about-photos{
+  
+}
+
+#about-container {
+    position: relative;
+    left: 50%;
+    min-height: 200px;
+    width: 100vw;
+    transform: translateX(-50%);
 }
 
 #ad-card {
