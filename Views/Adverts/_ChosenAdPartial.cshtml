@@ -93,7 +93,8 @@
                     </div>
                     <div class="col">
                         <p class="form-text-style"><b>Name:</b> @Model.FirstName @Model.LastName</p> <br />
-                        <p class="form-text-style"><b>Email:</b> @Model.Email</p> <br />
+                        <p class="form-text-style"><b>Email:</b></p><a href="mailto:@Model.Email" class="form-text-style">@Model.Email</a><br />
+                        
                         @if (Model.PhoneNumber != null)
                         {
                             <p class="form-text-style"><b>Phone:</b> @Model.PhoneNumber</p> <br />
