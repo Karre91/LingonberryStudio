@@ -156,8 +156,6 @@ a {
 .form-buttons {
     width: 7rem;
 }
-
-
 #search-area {
     position: relative;
     left: 0;
@@ -194,8 +192,8 @@ a {
 }
 
 .about-portrait{
-    max-width:50%;
-    max-height:50%;
+    max-width:100%;
+    max-height:100%;
 }
 
 #formModal-overlay {
@@ -314,9 +312,6 @@ input:focus::placeholder, textarea:focus::placeholder {
     color:#55976a;
 }
 
-.karin {
-   margin-right:10px;
-}
 #about-container {
     position: relative;
     left: 50%;
@@ -340,6 +335,11 @@ input:focus::placeholder, textarea:focus::placeholder {
     width: 250px;
     height: 250px;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
+}
+.flex-grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
 }
 
 .text-block {
