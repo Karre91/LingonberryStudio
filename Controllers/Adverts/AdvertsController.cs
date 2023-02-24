@@ -79,8 +79,8 @@
                 viewModel.Filter.City = city;
                 switch (offering)
                 {
-                    case true: viewModel.Filter.Offering = offering; break;
-                    case false: viewModel.Filter.Looking = offering; break;
+                    case true: viewModel.Filter.Offering = true; break;
+                    case false: viewModel.Filter.Looking = true; break;
                 }
 
                 viewModel.AdvertList = Filter(viewModel.Filter);

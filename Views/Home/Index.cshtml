@@ -1,78 +1,78 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div >
+<div>
     <div id="full-width-banner">
-		<div id="hero-banner-container">
-			<img src="~/img/1.jpg" class="img-fluid slideshow-img" alt="first slide picturing a studio space" />
-			<img src="~/img/2.jpg" class="img-fluid slideshow-img" alt="second slide picturing a studio space" />
+        <div id="hero-banner-container">
+            <img src="~/img/1.jpg" class="img-fluid slideshow-img" alt="first slide picturing a studio space" />
+            <img src="~/img/2.jpg" class="img-fluid slideshow-img" alt="second slide picturing a studio space" />
             <img src="~/img/3.jpg" class="img-fluid slideshow-img" alt="Third slide picturing a studio space" />
         </div>
-		<div id="search-box-container">
-        <form method="post" id="search-box" class="table-responsive" asp-action="IndexSearch" asp-controller="Home">
-            <h2 id="search-box-title">FIND CREATIVE STUDIO</h2>
-			<input type="text" name="city" id="search-area" placeholder="City" class="pt-2 pb-2" onkeyup="this.value = this.value.replace(/[^A-Za-z /-]/, '')" />
-			<div>
-				<button name="offering" value="true" class="project-buttons green-buttons index-buttons" type="submit" title="I have a studio that I want to share">SHARE MINE</button>
-				<button name="offering" value="false" class="project-buttons green-buttons index-buttons" type="submit" title="I don't have a studio but would love to share one">FIND THEIRS</button>
-			</div> 
-		</form>
-		</div>
-		<div class="container align-content-center align-content-center error-message"><span>@TempData["searchError"]</span></div>
+        <div id="search-box-container">
+            <form method="post" id="search-box" class="table-responsive" asp-action="IndexSearch" asp-controller="Home">
+                <h2 id="search-box-title">FIND CREATIVE STUDIO</h2>
+                <input type="text" name="city" id="search-area" placeholder="City" class="pt-2 pb-2" onkeyup="this.value = this.value.replace(/[^A-Za-z /-]/, '')" />
+                <div>
+                    <button name="looking" value="false" class="project-buttons green-buttons index-buttons" type="submit" title="I have a studio that I want to share">SHARE MINE</button>
+                    <button name="looking" value="true" class="project-buttons green-buttons index-buttons" type="submit" title="I don't have a studio but would love to share one">FIND THEIRS</button>
+                </div>
+            </form>
+        </div>
+        <div class="container align-content-center align-content-center error-message"><span>@TempData["searchError"]</span></div>
     </div>
-	<section class="section-bg table-responsive">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-					<div>
-						<div class="card-body" >
-							<div class="text-center">
-								<img src="~/img/Connect.png" alt="Green illustration of connected people" class="index-logos" />
-							<h5 class="card-title align-content-center">CONNECT</h5>
-							</div>
-							<p class="card-text">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-					<div>
-						<div class="card-body">
-							<div class="text-center">
-							<img src="~/img/Idea.png" alt="Red lamp illustrating concept" class="index-logos" />
-							<h5 class="card-title">CONCEPT</h5>
-							</div>
-							<p class="card-text">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-					<div>
-						<div class="card-body">
-							<div class="text-center">
-								<img src="~/img/Safety.png" alt="Green lock illustrating safety" class="index-logos" />
-							<h5 class="card-title">SAFETY</h5>
-							</div>
-							<p class="card-text">	
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-</section>
-<section id="index-last-section-container" class="section-bg">
-		<div class="container justify-content-center">
-			<div class="section-title">
-				<h2>Lorem ipsum</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-			</div>
-		</div>
-	</section>
+    <section class="section-bg table-responsive">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img src="~/img/Connect.png" alt="Green illustration of connected people" class="index-logos" />
+                                <h5 class="card-title align-content-center">CONNECT</h5>
+                            </div>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img src="~/img/Idea.png" alt="Red lamp illustrating concept" class="index-logos" />
+                                <h5 class="card-title">CONCEPT</h5>
+                            </div>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img src="~/img/Safety.png" alt="Green lock illustrating safety" class="index-logos" />
+                                <h5 class="card-title">SAFETY</h5>
+                            </div>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="index-last-section-container" class="section-bg">
+        <div class="container justify-content-center">
+            <div class="section-title">
+                <h2>Lorem ipsum</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+            </div>
+        </div>
+    </section>
 </div>
 
 
