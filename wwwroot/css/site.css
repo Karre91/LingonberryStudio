@@ -14,6 +14,12 @@ h2 {
     font-weight: bolder 500;
 }
 
+h6 {
+    font-synthesis: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: bolder 500;
+}
+
 p {
     font-synthesis: none;
     font-family: 'Jost', sans-serif;
@@ -26,9 +32,26 @@ a {
     font-weight: lighter 300;
 }
 
+#lingonberry-logo {
+    width: 150px;
+}
+
+.index-logos{
+    width:125px;
+    margin-bottom:3px;
+}
+#about-hero { 
+    height: 400px;
+
+}
 #hero-banner-container {
     height: 400px;
     position: relative;
+}
+#budget {
+    font-synthesis: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: bold;
 }
 
 .checkbox {
@@ -73,8 +96,7 @@ a {
     height: 440px;
 }
 
-.search-buttons {
-    background: #333e04;
+.project-buttons {
     border: none;
     border-radius: 40px;
     border-radius: 40px;
@@ -83,7 +105,57 @@ a {
     font-family: 'Jost', sans-serif;
     font-weight: bolder 500;
 }
+#ad-btn {
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    float: right;
+    right: 0;
+    background-color: #c7342a;
+}
+#ad-btn:hover{
+    background-color:red;
+}
+.dropdown-menu.show {
+    min-width:50vw;
+}
 
+.green-buttons {
+    background: #333e04;
+}
+.green-buttons:hover {
+    background-color:forestgreen;
+}
+
+.beige-buttons {
+    background-color: #d8c7b3;
+    color:black;
+}
+.beige-buttons:hover {
+    background-color: beige;
+    color: black;
+}
+.red-buttons {
+    background-color: #c7342a;
+}
+.red-buttons:hover{
+    background-color:red;
+}
+
+#light-green-button {
+    color: white;
+    background-color: #55976a;
+    width: 10rem;
+}
+
+#light-green-button:hover{
+    background-color:lightgreen;
+    color:black
+}
+
+.form-buttons {
+    width: 7rem;
+}
 #search-area {
     position: relative;
     left: 0;
@@ -105,6 +177,11 @@ a {
     text-align: center;
     padding-bottom: 30px;
 }
+   .flex-grid-containers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1px;
+        }
 
 #menu-vertical-line {
     border-left: 1px solid black;
@@ -112,6 +189,11 @@ a {
     align-items: center;
     margin-top: 2px;
     margin-bottom: 2px;
+}
+
+.about-portrait{
+    max-width:100%;
+    max-height:100%;
 }
 
 #formModal-overlay {
@@ -199,22 +281,6 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-#ad-btn {
-    background-color: #c7342a;
-    border: none;
-    border-radius: 40px;
-    border-radius: 40px;
-    color: white;
-    padding: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    float: right;
-    right: 0;
-    font-family: 'Jost', sans-serif;
-    font-weight: bolder 500;
-    font-synthesis: none;
-}
-
 .form-background-color {
     background-color: #d8c7b3;
     color: black;
@@ -237,10 +303,21 @@ input:focus::placeholder, textarea:focus::placeholder {
     color: black;
 }
 
-.flex-grid-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
+#about-text{
+    margin-right:25%;
+    margin-left:25%;
+}
+
+.about-headers{
+    color:#55976a;
+}
+
+#about-container {
+    position: relative;
+    left: 50%;
+    min-height: 400px;
+    width: 100vw;
+    transform: translateX(-50%);
 }
 
 #ad-card {
@@ -259,24 +336,27 @@ input:focus::placeholder, textarea:focus::placeholder {
     height: 250px;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
 }
-.text-block-offering {
+.flex-grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+.text-block {
     position: absolute;
     bottom: 20px;
-    left: 20px;
     background-color: black;
     color: white;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-.text-block-seed {
-    position: absolute;
-    bottom: 20px;
+#seed-block{
     right: 20px;
-    background-color: black;
-    color: white;
-    padding-left: 20px;
-    padding-right: 20px;
+}
+
+.offering-blocks {
+    left: 20px;
 }
 
 #filter-container {
@@ -288,32 +368,10 @@ input:focus::placeholder, textarea:focus::placeholder {
 }
 
 #result {
-    position: relative;
-    float: right;
-    right: 0;
+   text-align:center;
+   margin-bottom:-32px;
+   font-weight:bold;
 }
-
-#btn-submit {
-    border: none;
-    border-radius: 40px;
-    border-radius: 40px;
-    color: white;
-    background-color: #333e04;
-    width: 7rem;
-}
-
-#btn-dismiss {
-    border: none;
-    border-radius: 40px;
-    border-radius: 40px;
-    color: white;
-    background-color: #c7342a;
-    width: 7rem;
-    font-family: 'Jost', sans-serif;
-    font-weight: bolder 500;
-    font-synthesis: none;
-}
-
 .error-message {
     text-align: center;
     color: #c7342a;
@@ -335,6 +393,9 @@ input:focus::placeholder, textarea:focus::placeholder {
         margin-bottom: 0;
         margin: auto;
     }
+    #about-container{
+        display:none;
+    }
 
     #search-box-container {
         display: flex;
@@ -345,6 +406,14 @@ input:focus::placeholder, textarea:focus::placeholder {
     @media (max-width: 767px) {
         #menu-vertical-line {
             display: none;
+        }
+
+        .index-buttons{
+            margin-bottom:3px;
+        }
+
+        #clear-button {
+         margin-top:6px;
         }
 
         .search-buttons {
