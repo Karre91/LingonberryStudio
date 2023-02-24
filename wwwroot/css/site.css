@@ -14,6 +14,12 @@ h2 {
     font-weight: bolder 500;
 }
 
+h6 {
+    font-synthesis: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: bolder 500;
+}
+
 p {
     font-synthesis: none;
     font-family: 'Jost', sans-serif;
@@ -26,6 +32,18 @@ a {
     font-weight: lighter 300;
 }
 
+#lingonberry-logo {
+    width: 150px;
+}
+
+.index-logos{
+    width:125px;
+    margin-bottom:3px;
+}
+#about-hero { 
+    height: 400px;
+
+}
 #hero-banner-container {
     height: 400px;
     position: relative;
@@ -124,11 +142,20 @@ a {
     background-color:red;
 }
 
+#light-green-button {
+    color: white;
+    background-color: #55976a;
+    width: 10rem;
+}
+
+#light-green-button:hover{
+    background-color:lightgreen;
+    color:black
+}
+
 .form-buttons {
     width: 7rem;
 }
-
-
 #search-area {
     position: relative;
     left: 0;
@@ -162,6 +189,11 @@ a {
     align-items: center;
     margin-top: 2px;
     margin-bottom: 2px;
+}
+
+.about-portrait{
+    max-width:100%;
+    max-height:100%;
 }
 
 #formModal-overlay {
@@ -271,10 +303,21 @@ input:focus::placeholder, textarea:focus::placeholder {
     color: black;
 }
 
-.flex-grid-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
+#about-text{
+    margin-right:25%;
+    margin-left:25%;
+}
+
+.about-headers{
+    color:#55976a;
+}
+
+#about-container {
+    position: relative;
+    left: 50%;
+    min-height: 400px;
+    width: 100vw;
+    transform: translateX(-50%);
 }
 
 #ad-card {
@@ -292,6 +335,11 @@ input:focus::placeholder, textarea:focus::placeholder {
     width: 250px;
     height: 250px;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
+}
+.flex-grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
 }
 
 .text-block {
@@ -344,6 +392,9 @@ input:focus::placeholder, textarea:focus::placeholder {
         margin-top: 10%;
         margin-bottom: 0;
         margin: auto;
+    }
+    #about-container{
+        display:none;
     }
 
     #search-box-container {

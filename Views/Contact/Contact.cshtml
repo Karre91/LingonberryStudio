@@ -1,14 +1,11 @@
 ﻿@model LingonberryStudio.Models.Gmail
-
-@if (ViewBag.Message != null)
+@if (!string.IsNullOrEmpty(ViewBag.Message))
 {
-	<script>
-		$(document).ready(function () {
-
-			alert('@ViewBag.Message');
-		});
+	<script type="text/javascript">
+		alert("@ViewBag.Message");
 	</script>
 }
+
 @using (Html.BeginForm("Contact", "Contact", FormMethod.Post, new { @class = "frmValidation", @novalidate = "" }))
 {
 	<div class="container contact-form">
