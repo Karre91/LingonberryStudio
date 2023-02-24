@@ -14,6 +14,7 @@
     using Microsoft.EntityFrameworkCore.ChangeTracking;
     using Microsoft.EntityFrameworkCore.Metadata.Internal;
     using Microsoft.VisualBasic;
+    using Newtonsoft.Json.Linq;
     using static System.Net.Mime.MediaTypeNames;
 
     public class AdvertsController : Controller
@@ -105,6 +106,7 @@
                 if (viewModel.AdvertList.Count <= 0)
                 {
                     viewModel.AdvertList = GetAdsInDB();
+                    viewModel.MaxBudget = viewModel.AdvertList.Max(a => a.WorkPlace.Pounds);
                 }
             }
 
@@ -304,12 +306,13 @@
                     break;
             }
 
-            var allAdsInDB = query
+            var filteredAdsInDB = query
                 .AsNoTracking()
                 .ToList();
 
-            allAdsInDB = ExcludeOldAds(allAdsInDB);
-            return allAdsInDB;
+            filteredAdsInDB = ExcludeOldAds(filteredAdsInDB);
+
+            return filteredAdsInDB;
         }
 
         private List<Advert> GetAdsInDB()
@@ -324,6 +327,7 @@
             .ToList();
 
             allAdsInDB = ExcludeOldAds(allAdsInDB);
+
             return allAdsInDB;
         }
     }
