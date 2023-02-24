@@ -3,10 +3,7 @@
 @using static LingonberryStudio.Models.Filter;
 @using LingonberryStudio.Models;
 @model AdvertViewMoldel
-@{
-    var a = new AdvertViewMoldel();
-    int? maxBudget = Model.AdvertList.Max(x => x.WorkPlace.Pounds+100);
-}
+
 
 <div id="filter-container">
     <div class="row">
@@ -39,8 +36,10 @@
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row">
+
+
                                     <div class="col mb-0">
-                                        <label asp-for="Filter.Pounds" class="form-label mb-0" id="budget">Max budget £:<span id="displayBudget"></span> </label>
+                                        <label asp-for="Filter.Pounds" class="form-label mb-0" id="budget">Max budget £:<span id="displayBudget">@Model.Filter.Pounds</span> </label>
                                         <div class="form-check" onclick="ableRange()">
                                             @Html.RadioButtonFor(m => m.Filter.Period, "Month") Month
                                         </div>
@@ -50,8 +49,17 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                              
-                                    <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="250" id="Currency" name="Filter.Pounds" min="0" max=@maxBudget step="1" onchange="myFunction()" disabled>
+                                    @if (Model.Filter.Pounds > 0)
+                                    {
+                                        <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="@Model.Filter.Pounds" id="Currency" name="Filter.Pounds" min="0" max=@Model.MaxBudget step="1" oninput="myFunction()">
+                                        @Html.HiddenFor(a=>a.MaxBudget, Model.MaxBudget)
+                                    }
+                                    else
+                                    {
+                                        <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="@Model.MaxBudget/2" id="Currency" name="Filter.Pounds" min="0" max=@Model.MaxBudget step="1" oninput="myFunction()" disabled>
+                                        @Html.HiddenFor(a=>a.MaxBudget, Model.MaxBudget)
+                                    }
+                                    
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row mb-4">

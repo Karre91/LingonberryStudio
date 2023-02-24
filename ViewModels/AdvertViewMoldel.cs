@@ -18,5 +18,7 @@
         public Filter Filter { get; set; }
 
         public Advert Advert { get; set; }
+
+        public int? MaxBudget { get; set; }
     }
 }
