@@ -28,7 +28,7 @@ jobs:
 
 
       - name: dotnet publish
-        run: dotnet publish--property:PublishDir=${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish --property:PublishDir=${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
