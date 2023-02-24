@@ -30,7 +30,7 @@
         }
 
         [HttpPost]
-        public IActionResult IndexSearch(string city, bool offeringMine)
+        public IActionResult IndexSearch(string city, bool looking)
         {
             if (string.IsNullOrEmpty(city))
             {
@@ -38,7 +38,7 @@
                 return RedirectToAction("Index", emptySearch);
             }
 
-            return RedirectToAction("Adverts", "Adverts", new { city = city, offering = offeringMine, hasFilter = true });
+            return RedirectToAction("Adverts", "Adverts", new { city = city, offering = looking, hasFilter = true });
         }
 
         public IActionResult Privacy()

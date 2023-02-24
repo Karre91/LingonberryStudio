@@ -93,7 +93,8 @@
                     </div>
                     <div class="col">
                         <p class="form-text-style"><b>Name:</b> @Model.FirstName @Model.LastName</p> <br />
-                        <p class="form-text-style"><b>Email:</b> @Model.Email</p> <br />
+                        <p class="form-text-style"><b>Email:</b></p><a href="mailto:@Model.Email" class="form-text-style">@Model.Email</a><br />
+                        
                         @if (Model.PhoneNumber != null)
                         {
                             <p class="form-text-style"><b>Phone:</b> @Model.PhoneNumber</p> <br />
@@ -137,7 +138,7 @@
                             @if (modelHasAmenity)
                             {
                                 <p class=" form-text-style">
-                                    <b>Ametities:</b><br />
+                                    <b>Amenities:</b><br />
                                     @foreach (var noSpaceAmenity in modelChosenAmenityStrings)
                                     {
                                         string amenity = Model.SplitCamelCase(noSpaceAmenity);
@@ -216,7 +217,7 @@
                 </div>
             </div>
             <div class="modal-footer pb-0">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="project-buttons form-buttons red-buttons" data-dismiss="modal">CLOSE</button>
             </div>
             }
         </div>
