@@ -28,17 +28,14 @@ using (var scope = app.Services.CreateScope())
     }
 
     var services = scope.ServiceProvider;
-    if (app.Environment.IsDevelopment())
+    try
     {
-        try
-        {
-            Seed.Initialize(services);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-            throw;
-        }
+        Seed.Initialize(services);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex);
+        throw;
     }
 }
 
