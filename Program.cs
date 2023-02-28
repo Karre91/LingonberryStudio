@@ -14,18 +14,18 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    //using (var appContext = scope.ServiceProvider.GetRequiredService<LingonberryDbContext>())
-    //{
-    //    try
-    //    {
-    //        appContext.Database.Migrate();
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        Console.WriteLine(ex);
-    //        throw;
-    //    }
-    //}
+    using (var appContext = scope.ServiceProvider.GetRequiredService<LingonberryDbContext>())
+    {
+        try
+        {
+            appContext.Database.Migrate();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            throw;
+        }
+    }
 
     var services = scope.ServiceProvider;
     try
