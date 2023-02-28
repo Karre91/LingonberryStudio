@@ -93,7 +93,7 @@
                                 <label asp-for="Advert.StudioType">Workspace</label>
                                 <br>
                                 <input asp-for="Advert.StudioType" list="Advert.StudioType" name="Advert.StudioType" required>
-                                <datalist  id="Advert.StudioType">
+                                <datalist id="Advert.StudioType">
                                     <option value="Options" selected disabled>Options</option>
                                     <option value="MusicStudio">Music Studio</option>
                                     <option value="ArtStudio">Art Studio</option>
@@ -226,7 +226,8 @@
                     </div>
                 </div>
                 <div class="modal-footer form-background-color">
-                    <button type="submit" class="btn project-buttons green-buttons form-buttons">SUBMIT</button>
+                    <input type="checkbox" name="checkbox" />
+                    <button type="submit" class="btn project-buttons green-buttons form-buttons" id="Submit" disabled>SUBMIT</button>
                     <button type="button" class="btn project-buttons red-buttons form-buttons" data-dismiss="modal">CLOSE</button>
                 </div>
             </div>
@@ -253,6 +254,17 @@
         document.getElementById("budget-number").disabled = false;
         var x = document.getElementById("budget-number").value;
     }
+
+
+    var checkbox = document.querySelector("input[name=checkbox]");
+
+    checkbox.addEventListener('change', function () {
+        if (this.checked) {
+             document.getElementById("Submit").disabled = false;
+        } else {
+            document.getElementById("Submit").disabled = true;
+        }
+    });
 </script>
 <script language="javascript">
     var today = new Date();

@@ -98,7 +98,7 @@
                 viewModel.AdvertList = Filter(viewModel.Filter);
                 if (viewModel.AdvertList.Count <= 0)
                 {
-                    ViewBag.CityNotFound = $"No results with the city \"{viewModel.Filter.City}\"";
+                    ViewBag.CityNotFound = $"No results that matches your filter search";
                 }
             }
             else
@@ -190,35 +190,99 @@
 
         private List<int> FilterByBudget(Filter filter, List<int> ids)
         {
-            switch (filter.Period)
-            {
-                case "Month":
-                    filter.CalculatedPounds = filter.Pounds / 4;
-                    break;
-                case "Week":
-                    filter.CalculatedPounds = filter.Pounds * 4;
-                    break;
-                default: return ids;
-            }
+            //switch (filter.Period)
+            //{
+            //    case "Month":
+            //        filter.CalculatedPounds = filter.Pounds / 4;
+            //        break;
+            //    case "Week":
+            //        filter.Pounds = filter.Pounds * 4;
+            //        break;
+            //    default: return ids;
+            //}
 
-            List<int> filteredIds = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
-                   .Where(a => a.WorkPlace.Period == null)
-                   .Select(a => a.ID)
-                   .ToList();
-
-            var filteredOnMonth = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
-               .Where(a => (a.WorkPlace.Period != null) && (a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Pounds <= filter.Pounds))
-               .Select(a => a.ID)
-               .ToList();
-
-            var filteredOnWeek = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
-                .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period != filter.Period && a.WorkPlace.Pounds <= filter.CalculatedPounds)
+            List<int> filteredIds = db.Adverts
+                .Where(a => ids
+                .Contains(a.ID))
+                .Include(a => a.WorkPlace)
+                .Where(a => a.WorkPlace.Period == null)
                 .Select(a => a.ID)
                 .ToList();
 
-            filteredIds.AddRange(filteredOnMonth);
+            if (filter.Offering && !filter.Looking)
+            {
+                var filterOnWeekPeriod = db.Adverts
+                    .Where(a => ids.Contains(a.ID))
+                    .Include(a => a.WorkPlace)
+                .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period != filter.Period && a.WorkPlace.Pounds <= filter.Pounds)
+               .Select(a => a.ID)
+               .ToList();
 
-            filteredIds.AddRange(filteredOnWeek);
+                var filterOnMonthPeriod = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
+                   .Where(a => (a.WorkPlace.Period != null) && (a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Pounds <= filter.Pounds))
+                   .Select(a => a.ID)
+                   .ToList();
+
+                filteredIds.AddRange(filterOnWeekPeriod);
+                filteredIds.AddRange(filterOnMonthPeriod);
+            }
+
+            if (filter.Looking && !filter.Offering)
+            {
+                var filterOnMonth = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
+               .Where(a => (a.WorkPlace.Period != null) && (a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Pounds >= filter.Pounds))
+               .Select(a => a.ID)
+               .ToList();
+
+                var filterOnWeek = db.Adverts.Where(a => ids.Contains(a.ID)).Include(a => a.WorkPlace)
+                    .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period != filter.Period && a.WorkPlace.Pounds >= filter.Pounds)
+                    .Select(a => a.ID)
+                    .ToList();
+
+                filteredIds.AddRange(filterOnWeek);
+                filteredIds.AddRange(filterOnMonth);
+            }
+
+            if (filter.Looking && filter.Offering)
+            {
+                var filterOnWeekOffering = db.Adverts
+                    .Where(a => ids.Contains(a.ID))
+                    .Where(a => filter.Offering == a.Offering)
+                    .Include(a => a.WorkPlace)
+                    .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period != filter.Period && a.WorkPlace.Pounds <= filter.Pounds)
+                    .Select(a => a.ID)
+                    .ToList();
+
+                var filterOnMonthOffering = db.Adverts
+                    .Where(a => ids.Contains(a.ID))
+                    .Where(a => filter.Offering == a.Offering)
+                    .Include(a => a.WorkPlace)
+                    .Where(a => (a.WorkPlace.Period != null) && (a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Pounds <= filter.Pounds))
+                    .Select(a => a.ID)
+                    .ToList();
+
+                var filterOnWeekLooking = db.Adverts
+                    .Where(a => ids.Contains(a.ID))
+                    .Where(a => filter.Looking != a.Offering)
+                    .Include(a => a.WorkPlace)
+                    .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Period != filter.Period && a.WorkPlace.Pounds >= filter.Pounds)
+                    .Select(a => a.ID)
+                    .ToList();
+
+                var filterOnMonthLooking = db.Adverts
+                    .Where(a => ids.Contains(a.ID))
+                    .Where(a => filter.Looking != a.Offering)
+                    .Include(a => a.WorkPlace)
+                    .Where(a => (a.WorkPlace.Period != null) && (a.WorkPlace.Period.Equals(filter.Period) && a.WorkPlace.Pounds >= filter.Pounds))
+                    .Select(a => a.ID)
+                    .ToList();
+
+                filteredIds.AddRange(filterOnWeekOffering);
+                filteredIds.AddRange(filterOnMonthOffering);
+                filteredIds.AddRange(filterOnWeekLooking);
+                filteredIds.AddRange(filterOnMonthLooking);
+
+            }
 
             return filteredIds;
         }

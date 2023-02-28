@@ -142,8 +142,9 @@
                                     @foreach (var noSpaceAmenity in modelChosenAmenityStrings)
                                     {
                                         string amenity = Model.SplitCamelCase(noSpaceAmenity);
-                                        @if (filterAmenityString.Contains(amenity))
+                                        @if (filterAmenityString.Contains(noSpaceAmenity))
                                         {
+                                            
 
                                             if (amenity == "Other")
                                             {
