@@ -39,19 +39,26 @@
 
 
                                     <div class="col mb-0">
-                                        <label asp-for="Filter.Pounds" class="form-label mb-0" id="budget">Budget £:<span id="displayBudget">@Model.Filter.Pounds</span> </label>
-                                        <div class="form-check" onclick="ableRange()">
-                                            @Html.RadioButtonFor(m => m.Filter.Period, "Month") Month
-                                        </div>
-                                        @*<div class="form-check" onclick="ableRange()">
-                                            @Html.RadioButtonFor(m => m.Filter.Period, "Week") Week
-                                        </div>*@
+                                        <label asp-for="Filter.Pounds" class="form-label mb-0" id="budget">Budget £:
+                                            @if (Model.Filter.Pounds > 0)
+                                            {
+                                                <span id="displayBudget">@Model.Filter.Pounds</span>
+                                            }
+                                            else
+                                            {
+                                                <span id="displayBudget"></span>
+                                            }
+                                        </label>
+                                        <div class="form-check">
+                                            @Html.CheckBoxFor(m => m.Filter.Month, new { id = "pounds", value="true" }) Month                
+                                        </div>                                       
                                     </div>
                                 </div>
                                 <div class="row">
                                     @if (Model.Filter.Pounds > 0)
                                     {
-                                        <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="@Model.Filter.Pounds" id="Currency" name="Filter.Pounds" min="0" max=@Model.MaxBudget step="1" oninput="myFunction()">
+                                        @*value="@Model.Filter.Pounds"*@
+                                        <input type="range" class="multi-range form-range" asp-for="Filter.Pounds"  id="Currency" name="Filter.Pounds" min="0" max=@Model.MaxBudget step="1" oninput="myFunction()">
                                         @Html.HiddenFor(a=>a.MaxBudget, Model.MaxBudget)
                                     }
                                     else
@@ -171,14 +178,17 @@
 </div>
 
 <script>
-    function myFunction() {
+   function myFunction() {
         var x = document.getElementById("Currency").value;
         document.getElementById("displayBudget").innerHTML = x;
     }
 
-    function ableRange() {
-        document.getElementById("Currency").disabled = false;
-        var x = document.getElementById("Currency").value;
-        document.getElementById("displayBudget").innerHTML = x;
-    }
+    var checkbox = document.querySelector("input[id=pounds]");
+    checkbox.addEventListener('change', function () {
+        if (this.checked) {
+            document.getElementById("Currency").disabled = false;
+        } else {
+            document.getElementById("Currency").disabled = true;
+        }
+    });
 </script>
