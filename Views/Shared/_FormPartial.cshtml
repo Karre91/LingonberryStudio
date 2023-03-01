@@ -8,7 +8,7 @@
 
 
 @using (Html.BeginForm("CreateAd", "Adverts", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{    
+{
     <!-- Modal -->
     <div class="modal fade table-responsive" id="formModal" tabindex="-1" role="dialog" aria-labelledby="mdl-add-lbl" aria-hidden="true">
         <div class="modal-dialog modal-xl table-responsive" role="document">
@@ -226,31 +226,10 @@
                     </div>
                 </div>
                 <div class="modal-footer form-background-color">
-
-                    I have read the @*<a data-toggle="modal" data-target="@("#TandC")">T&C</a>
+                    
+                    I have read the <a data-toggle="modal" data-target="@("#TandC")">T&C</a>
                     <a class="btn project-buttons form-buttons" asp-controller="Adverts" asp-action="TC" data-toggle="modal" data-target="@("#TandC")">testa</a>
-                    <div id="popupTandC"></div>*@
-
-                    <div class="dropup">
-                        <a class=" dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Terms and Conditions
-                        </a>
-                        <div class="dropdown-menu" id="drop">
-                            <div class="form-outline mb-4 p-4">
-                                <h3>Terms And Conditions</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="popupTandC"></div>
                     <input type="checkbox" name="checkbox" />
                     <button type="submit" class="btn project-buttons green-buttons form-buttons" id="Submit" disabled>SUBMIT</button>
                     <button type="button" class="btn project-buttons red-buttons form-buttons" data-dismiss="modal">CLOSE</button>
@@ -258,9 +237,9 @@
             </div>
         </div>
     </div>
-    
+    @*@await Html.PartialAsync("_TearmsAndConditionPartial")*@
 }
-@*@await Html.PartialAsync("_TearmsAndConditionPartial")*@
+
 
 
 

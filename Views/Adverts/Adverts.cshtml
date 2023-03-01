@@ -36,8 +36,6 @@
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row">
-
-
                                     <div class="col mb-0">
                                         <label asp-for="Filter.Pounds" class="form-label mb-0" id="budget">Budget £:
                                             @if (Model.Filter.Pounds > 0)
@@ -47,17 +45,16 @@
                                             else
                                             {
                                                 <span id="displayBudget"></span>
-                                            }
+                                            }                                            
                                         </label>
                                         <div class="form-check">
-                                            @Html.CheckBoxFor(m => m.Filter.Month, new { id = "pounds", value="true" }) Month                
+                                            @Html.CheckBoxFor(m => m.Filter.Month, new { id = "pounds", value="true", @onclick="showBudget()" }) Month
                                         </div>                                       
                                     </div>
                                 </div>
                                 <div class="row">
                                     @if (Model.Filter.Pounds > 0)
                                     {
-                                        @*value="@Model.Filter.Pounds"*@
                                         <input type="range" class="multi-range form-range" asp-for="Filter.Pounds"  id="Currency" name="Filter.Pounds" min="0" max=@Model.MaxBudget step="1" oninput="myFunction()">
                                         @Html.HiddenFor(a=>a.MaxBudget, Model.MaxBudget)
                                     }
@@ -117,10 +114,7 @@
                                 <a asp-controller="Adverts" asp-action="Empty" id="clear-button" class="btn project-buttons beige-buttons form-buttons">CLEAR</a>
                             }
                         </div>
-                    </div>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <input type="checkbox" value="true"> <label></label>
-                    </div>
+                    </div>                
                 </div>
             </div>
         </div>
@@ -128,10 +122,13 @@
             <div>
                 <a class="btn project-buttons form-buttons" id="ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">CREATE</a><br /><br />
                 <div id="popupForm"></div>
+               @* <a class="btn project-buttons form-buttons" id="ad-btn"  data-toggle="modal" data-target="@("#formModal")">CREATE</a>
+                @await Html.PartialAsync("_FormPartial")*@
             </div>
         </div>
     </div>
 </div>
+
 <p id="result">@ViewBag.Total Results</p>
 <div class="container-fluid flex-grid-container border-0">
     <div class="flex-grid-container justify-content-center">
@@ -181,6 +178,19 @@
    function myFunction() {
         var x = document.getElementById("Currency").value;
         document.getElementById("displayBudget").innerHTML = x;
+    }
+
+    function showBudget(){
+            var checkbox = document.querySelector("input[id=pounds]");
+        checkbox.addEventListener('change', function () {
+            if (this.checked) {
+                var x = document.getElementById("Currency").value;
+                document.getElementById("displayBudget").innerHTML = x;
+                document.getElementById("displayBudget").hidden = false;
+            } else {
+                document.getElementById("displayBudget").hidden = true;
+            }
+        });
     }
 
     var checkbox = document.querySelector("input[id=pounds]");
