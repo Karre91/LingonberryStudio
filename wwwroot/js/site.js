@@ -20,4 +20,4 @@
 
 $('#popupForm').load("/Adverts/Form");
 
-
+$('#popupTandC').load("/Adverts/TC");

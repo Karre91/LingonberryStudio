@@ -3745,7 +3745,7 @@
   const PLACEMENT_RIGHT = isRTL() ? 'left-start' : 'right-start';
   const PLACEMENT_LEFT = isRTL() ? 'right-start' : 'left-start';
   const Default$8 = {
-    offset: [0, 2],
+    offset: [0, 9],
     boundary: 'clippingParents',
     reference: 'toggle',
     display: 'dynamic',

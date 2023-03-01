@@ -34,6 +34,11 @@
             return PartialView("_FormPartial");
         }
 
+        public IActionResult TC()
+        {
+            return PartialView("_TearmsAndConditionPartial");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CreateAd(AdvertViewMoldel incoming)
