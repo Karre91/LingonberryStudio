@@ -3500,24 +3500,25 @@ textarea.form-control-lg {
   color: #212529;
   text-align: left;
   list-style: none;
-  background-color: #fff;
+  background-color: #dc3545;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
 }
+//HEJ
 .dropdown-menu[data-bs-popper] {
-  top: 100%;
-  left: 0;
-  margin-top: 0.125rem;
+    top: 100%;
+    left: -100px;
+    margin-top: 0.125rem;
 }
 
 .dropdown-menu-start {
   --bs-position: start;
 }
-.dropdown-menu-start[data-bs-popper] {
-  right: auto;
-  left: 0;
-}
+    .dropdown-menu-start[data-bs-popper] {
+        right: auto;
+        left: 0;
+    }
 
 .dropdown-menu-end {
   --bs-position: end;

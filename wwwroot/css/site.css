@@ -117,7 +117,12 @@ a {
     background-color:red;
 }
 .dropdown-menu.show {
-    min-width:50vw;
+    min-width:30vw;
+}
+#drop {
+    max-width: 576px !important;
+    min-width: 576px !important;
+    margin-left: -280% !important;
 }
 
 .green-buttons {
@@ -270,8 +275,7 @@ a {
     }
 
 /*Styling for contact form*/
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+    input:: -webkit-outer-spin-button, input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -401,6 +405,11 @@ input:focus::placeholder, textarea:focus::placeholder {
         display: flex;
         justify-content: center;
     }
+    #drop {
+        max-width: 376px !important;
+        min-width: 376px !important;
+        margin-left: -50% !important;
+    }
 
 
     @media (max-width: 767px) {
@@ -423,7 +432,11 @@ input:focus::placeholder, textarea:focus::placeholder {
         .flex-grid-container {
             max-width: 100%;
         }
-
+        #drop {
+            max-width: 400px !important;
+            min-width: 400px !important;
+            margin-left: -60% !important;
+        }
         #ad-image {
             border-radius: 7%;
             object-fit: cover;
