@@ -38,11 +38,12 @@
 
         public string? City { get; set; }
 
-        public string? Period { get; set; }
+        //[DisplayName("Month")]
+        public bool Month { get; set; }
 
         public int Pounds { get; set; }
 
-        public int CalculatedPounds { get; set; }
+        //public int CalculatedPounds { get; set; }
 
         public bool MusicStudio { get; set; }
 
