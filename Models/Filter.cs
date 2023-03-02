@@ -92,7 +92,7 @@
 
         public bool Sunday { get; set; }
 
-        public OrderBy OrderByTest { get; set; }
+        public OrderBy OrderBy { get; set; }
 
         public List<string> GetChosenStudioTypes()
         {

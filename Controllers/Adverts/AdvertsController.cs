@@ -124,7 +124,7 @@
             ids = FilterByAmenities(filter, ids);
             ids = FilterByDays(filter, ids);
 
-            return GetAdsInDB(ids, filter.OrderByTest);
+            return GetAdsInDB(ids, filter.OrderBy);
         }
 
         private List<int> FilterByOfferingLookingAndBudget(Filter filter)
