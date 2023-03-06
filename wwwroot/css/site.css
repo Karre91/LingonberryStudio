@@ -125,7 +125,7 @@ a {
 #drop {
     max-width: 576px !important;
     min-width: 576px !important;
-    margin-left: -280% !important;
+    margin-left: -80% !important;
 }
 
 .green-buttons {
@@ -411,7 +411,7 @@ input:focus::placeholder, textarea:focus::placeholder {
     #drop {
         max-width: 376px !important;
         min-width: 376px !important;
-        margin-left: -50% !important;
+        margin-left: 2% !important;
     }
 
 
@@ -436,9 +436,9 @@ input:focus::placeholder, textarea:focus::placeholder {
             max-width: 100%;
         }
         #drop {
-            max-width: 400px !important;
-            min-width: 400px !important;
-            margin-left: -60% !important;
+            max-width: 350px !important;
+            min-width: 350px !important;
+            margin-left: 2% !important;
         }
         #ad-image {
             border-radius: 7%;
