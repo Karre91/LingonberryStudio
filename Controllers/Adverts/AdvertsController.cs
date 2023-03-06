@@ -135,7 +135,7 @@
             {
                 //all ads that are offering
                 List<int> filteredIds1 = db.Adverts
-                .Where(a => a.Offering.Equals(filter.Offering))
+                .Where(a => a.Offering.Equals(true))
                 .Select(a => a.ID)
                 .ToList();
 
@@ -147,7 +147,7 @@
             {
                 //all ads that are looking
                 List<int> filteredIds2 = db.Adverts
-                .Where(a => a.Offering.Equals(!filter.Looking))
+                .Where(a => a.Offering.Equals(false))
                 .Select(a => a.ID)
                 .ToList();
 
