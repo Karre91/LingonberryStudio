@@ -34,11 +34,6 @@
             return PartialView("_FormPartial");
         }
 
-        public IActionResult TC()
-        {
-            return PartialView("_TearmsAndConditionPartial");
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CreateAd(AdvertViewMoldel incoming)
@@ -48,7 +43,7 @@
             if (ModelState.IsValid)
             {
                 potentialAd.WorkPlace.City = potentialAd.WorkPlace.City.ToUpper();
-
+                potentialAd.StudioType = potentialAd.StudioType.Replace(" ", string.Empty);
                 if (potentialAd.WorkPlace.FormFile != null)
                 {
                     potentialAd.WorkPlace.ImgUrl = "StudioImages/" + Guid.NewGuid().ToString() + "_" + potentialAd.WorkPlace.FormFile.FileName;
@@ -129,7 +124,7 @@
             ids = FilterByAmenities(filter, ids);
             ids = FilterByDays(filter, ids);
 
-            return GetAdsInDB(ids, filter.OrderByTest);
+            return GetAdsInDB(ids, filter.OrderBy);
         }
 
         private List<int> FilterByOfferingLookingAndBudget(Filter filter)
