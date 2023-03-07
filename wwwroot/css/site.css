@@ -406,13 +406,16 @@ input:focus::placeholder, textarea:focus::placeholder {
         margin: auto;
     }
 
+    #menu-vertical-line {
+        display: none;
+    }
+
     .dropdown-menu.show {
         min-width: 90vw;
     }
     #about-container{
         display:none;
     }
-
     #search-box-container {
         display: flex;
         justify-content: center;
