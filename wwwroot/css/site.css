@@ -44,8 +44,13 @@ a {
     height: 400px;
 
 }
-#text-logo{
-    font-style:italic;
+#text-logo {
+    font-style: italic;
+    margin-top: 4px;
+    color: #333e04;
+    font-family: 'Jost', sans-serif;
+    font-weight: lighter 300;
+    font-size:15px;
 }
 #hero-banner-container {
     height: 400px;
@@ -401,13 +406,16 @@ input:focus::placeholder, textarea:focus::placeholder {
         margin: auto;
     }
 
+    #menu-vertical-line {
+        display: none;
+    }
+
     .dropdown-menu.show {
         min-width: 90vw;
     }
     #about-container{
         display:none;
     }
-
     #search-box-container {
         display: flex;
         justify-content: center;
