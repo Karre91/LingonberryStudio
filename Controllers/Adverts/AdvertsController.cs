@@ -118,13 +118,55 @@
 
         public List<Advert> Filter(Filter filter)
         {
-            List<int> ids = FilterByOfferingLookingAndBudget(filter);
+            List<int> ids = FilterTest(filter);
+
+            //List<int> ids = FilterByOfferingLookingAndBudget(filter);
             ids = FilterByStudioType(filter, ids);
             ids = FilterByCity(filter, ids);
             ids = FilterByAmenities(filter, ids);
             ids = FilterByDays(filter, ids);
 
             return GetAdsInDB(ids, filter.OrderBy);
+        }
+
+        private List<int> FilterTest(Filter filter)
+        {
+            List<int> filteredIds = db.Adverts
+               .Include(a => a.WorkPlace)
+               .Where(a => a.WorkPlace.Period == null)
+               .Select(a => a.ID)
+               .ToList();
+
+            if ((!filter.Looking && !filter.Offering) || (filter.Looking && filter.Offering))
+            {
+                List<int> filteredIdstest = db.Adverts
+                .Where(a => (a.Offering.Equals(true) && a.WorkPlace.Period != null && a.WorkPlace.Pounds <= filter.Pounds) ||
+                (a.Offering.Equals(false) && a.WorkPlace.Period != null && a.WorkPlace.Pounds >= filter.Pounds))
+                .Select(a => a.ID)
+                .ToList();
+
+                filteredIds.AddRange(filteredIdstest);
+            }
+            else if (filter.Offering)
+            {
+                List<int> filteredIdstest = db.Adverts
+                .Where(a => (a.Offering.Equals(true) && a.WorkPlace.Period != null && a.WorkPlace.Pounds <= filter.Pounds))
+                .Select(a => a.ID)
+                .ToList();
+
+                filteredIds.AddRange(filteredIdstest);
+            }
+            else if (filter.Looking)
+            {
+                List<int> filteredIdstest = db.Adverts
+                .Where(a => (a.Offering.Equals(false) && a.WorkPlace.Period != null && a.WorkPlace.Pounds >= filter.Pounds))
+                .Select(a => a.ID)
+                .ToList();
+
+                filteredIds.AddRange(filteredIdstest);
+            }
+
+            return filteredIds;
         }
 
         private List<int> FilterByOfferingLookingAndBudget(Filter filter)
@@ -214,8 +256,7 @@
             if (filter.Month)
             {
                 List<int> filteredIds = db.Adverts
-                .Where(a => ids
-                .Contains(a.ID))
+                .Where(a => ids.Contains(a.ID))
                 .Include(a => a.WorkPlace)
                 .Where(a => a.WorkPlace.Period == null)
                 .Select(a => a.ID)
