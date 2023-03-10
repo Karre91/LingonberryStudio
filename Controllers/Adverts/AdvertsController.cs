@@ -68,30 +68,33 @@
         [HttpGet]
         public IActionResult Adverts(AdvertViewMoldel viewModel, bool hasFilter, string city, bool offering)
         {
-            if (city != null)
-            {
-                viewModel.Filter.City = city;
-                switch (offering)
-                {
-                    case true: viewModel.Filter.Offering = true; break;
-                    case false: viewModel.Filter.Looking = true; break;
-                }
-
-                viewModel.AdvertList = Filter(viewModel.Filter);
-
-                if (viewModel.AdvertList.Count <= 0)
-                {
-                    TempData["searchError"] = $"No results with the city \"{city}\"";
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-
+            viewModel.MaxBudget = db.Adverts.Max(a => a.WorkPlace.Pounds);
             if (hasFilter)
             {
-                viewModel.AdvertList = Filter(viewModel.Filter);
-                if (viewModel.AdvertList.Count <= 0)
+                if (city != null)
                 {
-                    ViewBag.CityNotFound = $"No results that matches your filter search";
+                    viewModel.Filter.City = city;
+                    switch (offering)
+                    {
+                        case true: viewModel.Filter.Offering = true; break;
+                        case false: viewModel.Filter.Looking = true; break;
+                    }
+
+                    viewModel.AdvertList = Filter(viewModel.Filter);
+
+                    if (viewModel.AdvertList.Count <= 0)
+                    {
+                        TempData["searchError"] = $"No results with the city \"{city}\"";
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    viewModel.AdvertList = Filter(viewModel.Filter);
+                    if (viewModel.AdvertList.Count <= 0)
+                    {
+                        ViewBag.CityNotFound = $"No results that matches your filter search";
+                    }
                 }
             }
             else
@@ -99,7 +102,6 @@
                 if (viewModel.AdvertList.Count <= 0)
                 {
                     viewModel.AdvertList = GetAdsInDB();
-                    viewModel.MaxBudget = viewModel.AdvertList.Max(a => a.WorkPlace.Pounds);
                 }
             }
 
@@ -161,8 +163,8 @@
             if (filter.Looking && filter.Month)
             {
                 List<int> filteredIdsIf = db.Adverts
-                .Where(a => (a.Offering.Equals(false) && a.WorkPlace.Period == null)
-                || (a.Offering.Equals(false) && a.WorkPlace.Period != null && a.WorkPlace.Pounds >= filter.Pounds))
+                .Where(a => (a.Offering.Equals(false) && a.WorkPlace.Period != null && a.WorkPlace.Pounds >= filter.Pounds)
+                || (a.Offering.Equals(false) && a.WorkPlace.Period == null))
                 .Select(a => a.ID)
                 .ToList();
 
