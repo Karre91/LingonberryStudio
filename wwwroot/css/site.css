@@ -60,6 +60,7 @@ a {
     font-synthesis: none;
     font-family: 'Jost', sans-serif;
     font-weight: bold;
+    margin-left: 1.5rem;
 }
 
 .checkbox {
@@ -74,6 +75,9 @@ a {
     height: 75%;
     object-fit: cover;
     display: none;
+}
+label {
+    margin-bottom:-5px !important;
 }
 
 #search-box {
@@ -91,11 +95,6 @@ a {
 }
 
 #full-width-banner {
-    /* width: 100vw;
-    position: relative;
-    height:440px;
-    max-width:1200px;*/
-
     width: 99vw;
     position: relative;
     left: 50%;
@@ -125,7 +124,8 @@ a {
     background-color:red;
 }
 .dropdown-menu.show {
-    min-width:30vw;
+    min-width: 50vw;
+ 
 }
 #drop {
     max-width: 576px !important;
