@@ -326,7 +326,8 @@ th {
 }
 
 label {
-  display: inline-block;
+    display: inline-block;
+    margin-bottom:-10px;
 }
 
 button {
