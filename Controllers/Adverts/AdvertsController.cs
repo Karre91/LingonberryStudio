@@ -2,21 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
-    using System.Reflection.Metadata;
-    using System.Security.Cryptography;
     using LingonberryStudio.Data;
     using LingonberryStudio.Data.Entities;
     using LingonberryStudio.Models;
     using LingonberryStudio.ViewModels;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.ChangeTracking;
-    using Microsoft.EntityFrameworkCore.Metadata.Internal;
-    using Microsoft.VisualBasic;
-    using Newtonsoft.Json.Linq;
-    using static System.Net.Mime.MediaTypeNames;
 
     public class AdvertsController : Controller
     {
@@ -139,9 +131,23 @@
                 .Select(a => a.ID)
                 .ToList();
 
-                return ExcludeOldAdsIds(filteredIdsIf);
+                return filteredIdsIf;
             }
-            else if (filter.Offering && filter.Month)
+
+            if ((!filter.Looking && !filter.Offering && !filter.Month) || (filter.Looking && filter.Offering && !filter.Month))
+            {
+                List<int> filteredIdsIf = db.Adverts
+                .Where(a => (a.Offering.Equals(true) && a.WorkPlace.Period == null)
+                || (a.Offering.Equals(false) && a.WorkPlace.Period == null)
+                || (a.Offering.Equals(true) && a.WorkPlace.Period != null)
+                || (a.Offering.Equals(false) && a.WorkPlace.Period != null))
+                .Select(a => a.ID)
+                .ToList();
+
+                return filteredIdsIf;
+            }
+
+            if (filter.Offering && filter.Month)
             {
                 List<int> filteredIdsIf = db.Adverts
                 .Where(a => (a.Offering.Equals(true) && a.WorkPlace.Period == null)
@@ -149,19 +155,10 @@
                 .Select(a => a.ID)
                 .ToList();
 
-                return ExcludeOldAdsIds(filteredIdsIf);
+                return filteredIdsIf;
             }
-            else if (filter.Offering && !filter.Month)
-            {
-                List<int> filteredIdsIf = db.Adverts
-                .Where(a => (a.Offering.Equals(true) && a.WorkPlace.Period == null)
-                || (a.Offering.Equals(true) && a.WorkPlace.Period != null))
-                .Select(a => a.ID)
-                .ToList();
 
-                return ExcludeOldAdsIds(filteredIdsIf);
-            }
-            else if (filter.Looking && filter.Month)
+            if (filter.Looking && filter.Month)
             {
                 List<int> filteredIdsIf = db.Adverts
                 .Where(a => (a.Offering.Equals(false) && a.WorkPlace.Period == null)
@@ -169,75 +166,29 @@
                 .Select(a => a.ID)
                 .ToList();
 
-                return ExcludeOldAdsIds(filteredIdsIf);
+                return filteredIdsIf;
             }
-            else if (filter.Looking && !filter.Month)
+
+            if ((filter.Offering && !filter.Month) || (filter.Looking && !filter.Month))
             {
+                bool isTrue = true;
+                if (filter.Looking)
+                {
+                    isTrue = false;
+                }
+
                 List<int> filteredIdsIf = db.Adverts
-                .Where(a => (a.Offering.Equals(false) && a.WorkPlace.Period == null)
-                || (a.Offering.Equals(false) && a.WorkPlace.Period != null))
+                .Where(a => (a.Offering.Equals(isTrue) && a.WorkPlace.Period == null)
+                || (a.Offering.Equals(isTrue) && a.WorkPlace.Period != null))
                 .Select(a => a.ID)
                 .ToList();
 
-                return ExcludeOldAdsIds(filteredIdsIf);
+                return filteredIdsIf;
             }
 
             var filteredIds = db.Adverts
                 .Select(a => a.ID)
                 .ToList();
-
-            return ExcludeOldAdsIds(filteredIds);
-
-            //else if ((!filter.Looking && !filter.Offering && !filter.Month) || (filter.Looking && filter.Offering && !filter.Month))
-            //{
-            //    List<int> filteredIdsIf = db.Adverts
-            //    .Where(a => (a.Offering.Equals(true) && a.WorkPlace.Period == null)
-            //    || (a.Offering.Equals(true) && a.WorkPlace.Period != null))
-            //    .Select(a => a.ID)
-            //    .ToList();
-
-            //    return ExcludeOldAdsIds(filteredIdsIf);
-            //}
-        }
-
-        private List<int> ExcludeOldAdsIds(List<int> ids)
-        {
-            //var filteredIds = db.Adverts
-            //    .Where(a => ids.Contains(a.ID))
-            //    .Except(db.Adverts.Where(a => (a.TimeCreated.Date - DateTime.Now).Days! <= -180))
-            //    .Select(a => a.ID)
-            //    .ToList();
-
-            return ids;
-        }
-
-        private List<int> FilterByOfferingLookingAndBudgetNO(Filter filter)
-        {
-            List<int> filteredIds = new();
-
-            if (filter.Offering || (!filter.Looking && !filter.Offering))
-            {
-                //all ads that are offering
-                List<int> filteredIds1 = db.Adverts
-                .Where(a => a.Offering.Equals(true))
-                .Select(a => a.ID)
-                .ToList();
-
-                var a = FilterByBudgetOffering(filter, filteredIds1);
-                filteredIds.AddRange(a);
-            }
-
-            if (filter.Looking || (!filter.Looking && !filter.Offering))
-            {
-                //all ads that are looking
-                List<int> filteredIds2 = db.Adverts
-                .Where(a => a.Offering.Equals(false))
-                .Select(a => a.ID)
-                .ToList();
-
-                var b = FilterByBudgetLooking(filter, filteredIds2);
-                filteredIds.AddRange(b);
-            }
 
             return filteredIds;
         }
@@ -294,54 +245,6 @@
             }
         }
 
-        private List<int> FilterByBudgetOffering(Filter filter, List<int> ids)
-        {
-            if (filter.Month)
-            {
-                List<int> filteredIds = db.Adverts
-                .Where(a => ids.Contains(a.ID))
-                .Where(a => a.WorkPlace.Period == null)
-                .Select(a => a.ID)
-                .ToList();
-
-                var filterOnWeekPeriod = db.Adverts
-                     .Where(a => ids.Contains(a.ID))
-                     .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Pounds <= filter.Pounds)
-                     .Select(a => a.ID)
-                     .ToList();
-
-                filteredIds.AddRange(filterOnWeekPeriod);
-
-                return filteredIds;
-            }
-
-            return ids;
-        }
-
-        private List<int> FilterByBudgetLooking(Filter filter, List<int> ids)
-        {
-            if (filter.Month)
-            {
-                List<int> filteredIds = db.Adverts
-                .Where(a => ids.Contains(a.ID))
-                .Where(a => a.WorkPlace.Period == null)
-                .Select(a => a.ID)
-                .ToList();
-
-                var filterOnWeek = db.Adverts
-                    .Where(a => ids.Contains(a.ID))
-                    .Where(a => a.WorkPlace.Period != null && a.WorkPlace.Pounds >= filter.Pounds)
-                    .Select(a => a.ID)
-                    .ToList();
-
-                filteredIds.AddRange(filterOnWeek);
-
-                return filteredIds;
-            }
-
-            return ids;
-        }
-
         private List<int> FilterByAmenities(Filter filter, List<int> ids)
         {
             if (filter.GetAllAmenityTuple().Any(a => a.Item2.Equals(true)))
@@ -394,7 +297,7 @@
             return ids;
         }
 
-        private List<Advert> ExcludeOldAdsNO(List<Advert> allAdsInDB)
+        private List<Advert> ExcludeOldAdsIds(List<Advert> allAdsInDB)
         {
             var goalList = allAdsInDB.Except(allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -180)).ToList();
             return goalList;
@@ -429,7 +332,7 @@
                 .AsNoTracking()
                 .ToList();
 
-            return ExcludeOldAdsNO(filteredAdsInDB);
+            return ExcludeOldAdsIds(filteredAdsInDB);
         }
 
         private List<Advert> GetAdsInDB()
@@ -443,7 +346,7 @@
             .AsNoTracking()
             .ToList();
 
-            return ExcludeOldAdsNO(allAdsInDB);
+            return ExcludeOldAdsIds(allAdsInDB);
         }
     }
 }
