@@ -297,6 +297,9 @@ label {
         font-weight: bolder 500;
         font-synthesis: none;
     }
+.btnContact:hover {
+    background-color: red;
+}
 
 /*Styling for contact form*/
     input:: -webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -348,7 +351,7 @@ input:focus::placeholder, textarea:focus::placeholder {
     transform: translateX(-50%);
 }
 
-#ad-card {
+.ad-card {
     max-width: 350px;
 }
 
@@ -377,6 +380,7 @@ input:focus::placeholder, textarea:focus::placeholder {
     color: white;
     padding-left: 20px;
     padding-right: 20px;
+    border-radius: 20px;
 }
 
 #seed-block{
