@@ -127,6 +127,22 @@ label {
     min-width: 50vw;
  
 }
+.disclaimer-text {
+    font-size: 14px;
+}
+.index-disclaimer {
+    position: absolute;
+    margin-top: -10px;
+    color: #c7342a !important;
+}
+
+#index-drop {
+    max-width: 576px !important;
+    min-width: 576px !important;
+    min-height: 576px !important;
+    max-height: 576px !important;
+    margin-left: -80% !important;
+}
 #drop {
     max-width: 576px !important;
     min-width: 576px !important;
