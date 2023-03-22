@@ -23,12 +23,12 @@
                     {
                         TimeCreated = DateTime.Today,
                         Offering = true,
-                        FirstName = "Karin",
+                        FirstName = "Matz",
                         LastName = "Eurenius",
-                        Email = "kleurenius@gmail.com",
+                        Email = "Meurenius@gmail.com",
                         PhoneNumber = "0707310798",
-                        Artist = "KarinSjunger",
-                        SocialMedia = "@instagram KarinSjunger",
+                        Artist = "MArt",
+                        SocialMedia = "@instagram MArt",
                         StudioType = "ArtStudio",
                         WorkPlace = new ()
                         {
@@ -125,11 +125,11 @@
                     {
                         TimeCreated = new (2023, 01, 01),
                         Offering = true,
-                        FirstName = "Josefin",
+                        FirstName = "Per",
                         LastName = "Unefäldt",
-                        Email = "jossebosse@gmail.com",
+                        Email = "perra@gmail.com",
                         PhoneNumber = "+447511482830",
-                        Artist = "Jojo",
+                        Artist = "Perre",
                         SocialMedia = null,
                         StudioType = "CeramicsStudio",
                         WorkPlace = new ()
@@ -238,6 +238,8 @@
                         {
                             City = "CARDIFF",
                             Area = "CENTER",
+                            ImgUrl = "seedImg/offering-music1.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             ImgUrl = "seedImg/musicOffering.jpg",
                             Description = "Looking for a drumming partner to share my studio with (minimun experience 5 years). Been working on a project for 1 year and the goal is to have a great collaboration and later release an album togeher. Call me for more info!",
                             Period = "Week",
@@ -340,6 +342,8 @@
                         {
                             City = "COTSWOLDS",
                             Area = "OUTSKIRTS",
+                            ImgUrl = "seedImg/looking3.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             ImgUrl = "seedImg/paintLooking.jpg",
                             Description = "Nature lover on a hunt to find a painting workshop in beautiful Cotswolds. Looking to find a peaceful place to be creative, bond, display and share ideas.",
                             Period = "Week",
@@ -391,6 +395,8 @@
                         {
                             City = "NEWQUAY",
                             Area = null,
+                            ImgUrl = "seedImg/looking1.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             ImgUrl = "seedImg/ceramicsLooking.jpg",
                             Description = "Surfer and surf photagrapher looking for a studio in the place to be (NEWQUAY!). Looking to find a partner as surf intrested as me. Catch me on my phone! If I am not availiable try again, I am problably just catching waves...",
                             Period = "Month",
@@ -442,6 +448,8 @@
                         {
                             City = "MANCHESTER",
                             Area = null,
+                            ImgUrl = "seedImg/looking2.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             ImgUrl = "seedImg/artLooking.jpg",
                             Description = "My contract on current studio is running out so I am (sadly) looking for a new one. Please contact if you need information or want to talk to my current studio partner. ",
                             Period = "Month",
@@ -493,6 +501,8 @@
                         {
                             City = "BRISTOL",
                             Area = "ASHLEY",
+                            ImgUrl = "seedImg/looking4.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             ImgUrl = "seedImg/musicLooking.jpg",
                             Description = "Excited to find likeminded people to work/collaborate with. In terms of studio I am not overly picky, my priority is to find someone I can share ideas with and grow as an artist. Don't hesitate to contact me if I sound like your studio partner!",
                             Period = "Month",
@@ -646,6 +656,8 @@
                              {
                                  City = "LONDON",
                                  Area = "CHISWICK",
+                                 ImgUrl = "seedImg/offering-music2.jpg",
+                                 Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                                  ImgUrl = "seedImg/musicOffering.jpg",
                                  Description = "A great studio in a up and coming area full with artists and coffee shops is now availible. I'm looking for a singer and/or guitarist to share my space with.  ",
                                  Period = "Week",
@@ -692,11 +704,13 @@
                          PhoneNumber = "+447560402770",
                          Artist = null,
                          SocialMedia = null,
-                         StudioType = "ArtStudio",
+                         StudioType = "CeramicStudio",
                          WorkPlace = new()
                          {
                              City = "LONDON",
                              Area = "Lea bridge",
+                             ImgUrl = "seedImg/offering1.jpg",
+                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                              ImgUrl = "seedImg/artOffering.jpg",
                              Description = "Got a cute little studio but no one to share it with! Looking to find a creative partner to expand as an artist. I am hoping to find a balance between intense conversations and complete silence in our way of working. Does this sound like something for you? Call me for more info.",
                              Period = "Month",
@@ -748,6 +762,8 @@
                          {
                              City = "LONDON",
                              Area = "CHISWICK",
+                             ImgUrl = "seedImg/looking-art1.jpg",
+                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                              ImgUrl = "seedImg/artLooking.jpg",
                              Description = "Art has always been a passion of mine and something I have been doing for ten years. Hoping to take my art a step further this year, so I am now looking for my first studio ever. Please check my instragram to see my art! If this sounds interesting, contact me on my email!",
                              Period = "Month",
@@ -799,6 +815,8 @@
                          {
                              City = "Cambridge",
                              Area = "Arbury",
+                             ImgUrl = "seedImg/looking-music1.jpg",
+                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                              ImgUrl = "seedImg/musicLooking.jpg",
                              Description = "Looking for a female studio share to grow as an artist. I would prefer is the studio was based in Arbury, but any neighbouring areas are fine too! I am mainly playing piano and singing and looking to have some sort of collaboration. Hope to hear from you!",
                              Period = "Month",
@@ -850,6 +868,8 @@
                          {
                              City = "Sheffield",
                              Area = null,
+                             ImgUrl = "seedImg/looking-paint1.jpg",
+                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                              ImgUrl = "seedImg/paintLooking.jpg",
                              Description = "As my art is covering most of my flat, I realised a studio might be just what I need! I am VERY flexible with times/dates/days and could also go for something temporarly as I am fairly desperate. I am hoping to find a studio where I could sometimes bring my little poodle Milo.",
                              Period = "Week",
@@ -952,6 +972,8 @@
                          {
                              City = "Liverpool",
                              Area = null,
+                             ImgUrl = "seedImg/looking-music2.jpg",
+                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                              ImgUrl = "seedImg/musicLooking.jpg",
                              Description = "Singer, moving from Manchester to Liverpool. Looking to find a musician interested in classic music to collaborate with. My budget can be flexible for the right person/studio!",
                              Period = "Week",
@@ -1003,6 +1025,8 @@
                         {
                             City = "BIRMINGHAM",
                             Area = "DUDLEY",
+                            ImgUrl = "seedImg/looking-film1.jpg",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             ImgUrl = "seedImg/film.jpg",
                             Description = "Newly graduated sound engineer looking for a cool studio, to work with movie soundtracks. Not picky in terms of studio, but acoustic treatment is a must.",
                             Period = null,

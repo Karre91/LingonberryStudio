@@ -165,7 +165,7 @@
             string city = ad.WorkPlace.City.Substring(0, 1) + ad.WorkPlace.City.Substring(1).ToLower();
             string studio = ad.SplitCamelCase(ad.StudioType);
 
-            <div id="ad-card">
+            <div class="ad-card">
                 <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
                     <div class="container">
                         <img src="/@(ad.WorkPlace.ImgUrl)" alt="Work space area" id="ad-image" class="img-fluid mx-auto mb-2">
