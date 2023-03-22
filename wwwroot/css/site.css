@@ -495,19 +495,14 @@ input:focus::placeholder, textarea:focus::placeholder {
             margin-left: 2% !important;
         }
 
+        .ads-text{
+            font-size:13px;
+        }
+
         .text-block {
+            padding-left: 5px;
+            padding-right: 5px;
             font-size: 9px;
-        }
-
-        #seed-block {
-            right: -12px;
-        }
-
-        .text-block {
-            margin-right: 24px;
-            margin-left: 2px;
-            padding-left: 10px;
-            padding-right: 10px;
         }
 
         #ad-image {

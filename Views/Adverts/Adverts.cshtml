@@ -183,15 +183,15 @@
                         }
                     </div>
                     <div class="container">
-                        <p class="fw-bold mb-0">@studio</p>
-                        <p class="mb-0">@city</p>
+                        <p class="fw-bold mb-0 ads-text">@studio</p>
+                        <p class="mb-0 ads-text">@city</p>
                         @if (ad.WorkPlace.Period != null)
                         {
                             if (ad.WorkPlace.Period == "Week")
                             {
                                 ad.WorkPlace.Pounds = ad.WorkPlace.Pounds / 4;
                             }
-                            <p class="mb-0"><u>£@ad.WorkPlace.Pounds/@ad.WorkPlace.Period</u></p>
+                            <p class="mb-0 ads-text"><u>£@ad.WorkPlace.Pounds/@ad.WorkPlace.Period</u></p>
                         }
                     </div>
                 </a>
