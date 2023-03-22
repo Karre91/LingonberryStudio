@@ -468,12 +468,30 @@ input:focus::placeholder, textarea:focus::placeholder {
             min-width: 350px !important;
             margin-left: 2% !important;
         }
-        #ad-image {
+        .text-block{
+            font-size:9px;
+        }
+        #seed-block {
+            right: -12px;
+        }
+
+        .text-block {
+            padding-left: 5px;
+            padding-right: 20px;
+        }
+            
+            #ad-image {
             border-radius: 7%;
             object-fit: cover;
-            max-width: 250px;
-            max-height: 250px;
+            width: 100px;
+            height: 100px;
+            max-width: 100px;
+            max-height: 100px;
             box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
+        }
+
+        #ad-card{
+            max-width:100px;
         }
 
         #ad-btn {
