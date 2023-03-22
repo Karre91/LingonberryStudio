@@ -23,12 +23,12 @@
                     {
                         TimeCreated = DateTime.Today,
                         Offering = true,
-                        FirstName = "Karin",
+                        FirstName = "Matz",
                         LastName = "Eurenius",
-                        Email = "kleurenius@gmail.com",
+                        Email = "Meurenius@gmail.com",
                         PhoneNumber = "0707310798",
-                        Artist = "KarinSjunger",
-                        SocialMedia = "@instagram KarinSjunger",
+                        Artist = "MArt",
+                        SocialMedia = "@instagram MArt",
                         StudioType = "ArtStudio",
                         WorkPlace = new ()
                         {
@@ -125,11 +125,11 @@
                     {
                         TimeCreated = new (2023, 01, 01),
                         Offering = true,
-                        FirstName = "Josefin",
+                        FirstName = "Per",
                         LastName = "Unefäldt",
-                        Email = "jossebosse@gmail.com",
+                        Email = "perra@gmail.com",
                         PhoneNumber = "+447511482830",
-                        Artist = "Jojo",
+                        Artist = "Perre",
                         SocialMedia = null,
                         StudioType = "CeramicsStudio",
                         WorkPlace = new ()
@@ -238,7 +238,7 @@
                         {
                             City = "CARDIFF",
                             Area = "CENTER",
-                            ImgUrl = "seedImg/musicOffering.jpg",
+                            ImgUrl = "seedImg/offering-music1.jpg",
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             Period = "Week",
                             Pounds = 540,
@@ -340,7 +340,7 @@
                         {
                             City = "COTSWOLDS",
                             Area = "OUTSKIRTS",
-                            ImgUrl = "seedImg/paintLooking.jpg",
+                            ImgUrl = "seedImg/looking3.jpg",
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             Period = "Week",
                             Pounds = 796,
@@ -391,7 +391,7 @@
                         {
                             City = "NEWQUAY",
                             Area = null,
-                            ImgUrl = "seedImg/ceramicsLooking.jpg",
+                            ImgUrl = "seedImg/looking1.jpg",
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             Period = "Month",
                             Pounds = 360,
@@ -442,7 +442,7 @@
                         {
                             City = "MANCHESTER",
                             Area = null,
-                            ImgUrl = "seedImg/artLooking.jpg",
+                            ImgUrl = "seedImg/looking2.jpg",
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             Period = "Month",
                             Pounds = 480,
@@ -493,7 +493,7 @@
                         {
                             City = "BRISTOL",
                             Area = "ASHLEY",
-                            ImgUrl = "seedImg/musicLooking.jpg",
+                            ImgUrl = "seedImg/looking4.jpg",
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             Period = "Month",
                             Pounds = 350,
@@ -646,7 +646,7 @@
                              {
                                  City = "LONDON",
                                  Area = "CHISWICK",
-                                 ImgUrl = "seedImg/musicOffering.jpg",
+                                 ImgUrl = "seedImg/offering-music2.jpg",
                                  Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                                  Period = "Week",
                                  Pounds = 720,
@@ -692,12 +692,12 @@
                          PhoneNumber = "+447560402770",
                          Artist = null,
                          SocialMedia = null,
-                         StudioType = "ArtStudio",
+                         StudioType = "CeramicStudio",
                          WorkPlace = new()
                          {
                              City = "LONDON",
                              Area = "Lea bridge",
-                             ImgUrl = "seedImg/artOffering.jpg",
+                             ImgUrl = "seedImg/offering1.jpg",
                              Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                              Period = "Month",
                              Pounds = 375,
@@ -748,7 +748,7 @@
                          {
                              City = "LONDON",
                              Area = "CHISWICK",
-                             ImgUrl = "seedImg/artLooking.jpg",
+                             ImgUrl = "seedImg/looking-art1.jpg",
                              Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                              Period = "Month",
                              Pounds = 650,
@@ -799,7 +799,7 @@
                          {
                              City = "Cambridge",
                              Area = "Arbury",
-                             ImgUrl = "seedImg/musicLooking.jpg",
+                             ImgUrl = "seedImg/looking-music1.jpg",
                              Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                              Period = "Month",
                              Pounds = 575,
@@ -850,7 +850,7 @@
                          {
                              City = "Sheffield",
                              Area = null,
-                             ImgUrl = "seedImg/paintLooking.jpg",
+                             ImgUrl = "seedImg/looking-paint1.jpg",
                              Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                              Period = "Week",
                              Pounds = 620,
@@ -952,7 +952,7 @@
                          {
                              City = "Liverpool",
                              Area = null,
-                             ImgUrl = "seedImg/musicLooking.jpg",
+                             ImgUrl = "seedImg/looking-music2.jpg",
                              Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                              Period = "Week",
                              Pounds = 460,
@@ -1003,7 +1003,7 @@
                         {
                             City = "BIRMINGHAM",
                             Area = "DUDLEY",
-                            ImgUrl = "seedImg/film.jpg",
+                            ImgUrl = "seedImg/looking-film1.jpg",
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             Period = null,
                             Pounds = 0,
