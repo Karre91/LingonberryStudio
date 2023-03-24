@@ -28,16 +28,16 @@
 
         public IActionResult Index()
         {
-            string cacheKey = "adverts";
-            if (!cache.TryGetValue(cacheKey, out var advert))
-            {
-                // Data not in the cache, retrieve it from the database and add it to the cache
-                advert = GetAdsInDB();
-                if (advert != null)
-                {
-                    cache.Set(cacheKey, advert, TimeSpan.FromMinutes(30)); // Cache for 30 minutes
-                }
-            }
+            //string cacheKey = "adverts";
+            //if (!cache.TryGetValue(cacheKey, out var advert))
+            //{
+            //    // Data not in the cache, retrieve it from the database and add it to the cache
+            //    advert = GetAdsInDB();
+            //    if (advert != null)
+            //    {
+            //        cache.Set(cacheKey, advert, TimeSpan.FromMinutes(30)); // Cache for 30 minutes
+            //    }
+            //}
 
             ViewBag.CityNotFound = TempData["searchError"];
             return View();

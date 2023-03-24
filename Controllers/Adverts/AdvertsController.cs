@@ -71,21 +71,21 @@
         [HttpGet]
         public IActionResult Adverts(AdvertViewMoldel viewModel, bool hasFilter, string city, bool offering)
         {
-            string cacheKey = "adverts";
-            List<Advert> cacheList = new();
-            if (!cache.TryGetValue(cacheKey, out List<Advert>? cacheAds))
-            {
-                // Data not in the cache, retrieve it from the database and add it to the cache
-                cacheAds = GetAdsInDB();
-                if (cacheAds != null)
-                {
-                    cache.Set(cacheKey, cacheList, TimeSpan.FromMinutes(30)); // Cache for 30 minutes
-                }
-            }
-            else
-            {
-                cacheList = cacheAds!.ToList();
-            }
+            //string cacheKey = "adverts";
+            //List<Advert> cacheList = new();
+            //if (!cache.TryGetValue(cacheKey, out List<Advert>? cacheAds))
+            //{
+            //    // Data not in the cache, retrieve it from the database and add it to the cache
+            //    cacheAds = GetAdsInDB();
+            //    if (cacheAds != null)
+            //    {
+            //        cache.Set(cacheKey, cacheList, TimeSpan.FromMinutes(30)); // Cache for 30 minutes
+            //    }
+            //}
+            //else
+            //{
+            //    cacheList = cacheAds!.ToList();
+            //}
 
             viewModel.MaxBudget = db.Adverts.Max(a => a.WorkPlace.Pounds);
             if (hasFilter)
@@ -120,7 +120,7 @@
             {
                 if (viewModel.AdvertList.Count <= 0)
                 {
-                    viewModel.AdvertList = cacheList;
+                    viewModel.AdvertList = GetAdsInDB();
                 }
             }
 
