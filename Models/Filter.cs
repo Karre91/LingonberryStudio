@@ -52,7 +52,7 @@
 
         public bool CeramicsStudio { get; set; }
 
-        public bool PaintingWorkshop { get; set; }
+        public bool PaintingStudio { get; set; }
 
         public bool OtherStudio { get; set; }
 
@@ -103,7 +103,7 @@
                 Tuple.Create(nameof(PhotoStudio), PhotoStudio),
                 Tuple.Create(nameof(DanceRehersalStudio), DanceRehersalStudio),
                 Tuple.Create(nameof(CeramicsStudio), CeramicsStudio),
-                Tuple.Create(nameof(PaintingWorkshop), PaintingWorkshop),
+                Tuple.Create(nameof(PaintingStudio), PaintingStudio),
                 Tuple.Create(nameof(OtherStudio), OtherStudio),
             };
 

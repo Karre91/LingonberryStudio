@@ -100,7 +100,7 @@
                                     <option value="PhotoStudio">Photo Studio</option>
                                     <option value="DanceRehersalStudio">Dance Rehersal Studio</option>
                                     <option value="CeramicsStudio">Ceramics Studio</option>
-                                    <option value="PaintingWorkshop">Painting Workshop</option>
+                                    <option value="PaintingStudio">Painting Studio</option>
                                 </datalist>
                                 <span asp-validation-for="Advert.StudioType" class="text-danger"></span>
                             </div>
@@ -109,7 +109,6 @@
                     <div class="form-group">
                         <label asp-for="Advert.WorkPlace.Description">Description</label>
                         <textarea type="text" placeholder="Please type a short description(Workspace, genre, set-up, background etc)" asp-for="Advert.WorkPlace.Description" class="form-control"></textarea>
-
                         <span class="invalid-feedback">Please enter Description</span>
                         <span asp-validation-for="Advert.WorkPlace.Description" class="text-danger"></span>
                     </div>

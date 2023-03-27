@@ -335,7 +335,7 @@
                         PhoneNumber = "+44703180616",
                         Artist = null,
                         SocialMedia = null,
-                        StudioType = "PaintingWorkshop",
+                        StudioType = "PaintingStudio",
                         WorkPlace = new ()
                         {
                             City = "COTSWOLDS",

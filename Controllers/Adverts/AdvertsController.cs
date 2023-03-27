@@ -224,7 +224,7 @@
                     List<string> preDecidedStudios = new()
                     {
                         "MusicStudio", "ArtStudio", "PhotoStudio", "DanceRehersalStudio",
-                        "CeramicsStudio", "PaintingWorkshop",
+                        "CeramicsStudio", "PaintingStudio",
                     };
 
                     filteredIds = db.Adverts
