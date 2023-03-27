@@ -845,7 +845,7 @@
                          PhoneNumber = "+447580402887",
                          Artist = null,
                          SocialMedia = null,
-                         StudioType = "PaintStudio",
+                         StudioType = "PaintingStudio",
                          WorkPlace = new()
                          {
                              City = "Sheffield",
