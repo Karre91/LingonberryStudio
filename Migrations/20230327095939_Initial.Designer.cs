@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LingonberryStudio.Migrations
 {
     [DbContext(typeof(LingonberryDbContext))]
-    [Migration("20230327081745_Initial")]
+    [Migration("20230327095939_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
