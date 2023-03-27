@@ -99,6 +99,10 @@
                         {
                             <p class="form-text-style"><b>Phone:</b> @Model.PhoneNumber</p> <br />
                         }
+                        @if(Model.SocialMedia != null)
+                        {
+                            <p class="form-text-style"><b>Social media:</b> @Model.SocialMedia</p> <br />
+                        }
                     </div>
                 </div>                
                 @if (modelHasDays || modelHasAmenity)
