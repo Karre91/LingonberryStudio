@@ -9,16 +9,19 @@
     using LingonberryStudio.ViewModels;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Caching.Memory;
 
     public class AdvertsController : Controller
     {
         private readonly LingonberryDbContext db;
         private readonly IWebHostEnvironment web;
+        private readonly IMemoryCache cache;
 
-        public AdvertsController(LingonberryDbContext db, IWebHostEnvironment web)
+        public AdvertsController(LingonberryDbContext db, IWebHostEnvironment web, IMemoryCache memoryCache)
         {
             this.db = db;
             this.web = web;
+            this.cache = memoryCache;
         }
 
         public IActionResult Form()
@@ -68,6 +71,22 @@
         [HttpGet]
         public IActionResult Adverts(AdvertViewMoldel viewModel, bool hasFilter, string city, bool offering)
         {
+            //string cacheKey = "adverts";
+            //List<Advert> cacheList = new();
+            //if (!cache.TryGetValue(cacheKey, out List<Advert>? cacheAds))
+            //{
+            //    // Data not in the cache, retrieve it from the database and add it to the cache
+            //    cacheAds = GetAdsInDB();
+            //    if (cacheAds != null)
+            //    {
+            //        cache.Set(cacheKey, cacheList, TimeSpan.FromMinutes(30)); // Cache for 30 minutes
+            //    }
+            //}
+            //else
+            //{
+            //    cacheList = cacheAds!.ToList();
+            //}
+
             viewModel.MaxBudget = db.Adverts.Max(a => a.WorkPlace.Pounds);
             if (hasFilter)
             {
