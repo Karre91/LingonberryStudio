@@ -1,6 +1,8 @@
 #pragma warning disable SA1200 // Using directives should be placed correctly
 using LingonberryStudio.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using LingonberryStudio.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<LingonberryDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LingonberryConnectionString")));
 
+builder.Services.AddDefaultIdentity<LingonberryUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<LingonberryIdentityContext>();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -18,7 +22,7 @@ using (var scope = app.Services.CreateScope())
     {
         try
         {
-            appContext.Database.Migrate();
+            //appContext.Database.Migrate();
         }
         catch (Exception ex)
         {
