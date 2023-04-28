@@ -12,6 +12,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<LingonberryDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LingonberryConnectionString")));
 
+builder.Services.AddDbContext<LingonberryIdentityContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LingonberryIdentityContextConnection")));
+
 builder.Services.AddDefaultIdentity<LingonberryUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<LingonberryIdentityContext>();
 
 var app = builder.Build();
