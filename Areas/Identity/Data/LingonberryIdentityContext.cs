@@ -1,4 +1,5 @@
 ﻿using LingonberryStudio.Areas.Identity.Data;
+using LingonberryStudio.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,8 @@ public class LingonberryIdentityContext : IdentityDbContext<LingonberryUser>
         : base(options)
     {
     }
+
+    public DbSet<LingonberryUser> LingonberryUsers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
