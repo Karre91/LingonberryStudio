@@ -45,16 +45,11 @@
 
         [Required(ErrorMessage = "This field is required")]
         public bool Offering { get; set; }
-
         [Required(ErrorMessage = "The first name field is required.")]
-        [RegularExpression(
-            @"^[a-zA-Z''-'\s-]{1,40}$",
-            ErrorMessage = "Only letters allowed")]
+        [RegularExpression(@"^[a-zA-Z\u00C0-\u00FF\-/ âêîôûŵŷ]{1,40}$", ErrorMessage = "Only letters allowed")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "The last name field is required.")]
-        [RegularExpression(
-            @"^[a-zA-Z''-'\s-]{1,40}$",
-            ErrorMessage = "Only letters allowed.")]
+        [RegularExpression(@"^[a-zA-Z\u00C0-\u00FF\-/ âêîôûŵŷ]{1,40}$", ErrorMessage = "Only letters allowed")]
         public string LastName { get; set; }
         [Required(ErrorMessage = "The email field is required.")]
         [EmailAddress]
