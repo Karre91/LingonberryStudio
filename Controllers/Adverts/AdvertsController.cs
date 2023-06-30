@@ -160,11 +160,23 @@
             {
                 queryBuilder.Append("Offering = 1 AND ");
             }
+            else
+            {
+                queryBuilder.Append("Offering = 0 AND ");
+            }
 
-            //else
-            //{
-            //    queryBuilder.Append("Offering = 0 AND ");
-            //}
+            //BUDGET
+            if (filter.Pounds > 0)
+            {
+                if (filter.Offering)
+                {
+                    queryBuilder.Append($"Pounds < '{filter.Pounds}' AND ");
+                }
+                else
+                {
+                    queryBuilder.Append($"Pounds > '{filter.Pounds}' AND ");
+                }
+            }
 
             //CITY
             if (!string.IsNullOrEmpty(filter.City))
@@ -185,22 +197,37 @@
                 "CeramicsStudio", "PaintingWorkshop",
             };
 
-                    queryBuilder.Append("(StudioType IN ('Other') OR ");
                     queryBuilder.Append("StudioType NOT IN ('");
                     queryBuilder.Append(string.Join("', '", preDecidedStudios));
                     queryBuilder.Append("')) AND ");
                 }
-                else
-                {
-                    queryBuilder.Append("StudioType IN ('");
-                    queryBuilder.Append(string.Join("', '", chosenStudioTypes));
-                    queryBuilder.Append("') AND ");
-                }
+
+                queryBuilder.Append("StudioType IN ('");
+                queryBuilder.Append(string.Join("', '", chosenStudioTypes));
+                queryBuilder.Append("') AND ");
+
             }
 
-            //BUDGET
-
             //AMENITIES
+            if (filter.GetAllAmenityTuple().Any(a => a.Item2.Equals(true)))
+            {
+                List<Tuple<string, bool>> amenity = filter.GetAllAmenityTuple();
+                queryBuilder.Append("(");
+                for (int i = 0; i < amenity.Count; i++)
+                {
+                    var (amen, include) = amenity[i];
+
+                    if (include)
+                    {
+                        queryBuilder.Append($"{amen} = 1 OR ");
+                    }
+                }
+
+                // Remove the trailing " OR "
+                queryBuilder.Remove(queryBuilder.Length - 4, 4);
+
+                queryBuilder.Append(") AND ");
+            }
 
             //DAYS
             if (filter.GetAllDaysTuple().Any(a => a.Item2.Equals(true)))
@@ -231,9 +258,9 @@
                 queryBuilder.Length -= 4;
             }
 
-            string queryString = queryBuilder.ToString();
+            //string queryString = queryBuilder.ToString();
 
-            return advertRepository.GetAllPreviewAdsInDB(queryString);
+            return advertRepository.GetAllPreviewAdsInDB(/*queryString*/);
         }
 
         private List<int> FilterByOfferingLookingAndBudget(Filter filter)
