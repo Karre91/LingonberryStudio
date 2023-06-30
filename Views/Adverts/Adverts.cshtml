@@ -160,15 +160,15 @@
 <div class="container-fluid flex-grid-container border-0">
     <div class="flex-grid-container justify-content-center">
         <div class="container align-content-center align-content-center error-message"><span>@ViewBag.CityNotFound</span></div>
-        @foreach (var ad in Model.AdvertList)
+        @foreach (var ad in Model.PreviewAdvertList)
         {
-            string city = ad.WorkPlace.City.Substring(0, 1) + ad.WorkPlace.City.Substring(1).ToLower();
-            string studio = ad.SplitCamelCase(ad.StudioType);
+            string city = ad.City?.Substring(0, 1) + ad.City?.Substring(1).ToLower();
+            string? studio = ad.StudioType; @*ad.SplitCamelCase()*@
 
             <div class="ad-card">
                 <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
                     <div class="container">
-                        <img src="/@(ad.WorkPlace.ImgUrl)" alt="Work space area" id="ad-image" class="img-fluid mx-auto mb-2">
+                        <img src="/@(ad.ImgUrl)" alt="Work space area" id="ad-image" class="img-fluid mx-auto mb-2">
                         @if (ad.Offering)
                         {
                             <div class="text-block offering-block">OFFERING</div>
@@ -177,7 +177,7 @@
                         {
                             <div class="text-block offering-block">LOOKING</div>
                         }
-                        @if (ad.WorkPlace.ImgUrl!.StartsWith("seed"))
+                        @if (ad.ImgUrl!.StartsWith("seed"))
                         {
                             <div class="text-block" id="seed-block">DEMO</div>
                         }
@@ -185,17 +185,17 @@
                     <div class="container">
                         <p class="fw-bold mb-0 ads-text">@studio</p>
                         <p class="mb-0 ads-text">@city</p>
-                        @if (ad.WorkPlace.Period != null)
+                        @if (ad.Period != null)
                         {
-                            if (ad.WorkPlace.Period == "Week")
+                            if (ad.Period == "Week")
                             {
-                                ad.WorkPlace.Pounds = ad.WorkPlace.Pounds / 4;
+                                ad.Pounds = ad.Pounds / 4;
                             }
-                            <p class="mb-0 ads-text"><u>£@ad.WorkPlace.Pounds/@ad.WorkPlace.Period</u></p>
+                            <p class="mb-0 ads-text"><u>£@ad.Pounds/@ad.Period</u></p>
                         }
                     </div>
                 </a>
-                @await Html.PartialAsync("_ChosenAdPartial", ad)
+                @*@await Html.PartialAsync("_ChosenAdPartial", ad)*@
             </div>
         }
     </div>

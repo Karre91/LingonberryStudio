@@ -35,16 +35,16 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group" id="city">
-                                <label asp-for="Advert.WorkPlace.City">City</label>
-                                <input type="text" class="form-control" asp-for="Advert.WorkPlace.City" required>
-                                <span asp-validation-for="Advert.WorkPlace.City" class="text-danger"></span>
+                                <label asp-for="Advert.City">City</label>
+                                <input type="text" class="form-control" asp-for="Advert.City" required>
+                                <span asp-validation-for="Advert.City" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group" id="area">
-                                <label asp-for="Advert.WorkPlace.Area">Area</label>
-                                <input type="text" class="form-control" asp-for="Advert.WorkPlace.Area">
-                                <span asp-validation-for="Advert.WorkPlace.Area" class="text-danger"></span>
+                                <label asp-for="Advert.Area">Area</label>
+                                <input type="text" class="form-control" asp-for="Advert.Area">
+                                <span asp-validation-for="Advert.Area" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -106,16 +106,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Advert.WorkPlace.Description">Description</label>
-                        <textarea type="text" placeholder="Please type a short description(Workspace, genre, set-up, background etc)" asp-for="Advert.WorkPlace.Description" class="form-control"></textarea>
+                        <label asp-for="Advert.Description">Description</label>
+                        <textarea type="text" placeholder="Please type a short description(Workspace, genre, set-up, background etc)" asp-for="Advert.Description" class="form-control"></textarea>
 
                         <span class="invalid-feedback">Please enter Description</span>
-                        <span asp-validation-for="Advert.WorkPlace.Description" class="text-danger"></span>
+                        <span asp-validation-for="Advert.Description" class="text-danger"></span>
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            <label asp-for="Advert.WorkPlace.FormFile">Studio image</label>
-                            <input asp-for="Advert.WorkPlace.FormFile" class="form-control" />
+                            <label asp-for="Advert.FormFile">Studio image</label>
+                            <input asp-for="Advert.FormFile" class="form-control" />
                         </div>
                     </div>
 
@@ -129,26 +129,26 @@
                             <div class="align-content-center form-border-box">
                                 <div class="form-group checkbox">
                                     <p>Days in the studio:</p>
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.TimeFrames.Monday" value="true">
-                                    <label asp-for="Advert.WorkPlace.TimeFrames.Monday">Monday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.Monday" value="true">
+                                    <label asp-for="Advert.Monday">Monday</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.TimeFrames.Tuesday" value="true">
-                                    <label asp-for="Advert.WorkPlace.TimeFrames.Tuesday">Tuesday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.Tuesday" value="true">
+                                    <label asp-for="Advert.Tuesday">Tuesday</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.TimeFrames.Wednesday" value="true">
-                                    <label asp-for="Advert.WorkPlace.TimeFrames.Wednesday">Wednesday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.Wednesday" value="true">
+                                    <label asp-for="Advert.Wednesday">Wednesday</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.TimeFrames.Thursday" value="true">
-                                    <label asp-for="Advert.WorkPlace.TimeFrames.Thursday">Thursday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.Thursday" value="true">
+                                    <label asp-for="Advert.Thursday">Thursday</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.TimeFrames.Friday" value="true">
-                                    <label asp-for="Advert.WorkPlace.TimeFrames.Friday">Friday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.Friday" value="true">
+                                    <label asp-for="Advert.Friday">Friday</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.TimeFrames.Saturday" value="true">
-                                    <label asp-for="Advert.WorkPlace.TimeFrames.Saturday">Saturday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.Saturday" value="true">
+                                    <label asp-for="Advert.Saturday">Saturday</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.TimeFrames.Sunday" value="true">
-                                    <label asp-for="Advert.WorkPlace.TimeFrames.Sunday">Sunday</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.Sunday" value="true">
+                                    <label asp-for="Advert.Sunday">Sunday</label><br>
                                 </div>
                             </div>
                         </div>
@@ -156,71 +156,71 @@
                             <div class="align-content-center form-border-box">
                                 <div class="form-group checkbox">
                                     <p>Amenities</p>
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.Parking" value=true>
-                                    <label asp-for="Advert.WorkPlace.AmenityTypes.Parking"> Parking space</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.Parking" value=true>
+                                    <label asp-for="Advert.Parking"> Parking space</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.AirCondition" value=true>
-                                    <label asp-for="Advert.WorkPlace.AmenityTypes.AirCondition">Air conditioning</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.AirCondition" value=true>
+                                    <label asp-for="Advert.AirCondition">Air conditioning</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.Kitchen" value=true>
-                                    <label asp-for="Advert.WorkPlace.AmenityTypes.Kitchen"> Kitchen</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.Kitchen" value=true>
+                                    <label asp-for="Advert.Kitchen"> Kitchen</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.AcousticTreatment" value=true>
-                                    <label asp-for="Advert.WorkPlace.AmenityTypes.AcousticTreatment">Acoustic treatment</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.AcousticTreatment" value=true>
+                                    <label asp-for="Advert.AcousticTreatment">Acoustic treatment</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.NaturalLight" value=true>
-                                    <label asp-for="Advert.WorkPlace.AmenityTypes.NaturalLight">Natural light</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.NaturalLight" value=true>
+                                    <label asp-for="Advert.NaturalLight">Natural light</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.CeramicOven" value=true>
-                                    <label asp-for="Advert.WorkPlace.AmenityTypes.CeramicOven">Ceramic oven</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.CeramicOven" value=true>
+                                    <label asp-for="Advert.CeramicOven">Ceramic oven</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.RunningWater" value=true>
-                                    <label asp-for="Advert.WorkPlace.AmenityTypes.RunningWater">Running water</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.RunningWater" value=true>
+                                    <label asp-for="Advert.RunningWater">Running water</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.Shower" value=true>
-                                    <label asp-for="Advert.WorkPlace.AmenityTypes.Shower">Shower</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.Shower" value=true>
+                                    <label asp-for="Advert.Shower">Shower</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.Toilet" value=true>
-                                    <label asp-for="Advert.WorkPlace.AmenityTypes.Toilet">Toilet</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.Toilet" value=true>
+                                    <label asp-for="Advert.Toilet">Toilet</label><br>
 
-                                    <input class="form-check-input" type="checkbox" asp-for="Advert.WorkPlace.AmenityTypes.Storage" value=true>
-                                    <label asp-for="Advert.WorkPlace.AmenityTypes.Storage">Storage</label><br>
+                                    <input class="form-check-input" type="checkbox" asp-for="Advert.Storage" value=true>
+                                    <label asp-for="Advert.Storage">Storage</label><br>
 
-                                    <label asp-for="Advert.WorkPlace.AmenityTypes.Other">Type your own</label><br>
-                                    <input type="text" asp-for="Advert.WorkPlace.AmenityTypes.Other" />
-                                    <span asp-validation-for="Advert.WorkPlace.AmenityTypes.Other" class="text-danger"></span>
+                                    <label asp-for="Advert.Other">Type your own</label><br>
+                                    <input type="text" asp-for="Advert.Other" />
+                                    <span asp-validation-for="Advert.Other" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" onclick="enableMeasurement()" type="radio" asp-for="Advert.WorkPlace.MeasurementType" name="Advert.WorkPlace.MeasurementType" value="Square foot">
-                                <label asp-for="Advert.WorkPlace.MeasurementType">Area square foot</label><br>
-                                <input class="form-check-input" type="radio" onclick="enableMeasurement()" asp-for="Advert.WorkPlace.MeasurementType" name="Advert.WorkPlace.MeasurementType" value="Square metres">
-                                <label asp-for="Advert.WorkPlace.MeasurementType">Area in square metres</label><br>
-                                <input type="number" id="measurement-number" asp-for="Advert.WorkPlace.MeasurementNumber" disabled />
+                                <input class="form-check-input" onclick="enableMeasurement()" type="radio" asp-for="Advert.MeasurementType" name="Advert.MeasurementType" value="Square foot">
+                                <label asp-for="Advert.MeasurementType">Area square foot</label><br>
+                                <input class="form-check-input" type="radio" onclick="enableMeasurement()" asp-for="Advert.MeasurementType" name="Advert.MeasurementType" value="Square metres">
+                                <label asp-for="Advert.MeasurementType">Area in square metres</label><br>
+                                <input type="number" id="measurement-number" asp-for="Advert.MeasurementNumber" disabled />
                                 <span class="invalid-feedback">Please tick a box</span>
-                                <span asp-validation-for="Advert.WorkPlace.MeasurementNumber" class="text-danger"></span>
+                                <span asp-validation-for="Advert.MeasurementNumber" class="text-danger"></span>
                             </div>
                             <div class="form-group mx-4 mt-3">
-                                <label class="formAlignment" asp-for="Advert.WorkPlace.TimeFrames">Select Date</label> <br>
+                                <label class="formAlignment" asp-for="Advert">Select Date</label> <br>
 
-                                <input id="Start_date_picker" type="date" asp-for="Advert.WorkPlace.TimeFrames.StartDate">
-                                <input id="End_date_picker" type="date" asp-for="Advert.WorkPlace.TimeFrames.EndDate">
+                                <input id="Start_date_picker" type="date" asp-for="Advert.StartDate">
+                                <input id="End_date_picker" type="date" asp-for="Advert.EndDate">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" onclick="enableBudget()" asp-for="Advert.WorkPlace.Period" name="Advert.WorkPlace.Period" value="Month">
-                                <label asp-for="Advert.WorkPlace.Period">Price per month</label><br>
-                                <input class="form-check-input" type="radio" onclick="enableBudget()" asp-for="Advert.WorkPlace.Period" name="Advert.WorkPlace.Period" value="Week">
-                                <label asp-for="Advert.WorkPlace.Period">Price per week</label><br>
-                                <input type="number" asp-for="Advert.WorkPlace.Pounds" id="budget-number" disabled>
+                                <input class="form-check-input" type="radio" onclick="enableBudget()" asp-for="Advert.Period" name="Advert.Period" value="Month">
+                                <label asp-for="Advert.Period">Price per month</label><br>
+                                <input class="form-check-input" type="radio" onclick="enableBudget()" asp-for="Advert.Period" name="Advert.Period" value="Week">
+                                <label asp-for="Advert.Period">Price per week</label><br>
+                                <input type="number" asp-for="Advert.Pounds" id="budget-number" disabled>
                             </div>
                             <div class="form-group mx-4 mt-3">
-                                <label class="formAlignment" asp-for="Advert.WorkPlace.TimeFrames">Select time</label> <br>
-                                <input type="time" asp-for="Advert.WorkPlace.TimeFrames.OpeningTime"><br> <br>
-                                <input type="time" asp-for="Advert.WorkPlace.TimeFrames.ClosingTime">
+                                <label class="formAlignment" asp-for="Advert">Select time</label> <br>
+                                <input type="time" asp-for="Advert.OpeningTime"><br> <br>
+                                <input type="time" asp-for="Advert.ClosingTime">
                             </div>
                         </div>
                     </div>

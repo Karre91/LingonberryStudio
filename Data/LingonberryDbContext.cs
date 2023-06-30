@@ -12,10 +12,10 @@
 
         public DbSet<Advert> Adverts { get; set; }
 
-        public DbSet<Amenity> AmenityTypes { get; set; }
+        //public DbSet<Amenity> AmenityTypes { get; set; }
 
-        public DbSet<TimeFrame> TimeFrames { get; set; }
+        //public DbSet<TimeFrame> TimeFrames { get; set; }
 
-        public DbSet<WorkPlace> WorkPlace { get; set; }
+        //public DbSet<WorkPlace> WorkPlace { get; set; }
     }
 }

@@ -69,10 +69,6 @@
         private List<Advert> GetAdsInDB()
         {
             List<Advert> allAdsInDB = db.Adverts
-            .Include(ads => ads.WorkPlace)
-            .ThenInclude(ads => ads.AmenityTypes)
-            .Include(ads => ads.WorkPlace)
-            .ThenInclude(ads => ads.TimeFrames)
             .OrderBy(p => p.TimeCreated).Reverse()
             .AsNoTracking()
             .ToList();

@@ -7,14 +7,14 @@
     List<string> filterAmenityString = filter.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1).ToList();
     List<string> filterDaysStrings = filter.GetAllDaysTuple().Where(a => a.Item2.Equals(true)).Select(day => day.Item1).ToList();
 
-    bool modelHasAmenity = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Any(a => a.Item2.Equals(true));
-    bool modelHasDays = Model.WorkPlace.TimeFrames.GetAllDaysTuple().Any(a => a.Item2.Equals(true));
+    bool modelHasAmenity = Model.GetAllAmenityTuple().Any(a => a.Item2.Equals(true));
+    bool modelHasDays = Model.GetAllDaysTuple().Any(a => a.Item2.Equals(true));
 
-    List<string> modelChosenDaysStrings = Model.WorkPlace.TimeFrames.GetAllDaysTuple().Where(a => a.Item2.Equals(true)).Select(day => day.Item1).ToList();
-    List<string> modelChosenAmenityStrings = Model.WorkPlace.AmenityTypes.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1).ToList();
+    List<string> modelChosenDaysStrings = Model.GetAllDaysTuple().Where(a => a.Item2.Equals(true)).Select(day => day.Item1).ToList();
+    List<string> modelChosenAmenityStrings = Model.GetAllAmenityTuple().Where(a => a.Item2.Equals(true)).Select(amenity => amenity.Item1).ToList();
 
-    string city = Model.WorkPlace.City.Substring(0, 1) + Model.WorkPlace.City.Substring(1).ToLower();
-    string area = Model.WorkPlace.Area?.Substring(0, 1) + Model.WorkPlace.Area?.Substring(1).ToLower();
+    string city = Model.City.Substring(0, 1) + Model.City.Substring(1).ToLower();
+    string area = Model.Area?.Substring(0, 1) + Model.Area?.Substring(1).ToLower();
     string studioType = Model.SplitCamelCase(Model.StudioType);
 
     string aOrAn = "a";
@@ -37,7 +37,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div>
-                        <img src="/@Model.WorkPlace.ImgUrl" alt="Work space area" id="ad-image" class="img-fluid mx-auto mb-2 d-block">
+                        <img src="/@Model.ImgUrl" alt="Work space area" id="ad-image" class="img-fluid mx-auto mb-2 d-block">
                         <div>
                             <div>
                                 @if (Model.Offering)
@@ -52,23 +52,23 @@
 
                         </div>
                         <div class="pt-2 pb-2 row">
-                            <p class="form-text-style"><b>Desctiption:</b><br /> @Model.WorkPlace.Description</p>
+                            <p class="form-text-style"><b>Desctiption:</b><br /> @Model.Description</p>
                         </div>
                     </div>
                 </div>
                 <hr />
                 <div class="row">
                     <div>
-                        @if (Model.WorkPlace.Period != null)
+                        @if (Model.Period != null)
                         {
                             @if (Model.Offering)
                             {
-                                <p class="form-text-style"><b>Rent for the studio is:</b> £ @Model.WorkPlace.Pounds/@Model.WorkPlace.Period</p>
+                                <p class="form-text-style"><b>Rent for the studio is:</b> £ @Model.Pounds/@Model.Period</p>
 
                             }
                             @if (!Model.Offering)
                             {
-                                <p class="form-text-style"><b>My budget is:</b> £ @Model.WorkPlace.Pounds/@Model.WorkPlace.Period</p>
+                                <p class="form-text-style"><b>My budget is:</b> £ @Model.Pounds/@Model.Period</p>
 
                             }
                             <br />
@@ -80,7 +80,7 @@
                 <div class="row pt-2">
                     <div class="col mx-auto">
                         <p class="form-text-style"><b>City:</b> @city </p><br />
-                        @if (Model.WorkPlace.Area != null)
+                        @if (Model.Area != null)
                         {
                             <p class="form-text-style"><b>Area:</b> @area </p>
 
@@ -152,7 +152,7 @@
 
                                             if (amenity == "Other")
                                             {
-                                                <u>@Model.WorkPlace.AmenityTypes.Other</u>
+                                                <u>@Model.Other</u>
                                             }
                                             else
                                             {
@@ -164,7 +164,7 @@
                                         {
                                             if (amenity == "Other")
                                             {
-                                                @Model.WorkPlace.AmenityTypes.Other
+                                                @Model.Other
                                             }
                                             else
                                             {
@@ -178,35 +178,35 @@
                         </div>
                     </div>
                 }                
-                @if (Model.WorkPlace.TimeFrames.StartDate != null || Model.WorkPlace.TimeFrames.EndDate != null
-                || Model.WorkPlace.TimeFrames.OpeningTime != null || Model.WorkPlace.TimeFrames.ClosingTime != null)
+                @if (Model.StartDate != null || Model.EndDate != null
+                || Model.OpeningTime != null || Model.ClosingTime != null)
                 {
                     <hr />
                     <div class="row">
                         <div class="col">
                             <p class="form-text-style">
-                                @if (Model.WorkPlace.TimeFrames.StartDate != null)
+                                @if (Model.StartDate != null)
                                 {
-                                    <b>Start date:</b> @Model.WorkPlace.TimeFrames.StartDate.Value.ToShortDateString()
+                                    <b>Start date:</b> @Model.StartDate.Value.ToShortDateString()
                                 }
                                 <br />
-                                @if (Model.WorkPlace.TimeFrames.EndDate != null)
+                                @if (Model.EndDate != null)
                                 {
-                                    <b>End date:</b> @Model.WorkPlace.TimeFrames.EndDate.Value.ToShortDateString()
+                                    <b>End date:</b> @Model.EndDate.Value.ToShortDateString()
                                 }
                                 <br />
                             </p>
                         </div>
                         <div class="col">
                             <p class="form-text-style">
-                                @if (Model.WorkPlace.TimeFrames.OpeningTime != null)
+                                @if (Model.OpeningTime != null)
                                 {
-                                    <b>Start time:</b> @Model.WorkPlace.TimeFrames.OpeningTime.Value.ToString("HH:mm")
+                                    <b>Start time:</b> @Model.OpeningTime.Value.ToString("HH:mm")
                                 }
                                 <br />
-                                @if (Model.WorkPlace.TimeFrames.ClosingTime != null)
+                                @if (Model.ClosingTime != null)
                                 {
-                                    <b>Closing time:</b> @Model.WorkPlace.TimeFrames.ClosingTime.Value.ToString("HH:mm")
+                                    <b>Closing time:</b> @Model.ClosingTime.Value.ToString("HH:mm")
                                 }
                             </p>
                         </div>
@@ -214,10 +214,10 @@
                    
                 }
                 <div class="row col">
-                    @if (Model.WorkPlace.MeasurementType != null)
+                    @if (Model.MeasurementType != null)
                     {
                         <hr />
-                        <p class="form-text-style"><b>Size:</b> @Model.WorkPlace.MeasurementNumber Square @Model.WorkPlace.MeasurementType</p> <br />
+                        <p class="form-text-style"><b>Size:</b> @Model.MeasurementNumber Square @Model.MeasurementType</p> <br />
                     }
                 </div>
             </div>
