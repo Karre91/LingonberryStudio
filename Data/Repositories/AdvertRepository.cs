@@ -18,6 +18,29 @@ namespace LingonberryStudio.Data.Repositories
             db = dbContext;
         }
 
+        public List<PreviewAdvert> GetAllPreviewAdsInDB(string queryString)
+        {
+            List<PreviewAdvert> allPreviewAds = db.Adverts
+               .FromSqlRaw(queryString) // Use the provided query string
+               .OrderBy(p => p.TimeCreated)
+               .Reverse()
+               .AsNoTracking()
+               .Select(p => new PreviewAdvert
+               {
+                   ID = p.ID,
+                   TimeCreated = p.TimeCreated,
+                   Offering = p.Offering,
+                   StudioType = p.StudioType,
+                   Pounds = p.Pounds,
+                   ImgUrl = p.ImgUrl,
+                   City = p.City,
+                   Period = p.Period
+               })
+               .ToList();
+
+            return allPreviewAds;
+        }
+
         public List<PreviewAdvert> GetAllPreviewAdsInDB()
         {
             List<PreviewAdvert> allPreviewAds = db.Adverts
@@ -39,12 +62,5 @@ namespace LingonberryStudio.Data.Repositories
 
             return allPreviewAds;
         }
-
-        //public List<PreviewAdvert> GetAllPreviewAdsInDB(string queryString)
-        //{
-        //    //List<PreviewAdvert> allPreviewAds = db.Adverts.queryString;
-
-        //    return allPreviewAds;
-        //}
     }
 }

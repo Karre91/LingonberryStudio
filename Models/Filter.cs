@@ -104,7 +104,6 @@
                 Tuple.Create(nameof(DanceRehersalStudio), DanceRehersalStudio),
                 Tuple.Create(nameof(CeramicsStudio), CeramicsStudio),
                 Tuple.Create(nameof(PaintingWorkshop), PaintingWorkshop),
-                Tuple.Create(nameof(OtherStudio), OtherStudio),
             };
 
             List<string> checkedSudios = new();

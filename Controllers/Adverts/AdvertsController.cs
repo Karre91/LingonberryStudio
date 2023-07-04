@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Text;
     using LingonberryStudio.Data;
@@ -9,6 +10,7 @@
     using LingonberryStudio.Data.Repositories;
     using LingonberryStudio.Models;
     using LingonberryStudio.ViewModels;
+    using Microsoft.AspNetCore.Http.Extensions;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Caching.Memory;
@@ -153,233 +155,156 @@
         public List<PreviewAdvert> BuildQueryFromFilter(Filter filter)
         {
             //Build the QUERY
-            StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Adverts WHERE ");
+            StringBuilder query = new StringBuilder("SELECT * FROM Adverts WHERE ");
+            StringBuilder queryBuilderPredecidedStudio = new StringBuilder();
+            StringBuilder queryBuilderOtherStudio = new StringBuilder();
 
-            //OFFERING
-            if (filter.Offering)
+            if (filter.GetChosenStudioTypes().Any() || filter.OtherStudio)
             {
-                queryBuilder.Append("Offering = 1 AND ");
-            }
-            else
-            {
-                queryBuilder.Append("Offering = 0 AND ");
-            }
-
-            //BUDGET
-            if (filter.Pounds > 0)
-            {
-                if (filter.Offering)
+                if (filter.GetChosenStudioTypes().Any())
                 {
-                    queryBuilder.Append($"Pounds < '{filter.Pounds}' AND ");
+                    List<string> chosenStudioTypes = filter.GetChosenStudioTypes();
+                    queryBuilderPredecidedStudio.Append("StudioType IN ('");
+                    queryBuilderPredecidedStudio.Append(string.Join("', '", chosenStudioTypes));
+                    queryBuilderPredecidedStudio.Append("') AND ");
+                    CheckAllOtherFilters(queryBuilderPredecidedStudio);
                 }
-                else
-                {
-                    queryBuilder.Append($"Pounds > '{filter.Pounds}' AND ");
-                }
-            }
-
-            //CITY
-            if (!string.IsNullOrEmpty(filter.City))
-            {
-                queryBuilder.Append($"City = '{filter.City}' AND ");
-            }
-
-            //STUDIOTYPE
-            if (filter.GetChosenStudioTypes().Any())
-            {
-                List<string> chosenStudioTypes = filter.GetChosenStudioTypes();
 
                 if (filter.OtherStudio)
                 {
                     List<string> preDecidedStudios = new List<string>
-            {
-                "MusicStudio", "ArtStudio", "PhotoStudio", "DanceRehersalStudio",
-                "CeramicsStudio", "PaintingWorkshop",
-            };
+                    {
+                        "MusicStudio", "ArtStudio", "PhotoStudio", "DanceRehersalStudio",
+                        "CeramicsStudio", "PaintingWorkshop",
+                    };
 
-                    queryBuilder.Append("StudioType NOT IN ('");
-                    queryBuilder.Append(string.Join("', '", preDecidedStudios));
-                    queryBuilder.Append("')) AND ");
+                    StringBuilder queryBuilderOtherStudioT = new StringBuilder();
+                    queryBuilderOtherStudioT.Append("StudioType NOT IN ('");
+                    queryBuilderOtherStudioT.Append(string.Join("', '", preDecidedStudios));
+                    queryBuilderOtherStudioT.Append("') AND ");
+                    CheckAllOtherFilters(queryBuilderOtherStudioT);
+
+                    if (queryBuilderPredecidedStudio.ToString().Any())
+                    {
+                        queryBuilderOtherStudio.Append(" OR (" + queryBuilderOtherStudioT + ")");
+                    }
                 }
-
-                queryBuilder.Append("StudioType IN ('");
-                queryBuilder.Append(string.Join("', '", chosenStudioTypes));
-                queryBuilder.Append("') AND ");
-
+            }
+            else
+            {
+                CheckAllOtherFilters(query);
             }
 
-            //AMENITIES
-            if (filter.GetAllAmenityTuple().Any(a => a.Item2.Equals(true)))
-            {
-                List<Tuple<string, bool>> amenity = filter.GetAllAmenityTuple();
-                queryBuilder.Append("(");
-                for (int i = 0; i < amenity.Count; i++)
-                {
-                    var (amen, include) = amenity[i];
+            string queryString = query.Append(queryBuilderPredecidedStudio.Append(queryBuilderOtherStudio)).ToString();
 
-                    if (include)
+            Debug.WriteLine(queryString);
+            return advertRepository.GetAllPreviewAdsInDB(queryString);
+
+            void CheckAllOtherFilters(StringBuilder queryBuilder)
+            {
+                //CITY
+                if (!string.IsNullOrEmpty(filter.City))
+                {
+                    City(queryBuilder);
+                }
+
+                //BUDGET
+                if (filter.Month)
+                {
+                    Budget(queryBuilder);
+                }
+
+                //AMENITIES
+                if (filter.GetAllAmenityTuple().Any(a => a.Item2.Equals(true)))
+                {
+                    Amenities(queryBuilder);
+                }
+
+                //DAYS
+                if (filter.GetAllDaysTuple().Any(a => a.Item2.Equals(true)))
+                {
+                    Days(queryBuilder);
+                }
+
+                //OFFERING
+                Offering(queryBuilder);
+
+                void Offering(StringBuilder queryBuilder)
+                {
+                    queryBuilder.Append($"Offering = '{filter.Offering}' AND ");
+                }
+
+                void City(StringBuilder queryBuilder)
+                {
+                    queryBuilder.Append($"City = '{filter.City}' AND ");
+                }
+
+                void Budget(StringBuilder queryBuilder)
+                {
+                    if (filter.Offering)
                     {
-                        queryBuilder.Append($"{amen} = 1 OR ");
+                        queryBuilder.Append($"Pounds < '{filter.Pounds}' AND ");
+                    }
+                    else
+                    {
+                        queryBuilder.Append($"Pounds > '{filter.Pounds}' AND ");
                     }
                 }
 
-                // Remove the trailing " OR "
-                queryBuilder.Remove(queryBuilder.Length - 4, 4);
-
-                queryBuilder.Append(") AND ");
-            }
-
-            //DAYS
-            if (filter.GetAllDaysTuple().Any(a => a.Item2.Equals(true)))
-            {
-                List<Tuple<string, bool>> days = filter.GetAllDaysTuple();
-
-                queryBuilder.Append("(");
-
-                for (int i = 0; i < days.Count; i++)
+                void Amenities(StringBuilder queryBuilder)
                 {
-                    var (day, include) = days[i];
-
-                    if (include)
+                    List<Tuple<string, bool>> amenity = filter.GetAllAmenityTuple();
+                    queryBuilder.Append("(");
+                    for (int i = 0; i < amenity.Count; i++)
                     {
-                        queryBuilder.Append($"{day} = 1 OR ");
+                        var (amen, include) = amenity[i];
+
+                        if (include)
+                        {
+                            if (amen == "Other")
+                            {
+                                queryBuilder.Append($"{amen} != NULL OR ");
+                            }
+                            else
+                            {
+                                queryBuilder.Append($"{amen} = 1 OR ");
+                            }
+
+                        }
                     }
+
+                    // Remove the trailing " OR "
+                    queryBuilder.Remove(queryBuilder.Length - 4, 4);
+                    queryBuilder.Append(") AND ");
                 }
 
-                // Remove the trailing " OR "
-                queryBuilder.Remove(queryBuilder.Length - 4, 4);
-
-                queryBuilder.Append(") AND ");
-            }
-
-            // Remove the trailing "AND " if it exists
-            if (queryBuilder.ToString().EndsWith("AND "))
-            {
-                queryBuilder.Length -= 4;
-            }
-
-            //string queryString = queryBuilder.ToString();
-
-            return advertRepository.GetAllPreviewAdsInDB(/*queryString*/);
-        }
-
-        private List<int> FilterByOfferingLookingAndBudget(Filter filter)
-        {
-            if ((!filter.Looking && !filter.Offering && filter.Month) || (filter.Looking && filter.Offering && filter.Month))
-            {
-                var filteredIdsIf = db.Adverts
-                .Where(a => (a.Offering.Equals(true) && a.Period == null)
-                || (a.Offering.Equals(false) && a.Period == null)
-                || (a.Offering.Equals(true) && a.Period != null && a.Pounds <= filter.Pounds)
-                || (a.Offering.Equals(false) && a.Period != null && a.Pounds >= filter.Pounds))
-                .Select(a => a.ID)
-                .ToList();
-
-                return filteredIdsIf;
-            }
-
-            if ((!filter.Looking && !filter.Offering && !filter.Month) || (filter.Looking && filter.Offering && !filter.Month))
-            {
-                List<int> filteredIdsIf = db.Adverts
-                .Where(a => (a.Offering.Equals(true) && a.Period == null)
-                || (a.Offering.Equals(false) && a.Period == null)
-                || (a.Offering.Equals(true) && a.Period != null)
-                || (a.Offering.Equals(false) && a.Period != null))
-                .Select(a => a.ID)
-                .ToList();
-
-                return filteredIdsIf;
-            }
-
-            if (filter.Offering && filter.Month)
-            {
-                List<int> filteredIdsIf = db.Adverts
-                .Where(a => (a.Offering.Equals(true) && a.Period == null)
-                || (a.Offering.Equals(true) && a.Period != null && a.Pounds <= filter.Pounds))
-                .Select(a => a.ID)
-                .ToList();
-
-                return filteredIdsIf;
-            }
-
-            if (filter.Looking && filter.Month)
-            {
-                List<int> filteredIdsIf = db.Adverts
-                .Where(a => (a.Offering.Equals(false) && a.Period != null && a.Pounds >= filter.Pounds)
-                || (a.Offering.Equals(false) && a.Period == null))
-                .Select(a => a.ID)
-                .ToList();
-
-                return filteredIdsIf;
-            }
-
-            if ((filter.Offering && !filter.Month) || (filter.Looking && !filter.Month))
-            {
-                bool isTrue = true;
-                if (filter.Looking)
+                void Days(StringBuilder queryBuilder)
                 {
-                    isTrue = false;
+                    List<Tuple<string, bool>> days = filter.GetAllDaysTuple();
+
+                    queryBuilder.Append("(");
+
+                    for (int i = 0; i < days.Count; i++)
+                    {
+                        var (day, include) = days[i];
+
+                        if (include)
+                        {
+                            queryBuilder.Append($"{day} = 1 OR ");
+                        }
+                    }
+
+                    // Remove the trailing " OR "
+                    queryBuilder.Remove(queryBuilder.Length - 4, 4);
+                    queryBuilder.Append(") AND ");
                 }
 
-                List<int> filteredIdsIf = db.Adverts
-                .Where(a => (a.Offering.Equals(isTrue) && a.Period == null)
-                || (a.Offering.Equals(isTrue) && a.Period != null))
-                .Select(a => a.ID)
-                .ToList();
-
-                return filteredIdsIf;
+                // Remove the trailing "AND " if it exists
+                if (queryBuilder.ToString().EndsWith("AND "))
+                {
+                    queryBuilder.Length -= 4;
+                }
             }
-
-            var filteredIds = db.Adverts
-                .Select(a => a.ID)
-                .ToList();
-
-            return filteredIds;
-        }
-
-        private List<Advert> ExcludeOldAdsIds(List<Advert> allAdsInDB)
-        {
-            var goalList = allAdsInDB.Except(allAdsInDB.Where(ad => (ad.TimeCreated.Date - DateTime.Now).Days! <= -180)).ToList();
-            return goalList;
-        }
-
-        //private List<Advert> GetAdsInDB(List<int> ids, OrderBy myOrder = OrderBy.DateNewToOld)
-        //{
-        //    var query = db.Adverts
-
-        //        .Where(p => ids.Contains(p.ID));
-
-        //    switch (myOrder)
-        //    {
-        //        case OrderBy.PriceLowToHigh:
-        //            query = query.OrderBy(p => p.Pounds);
-        //            break;
-        //        case OrderBy.PriceHighToLow:
-        //            query = query.OrderBy(p => p.Pounds).Reverse();
-        //            break;
-        //        case OrderBy.DateNewToOld:
-        //            query = query.OrderBy(p => p.TimeCreated).Reverse();
-        //            break;
-        //        case OrderBy.DateOldToNew:
-        //            query = query.OrderBy(p => p.TimeCreated);
-        //            break;
-        //    }
-
-        //    var filteredAdsInDB = query
-        //        .AsNoTracking()
-        //        .ToList();
-
-        //    return ExcludeOldAdsIds(filteredAdsInDB);
-        //}
-
-        private List<Advert> GetAdsInDB()
-        {
-            List<Advert> allAdsInDB = db.Adverts
-            .OrderBy(p => p.TimeCreated).Reverse()
-            .AsNoTracking()
-            .ToList();
-
-            return allAdsInDB /*ExcludeOldAdsIds(allAdsInDB)*/;
         }
     }
 }

@@ -4,6 +4,9 @@
 @using LingonberryStudio.Models;
 @model AdvertViewMoldel
 
+@{
+    Model.Filter.Offering = true;
+}
 
 <div id="filter-container">
     <div class="row">
@@ -20,10 +23,15 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-check p-2">
-                                            @Html.CheckBoxFor(m => m.Filter.Offering, true)
-                                            @Html.LabelFor(m=>m.Filter.Offering,"They are offering space.")<br>      
-                                            @Html.CheckBoxFor(m => m.Filter.Looking, true)
-                                            @Html.LabelFor(m => m.Filter.Looking,"They are looking to rent.")                          
+                                            <label>
+                                            @Html.RadioButtonFor(m => m.Filter.Offering, true)
+                                            They are offering space.
+                                            </label>
+                                            <br>
+                                            <label>
+                                            @Html.RadioButtonFor(m => m.Filter.Offering, false)
+                                            They are looking to rent.
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="col">
