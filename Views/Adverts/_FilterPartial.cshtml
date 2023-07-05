@@ -1,182 +1,530 @@
 ﻿@using LingonberryStudio.Data.Entities
-@model Advert
+@using LingonberryStudio.ViewModels
+@using static LingonberryStudio.Models.Filter;
+@using LingonberryStudio.Models;
+@model AdvertViewMoldel
 
-@*<div class="modal fade" id="adModal-@Model.AdvertID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle"> @Model.WorkPlaces.Description </h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div>
-					<img src="/@Model.WorkPlaces.ImgUrl" class="img-fluid mx-auto ad-image center">
-				</div>
-				@if (Model.OfferingLooking == "offering")
-				{
-					<label class="fw-bold px-1 mb-2 mt-2">I am @Model.OfferingLooking a @Model.WorkspaceDescription</label>
-				}
-				@if(Model.OfferingLooking=="looking")
-				{
-					<label class="fw-bold px-1 mb-2 mt-2">I am @Model.OfferingLooking for a @Model.WorkspaceDescription</label>
-				}
-				<br />
-				<p class="fw-bold form-text-style">City: </p>
-				<p class="form-text-style">@Model.City</p> <br />
-				@if (Model.Area != null)
-				{
-					<p class="fw-bold form-text-style">Area: </p>
-					<p class="form-text-style">@Model.Area</p>
-					<br />
-				}
-				<p class="fw-bold form-text-style">Name: </p>
-				<p class="form-text-style">@Model.FirstName</p> <br />
-				<p class="fw-bold form-text-style">Surname: </p>
-				<p class="form-text-style">@Model.LastName</p> <br />
-				<p class="fw-bold form-text-style">Email: </p>
-				<p class="form-text-style">@Model.Email</p> <br />
-				@if (Model.PhoneNumber != null)
-				{
-					<p class="fw-bold form-text-style">Phone Number: </p>
-					<p class="form-text-style">@Model.PhoneNumber</p> <br />
-				}
-				@if (Model.Artist != null)
-				{
-					<p class="fw-bold form-text-style">Artist/Project Name: </p>
-					<p class="form-text-style">@Model.Artist</p> <br />
-				}
-				@if (Model.DatesAndTimes.Days.GetList().Contains(true) && Model.OfferingLooking == "offering")
-				{
-					<p class="fw-bold form-text-style">Avaliability: </p> <br />
-				}
-				@if (Model.DatesAndTimes.Days.GetList().Contains(true) && Model.OfferingLooking == "looking")
-				{
-					<p class="fw-bold form-text-style">I am interested in following days: </p> <br />
-				}
-				@if (Model.DatesAndTimes.Days != null)
-				{				
-					@if (Model.DatesAndTimes.Days.Monday)
-					{
-						<p class="form-text-style">Monday</p> <br />
-					}
-					@if (Model.DatesAndTimes.Days.Tuesday)
-					{
-						<p class="form-text-style">Tuesday</p><br />
-					}
-					@if (Model.DatesAndTimes.Days.Wednesday)
-					{
-						<p class="form-text-style">Wednesday</p> <br />
-					}
-					@if (Model.DatesAndTimes.Days.Thursday)
-					{
-						<p class="form-text-style">Thursday</p> <br />
-					}
-					@if (Model.DatesAndTimes.Days.Friday)
-					{
-						<p class="form-text-style">Friday</p> <br />
-					}
-					@if (Model.DatesAndTimes.Days.Saturday)
-					{
-						<p class="form-text-style">Saturday</p> <br />
-					}
-					@if (Model.DatesAndTimes.Days.Sunday)
-					{
-						<p class="form-text-style">Sunday</p> <br />
-					}
-					
-				}
-	
-				@if (Model.Amenities.GetList().Contains(true))
-				{
-					<p class="fw-bold form-text-style">Ametities: </p> <br />
-					@if (Model.Amenities.AcousticTreatment)
-					{
-						<p class="form-text-style">Acoustic Treatment</p> <br />
-						@if (ViewBag.aucusticTreatment != null)
-						{
-							<p class="form-text-style"><b><u>Acoustic Treatment</u></b></p> <br />
-						}
-						else
-						{
-						
-						}			
-					}
-					@if (Model.Amenities.NaturalLight)
-					{
-						<p class="form-text-style">Natural Light</p> <br />
-					}
-					@if (Model.Amenities.Kitchen)
-					{
-						<p class="form-text-style">Kitchen</p> <br />
-					}
-					@if (Model.Amenities.RunningWater)
-					{
-						<p class="form-text-style">Running Water</p> <br />
-					}
-					@if (Model.Amenities.AirCon)
-					{
-						<p class="form-text-style">Aircon</p> <br />
-					}
-					@if (Model.Amenities.Parking)
-					{
-						<p class="form-text-style">Parking</p> <br />
-					}
-					@if (Model.Amenities.Storage)
-					{
-						<p class="form-text-style">Storage</p> <br />
-					}
-					@if (Model.Amenities.Other != null)
-					{
-						<p class="form-text-style">@Model.Amenities.Other</p> <br />
-					}
 
-				}
-				@if (Model.Measurements.FeetOrMeters != null)
-				{
-					<p class="fw-bold form-text-style">Size: </p>
-					<p class="form-text-style"> @Model.Measurements.Number @Model.Measurements.FeetOrMeters</p> <br />
-				}
-				@if (Model.DatesAndTimes.StartDate !=null)
-				{
-					<p class="fw-bold form-text-style"> Start date: </p>
-					<p class="form-text-style">@Model.DatesAndTimes.StartDate.Value.ToShortDateString()</p> <br />
-				}
-				@if (Model.DatesAndTimes.EndDate != null )
-					{
-					<p class="fw-bold form-text-style">End date: </p>
-					<p class="form-text-style">@Model.DatesAndTimes.EndDate.Value.ToShortDateString()</p> <br />
-				}
+<head>
+    <link rel="site" href="/css/site.css">
+</head>
 
-				@if (Model.OfferingLooking == "offering")
-				{
-					<p class="fw-bold form-text-style">Rent for the studio is: </p>
-				}
-				@if (Model.OfferingLooking == "looking")
-				{
-					<p class="fw-bold form-text-style">My budget is: </p>
-				}
+<div class="popup" id="adPopup">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h5 class="popup-title">TITEEEEL</h5>
+            <button type="button" class="popup-close" id="closePopup-">&times;</button>
+            <button onclick="history.back()" class="popup-close" id="closeFilterPopup">&times;</button>
+        </div>
+        <div class="popup-body">
+            <div class="">
+                @*modal-body*@
+                <h1>HEJHEJ</h1>
+               @using (Html.BeginForm("Adverts", "Adverts", FormMethod.Get, new { @class = "px-4 py-3" }))
+                {
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-check p-2">
+                                <label>
+                                    @Html.RadioButtonFor(m => m.Filter.Offering, true)
+                                    They are offering space.
+                                </label>
+                                <br>
+                                <label>
+                                    @Html.RadioButtonFor(m => m.Filter.Offering, false)
+                                    They are looking to rent.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                @Html.DropDownListFor(m => m.Filter.OrderBy, Model.Filter.OrderBy.ToSelectList<OrderBy>())
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div>
+                        @Html.TextBoxFor(m => m.Filter.City, "", new { @class = "form-control", placeholder = "City" })
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="row">
+                        <div class="col mb-0">
+                            <label asp-for="Filter.Pounds" class="form-label mb-0" id="budget">
+                                Budget £:
+                                @if (Model.Filter.Pounds > 0)
+                                {
+                                    <span id="displayBudget">@Model.Filter.Pounds</span>
+                                }
+                                else
+                                {
+                                    <span id="displayBudget"></span>
+                                }
+                            </label>
+                            <div class="form-check">
+                                @Html.CheckBoxFor(m => m.Filter.Month, new { id = "pounds", value="true", @onclick="showBudget()" })
+                                @Html.LabelFor(m=>m.Filter.Month,"Month")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @if (Model.Filter.Pounds > 0)
+                        {
+                            <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" id="Currency" name="Filter.Pounds" min="0" max=@Model.MaxBudget step="1" oninput="myFunction()">
+                            @Html.HiddenFor(a=>a.MaxBudget, Model.MaxBudget)
+                        }
+                        else
+                        {
+                            <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="@Model.MaxBudget/2" id="Currency" name="Filter.Pounds" min="0" max=@Model.MaxBudget step="1" oninput="myFunction()" disabled>
+                            @Html.HiddenFor(a=>a.MaxBudget, Model.MaxBudget)
+                        }
 
-				@if (Model.Budgets != null)
-				{					
-					<p class="form-text-style">@Model.Budgets.Price/@Model.Budgets.MonthOrWeek</p> <br />
-				}
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="row mb-4">
+                        <div class="col d-flex col-sm-12 col-md-6 col-lg-4 mb-3">
+                            <div class="form-check">
+                                <p class="mb-1"><b>Studio Type:</b></p>
+                                @Html.CheckBoxFor(m => m.Filter.MusicStudio,true)
+                                @Html.LabelFor(m=>m.Filter.MusicStudio,"Music")<br>
+                                @Html.CheckBoxFor(m => m.Filter.ArtStudio, true)
+                                @Html.LabelFor(m => m.Filter.ArtStudio, "Art")<br />
+                                @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true)
+                                @Html.LabelFor(m => m.Filter.PhotoStudio, "Photo") <br />
+                                @Html.CheckBoxFor(m => m.Filter.DanceRehersalStudio, true)
+                                @Html.LabelFor(m => m.Filter.DanceRehersalStudio,"Dance Rehearsal")<br />
+                                @Html.CheckBoxFor(m => m.Filter.CeramicsStudio, true)
+                                @Html.LabelFor(m => m.Filter.CeramicsStudio,"Ceramics")<br />
+                                @Html.CheckBoxFor(m => m.Filter.PaintingWorkshop, true)
+                                @Html.LabelFor(m => m.Filter.PaintingWorkshop, "Painting Workshop")<br />
+                                @Html.CheckBoxFor(m => m.Filter.OtherStudio, true)
+                                @Html.LabelFor(m => m.Filter.OtherStudio, "Other")
+                            </div>
+                        </div>
+                        <div class="col d-flex col-sm-12 col-md-6 col-lg-4">
+                            <div class="form-group checkbox">
+                                <p class="mb-1"><b>Availability:</b></p>
+                                @Html.CheckBoxFor(m => m.Filter.Monday)
+                                @Html.LabelFor(m => m.Filter.Monday,"Monday")<br />
+                                @Html.CheckBoxFor(m => m.Filter.Tuesday)
+                                @Html.LabelFor(m => m.Filter.Tuesday,"Tuesday")<br />
+                                @Html.CheckBoxFor(m => m.Filter.Wednesday)
+                                @Html.LabelFor(m => m.Filter.Wednesday,"Wednesday")<br />
+                                @Html.CheckBoxFor(m => m.Filter.Thursday)
+                                @Html.LabelFor(m => m.Filter.Thursday,"Thursday")<br />
+                                @Html.CheckBoxFor(m => m.Filter.Friday)
+                                @Html.LabelFor(m => m.Filter.Friday,"Friday")<br />
+                                @Html.CheckBoxFor(m => m.Filter.Saturday)
+                                @Html.LabelFor(m => m.Filter.Saturday,"Saturday")<br />
+                                @Html.CheckBoxFor(m => m.Filter.Sunday)
+                                @Html.LabelFor(m => m.Filter.Sunday,"Sunday")
+                            </div>
+                        </div>
+                        <div class="col d-flex col-sm-12 col-md-12 col-lg-4">
+                            <div class="form-group checkbox">
+                                <p class="mb-1"><b>Amenities:</b></p>
+                                @Html.CheckBoxFor(m => m.Filter.Parking, true)
+                                @Html.LabelFor(m => m.Filter.Parking, "Parking")<br />
+                                @Html.CheckBoxFor(m => m.Filter.Shower, true)
+                                @Html.LabelFor(m => m.Filter.Shower, "Shower")<br />
+                                @Html.CheckBoxFor(m => m.Filter.AirCondition, true)
+                                @Html.LabelFor(m => m.Filter.AirCondition,"Air conditioning")<br />
+                                @Html.CheckBoxFor(m => m.Filter.Kitchen, true)
+                                @Html.LabelFor(m => m.Filter.Kitchen,"Kitchen")<br />
+                                @Html.CheckBoxFor(m => m.Filter.NaturalLight, true)
+                                @Html.LabelFor(m => m.Filter.NaturalLight, "Natural Light")<br />
+                                @Html.CheckBoxFor(m => m.Filter.AcousticTreatment, true)
+                                @Html.LabelFor(m => m.Filter.AcousticTreatment,"Acoustic Treatment")<br />
+                                @Html.CheckBoxFor(m => m.Filter.RunningWater, true)
+                                @Html.LabelFor(m => m.Filter.RunningWater,"Running Water")<br />
+                                @Html.CheckBoxFor(m => m.Filter.Storage, true)
+                                @Html.LabelFor(m => m.Filter.Storage,"Storage")<br />
+                                @Html.CheckBoxFor(m => m.Filter.Toilet, true)
+                                @Html.LabelFor(m => m.Filter.Toilet,"Toilet")<br />
+                                @Html.CheckBoxFor(m => m.Filter.CeramicOven, true)
+                                @Html.LabelFor(m => m.Filter.CeramicOven,"Ceramic oven") <br />
+                                @Html.CheckBoxFor(m => m.Filter.Other, true)
+                                @Html.LabelFor(m => m.Filter.Other, "Other")
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" name="hasFilter" value="true" class="btn-block project-buttons green-buttons">APPLY FILTERS</button>
+                    <button onclick="history.back()" class="red-buttons project-buttons mt-2 form-buttons">CLOSE</button>
+                    <a asp-controller="Adverts" asp-action="Empty" id="clear-button" class="btn project-buttons beige-buttons form-buttons">CLEAR</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+                  @*  </div>
+<div class="col">
+    <div>*@
+        <a class="btn project-buttons form-buttons" id="ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">CREATE</a><br /><br />
+        <div id="popupForm"></div>
+        @* <a class="btn project-buttons form-buttons" id="ad-btn"  data-toggle="modal" data-target="@("#formModal")">CREATE</a>
+        <div class="popup-footer">
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
 
-				@if (Model.DatesAndTimes.OpeningTime != null)
-				{
-					<p class="fw-bold form-text-style"> Start time: </p>
-					<p class="form-text-style">@Model.DatesAndTimes.OpeningTime.Value.ToString("HH:mm"); </p>
-				}
-				@if (Model.DatesAndTimes.ClosingTime != null)
-				{
-					<p class="fw-bold form-text-style">Closing time: </p>
-					<p class="form-text-style">@Model.DatesAndTimes.ClosingTime.Value.ToString("HH:mm"); </p> <br />
-				}
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>*@
+        @*
+        <div class="popup-content">
+        <div class="popup-header">
+        <h5 class="popup-title">HEJ</h5>
+        @*<small class="form-text-style mt-1">Posted @Model.TimeCreated.ToShortDateString()</small>*@
+        @*<button type="button" class="popup-close" id="closePopup-@Model.ID">&times;</button>
+        </div>
+        <div class="popup-body">
+        <div>
+        <h1>HEJHEJ</h1>
+        <div>
+        <img src="/@Model.WorkPlaces.ImgUrl" class="img-fluid mx-auto ad-image center">
+        </div>
+        @if (Model.OfferingLooking == "offering")
+        {
+        <label class="fw-bold px-1 mb-2 mt-2">I am @Model.OfferingLooking a @Model.WorkspaceDescription</label>
+        }
+        @if (Model.OfferingLooking == "looking")
+        {
+        <label class="fw-bold px-1 mb-2 mt-2">I am @Model.OfferingLooking for a @Model.WorkspaceDescription</label>
+        }
+        <br />
+        <p class="fw-bold form-text-style">City: </p>
+        <p class="form-text-style">@Model.City</p> <br />
+        @if (Model.Area != null)
+        {
+        <p class="fw-bold form-text-style">Area: </p>
+        <p class="form-text-style">@Model.Area</p>
+        <br />
+        }
+        <p class="fw-bold form-text-style">Name: </p>
+        <p class="form-text-style">@Model.FirstName</p> <br />
+        <p class="fw-bold form-text-style">Surname: </p>
+        <p class="form-text-style">@Model.LastName</p> <br />
+        <p class="fw-bold form-text-style">Email: </p>
+        <p class="form-text-style">@Model.Email</p> <br />
+        @if (Model.PhoneNumber != null)
+        {
+        <p class="fw-bold form-text-style">Phone Number: </p>
+        <p class="form-text-style">@Model.PhoneNumber</p> <br />
+        }
+        @if (Model.Artist != null)
+        {
+        <p class="fw-bold form-text-style">Artist/Project Name: </p>
+        <p class="form-text-style">@Model.Artist</p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.GetList().Contains(true) && Model.OfferingLooking == "offering")
+        {
+        <p class="fw-bold form-text-style">Avaliability: </p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.GetList().Contains(true) && Model.OfferingLooking == "looking")
+        {
+        <p class="fw-bold form-text-style">I am interested in following days: </p> <br />
+        }
+        @if (Model.DatesAndTimes.Days != null)
+        {
+        @if (Model.DatesAndTimes.Days.Monday)
+        {
+        <p class="form-text-style">Monday</p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.Tuesday)
+        {
+        <p class="form-text-style">Tuesday</p>
+
+        <br />
+        }
+        @if (Model.DatesAndTimes.Days.Wednesday)
+        {
+        <p class="form-text-style">Wednesday</p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.Thursday)
+        {
+        <p class="form-text-style">Thursday</p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.Friday)
+        {
+        <p class="form-text-style">Friday</p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.Saturday)
+        {
+        <p class="form-text-style">Saturday</p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.Sunday)
+        {
+        <p class="form-text-style">Sunday</p> <br />
+        }
+
+        }
+
+        @if (Model.Amenities.GetList().Contains(true))
+        {
+        <p class="fw-bold form-text-style">Ametities: </p> <br />
+        @if (Model.Amenities.AcousticTreatment)
+        {
+        <p class="form-text-style">Acoustic Treatment</p> <br />
+        @if (ViewBag.aucusticTreatment != null)
+        {
+        <p class="form-text-style"><b><u>Acoustic Treatment</u></b></p> <br />
+        }
+        else
+        {
+
+        }
+        }
+        @if (Model.Amenities.NaturalLight)
+        {
+        <p class="form-text-style">Natural Light</p> <br />
+        }
+        @if (Model.Amenities.Kitchen)
+        {
+        <p class="form-text-style">Kitchen</p> <br />
+        }
+        @if (Model.Amenities.RunningWater)
+        {
+        <p class="form-text-style">Running Water</p> <br />
+        }
+        @if (Model.Amenities.AirCon)
+        {
+        <p class="form-text-style">Aircon</p> <br />
+        }
+        @if (Model.Amenities.Parking)
+        {
+        <p class="form-text-style">Parking</p> <br />
+        }
+        @if (Model.Amenities.Storage)
+        {
+        <p class="form-text-style">Storage</p> <br />
+        }
+        @if (Model.Amenities.Other != null)
+        {
+        <p class="form-text-style">@Model.Amenities.Other</p> <br />
+        }
+
+        }
+        @if (Model.Measurements.FeetOrMeters != null)
+        {
+        <p class="fw-bold form-text-style">Size: </p>
+        <p class="form-text-style"> @Model.Measurements.Number @Model.Measurements.FeetOrMeters</p> <br />
+        }
+        @if (Model.DatesAndTimes.StartDate != null)
+        {
+        <p class="fw-bold form-text-style"> Start date: </p>
+        <p class="form-text-style">@Model.DatesAndTimes.StartDate.Value.ToShortDateString()</p> <br />
+        }
+        @if (Model.DatesAndTimes.EndDate != null)
+        {
+        <p class="fw-bold form-text-style">End date: </p>
+        <p class="form-text-style">@Model.DatesAndTimes.EndDate.Value.ToShortDateString()</p> <br />
+        }
+
+        @if (Model.OfferingLooking == "offering")
+        {
+        <p class="fw-bold form-text-style">Rent for the studio is: </p>
+        }
+        @if (Model.OfferingLooking == "looking")
+        {
+        <p class="fw-bold form-text-style">My budget is: </p>
+        }
+
+        @if (Model.Budgets != null)
+        {
+        <p class="form-text-style">@Model.Budgets.Price/@Model.Budgets.MonthOrWeek</p> <br />
+        }
+
+        @if (Model.DatesAndTimes.OpeningTime != null)
+        {
+        <p class="fw-bold form-text-style"> Start time: </p>
+        <p class="form-text-style">@Model.DatesAndTimes.OpeningTime.Value.ToString("HH:mm"); </p>
+        }
+        @if (Model.DatesAndTimes.ClosingTime != null)
+        {
+        <p class="fw-bold form-text-style">Closing time: </p>
+        <p class="form-text-style">@Model.DatesAndTimes.ClosingTime.Value.ToString("HH:mm"); </p> <br />
+        }
+        </div>
+        <div class="popup-footer">
+        @*<button type="button" class="project-buttons form-buttons red-buttons" id="closePopup-@Model.ID">CLOSE</button>
+        </div>
+        </div>
+        </div>
+
+        @*<div class="modal fade" id="adModal-@Model.AdvertID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"> @Model.WorkPlaces.Description </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <div>
+        <img src="/@Model.WorkPlaces.ImgUrl" class="img-fluid mx-auto ad-image center">
+        </div>
+        @if (Model.OfferingLooking == "offering")
+        {
+        <label class="fw-bold px-1 mb-2 mt-2">I am @Model.OfferingLooking a @Model.WorkspaceDescription</label>
+        }
+        @if(Model.OfferingLooking=="looking")
+        {
+        <label class="fw-bold px-1 mb-2 mt-2">I am @Model.OfferingLooking for a @Model.WorkspaceDescription</label>
+        }
+        <br />
+        <p class="fw-bold form-text-style">City: </p>
+        <p class="form-text-style">@Model.City</p> <br />
+        @if (Model.Area != null)
+        {
+        <p class="fw-bold form-text-style">Area: </p>
+        <p class="form-text-style">@Model.Area</p>
+        <br />
+        }
+        <p class="fw-bold form-text-style">Name: </p>
+        <p class="form-text-style">@Model.FirstName</p> <br />
+        <p class="fw-bold form-text-style">Surname: </p>
+        <p class="form-text-style">@Model.LastName</p> <br />
+        <p class="fw-bold form-text-style">Email: </p>
+        <p class="form-text-style">@Model.Email</p> <br />
+        @if (Model.PhoneNumber != null)
+        {
+        <p class="fw-bold form-text-style">Phone Number: </p>
+        <p class="form-text-style">@Model.PhoneNumber</p> <br />
+        }
+        @if (Model.Artist != null)
+        {
+        <p class="fw-bold form-text-style">Artist/Project Name: </p>
+        <p class="form-text-style">@Model.Artist</p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.GetList().Contains(true) && Model.OfferingLooking == "offering")
+        {
+        <p class="fw-bold form-text-style">Avaliability: </p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.GetList().Contains(true) && Model.OfferingLooking == "looking")
+        {
+        <p class="fw-bold form-text-style">I am interested in following days: </p> <br />
+        }
+        @if (Model.DatesAndTimes.Days != null)
+        {
+        @if (Model.DatesAndTimes.Days.Monday)
+        {
+        <p class="form-text-style">Monday</p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.Tuesday)
+        {
+        <p class="form-text-style">Tuesday</p><br />
+        }
+        @if (Model.DatesAndTimes.Days.Wednesday)
+        {
+        <p class="form-text-style">Wednesday</p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.Thursday)
+        {
+        <p class="form-text-style">Thursday</p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.Friday)
+        {
+        <p class="form-text-style">Friday</p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.Saturday)
+        {
+        <p class="form-text-style">Saturday</p> <br />
+        }
+        @if (Model.DatesAndTimes.Days.Sunday)
+        {
+        <p class="form-text-style">Sunday</p> <br />
+        }
+
+        }
+
+        @if (Model.Amenities.GetList().Contains(true))
+        {
+        <p class="fw-bold form-text-style">Ametities: </p> <br />
+        @if (Model.Amenities.AcousticTreatment)
+        {
+        <p class="form-text-style">Acoustic Treatment</p> <br />
+        @if (ViewBag.aucusticTreatment != null)
+        {
+        <p class="form-text-style"><b><u>Acoustic Treatment</u></b></p> <br />
+        }
+        else
+        {
+
+        }
+        }
+        @if (Model.Amenities.NaturalLight)
+        {
+        <p class="form-text-style">Natural Light</p> <br />
+        }
+        @if (Model.Amenities.Kitchen)
+        {
+        <p class="form-text-style">Kitchen</p> <br />
+        }
+        @if (Model.Amenities.RunningWater)
+        {
+        <p class="form-text-style">Running Water</p> <br />
+        }
+        @if (Model.Amenities.AirCon)
+        {
+        <p class="form-text-style">Aircon</p> <br />
+        }
+        @if (Model.Amenities.Parking)
+        {
+        <p class="form-text-style">Parking</p> <br />
+        }
+        @if (Model.Amenities.Storage)
+        {
+        <p class="form-text-style">Storage</p> <br />
+        }
+        @if (Model.Amenities.Other != null)
+        {
+        <p class="form-text-style">@Model.Amenities.Other</p> <br />
+        }
+
+        }
+        @if (Model.Measurements.FeetOrMeters != null)
+        {
+        <p class="fw-bold form-text-style">Size: </p>
+        <p class="form-text-style"> @Model.Measurements.Number @Model.Measurements.FeetOrMeters</p> <br />
+        }
+        @if (Model.DatesAndTimes.StartDate !=null)
+        {
+        <p class="fw-bold form-text-style"> Start date: </p>
+        <p class="form-text-style">@Model.DatesAndTimes.StartDate.Value.ToShortDateString()</p> <br />
+        }
+        @if (Model.DatesAndTimes.EndDate != null )
+        {
+        <p class="fw-bold form-text-style">End date: </p>
+        <p class="form-text-style">@Model.DatesAndTimes.EndDate.Value.ToShortDateString()</p> <br />
+        }
+
+        @if (Model.OfferingLooking == "offering")
+        {
+        <p class="fw-bold form-text-style">Rent for the studio is: </p>
+        }
+        @if (Model.OfferingLooking == "looking")
+        {
+        <p class="fw-bold form-text-style">My budget is: </p>
+        }
+
+        @if (Model.Budgets != null)
+        {
+        <p class="form-text-style">@Model.Budgets.Price/@Model.Budgets.MonthOrWeek</p> <br />
+        }
+
+        @if (Model.DatesAndTimes.OpeningTime != null)
+        {
+        <p class="fw-bold form-text-style"> Start time: </p>
+        <p class="form-text-style">@Model.DatesAndTimes.OpeningTime.Value.ToString("HH:mm"); </p>
+        }
+        @if (Model.DatesAndTimes.ClosingTime != null)
+        {
+        <p class="fw-bold form-text-style">Closing time: </p>
+        <p class="form-text-style">@Model.DatesAndTimes.ClosingTime.Value.ToString("HH:mm"); </p> <br />
+        }
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+        </div>
+        </div>*@

@@ -8,161 +8,159 @@
     Model.Filter.Offering = true;
 }
 
-<div id="filter-container">
-    <div class="row">
-        <div class="col">
-            <div>
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle project-buttons beige-buttons form-buttons" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        FILTER
+
+<a href="#filter" class="filter-link" rel="noopener noreferrer" data-ad-id="99">
+    TRYCK
+</a>
+                    @* <button class="btn dropdown-toggle project-buttons beige-buttons form-buttons" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    FILTER
                     </button>
                     <div class="dropdown-menu">
-                        <div class="form-outline mb-4">
-                            @using (Html.BeginForm("Adverts", "Adverts", FormMethod.Get, new { @class = "px-4 py-3" }))
-                            {
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-check p-2">
-                                            <label>
-                                            @Html.RadioButtonFor(m => m.Filter.Offering, true)
-                                            They are offering space.
-                                            </label>
-                                            <br>
-                                            <label>
-                                            @Html.RadioButtonFor(m => m.Filter.Offering, false)
-                                            They are looking to rent.
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div>
-                                            @Html.DropDownListFor(m => m.Filter.OrderBy, Model.Filter.OrderBy.ToSelectList<OrderBy>())
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dropdown-divider"></div>
-                                <div>
-                                    @Html.TextBoxFor(m => m.Filter.City, "", new { @class = "form-control", placeholder = "City" })
-                                </div>
-                                <div class="dropdown-divider"></div>
-                                <div class="row">
-                                    <div class="col mb-0">
-                                        <label asp-for="Filter.Pounds" class="form-label mb-0" id="budget">Budget £:
-                                            @if (Model.Filter.Pounds > 0)
-                                            {
-                                                <span id="displayBudget">@Model.Filter.Pounds</span>
-                                            }
-                                            else
-                                            {
-                                                <span id="displayBudget"></span>
-                                            }                                            
-                                        </label>
-                                        <div class="form-check">
-                                            @Html.CheckBoxFor(m => m.Filter.Month, new { id = "pounds", value="true", @onclick="showBudget()" })
-                                            @Html.LabelFor(m=>m.Filter.Month,"Month")
-                                        </div>                                       
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    @if (Model.Filter.Pounds > 0)
-                                    {
-                                        <input type="range" class="multi-range form-range" asp-for="Filter.Pounds"  id="Currency" name="Filter.Pounds" min="0" max=@Model.MaxBudget step="1" oninput="myFunction()">
-                                        @Html.HiddenFor(a=>a.MaxBudget, Model.MaxBudget)
-                                    }
-                                    else
-                                    {
-                                        <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="@Model.MaxBudget/2" id="Currency" name="Filter.Pounds" min="0" max=@Model.MaxBudget step="1" oninput="myFunction()" disabled>
-                                        @Html.HiddenFor(a=>a.MaxBudget, Model.MaxBudget)
-                                    }
-                                    
-                                </div>
-                                <div class="dropdown-divider"></div>
-                                <div class="row mb-4">
-                                    <div class="col d-flex col-sm-12 col-md-6 col-lg-4 mb-3">
-                                        <div class="form-check">
-                                            <p class="mb-1"><b>Studio Type:</b></p>
-                                            @Html.CheckBoxFor(m => m.Filter.MusicStudio,true)
-                                            @Html.LabelFor(m=>m.Filter.MusicStudio,"Music")<br>
-                                            @Html.CheckBoxFor(m => m.Filter.ArtStudio, true)
-                                            @Html.LabelFor(m => m.Filter.ArtStudio, "Art")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true)
-                                            @Html.LabelFor(m => m.Filter.PhotoStudio, "Photo") <br />
-                                            @Html.CheckBoxFor(m => m.Filter.DanceRehersalStudio, true)
-                                            @Html.LabelFor(m => m.Filter.DanceRehersalStudio,"Dance Rehearsal")<br/>
-                                            @Html.CheckBoxFor(m => m.Filter.CeramicsStudio, true)
-                                            @Html.LabelFor(m => m.Filter.CeramicsStudio,"Ceramics")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.PaintingWorkshop, true)
-                                            @Html.LabelFor(m => m.Filter.PaintingWorkshop, "Painting Workshop")<br/>
-                                            @Html.CheckBoxFor(m => m.Filter.OtherStudio, true)
-                                            @Html.LabelFor(m => m.Filter.OtherStudio, "Other")
-                                        </div>
-                                    </div>
-                                    <div class="col d-flex col-sm-12 col-md-6 col-lg-4">
-                                            <div class="form-group checkbox">
-                                            <p class="mb-1"><b>Availability:</b></p>
-                                            @Html.CheckBoxFor(m => m.Filter.Monday)
-                                            @Html.LabelFor(m => m.Filter.Monday,"Monday")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.Tuesday)
-                                            @Html.LabelFor(m => m.Filter.Tuesday,"Tuesday")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.Wednesday)
-                                            @Html.LabelFor(m => m.Filter.Wednesday,"Wednesday")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.Thursday)
-                                            @Html.LabelFor(m => m.Filter.Thursday,"Thursday")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.Friday)
-                                            @Html.LabelFor(m => m.Filter.Friday,"Friday")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.Saturday)
-                                            @Html.LabelFor(m => m.Filter.Saturday,"Saturday")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.Sunday)
-                                            @Html.LabelFor(m => m.Filter.Sunday,"Sunday")
-                                            </div>
-                                        </div>
-                                    <div class="col d-flex col-sm-12 col-md-12 col-lg-4">
-                                            <div class="form-group checkbox">
-                                            <p class="mb-1"><b>Amenities:</b></p>
-                                            @Html.CheckBoxFor(m => m.Filter.Parking, true)
-                                            @Html.LabelFor(m => m.Filter.Parking, "Parking")<br/>
-                                            @Html.CheckBoxFor(m => m.Filter.Shower, true)
-                                            @Html.LabelFor(m => m.Filter.Shower, "Shower")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.AirCondition, true)
-                                            @Html.LabelFor(m => m.Filter.AirCondition,"Air conditioning")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.Kitchen, true)
-                                            @Html.LabelFor(m => m.Filter.Kitchen,"Kitchen")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.NaturalLight, true)
-                                            @Html.LabelFor(m => m.Filter.NaturalLight, "Natural Light")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.AcousticTreatment, true)
-                                            @Html.LabelFor(m => m.Filter.AcousticTreatment,"Acoustic Treatment")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.RunningWater, true)
-                                            @Html.LabelFor(m => m.Filter.RunningWater,"Running Water")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.Storage, true)
-                                            @Html.LabelFor(m => m.Filter.Storage,"Storage")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.Toilet, true)
-                                            @Html.LabelFor(m => m.Filter.Toilet,"Toilet")<br />
-                                            @Html.CheckBoxFor(m => m.Filter.CeramicOven, true)
-                                            @Html.LabelFor(m => m.Filter.CeramicOven,"Ceramic oven") <br />
-                                            @Html.CheckBoxFor(m => m.Filter.Other, true)
-                                            @Html.LabelFor(m => m.Filter.Other, "Other") 
-                                            </div>
-                                        </div>
-                                    </div>
-                                <button type="submit" name="hasFilter" value="true" class="btn-block project-buttons green-buttons">APPLY FILTERS</button>
-                                <button onclick="history.back()" class="red-buttons project-buttons mt-2 form-buttons">CLOSE</button>
-                                <a asp-controller="Adverts" asp-action="Empty" id="clear-button" class="btn project-buttons beige-buttons form-buttons">CLEAR</a>
-                            }
-                        </div>
-                    </div>                
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div>
-                <a class="btn project-buttons form-buttons" id="ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">CREATE</a><br /><br />
-                <div id="popupForm"></div>
-               @* <a class="btn project-buttons form-buttons" id="ad-btn"  data-toggle="modal" data-target="@("#formModal")">CREATE</a>
-                @await Html.PartialAsync("_FormPartial")*@
-            </div>
-        </div>
-    </div>
-</div>
+                    <div class="form-outline mb-4">
+                    @using (Html.BeginForm("Adverts", "Adverts", FormMethod.Get, new { @class = "px-4 py-3" }))
+                    {
+                    <div class="row">
+                    <div class="col">
+                    <div class="form-check p-2">
+                    <label>
+                    @Html.RadioButtonFor(m => m.Filter.Offering, true)
+                    They are offering space.
+                    </label>
+                    <br>
+                    <label>
+                    @Html.RadioButtonFor(m => m.Filter.Offering, false)
+                    They are looking to rent.
+                    </label>
+                    </div>
+                    </div>
+                    <div class="col">
+                    <div>
+                    @Html.DropDownListFor(m => m.Filter.OrderBy, Model.Filter.OrderBy.ToSelectList<OrderBy>())
+                    </div>
+                    </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div>
+                    @Html.TextBoxFor(m => m.Filter.City, "", new { @class = "form-control", placeholder = "City" })
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="row">
+                    <div class="col mb-0">
+                    <label asp-for="Filter.Pounds" class="form-label mb-0" id="budget">Budget £:
+                    @if (Model.Filter.Pounds > 0)
+                    {
+                    <span id="displayBudget">@Model.Filter.Pounds</span>
+                    }
+                    else
+                    {
+                    <span id="displayBudget"></span>
+                    }
+                    </label>
+                    <div class="form-check">
+                    @Html.CheckBoxFor(m => m.Filter.Month, new { id = "pounds", value="true", @onclick="showBudget()" })
+                    @Html.LabelFor(m=>m.Filter.Month,"Month")
+                    </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    @if (Model.Filter.Pounds > 0)
+                    {
+                    <input type="range" class="multi-range form-range" asp-for="Filter.Pounds"  id="Currency" name="Filter.Pounds" min="0" max=@Model.MaxBudget step="1" oninput="myFunction()">
+                    @Html.HiddenFor(a=>a.MaxBudget, Model.MaxBudget)
+                    }
+                    else
+                    {
+                    <input type="range" class="multi-range form-range" asp-for="Filter.Pounds" value="@Model.MaxBudget/2" id="Currency" name="Filter.Pounds" min="0" max=@Model.MaxBudget step="1" oninput="myFunction()" disabled>
+                    @Html.HiddenFor(a=>a.MaxBudget, Model.MaxBudget)
+                    }
+
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="row mb-4">
+                    <div class="col d-flex col-sm-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-check">
+                    <p class="mb-1"><b>Studio Type:</b></p>
+                    @Html.CheckBoxFor(m => m.Filter.MusicStudio,true)
+                    @Html.LabelFor(m=>m.Filter.MusicStudio,"Music")<br>
+                    @Html.CheckBoxFor(m => m.Filter.ArtStudio, true)
+                    @Html.LabelFor(m => m.Filter.ArtStudio, "Art")<br />
+                    @Html.CheckBoxFor(m => m.Filter.PhotoStudio, true)
+                    @Html.LabelFor(m => m.Filter.PhotoStudio, "Photo") <br />
+                    @Html.CheckBoxFor(m => m.Filter.DanceRehersalStudio, true)
+                    @Html.LabelFor(m => m.Filter.DanceRehersalStudio,"Dance Rehearsal")<br/>
+                    @Html.CheckBoxFor(m => m.Filter.CeramicsStudio, true)
+                    @Html.LabelFor(m => m.Filter.CeramicsStudio,"Ceramics")<br />
+                    @Html.CheckBoxFor(m => m.Filter.PaintingWorkshop, true)
+                    @Html.LabelFor(m => m.Filter.PaintingWorkshop, "Painting Workshop")<br/>
+                    @Html.CheckBoxFor(m => m.Filter.OtherStudio, true)
+                    @Html.LabelFor(m => m.Filter.OtherStudio, "Other")
+                    </div>
+                    </div>
+                    <div class="col d-flex col-sm-12 col-md-6 col-lg-4">
+                    <div class="form-group checkbox">
+                    <p class="mb-1"><b>Availability:</b></p>
+                    @Html.CheckBoxFor(m => m.Filter.Monday)
+                    @Html.LabelFor(m => m.Filter.Monday,"Monday")<br />
+                    @Html.CheckBoxFor(m => m.Filter.Tuesday)
+                    @Html.LabelFor(m => m.Filter.Tuesday,"Tuesday")<br />
+                    @Html.CheckBoxFor(m => m.Filter.Wednesday)
+                    @Html.LabelFor(m => m.Filter.Wednesday,"Wednesday")<br />
+                    @Html.CheckBoxFor(m => m.Filter.Thursday)
+                    @Html.LabelFor(m => m.Filter.Thursday,"Thursday")<br />
+                    @Html.CheckBoxFor(m => m.Filter.Friday)
+                    @Html.LabelFor(m => m.Filter.Friday,"Friday")<br />
+                    @Html.CheckBoxFor(m => m.Filter.Saturday)
+                    @Html.LabelFor(m => m.Filter.Saturday,"Saturday")<br />
+                    @Html.CheckBoxFor(m => m.Filter.Sunday)
+                    @Html.LabelFor(m => m.Filter.Sunday,"Sunday")
+                    </div>
+                    </div>
+                    <div class="col d-flex col-sm-12 col-md-12 col-lg-4">
+                    <div class="form-group checkbox">
+                    <p class="mb-1"><b>Amenities:</b></p>
+                    @Html.CheckBoxFor(m => m.Filter.Parking, true)
+                    @Html.LabelFor(m => m.Filter.Parking, "Parking")<br/>
+                    @Html.CheckBoxFor(m => m.Filter.Shower, true)
+                    @Html.LabelFor(m => m.Filter.Shower, "Shower")<br />
+                    @Html.CheckBoxFor(m => m.Filter.AirCondition, true)
+                    @Html.LabelFor(m => m.Filter.AirCondition,"Air conditioning")<br />
+                    @Html.CheckBoxFor(m => m.Filter.Kitchen, true)
+                    @Html.LabelFor(m => m.Filter.Kitchen,"Kitchen")<br />
+                    @Html.CheckBoxFor(m => m.Filter.NaturalLight, true)
+                    @Html.LabelFor(m => m.Filter.NaturalLight, "Natural Light")<br />
+                    @Html.CheckBoxFor(m => m.Filter.AcousticTreatment, true)
+                    @Html.LabelFor(m => m.Filter.AcousticTreatment,"Acoustic Treatment")<br />
+                    @Html.CheckBoxFor(m => m.Filter.RunningWater, true)
+                    @Html.LabelFor(m => m.Filter.RunningWater,"Running Water")<br />
+                    @Html.CheckBoxFor(m => m.Filter.Storage, true)
+                    @Html.LabelFor(m => m.Filter.Storage,"Storage")<br />
+                    @Html.CheckBoxFor(m => m.Filter.Toilet, true)
+                    @Html.LabelFor(m => m.Filter.Toilet,"Toilet")<br />
+                    @Html.CheckBoxFor(m => m.Filter.CeramicOven, true)
+                    @Html.LabelFor(m => m.Filter.CeramicOven,"Ceramic oven") <br />
+                    @Html.CheckBoxFor(m => m.Filter.Other, true)
+                    @Html.LabelFor(m => m.Filter.Other, "Other")
+                    </div>
+                    </div>
+                    </div>
+                    <button type="submit" name="hasFilter" value="true" class="btn-block project-buttons green-buttons">APPLY FILTERS</button>
+                    <button onclick="history.back()" class="red-buttons project-buttons mt-2 form-buttons">CLOSE</button>
+                    <a asp-controller="Adverts" asp-action="Empty" id="clear-button" class="btn project-buttons beige-buttons form-buttons">CLEAR</a>
+                    }
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="col">
+                    <div>
+                    <a class="btn project-buttons form-buttons" id="ad-btn" asp-controller="Adverts" asp-action="Form" data-toggle="modal" data-target="@("#formModal")">CREATE</a><br /><br />
+                    <div id="popupForm"></div>
+                    @* <a class="btn project-buttons form-buttons" id="ad-btn"  data-toggle="modal" data-target="@("#formModal")">CREATE</a>
+                    @await Html.PartialAsync("_FormPartial")*@
+
+
+
 
 <p id="result">@ViewBag.Total Results</p>
 <div class="container-fluid flex-grid-container border-0">
@@ -174,7 +172,8 @@
             string? studio = ad.StudioType; @*ad.SplitCamelCase()*@
 
             <div class="ad-card">
-                <a data-toggle="modal" data-target="@("#adModal-"+ad.ID)">
+                @*<a href="#" class="ad-link" data-ad-id="@ad.ID">View Details</a>   /api/advert/*@
+                <a href="#" class="@ad.ID ad-link" rel="noopener noreferrer" data-ad-id="@ad.ID">
                     <div class="container">
                         <img src="/@(ad.ImgUrl)" alt="Work space area" id="ad-image" class="img-fluid mx-auto mb-2">
                         @if (ad.Offering)
@@ -203,20 +202,19 @@
                         }
                     </div>
                 </a>
-                @*@await Html.PartialAsync("_ChosenAdPartial", ad)*@
             </div>
         }
     </div>
 </div>
-
-<script>
-   function myFunction() {
+<div id="popup-container"></div>
+@*<script>
+    function myFunction() {
         var x = document.getElementById("Currency").value;
         document.getElementById("displayBudget").innerHTML = x;
     }
 
-    function showBudget(){
-            var checkbox = document.querySelector("input[id=pounds]");
+    function showBudget() {
+        var checkbox = document.querySelector("input[id=pounds]");
         checkbox.addEventListener('change', function () {
             if (this.checked) {
                 var x = document.getElementById("Currency").value;
@@ -237,3 +235,4 @@
         }
     });
 </script>
+*@

@@ -62,5 +62,10 @@ namespace LingonberryStudio.Data.Repositories
 
             return allPreviewAds;
         }
+
+        public Advert? RetreveAdvertByID(int id)
+        {
+            return db.Adverts.FirstOrDefault(ad => ad.ID == id);
+        }
     }
 }

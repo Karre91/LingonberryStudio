@@ -48,7 +48,7 @@
         [Required(ErrorMessage = "This field is required")]
         public bool Offering { get; set; }
 
-        public bool Looking { get; set; }
+        //public bool Looking { get; set; }
 
         [Required(ErrorMessage = "The first name field is required.")]
         [RegularExpression(

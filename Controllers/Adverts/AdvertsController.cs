@@ -306,5 +306,37 @@
                 }
             }
         }
+
+        // GET endpoint to retrieve the full Advert based on the ID
+        [HttpGet]
+        [Route("api/advert/{id}")]
+        public IActionResult GetAdvertById(int id)
+        {
+            var advert = advertRepository.RetreveAdvertByID(id);
+            if (advert == null)
+            {
+                return NotFound();
+            }
+
+            return View("_AdvertDetail", advert);
+        }
+
+        public IActionResult GetPopupContent(int adId)
+        {
+            var advert = advertRepository.RetreveAdvertByID(adId);
+            if (advert == null)
+            {
+                return NotFound();
+            }
+
+            return PartialView("_AdvertDetail", advert);
+        }
+
+        public IActionResult GetFilterContent()
+        {
+            AdvertViewMoldel test = new();
+
+            return PartialView("_FilterPartial", test);
+        }
     }
 }

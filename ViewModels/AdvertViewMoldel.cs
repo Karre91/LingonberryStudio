@@ -11,11 +11,8 @@
             Advert = new Advert();
             Filter = new Filter();
 
-            //AdvertList = new List<Advert>();
             PreviewAdvertList = new List<PreviewAdvert>();
         }
-
-        //public List<Advert> AdvertList { get; set; }
 
         public List<PreviewAdvert> PreviewAdvertList { get; set; }
 
